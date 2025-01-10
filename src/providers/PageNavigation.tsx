@@ -52,8 +52,14 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "implementation",
       name: "Implementation",
       subheaders: [
-        { id: "implementation-1", name: "Implementation 1" },
-        { id: "implementation-2", name: "Implementation 2" },
+        {
+          id: "implementation-1",
+          name: "4.1 Isolated VPC in User’s AWS Account",
+        },
+        {
+          id: "implementation-2",
+          name: "4.2 Fleet of EC2 runners placed in standby",
+        },
         { id: "implementation-3", name: "Implementation 3" },
         { id: "implementation-4", name: "Implementation 4" },
         { id: "implementation-5", name: "Implementation 5" },

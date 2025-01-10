@@ -52,6 +52,10 @@ const Implementation = () => {
     (subheader) => subheader.id,
   );
 
+  const subheaderNames = pages[activePage].subheaders?.map(
+    (subheader) => subheader.name,
+  );
+
   const handleInView = (id: string) => {
     const subheaderIndex = subheaderIds.indexOf(id);
     if (subheaderIndex !== -1) {
@@ -63,22 +67,19 @@ const Implementation = () => {
     <>
       <section id="implementation-1">
         <SectionInView sectionId="implementation-1" onInView={handleInView} />
-        <h2>Implementation 1</h2>
+        <h2>{subheaderNames[0]}</h2>
         <div className="">
           <div className="">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-              malesuada dui non augue aliquet, vel iaculis arcu pharetra. Nullam
-              tristique tortor eu sapien convallis, et euismod ligula iaculis.
-            </p>
-            <p>
-              Curabitur vehicula erat at ante fermentum, in condimentum nisi
-              condimentum. Sed viverra nisl sit amet nibh sodales, eget
-              facilisis lorem feugiat. Donec vel eros ut urna faucibus maximus.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-              voluptatibus modi quam amet repudiandae quos molestias
-              reprehenderit optio itaque ullam quisquam vitae totam aut
-              laboriosam, saepe est corrupti voluptatem sunt.
+              Harrier sets up a dedicated Amazon Virtual Private Cloud (VPC)
+              within the user’s AWS account to ensure resource isolation and
+              prevent Harrier-provisioned VMs from accessing existing resources
+              or interfering with existing processes. Given that the self-hosted
+              runners require a direct connection with GitHub over the internet,
+              the VPC is created with a public subnet that is associated with a
+              route table, which routes traffic to a separately provisioned
+              Internet Gateway. Incoming traffic into the public subnet is
+              restricted to GitHub addresses for security reasons.
             </p>
           </div>
           <ImageContentModal
@@ -91,12 +92,30 @@ const Implementation = () => {
       <section id="implementation-2">
         <SectionInView sectionId="implementation-2" onInView={handleInView} />
 
-        <h2>Implementation 2</h2>
+        <h2>{subheaderNames[1]}</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vehicula, arcu ut facilisis vehicula, urna felis vehicula purus, eget
-          varius odio risus vel lorem. Vestibulum ante ipsum primis in faucibus
-          orci luctus et ultrices posuere cubilia curae; Nulla facilisi.
+          Harrier deploys to Amazon’s Elastic Compute Cloud (EC2) service which
+          functions as the GHA self-hosted runner, providing the following
+          benefits:
+          <ul>
+            <li>
+              Instances are launched on an as-needed basis, making it possible
+              to provision on-demand runners.
+            </li>
+            <li>
+              Instances can be stopped when no longer in use, facilitating
+              resource optimization.
+            </li>
+            <li>
+              Instances can be terminated after each use, making them truly
+              ephemeral.
+            </li>
+            <li>
+              Instances can be customized to run on any operating system using a
+              variety of hardware (i.e., CPU, RAM, storage, networking) and
+              network configurations.
+            </li>
+          </ul>
         </p>
         <p>
           Vivamus sollicitudin orci eu est gravida, at iaculis risus
