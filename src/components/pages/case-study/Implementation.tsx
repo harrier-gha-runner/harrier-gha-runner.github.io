@@ -17,7 +17,7 @@ import CacheByHarrier from "@/assets/4.6.cache-by-harrier.png";
 import HighLevelArchitecture from "@/assets/4.7.high-level.png";
 import MinimalWorkflowModification from "@/assets/4.8.minimal-workflow-modification-v1.gif";
 import OverallArchitecture from "@/assets/4.overall-architecture.png";
-import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
+// import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
