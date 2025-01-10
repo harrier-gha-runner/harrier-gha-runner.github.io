@@ -1,6 +1,6 @@
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "../src/providers/PageNavigation";
 
 import TryHarrierPage from "./components/pages/TryHarrierPage";
@@ -19,7 +19,7 @@ createRoot(document.getElementById("app")!).render(
   <StrictMode>
     <PageNavigationProvider>
       <RouterProvider
-        router={createBrowserRouter(
+        router={createHashRouter(
           [
             {
               path: "/",
