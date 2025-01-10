@@ -58,7 +58,23 @@ h2 {
   left: 50%;
   top: 50%;
   transform: translateY(-100px);
-  animation: bird-y-axis 1s infinite cubic-bezier(0.20, 0, 0.58, 1);
+  animation: bird-y-axis 1s infinite cubic-bezier(0.2, 0, 0.58, 1);
+}
+
+.overview {
+  background-color: #fffae6;
+  color: black;
+  padding: 1rem;
+  padding-top: 0.25rem;
+  padding-left: 2rem;
+}
+
+.callout {
+  background-color: #f0f8ff;
+  color: black;
+  padding: 1rem;
+  padding-top: 0.25rem;
+  padding-left: 2rem;
 }
 
 @keyframes bird-x-axis {
