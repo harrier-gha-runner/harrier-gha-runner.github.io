@@ -181,24 +181,6 @@ const Implementation = () => {
           Gateway. Incoming traffic into the public subnet is restricted to
           GitHub addresses for security reasons.
         </p>
-
-        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
-          <li
-            id="placeholder"
-            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
-          >
-            <TextContentModal title="placeholder" description="description">
-              <>
-                <CgFileDocument size="28" className="text-harrierBLUE" />
-                <span>placeholder</span>
-              </>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-              non ipsa, asperiores eligendi repellendus, assumenda rem
-              distinctio iure esse reprehenderit sit temporibus eos perspiciatis
-              beatae fugit totam tempora. Sit, aliquam.
-            </TextContentModal>
-          </li>
-        </ul>
       </section>
 
       <section id="implementation-2">
@@ -292,14 +274,7 @@ const Implementation = () => {
               AWS Lambda is a serverless compute service that executes your code
               in response to events while automatically managing the underlying
               compute resources.
-              <sup>
-                <a
-                  href="#sources4"
-                  className="text-blue-500 underline hover:text-blue-700"
-                >
-                  4
-                </a>
-              </sup>{" "}
+              <sup>4</sup>
               However, after thorough research and testing, we have determined
               Lambdas to be unsuitable for deploying self-hosted runners to
               process jobs for most users for two primary reasons: First, Lambda
@@ -313,40 +288,6 @@ const Implementation = () => {
               to complete GitHub Actions workflows, which often exceed 15
               minutes. In comparison, GitHub-hosted runners permit each job in a
               workflow to run for up to 6 hours.<sup>7</sup>
-            </TextContentModal>
-          </li>
-        </ul>
-        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
-          <li
-            id="placeholder"
-            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
-          >
-            <TextContentModal title="placeholder" description="description">
-              <>
-                <CgFileDocument size="28" className="text-harrierBLUE" />
-                <span>placeholder</span>
-              </>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-              non ipsa, asperiores eligendi repellendus, assumenda rem
-              distinctio iure esse reprehenderit sit temporibus eos perspiciatis
-              beatae fugit totam tempora. Sit, aliquam.
-            </TextContentModal>
-          </li>
-        </ul>
-        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
-          <li
-            id="placeholder"
-            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
-          >
-            <TextContentModal title="placeholder" description="description">
-              <>
-                <CgFileDocument size="28" className="text-harrierBLUE" />
-                <span>placeholder</span>
-              </>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-              non ipsa, asperiores eligendi repellendus, assumenda rem
-              distinctio iure esse reprehenderit sit temporibus eos perspiciatis
-              beatae fugit totam tempora. Sit, aliquam.
             </TextContentModal>
           </li>
         </ul>
