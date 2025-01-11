@@ -4,6 +4,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "../src/providers/PageNavigation";
 
 import TryHarrierPage from "./components/pages/TryHarrierPage";
+import TeamPage from "./components/pages/TeamPage";
 import Layout from "./components/utility/Layout";
 import LandingPage from "./components/pages/LandingPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -11,6 +12,7 @@ import CaseStudyHomePage from "./components/pages/CaseStudyHomePage";
 import ProblemDomain from "./components/pages/case-study/ProblemDomain";
 import Design from "./components/pages/case-study/Design";
 import Implementation from "./components/pages/case-study/Implementation";
+import FutureWork from "./components/pages/case-study/FutureWork";
 import "./index.css";
 
 const basename = "/";
@@ -49,7 +51,7 @@ createRoot(document.getElementById("app")!).render(
                     },
                     {
                       path: "future-work",
-                      element: <div>Future Work</div>,
+                      element: <FutureWork />,
                     },
                     {
                       path: "*",
@@ -59,7 +61,7 @@ createRoot(document.getElementById("app")!).render(
                 },
                 {
                   path: "team",
-                  element: <div>team</div>,
+                  element: <TeamPage />,
                 },
                 {
                   path: "try-harrier",
