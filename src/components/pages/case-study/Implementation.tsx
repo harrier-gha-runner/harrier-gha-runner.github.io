@@ -17,13 +17,15 @@ import CacheByHarrier from "@/assets/4.6.cache-by-harrier.png";
 import HighLevelArchitecture from "@/assets/4.7.high-level.png";
 import MinimalWorkflowModification from "@/assets/4.8.minimal-workflow-modification-v1.gif";
 import OverallArchitecture from "@/assets/4.overall-architecture.png";
-// import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
+import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
 import JITRunnerToken from "@/assets/4.1.5.2.just-in-time-runner-token.png";
 import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
 import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
+import WebhookSetup from "@/assets/4.1.6.webhook-setup.png";
+import WebhookJSONExample from "@/assets/4.1.6.json-object-code-example.png";
 
 const SectionInView = ({
   sectionId,
@@ -73,7 +75,6 @@ const Implementation = () => {
     <>
       <section id="implementation-0">
         <SectionInView sectionId="implementation-0" onInView={handleInView} />
-        <h2>{subheaderNames[0]}</h2>
         <div className="">
           <div className="">
             <p>
@@ -85,7 +86,6 @@ const Implementation = () => {
                   function.
                 </li>
                 <li>
-                  {" "}
                   As the most common runtime environment on GitHub, focusing on
                   Node.js offered significant ROI for Harrier’s initial
                   implementation.
@@ -100,7 +100,7 @@ const Implementation = () => {
           <h4 className="text-center">
             The Right Cloud Platform for Harrier Users
           </h4>
-          <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <ul className="m-0 space-x-4 p-0 text-center">
             <li
               id="aws-cloud-platform"
               className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -194,7 +194,7 @@ const Implementation = () => {
           GitHub addresses for security reasons.
         </p>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="vpc-and-public-subnet"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -307,7 +307,7 @@ const Implementation = () => {
           AWS cloud infrastructure can be customized to deploy GitHub Actions
           runners in various ways. We compared the three most viable methods:
         </p>
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="aws-lambda"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -466,7 +466,7 @@ const Implementation = () => {
           Setting up the Environment for Deployment
         </h4>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="one-or-multiple-available-runners"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -603,7 +603,7 @@ const Implementation = () => {
           Configuring a Self-Hosted GitHub Actions Runner
         </h4>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="self-hosted-runner-at-org-level"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -649,7 +649,7 @@ const Implementation = () => {
           </li>
         </ul>
         <br />
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="automating-runner-registration"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -687,7 +687,7 @@ const Implementation = () => {
         <br />
         <h4 className="text-center">Just-in-Time (JIT) Runners</h4>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="what-are-jit-runners"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -851,7 +851,7 @@ const Implementation = () => {
           caching of docker image layers).
         </p>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="aws-s3"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -947,6 +947,170 @@ const Implementation = () => {
           of a repository after the first ever workflow can experience faster
           workflow automation through cache.
         </p>
+        <h4 className="text-center">More Harrier Caching Information</h4>
+        <ul className="m-0 space-x-4 p-0 text-center">
+          <li
+            id="github-actions"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title='GitHub "Actions"'
+              description='GitHub "Actions"'
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>GitHub "Actions"</span>
+              </>
+              <p>
+                GitHub Actions allows users to use pre-written building blocks,
+                which GitHub documentation somewhat confusingly refers to as
+                "actions" in workflows. An action in this context is a
+                pre-defined, reusable set of jobs or code that perform specific
+                tasks within a workflow.<sup>24</sup>
+              </p>
+              <br />
+              <p>
+                Harrier uses three public actions published on the GitHub
+                Marketplace, a central location, for availability and
+                transparency:
+              </p>
+              <ul>
+                <li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• harrier-cache-load
+                </li>
+                <li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• harrier-cache-store
+                </li>
+                <li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• harrier-runner-setup
+                </li>
+              </ul>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="dependency-cache-loading-and-storing"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Dependency Cache Loading and Storing"
+              description="Dependency Cache Loading and Storing"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Dependency Cache Loading and Storing</span>
+              </>
+              <p>
+                Harrier caching functionality is implemented through two public
+                actions: cache-load and cache-store. These actions can be used
+                as steps in any GitHub Actions workflow with access to the
+                Marketplace.<sup>25</sup>
+              </p>
+              <br />
+              <p>
+                Together, harrier-cache-load and harrier-cache-store form a
+                caching mechanism that minimizes redundant dependency
+                installations and optimizes workflows. By supporting both
+                branch-specific and repository-wide caches, the actions reduce
+                build times while ensuring compatibility with changes to
+                package.json.
+              </p>
+              <br />
+              <img
+                className="w-3/4 place-self-center bg-white"
+                src={CacheByHarrier}
+                alt="Cache Load Store Harrier"
+              />
+              <br />
+              <p>
+                The harrier-cache-load action restores a cached node_modules
+                directory. It checks for a tarball—a compressed archive file
+                (e.g., .tar.gz)—in the user’s S3, using the current repository
+                and branch in the filename. If a branch-specific tarball is
+                found, it is copied and extracted into the workflow directory.
+                If none exists, the action will fall back to a repository-wide
+                tarball to reuse dependencies across branches. If no cache is
+                available, the workflow proceeds with installing dependencies
+                from scratch.
+              </p>
+              <br />
+              <p>
+                The harrier-cache-store action updates the cache after
+                dependencies are installed. It first checks for a cache key in a
+                metadata storage location for the current branch, then falls
+                back to checking for a repository-wide key. No action is taken
+                if a matching key exists and its hash matches the current
+                package.json. Otherwise, the action creates a new tarball of the
+                node_modules directory, stores it in the user's S3 and generates
+                a new cache key. This ensures caches are updated for both
+                branch-specific and repository-wide use.
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="harrier-cache-eviction-policy"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Harrier Cache Eviction Policy"
+              description="Harrier Cache Eviction Policy"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Harrier Cache Eviction Policy</span>
+              </>
+              <p>
+                To prevent the accumulation of unnecessary or stale data,
+                Harrier includes an automated cache eviction mechanism. An
+                EventBridge Scheduler and Lambda work together to manage the S3
+                cache items. The scheduler is a cron job that triggers the
+                Lambda once every day and can be configured by the user. The
+                Lambda scans the S3 and deletes cache files not accessed in the
+                past 72 hours by default, but this time can be adjust at setup.
+                Each cached file's "last modified" timestamp is updated whenever
+                the file is reused, ensuring only stale data is targeted for
+                removal.
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="docker-image-layer-caching"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Optional - Docker Image Layer Caching"
+              description="Optional - Docker Image Layer Caching"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Optional - Docker Image Layer Caching</span>
+              </>
+              <p>
+                Many GitHub Actions workflows use Docker, a platform for
+                packaging applications and their dependencies into containers.
+                <sup>26</sup>
+                Containers are created from images built in layers representing
+                incremental changes. Caching these layers speeds up builds by
+                reusing unchanged layers, so only modified ones are rebuilt,
+                significantly improving efficiency.<sup>27</sup>
+              </p>
+              <br />
+              <p>
+                While Harrier's primary function is dependency caching, it also
+                provides the secondary benefit of enabling Docker layer caching
+                - a capability not available with GitHub-hosted runners. By
+                setting up an S3 in the user’s AWS infrastructure and mounting
+                it as a directory on the self-hosted runner, Harrier allows
+                BuildKit to pull and store Docker layers directly from the S3.
+                This seamless integration, configured through cache-from and
+                cache-to in the docker/build-push-action, speeds up Docker
+                builds as a valuable additional feature of the Harrier setup.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
       </section>
 
       <section id="implementation-7">
@@ -999,6 +1163,94 @@ const Implementation = () => {
           as a JSON object, which includes an "action" property specifying the
           event type, such as "queued" or "completed."
         </p>
+
+        <h4 className="text-center">API Gateway for Receiving Webhooks</h4>
+        <ul className="m-0 space-x-4 p-0 text-center">
+          <li
+            id="webhook-json-object"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Webhook JSON Object"
+              description="Webhook JSON Object"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Webhook JSON Object</span>
+              </>
+              <p>
+                When a workflow runs on GitHub Actions, a webhook event is
+                triggered to send data to the Harrier app hosted on the user's
+                AWS environment. This webhook transmits information about the
+                workflow run as a JSON object, which includes an "action"
+                property specifying the event type, such as "queued" or
+                "completed."
+              </p>
+              <img
+                className="w-1/2 place-self-center"
+                src={WebhookJSONExample}
+                alt="Webhook JSON Object Example"
+              />
+            </TextContentModal>
+          </li>
+          <li
+            id="api-gateway-for-receiving-webhook"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="API Gateway for Receiving Webhooks"
+              description="API Gateway for Receiving Webhooks"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>API Gateway for Receiving Webhook</span>
+              </>
+              <img
+                className="w-1/2 place-self-center"
+                src={QueuedNewRunner}
+                alt="Queues New Runner"
+              />
+              <br />
+              <p>
+                We used AWS API Gateway to create and manage a simple REST API
+                for receiving webhooks from GitHub Actions. REST APIs act as the
+                "front door" for applications to access data, business logic, or
+                functionality from backend services.<sup>22</sup> ​​API Gateway
+                handles all the tasks involved in accepting and processing API
+                calls, including traffic management, authorization, and access
+                control, monitoring, and API version management.
+              </p>
+              <br />
+              <p>
+                Together with AWS Lambda, API Gateway forms the app-facing part
+                of the AWS serverless infrastructure. The AWS API Gateway
+                receives the workflow data from the GitHub webhook and passes it
+                to a Lambda setup by Harrier to manage EC2 instances.
+              </p>
+              <br />
+              <img
+                className="w-1/2 place-self-center"
+                src={WebhookSetup}
+                alt="Webhook Setup"
+              />
+              <br />
+              <p>
+                One alternative to using AWS API Gateway would have been to run
+                a JavaScript Express server continuously on an EC2 instance to
+                implement a REST API. A long-running server or process is
+                unnecessary since AWS provides a fully managed API service that
+                requires minimal setup or maintenance on our part. API Gateway
+                is highly cost-effective since charges are based solely on the
+                number of requests and the amount of data transferred. In our
+                case, minimal data passes through the API Gateway — just event
+                notifications from GitHub and a 200 response in return. All
+                significant data transfers occur directly between GitHub and the
+                EC2 instance, bypassing the API Gateway. Each workflow involves
+                only three events, with negligible data exchange.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
       </section>
 
       <section id="implementation-8">
@@ -1039,7 +1291,7 @@ const Implementation = () => {
           alt={"minimal workflow modification"}
         />
         <p>Example:</p>
-        <pre className="overflow-auto rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
+        <pre className="w-3/4 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
           <code>
             <span className="font-mono text-blue-600">
               jobs:
@@ -1106,7 +1358,7 @@ const Implementation = () => {
         </p>
         <br />
 
-        <div className="place-content-center scale-125">
+        <div className="scale-125 place-content-center">
           <ImageContentModal
             src={OverallArchitecture}
             alt={"Overall architecture"}
@@ -1114,12 +1366,15 @@ const Implementation = () => {
         </div>
         <br />
         <br />
-        <p>Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout Lambda, and the Cache Eviction Lambda</p>
+        <p className="text-center font-bold">
+          Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout
+          Lambda, and the Cache Eviction Lambda
+        </p>
         <div className="place-self-center">
           <ImageContentModal src={ThreeLambdas} alt={"Three Lambdas"} />
         </div>
 
-        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+        <ul className="m-0 space-x-4 p-0 text-center">
           <li
             id="workflow-and-timeout-lambdas"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -1193,25 +1448,55 @@ const Implementation = () => {
           </li>
 
           <li
-  id="cache-eviction-lambda"
-  className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
->
-  <TextContentModal title="The Cache Eviction Lambda" description="The Cache Eviction Lambda">
-    <>
-      <CgFileDocument size="28" className="text-harrierBLUE" />
-      <span>The Cache Eviction Lambda</span>
-    </>
-    <p>The Cache Eviction Lambda is triggered by an EventBridge Scheduler. By default, the scheduler triggers the Lambda every night at 3:00 AM, a time chosen to minimize interference with workflow activity. The Lambda scans the user’s S3 and deletes cache files that have not been accessed in the past 72 hours. </p>
-  </TextContentModal>
-</li>
-
+            id="cache-eviction-lambda"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="The Cache Eviction Lambda"
+              description="The Cache Eviction Lambda"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>The Cache Eviction Lambda</span>
+              </>
+              <p>
+                The Cache Eviction Lambda is triggered by an EventBridge
+                Scheduler. By default, the scheduler triggers the Lambda every
+                night at 3:00 AM, a time chosen to minimize interference with
+                workflow activity. The Lambda scans the user’s S3 and deletes
+                cache files that have not been accessed in the past 72 hours by
+                default, however, this cache time-to-live can be adjusted during
+                setup.
+              </p>
+            </TextContentModal>
+          </li>
         </ul>
       </section>
 
       <section id="implementation-10">
         <SectionInView sectionId="implementation-10" onInView={handleInView} />
         <h2>{subheaderNames[10]}</h2>
-        <p>[ COMING SOON ]</p>
+        <p>
+          To begin, the user must follow the steps in the Harrier Installation
+          Guide to configure the required settings in AWS and GitHub. This
+          includes creating IAM roles, setting up secrets, establishing identity
+          providers in AWS, and generating a personal access token in GitHub.
+        </p>
+        <p>
+          Once these configurations are complete, the user can interact with the
+          Harrier frontend to specify their preferences, such as the AWS region
+          and EC2 instance types. They will then receive a setup.yml file, which
+          can be executed as a workflow action in any repository within their
+          GitHub organization to deploy Harrier.
+        </p>
+        <p>
+          The setup.yml file initializes the Harrier system on AWS. It automates
+          preparatory tasks, such as setting up Node.js and configuring AWS
+          credentials with the user's designated IAM role. Once the groundwork
+          is complete, the workflow invokes a custom action called Harrier
+          Setup, which handles the deployment of the required infrastructure
+          using code from the action repository.
+        </p>
       </section>
       <section id="implementation-11">
         <SectionInView sectionId="implementation-11" onInView={handleInView} />
@@ -1220,20 +1505,225 @@ const Implementation = () => {
       </section>
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
-        <h2>{subheaderNames[11]}</h2>
-        <p id="sources4">
-          4. AWS Lambda Features: https://aws.amazon.com/lambda/features/ <br />
-          5. AWS Lambda FAQ
-          https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html
-          <br />
-          6. Lambda Timeout:
-          https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
-          <br />
-          7. GitHub Actions Limits:
-          https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration
-        </p>
+        <h2>{subheaderNames[12]}</h2>
+
+        <ol>
+          <li>
+            <a href="https://survey.stackoverflow.co/2024/technology">
+              2024 Developer Survey:
+              https://survey.stackoverflow.co/2024/technology
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">
+              Security Hardening for GitHub Actions:
+              https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions
+            </a>
+          </li>
+          <li>
+            <a href="https://www.pluralsight.com/resources/blog/tech-operations/what-is-aws-cdk-cloud-development">
+              SDK vs CDK:
+              https://www.pluralsight.com/resources/blog/tech-operations/what-is-aws-cdk-cloud-development
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/lambda/features/">
+              AWS Lambda Features: https://aws.amazon.com/lambda/features/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html">
+              AWS Lambda FAQ:
+              https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html">
+              Lambda Timeout:
+              https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration">
+              GitHub Actions Limits:
+              https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html">
+              AWS Fargate:
+              https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
+            </a>
+          </li>
+          <li>
+            <a href="https://www.reddit.com/r/aws/comments/165wkns/ecs_fargate_vs_ec2/">
+              Reddit EC2 vs Fargate:
+              https://www.reddit.com/r/aws/comments/165wkns/ecs_fargate_vs_ec2/
+            </a>
+          </li>
+          <li>
+            <a href="https://www.warpbuild.com/blog/self-hosting-github-actions#self-hosting-github-actions-runners-on-aws-a-comprehensive-guide">
+              Deploying self-hosted runners on AWS:
+              https://www.warpbuild.com/blog/self-hosting-github-actions#self-hosting-github-actions-runners-on-aws-a-comprehensive-guide
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">
+              EC2 Warm Pools:
+              https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">
+              What is EC2:
+              https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/ebs/">
+              What is EBS: https://aws.amazon.com/ebs/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">
+              EC2 Warm Pools:
+              https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/infrastructure-security.html">
+              VPC Isolation:
+              https://docs.aws.amazon.com/vpc/latest/userguide/infrastructure-security.html
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/changelog/2024-09-25-actions-new-images-and-ubuntu-latest-changes/">
+              Ubuntu Latest to 24.04 in 2024:
+              https://github.blog/changelog/2024-09-25-actions-new-images-and-ubuntu-latest-changes/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners">
+              About GHA self-hosted runners:
+              https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/rest/actions/self-hosted-runners">
+              GitHub Self-hosted runner REST docs:
+              https://docs.github.com/en/rest/actions/self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/changelog/2023-06-02-github-actions-just-in-time-self-hosted-runners/">
+              GitHub Blog Intro for JIT Runners:
+              https://github.blog/changelog/2023-06-02-github-actions-just-in-time-self-hosted-runners/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/removing-self-hosted-runners">
+              Removing Self-hosted Runners:
+              https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/removing-self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://www.redhat.com/en/topics/automation/what-is-a-webhook">
+              What is a Webhook:
+              https://www.redhat.com/en/topics/automation/what-is-a-webhook
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">
+              AWS API Gateway:
+              https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/s3">
+              AWS S3: https://aws.amazon.com/s3
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow">
+              Pre-written Actions in Workflows:
+              https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace">
+              Publishing in Actions Marketplace:
+              https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace
+            </a>
+          </li>
+          <li>
+            <a href="https://www.docker.com/resources/what-container/">
+              Docker container: https://www.docker.com/resources/what-container/
+            </a>
+          </li>
+          <li>
+            <a href="https://depot.dev/blog/faster-builds-with-docker-caching">
+              Docker Layer Caching:
+              https://depot.dev/blog/faster-builds-with-docker-caching
+            </a>
+          </li>
+          <li>
+            <a href="https://www.atlassian.com/devops/what-is-devops/agile-vs-devops">
+              Devops vs. Agile:
+              https://www.atlassian.com/devops/what-is-devops/agile-vs-devops
+            </a>
+          </li>
+          <li>
+            <a href="https://www.geeksforgeeks.org/what-is-workflow/">
+              What is a workflow?:
+              https://www.geeksforgeeks.org/what-is-workflow/
+            </a>
+          </li>
+          <li>
+            <a href="https://kestra.io/blogs/2023-12-01-yaml-pitfalls">
+              YAML Pitfalls: https://kestra.io/blogs/2023-12-01-yaml-pitfalls
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/engineering/experiment-the-hidden-costs-of-waiting-on-slow-build-times/">
+              Experiment: The hidden costs of waiting on slow build times:
+              https://github.blog/engineering/experiment-the-hidden-costs-of-waiting-on-slow-build-times/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy">
+              GitHub Action Docs - Usage limits and eviction policy:
+              https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy
+            </a>
+          </li>
+          <li>
+            <a href="https://news.ycombinator.com/item?id=39956327">
+              Hacker News - Cache is King:
+              https://news.ycombinator.com/item?id=39956327
+            </a>
+          </li>
+          <li>
+            <a href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching">
+              CI/CD caching with Bitrise:
+              https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching
+            </a>
+          </li>
+          <li>
+            <a href="https://www.atlassian.com/git/tutorials/monorepos">
+              Atlassian - Monorepos:
+              https://www.atlassian.com/git/tutorials/monorepos
+            </a>
+          </li>
+          <li>
+            <a href="https://news.ycombinator.com/item?id=28460342">
+              Y-Combinator community post:
+              https://news.ycombinator.com/item?id=28460342
+            </a>
+          </li>
+        </ol>
       </section>
     </>
   );
 };
 export default Implementation;
+
+<a href="LINK1">TEXT1 Developer Survey: LINK1</a>;
