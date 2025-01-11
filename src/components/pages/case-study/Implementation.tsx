@@ -73,7 +73,6 @@ const Implementation = () => {
     <>
       <section id="implementation-0">
         <SectionInView sectionId="implementation-0" onInView={handleInView} />
-        <h2>{subheaderNames[0]}</h2>
         <div className="">
           <div className="">
             <p>
@@ -85,7 +84,6 @@ const Implementation = () => {
                   function.
                 </li>
                 <li>
-                  {" "}
                   As the most common runtime environment on GitHub, focusing on
                   Node.js offered significant ROI for Harrier’s initial
                   implementation.
@@ -1114,7 +1112,7 @@ const Implementation = () => {
         </div>
         <br />
         <br />
-        <p>Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout Lambda, and the Cache Eviction Lambda</p>
+        <p className="text-center font-bold">Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout Lambda, and the Cache Eviction Lambda</p>
         <div className="place-self-center">
           <ImageContentModal src={ThreeLambdas} alt={"Three Lambdas"} />
         </div>
@@ -1220,7 +1218,7 @@ const Implementation = () => {
       </section>
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
-        <h2>{subheaderNames[11]}</h2>
+        <h2>{subheaderNames[12]}</h2>
         <p id="sources4">
           4. AWS Lambda Features: https://aws.amazon.com/lambda/features/ <br />
           5. AWS Lambda FAQ
