@@ -12,12 +12,37 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ to, onClick, children }) => {
+  // Check if the link is external
+  const isExternal = typeof to === "string" && to.startsWith("http");
+
+  if (isExternal) {
+    return (
+      <a
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        className=""
+        onClick={onClick}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <NavLink to={to} onClick={onClick} className="">
       {children}
     </NavLink>
   );
 };
+
+// const NavItem: React.FC<NavItemProps> = ({ to, onClick, children }) => {
+//   return (
+//     <NavLink to={to} onClick={onClick} className="">
+//       {children}
+//     </NavLink>
+//   );
+// };
 
 export const Header = () => {
   const pageContext = useContext(PageNavigationContext);
@@ -63,7 +88,9 @@ export const Header = () => {
             orientation="vertical"
             className="mx-2 h-8 border-l border-harrierGRAY"
           />
-          <NavItem to="/try-harrier">Try Harrier</NavItem>
+          <NavItem to="https://github.com/harrier-gha-runner/harrier-self-hosted-runner">
+            Try Harrier
+          </NavItem>
         </div>
       </div>
     </header>
