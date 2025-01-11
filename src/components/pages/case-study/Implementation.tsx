@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 
 // Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
-import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners-full.png";
+import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
 import JustInTimeTokenRegistration from "@/assets/4.3.just-in-time-token-registration-of-runner.png";
 import TerminationOfEC2Runners from "@/assets/4.4.termination-of-ec2-runners.png";
 import S3BucketCacheStore from "@/assets/4.5.s3-bucket-cache-store.png";
@@ -21,6 +21,9 @@ import OverallArchitecture from "@/assets/4.overall-architecture.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
+import JITRunnerToken from "@/assets/4.1.5.2.just-in-time-runner-token.png";
+import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
+import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
 
 const SectionInView = ({
   sectionId,
@@ -94,38 +97,47 @@ const Implementation = () => {
             src={OverallArchitecture}
             alt={"Full Harrier AWS Architecture"}
           />{" "}
-          <p>The Right Cloud Platform for Harrier Users</p>
-          <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
+          <h4 className="text-center">
+            The Right Cloud Platform for Harrier Users
+          </h4>
+          <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
             <li
               id="aws-cloud-platform"
               className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
             >
               <TextContentModal
                 title="AWS Cloud Platform"
-                description="description"
+                description="AWS Cloud Platform"
               >
                 <>
                   <CgFileDocument size="28" className="text-harrierBLUE" />
                   <span>AWS Cloud Platform</span>
                 </>
-                We selected AWS as the cloud platform for hosting the user's
-                self-hosted runner because it met all our criteria. AWS is the
-                most widely adopted cloud platform among developers in 20241.
-                AWS offers various configuration options for setting up GitHub
-                Actions self-hosted runner infrastructure, tailored with
-                different processors, storage, and networking to meet users'
-                preferences. It also meets our security criteria, with a Secrets
-                Manager function and adopting OIDC standards for secure
-                integration with GitHub. Lastly, the AWS combination of API
-                Gateway and Lambda is highly effective for managing webhooks,
-                which we use to process GitHub Actions workflows. Setting up
-                cloud resources securely minimizes a known risk of sensitive
-                information exposure when reusing hardware for self-hosted
-                runners.2 Harrier provisions servers exclusively for running
-                workflows, ensuring they are isolated within a dedicated area of
-                the user's AWS environment. These servers are restricted from
-                accessing any other parts of the user's infrastructure,
-                maintaining a strict separation of resources and data.
+                <p>
+                  We selected AWS as the cloud platform for hosting the user's
+                  self-hosted runner because it met all our criteria. AWS is the
+                  most widely adopted cloud platform among developers in 2024
+                  <sup>1</sup>. AWS offers various configuration options for
+                  setting up GitHub Actions self-hosted runner infrastructure,
+                  tailored with different processors, storage, and networking to
+                  meet users' preferences. It also meets our security criteria,
+                  with a Secrets Manager function and adopting OIDC standards
+                  for secure integration with GitHub. Lastly, the AWS
+                  combination of API Gateway and Lambda is highly effective for
+                  managing webhooks, which we use to process GitHub Actions
+                  workflows.
+                </p>
+                <br />
+                <p>
+                  Setting up cloud resources securely minimizes a known risk of
+                  sensitive information exposure when reusing hardware for
+                  self-hosted runners.<sup>2</sup> Harrier provisions servers
+                  exclusively for running workflows, ensuring they are isolated
+                  within a dedicated area of the user's AWS environment. These
+                  servers are restricted from accessing any other parts of the
+                  user's infrastructure, maintaining a strict separation of
+                  resources and data.
+                </p>
               </TextContentModal>
             </li>
             <li
@@ -134,35 +146,35 @@ const Implementation = () => {
             >
               <TextContentModal
                 title="Provisioning Infrastructure Programmatically"
-                description="description"
+                description="Provisioning Infrastructure Programmatically"
               >
                 <>
                   <CgFileDocument size="28" className="text-harrierBLUE" />
                   <span>Provisioning Infrastructure Programmatically</span>
                 </>
-                We selected AWS as the cloud platform for hosting the user's
-                self-hosted runner because it met all our criteria. AWS is the
-                most widely adopted cloud platform among developers in 20241.
-                AWS offers various configuration options for setting up GitHub
-                Actions self-hosted runner infrastructure, tailored with
-                different processors, storage, and networking to meet users'
-                preferences. It also meets our security criteria, with a Secrets
-                Manager function and adopting OIDC standards for secure
-                integration with GitHub. Lastly, the AWS combination of API
-                Gateway and Lambda is highly effective for managing webhooks,
-                which we use to process GitHub Actions workflows. Setting up
-                cloud resources securely minimizes a known risk of sensitive
-                information exposure when reusing hardware for self-hosted
-                runners.2 Harrier provisions servers exclusively for running
-                workflows, ensuring they are isolated within a dedicated area of
-                the user's AWS environment. These servers are restricted from
-                accessing any other parts of the user's infrastructure,
-                maintaining a strict separation of resources and data.
+                <p>
+                  We chose the AWS Software Development Kit (SDK for JavaScript
+                  v3) to provision and manage the user's cloud infrastructure
+                  and handle application installation on the user's AWS account.
+                  The SDK is designed for developing and deploying applications,
+                  offers excellent TypeScript support, and simplifies the
+                  process of calling AWS services using JavaScript.
+                </p>
+                <br />
+                <p>
+                  AWS also offers the Cloud Development Kit (CDK), an
+                  infrastructure-as-code tool that allows developers to define
+                  AWS resources using code.
+                  <sup>3</sup> However, in practice, SDK provided us with more
+                  precise control over the resources and simplified our
+                  interactions with them during runtime than CDK did.
+                </p>
               </TextContentModal>
             </li>
           </ul>
         </div>
       </section>
+
       <section id="implementation-1">
         <SectionInView sectionId="implementation-1" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
@@ -181,6 +193,41 @@ const Implementation = () => {
           Gateway. Incoming traffic into the public subnet is restricted to
           GitHub addresses for security reasons.
         </p>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="vpc-and-public-subnet"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="VPC and Public Subnet"
+              description="VPC and Public Subnet"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>VPC and Public Subnet</span>
+              </>
+              <p>
+                AWS recommends using separate VPCs to isolate infrastructure by
+                workload or organizational entity.<sup>15</sup> Harrier EC2
+                runners require direct internet access to download software,
+                send API requests to GitHub, and process GitHub Actions
+                workflows. Internet access was also needed for any delivery and
+                deployment functionality in user workflows, like saving
+                artifacts to Docker Hub.
+              </p>
+              <br />
+
+              <p>
+                Harrier sets up a VPC, which includes a public subnet and an
+                internet gateway, within the user's AWS account. The internet
+                gateway allows internet access for the EC2s. Traffic from the
+                internet gateway is routed to the public subnet using the routes
+                in the routing table.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
       </section>
 
       <section id="implementation-2">
@@ -254,40 +301,268 @@ const Implementation = () => {
           terminated upon completion of the job.
         </p>
         <p>
-          <h4>Runner Deployment Method</h4>
+          <h4 className="text-center">Runner Deployment Method</h4>
         </p>
         <p>
           AWS cloud infrastructure can be customized to deploy GitHub Actions
           runners in various ways. We compared the three most viable methods:
-          AWS Lambda, Fargate, and EC2.
         </p>
-        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
           <li
             id="aws-lambda"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
           >
-            <TextContentModal title="AWS Lambda" description="description">
+            <TextContentModal title="AWS Lambda" description="AWS Lambda">
               <>
                 <CgFileDocument size="28" className="text-harrierBLUE" />
                 <span>AWS Lambda</span>
               </>
-              AWS Lambda is a serverless compute service that executes your code
-              in response to events while automatically managing the underlying
-              compute resources.
-              <sup>4</sup>
-              However, after thorough research and testing, we have determined
-              Lambdas to be unsuitable for deploying self-hosted runners to
-              process jobs for most users for two primary reasons: First, Lambda
-              functions are designed to process individual events or complete
-              single tasks rapidly—typically within one second for most
-              production invocations.<sup>5</sup> In contrast, user workflows
-              usually consist of multiple steps within a job rather than just
-              one isolated task or event. Second, AWS Lambdas can run code for a
-              maximum of 900 seconds (15 minutes) before timing out and halting
-              execution.<sup>6</sup> This limitation does not allow enough time
-              to complete GitHub Actions workflows, which often exceed 15
-              minutes. In comparison, GitHub-hosted runners permit each job in a
-              workflow to run for up to 6 hours.<sup>7</sup>
+              <p>
+                AWS Lambda is a serverless compute service that executes your
+                code in response to events while automatically managing the
+                underlying compute resources.<sup>4</sup> However, after
+                thorough research and testing, we have determined Lambdas to be
+                unsuitable for deploying self-hosted runners to process jobs for
+                most users for two primary reasons:{" "}
+              </p>
+              <br />
+              <p>
+                First, Lambda functions are designed to process individual
+                events or complete single tasks rapidly—typically within one
+                second for most production invocations.<sup>5</sup> In contrast,
+                user workflows usually consist of multiple steps within a job
+                rather than just one isolated task or event.
+              </p>
+              <br />
+              <p>
+                Second, AWS Lambdas can run code for a maximum of 900 seconds
+                (15 minutes) before timing out and halting execution.
+                <sup>6</sup> This limitation does not allow enough time to
+                complete GitHub Actions workflows, which often exceed 15
+                minutes. In comparison, GitHub-hosted runners permit each job in
+                a workflow to run for up to 6 hours.<sup>7</sup>
+              </p>
+            </TextContentModal>
+          </li>
+          <li
+            id="aws-fargate"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal title="AWS Fargate" description="AWS Fargate">
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>AWS Fargate</span>
+              </>
+              <p>
+                AWS Fargate is a technology that provides on-demand,
+                appropriately sized compute capacity for containerized
+                applications.<sup>8</sup> We considered using Fargate to deploy
+                self-hosted runners due to its desirable features, including
+                ease of setup and configuration and a reasonable
+                price-performance ratio. We compared the suitability of Fargate
+                to EC2 where relevant.
+              </p>
+              <br />
+              <p>
+                Fargate has a slower initial response time than EC2. This makes
+                Fargate less suitable for providing faster workflow run times.
+                Users report that Fargate initialization times range from
+                approximately 30 seconds to several minutes. In contrast, EC2
+                instances, when configured within a warm pool, can achieve a
+                complete restart in an average of just 20 seconds.<sup>11</sup>
+              </p>
+              <br />
+              <p>
+                Fargate offers processor configuration options, such as the
+                number of CPUs and the amount of RAM. However, it does not allow
+                users to select specific CPU processors and may not always
+                support the latest hardware, both of which are important for
+                Harrier to provide a range of user options. In contrast, AWS EC2
+                instances provide access to the most current and powerful CPUs,
+                allowing the user to specify the exact processor type required
+                for their workloads.
+              </p>
+              <br />
+              <p>
+                {" "}
+                Many developers also reported that Fargate can be more expensive
+                for high compute usage compared to EC2.<sup>9</sup> The cost
+                difference largely depends on how each solution is implemented,
+                but overall, Fargate tends to be pricier than EC2.<sup>10</sup>
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="aws-ec2"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal title="AWS EC2" description="AWS EC2">
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>AWS EC2</span>
+              </>
+              <p>
+                Amazon Elastic Compute Cloud (Amazon EC2) is a web service that
+                provides secure and resizable compute capacity in the cloud.
+                <sup>12</sup> When an instance is launched on AWS, a root volume
+                is created and contains the image used to boot the instance.
+                Each instance has a single root volume, and AWS recommends using
+                Elastic Block Storage (EBS) for fast launch and persistent
+                storage. EBS is a scalable, high-performance block storage
+                resource to store files or install applications.<sup>13</sup>
+              </p>
+              <br />
+              <p>
+                Initially, we noticed that the full startup time for an EC2
+                instance ranged from 2 to 5 minutes, which is too long to wait
+                before starting a workflow. To address this cold startup issue,
+                we created a "warm pool" of EC2 instances on AWS. According to
+                AWS documentation, a warm pool consists of "a pool of
+                pre-initialized EC2 instances that sit alongside an Auto Scaling
+                group." However, Auto Scaling groups can respond slowly to
+                incoming requests, sometimes taking over 60 seconds. To improve
+                responsiveness for Harrier, we automatically manage the state of
+                EC2 instances using AWS Lambda functions, which can react to
+                requests in less than 1 second.
+              </p>
+              <br />
+              <p>
+                EC2 instances in the warm pool can be in one of three states:
+                Running, Stopped, or Hibernated.
+              </p>
+              <br />
+              <p>
+                Maintaining instances in either a stopped or hibernated state is
+                an effective way to minimize cloud costs for users since they
+                only incur charges associated with the attached EBS volumes and
+                IP addresses.<sup>14</sup>
+              </p>
+              <br />
+              <p>
+                We tested hibernating instances but encountered unreliable and
+                unpredictable results. Sometimes, hibernating EC2 instances
+                would not shut down properly and required a reboot, taking about
+                4 to 5 minutes. Additionally, hibernation is not supported on
+                all instance types, which could diminish the level of
+                configurability available to Harrier users.
+              </p>
+              <br />
+              <p>
+                In contrast, we did not experience issues with stopping and
+                restarting stopped instances. These instances can be quickly
+                restarted to process a workflow, with our EC2 instances
+                transitioning from stopped to running in approximately 15
+                seconds. In addition, when an EBS-backed instance is stopped,
+                that instance retains any associated Elastic IP addresses and
+                attached EBS volumes, including the data on those volumes.
+              </p>
+              <br />
+            </TextContentModal>
+          </li>
+        </ul>
+        <br />
+        <h4 className="text-center">
+          Setting up the Environment for Deployment
+        </h4>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="one-or-multiple-available-runners"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="One or Multiple Available Runners"
+              description="One or Multiple Available Runners"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>One or Multiple Available Runners</span>
+              </>
+              <p>
+                By default, GitHub Actions maximizes the number of jobs that run
+                in parallel based on the availability of runners. This feature
+                allows individual users and multiple users or teams to execute
+                multiple workflows or a single workflow with several jobs
+                concurrently. Harrier achieved a similar effect by providing
+                users with a fleet of additional runners.
+              </p>
+              <br />
+              <p>
+                Since stopped instances incur only minimal charges, the cost of
+                adding more stopped instances is a reasonable trade-off for
+                individuals or teams wanting to run workflows in parallel.
+                Harrier setup defaults to provisioning ten EC2 instances on the
+                user's AWS account, however, users can easily adjust the number
+                during setup.
+              </p>
+            </TextContentModal>
+          </li>
+          <li
+            id="operating-system"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Operating System"
+              description="Operating System"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Operating System</span>
+              </>
+              <p>
+                GitHub Actions-hosted runners use Ubuntu 22.04, which, at the
+                time of Harrier implementation, is the version referenced by the
+                "ubuntu-latest” value of the "runs-on” key of workflow YAML
+                files.<sup>16</sup>
+              </p>
+              <br />
+              <p>
+                We considered Amazon Linux an operating system option because
+                Amazon promotes it as having the latest AWS features and being
+                optimized for Amazon EC2 instances. However, after testing it,
+                we found that using Amazon Linux required significant
+                modifications to user workflows. For example, many processes
+                that work in Ubuntu, such as using `apt-get,` do not function in
+                Amazon Linux, which relies on alternative package managers like
+                `yum/dnf.` Although there are workarounds, we wanted to
+                prioritize a low-friction user experience when migrating from a
+                GitHub-hosted runner.
+              </p>
+              <br />
+              <p>
+                Harrier sets up each new EC2 instance with an image running the
+                Ubuntu 22.04 operating system.
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="preparing-the-ec2"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Preparing the EC2 with Applications"
+              description="Preparing the EC2 with Applications"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Preparing the EC2 with Applications</span>
+              </>
+              <p>
+                To prepare the runner to process workflows, the Harrier setup
+                process automatically installs applications on the EC2 instance
+                EBS volume, such as the GitHub self-hosted runner application
+                itself, Docker Engine, and build-essential software tools.
+              </p>
+              <br />
+
+              <p>
+                The GHA self-hosted runner application is downloaded and
+                installed once on each EC2 instance. For the runner to process
+                any workflows, it needs to be registered and configured with
+                GitHub, which requires a token from GitHub Actions.
+              </p>
             </TextContentModal>
           </li>
         </ul>
@@ -323,6 +598,178 @@ const Implementation = () => {
           src={JustInTimeTokenRegistration}
           alt={"Just-in-time token registration of runner"}
         />
+
+        <h4 className="text-center">
+          Configuring a Self-Hosted GitHub Actions Runner
+        </h4>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="self-hosted-runner-at-org-level"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Self-hosted Runner at the Organization Level"
+              description="Self-hosted Runner at the Organization Level"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Self-hosted Runner at the Organization Level</span>
+              </>
+              <p>
+                GitHub allows you to register self-hosted runners at the
+                organization, repository, or enterprise levels. We decided to
+                add the self-hosted runner at the organization level because it
+                makes it accessible to multiple repositories and enables easier
+                management of the runners in a single location.<sup>17</sup>
+              </p>
+              <br />
+            </TextContentModal>
+          </li>
+          <li
+            id="accessing-the-gitHub-api"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Accessing the GitHub API for Runner Setup"
+              description="Accessing the GitHub API for Runner Setup"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Accessing the GitHub API for Runner Setup</span>
+              </>
+              <p>
+                GitHub has a REST API to register, view, and delete self-hosted
+                runners in GitHub Actions. A GitHub Personal Access Token is
+                required to access the GitHub API programmatically. The user can
+                create a Personal Access Token (PAT), scoped to allow requesting
+                self-hosted runner tokens and also setting up webhooks.{" "}
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
+        <br />
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="automating-runner-registration"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Automating Runner Registration with the GitHub API"
+              description="Automating Runner Registration with the GitHub API"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Automating Runner Registration with the GitHub API</span>
+              </>
+              <p>
+                Harrier automatically downloads the GitHub self-hosted runner
+                application, which has all the necessary files to set up and run
+                the runner.<sup>18</sup>
+              </p>
+              <br />
+              <p>
+                Harrier setup also requests the GitHub API to create a
+                registration token for the user's organization. The API responds
+                with a token and an expiration date.
+              </p>
+              <br />
+              <p>
+                Once extracted, the token is passed to the GitHub self-hosted
+                runner configuration script to register the runner with the
+                user's GitHub organization. Once registered, the self-hosted
+                runner is now authorized and ready to process workflow jobs
+                originating from that organization.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
+        <br />
+        <h4 className="text-center">Just-in-Time (JIT) Runners</h4>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="what-are-jit-runners"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="What Are JIT Runners"
+              description="What Are JIT Runners"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>What Are JIT Runners</span>
+              </>
+              <p>
+                In mid-2023, GitHub introduced Just-In-Time (JIT) runners, a
+                feature that allows users to create ephemeral self-hosted
+                runners via the REST API. With JIT runners, each workflow run
+                utilizes a newly instantiated runner, which enhances both
+                security and availability.<sup>20</sup>
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+            id="using-jit-runners-in-harrier"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="Using JIT Runners in Harrier"
+              description="Using JIT Runners in Harrier"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>Using JIT Runners in Harrier</span>
+              </>
+              <p>
+                When a new JIT runner is registered, it is added to the GitHub
+                Actions list of runners for the user’s organization. Initially,
+                the runner appears as "Offline" on GitHub until the self-hosted
+                runner application on the EC2 instance is fully set up to handle
+                incoming workflow runs. Once configured, the runner's status
+                changes to "Idle," signaling GitHub to route queued workflow
+                runs to it.
+              </p>
+              <br />
+              <img
+                className="w-1/2 place-self-center"
+                src={JITRunnerToken}
+                alt="JIT Runner Token"
+              />
+              <br />
+              <p>
+                JIT runners are designed to execute a single job. After
+                completing the workflow job, the runner shuts down and is
+                automatically removed from the organization's list of
+                self-hosted runners on GitHub.
+              </p>
+              <br />
+              <img
+                className="w-1/3 place-self-center"
+                src={SingleUse}
+                alt="Single Use"
+              />
+              <br />
+              <p>
+                Harrier users benefit from the enhanced security of JIT runners.
+                By requiring a unique token for every workflow run, JIT runners
+                minimize the risks associated with long-lived credentials or the
+                exposure of sensitive data.
+              </p>
+              <br />
+              <p>
+                JIT runners also ensure high availability. Since a new runner is
+                provisioned for each workflow, users are guaranteed a
+                ready-to-use runner whenever a workflow is triggered. Unlike
+                persistent runners, which GitHub may remove after 14 days of
+                inactivity—potentially causing workflow failures—JIT runners
+                eliminate the need to reconfigure expired runners. This
+                simplifies operations and reduces the risk of downtime.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
       </section>
 
       <section id="implementation-4">
@@ -403,6 +850,34 @@ const Implementation = () => {
           optional parameters that designate cache endpoints, enabling the
           caching of docker image layers).
         </p>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="aws-s3"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal title="What is AWS S3?" description="AWS S3">
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>What is AWS S3?</span>
+              </>
+              <p>
+                Simple Storage Service (S3) is an object storage service for
+                users to store, manage, analyze, and protect any amount of data
+                for virtually any use case.<sup>23</sup>
+              </p>
+              <br />
+              <p>
+                Harrier provisions a single S3 bucket that is shared across all
+                users and workflows within the organization. The bucket is used
+                to store the current status of EC2 instances as well as cache
+                artifacts generated from workflow runs. Harrier uses Mountpoint,
+                an open-source file client, used to manage S3s using standard
+                Linux file system operations.
+              </p>
+            </TextContentModal>
+          </li>
+        </ul>
       </section>
 
       <section id="implementation-6">
@@ -625,14 +1100,112 @@ const Implementation = () => {
       <section id="implementation-9">
         <SectionInView sectionId="implementation-9" onInView={handleInView} />
         <h2>{subheaderNames[9]}</h2>
-        <ImageContentModal
-          src={OverallArchitecture}
-          alt={"Overall architecture"}
-        />
         <p>
           Here is a diagram that outlines the overall system architecture
           created by the Harrier agent within the user’s cloud account.
         </p>
+        <br />
+
+        <div className="place-content-center scale-125">
+          <ImageContentModal
+            src={OverallArchitecture}
+            alt={"Overall architecture"}
+          />
+        </div>
+        <br />
+        <br />
+        <p>Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout Lambda, and the Cache Eviction Lambda</p>
+        <div className="place-self-center">
+          <ImageContentModal src={ThreeLambdas} alt={"Three Lambdas"} />
+        </div>
+
+        <ul className="m-0 flex flex-row justify-center space-x-4 p-0">
+          <li
+            id="workflow-and-timeout-lambdas"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="The Workflow Lambda and Timeout Lambda"
+              description="The Workflow Lambda and Timeout Lambda"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>The Workflow Lambda and Timeout Lambda</span>
+              </>
+              <p>
+                GitHub sends a single HTTP POST request to the user's AWS each
+                time a new workflow is run. The API Gateway receives this
+                request and invokes the Harrier Workflow Lambda.
+              </p>
+              <br />
+              <p>
+                The Harrier Workflow Lambda code was designed to capture
+                requests from GitHub via the API Gateway and parse the
+                information based on the "action” property of the Request
+                object, which can have a value of "completed," "queued," or
+                "in-progress."
+              </p>
+              <br />
+              <p>
+                In addition, there is also a "ping” request, identified by its
+                unique “zen" property, which is sent out by GitHub each time a
+                new webhook is created. The Workflow Lambda sends a response to
+                GitHub with a 200 status, indicating a request has been received
+                successfully.
+              </p>
+              <br />
+              <strong>EC2 Status</strong>
+              <p>
+                Harrier uses the AWS SDK to retrieve details about EC2
+                instances, including their state and ID, to efficiently manage
+                resources for running workflows. EC2 instances are categorized
+                into "Running" or "Stopped" states. Harrier further refines the
+                "Running" state into "busy" for instances currently processing
+                workflows and "idle" for those ready to accept new workflows.
+              </p>
+              <br />
+              <p>
+                The Workflow Lambda tracks and updates the status of EC2
+                instances by maintaining JSON objects in the user’s S3. When a
+                workflow is initiated on GitHub, the Lambda evaluates available
+                EC2s by looking for an “idle” instance. It attempts to restart
+                an “offline” instance if none are available. If neither is
+                possible, the workflow remains queued until an instance becomes
+                available.
+              </p>
+              <br />
+              <p>
+                To prepare an instance for a new workflow, the Workflow Lambda
+                sets up the runtime environment by mounting an S3 for caching,
+                retrieving a JIT self-hosted runner token from the GitHub API,
+                and executing the runner application.
+              </p>
+              <br />
+              <p>
+                Once a workflow is completed, GitHub sends a "completed" event
+                to the API Gateway, which triggers the Timeout Lambda. This
+                function enforces a user-defined delay to keep the instance
+                running temporarily, allowing for efficient handling of
+                potential quick reruns. If the instance remains idle at the end
+                of the timeout period, it is terminated.
+              </p>
+            </TextContentModal>
+          </li>
+
+          <li
+  id="cache-eviction-lambda"
+  className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+>
+  <TextContentModal title="The Cache Eviction Lambda" description="The Cache Eviction Lambda">
+    <>
+      <CgFileDocument size="28" className="text-harrierBLUE" />
+      <span>The Cache Eviction Lambda</span>
+    </>
+    <p>The Cache Eviction Lambda is triggered by an EventBridge Scheduler. By default, the scheduler triggers the Lambda every night at 3:00 AM, a time chosen to minimize interference with workflow activity. The Lambda scans the user’s S3 and deletes cache files that have not been accessed in the past 72 hours. </p>
+  </TextContentModal>
+</li>
+
+        </ul>
       </section>
 
       <section id="implementation-10">
