@@ -99,6 +99,15 @@ const LandingPage = () => {
       </div>
       <div className="flex h-[36rem] items-center justify-around bg-harrierWHITE">
         <img src={GHALogo} alt="GitHub Actions Logo" className="h-80 w-auto" />
+      </div>
+      <div className="flex h-[36rem] items-center justify-around bg-harrierOFFWHITE">
+        <img
+          src={HarrierColor}
+          alt="Harrier Blue Logo"
+          className="h-40 w-auto"
+        />
+      </div>
+      <div className="flex h-[36rem] items-center justify-around bg-harrierWHITE">
         <img
           src={HarrierColor}
           alt="Harrier Blue Logo"
