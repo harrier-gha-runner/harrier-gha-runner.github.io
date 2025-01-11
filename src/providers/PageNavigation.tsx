@@ -29,46 +29,17 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "problem-domain",
       name: "Problem Domain",
       subheaders: [
-        { id: "problem-domain-2-0", name: "2. Problem Domain" },
         {
           id: "problem-domain-2-1",
-          name: "2.1 GitHub Actions: A Powerful CI/CD Tool",
-        },
-        {
-          id: "problem-domain-2-1-1",
-          name: "2.1.1 CI/CD and DevOps: The Backbone of Modern Software Development",
-        },
-        {
-          id: "problem-domain-2-1-2",
-          name: "2.1.2 GHA Workflow Automation",
-        },
-        {
-          id: "problem-domain-2-1-3",
-          name: "2.1.3 GHA and CI/CD automation",
+          name: "GitHub Actions: A Powerful CI/CD Tool",
         },
         {
           id: "problem-domain-2-2",
-          name: "2.2 Slower than desirable GHA Automation",
-        },
-        {
-          id: "problem-domain-2-2-1",
-          name: "2.2.1 Unpacking GHA’s original design",
-        },
-        {
-          id: "problem-domain-2-2-2",
-          name: "2.2.2 Limitations of GHA Cache Action",
+          name: "Slower than desirable GHA Automation",
         },
         {
           id: "problem-domain-2-3",
-          name: "2.3 Accelerate GHA Workflows with Cache",
-        },
-        {
-          id: "problem-domain-2-3-1",
-          name: "2.3.1 Implementation Options for self-hosted runners",
-        },
-        {
-          id: "problem-domain-2-3-2",
-          name: "2.3.2 Opportunity for 3rd-Party-Supported DIY",
+          name: "Accelerate GHA Workflows with Cache",
         },
       ],
     },
@@ -76,7 +47,7 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "design",
       name: "Design",
       subheaders: [
-        { id: "design-1", name: "3. Harrier Design" },
+        { id: "design-0", name: "3. Harrier Design" },
         {
           id: "design-1",
           name: "3.1 Isolated Runner Environment in User’s Cloud",
@@ -102,28 +73,29 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       subheaders: [
         {
           id: "implementation-0",
-          name: "4. Harrier Implementation",
+          name: "Harrier Implementation",
         },
         {
           id: "implementation-1",
-          name: "4.1 Isolated VPC in User's AWS Account",
+          name: "Isolated VPC in User's AWS Account",
         },
         {
           id: "implementation-2",
-          name: "4.2 Fleet of EC2 runners placed in standby",
+          name: "Fleet of EC2 runners placed in standby",
         },
         {
           id: "implementation-3",
-          name: "4.3 Just-In-Time Token Registration of Runner",
+          name: "Just-In-Time Token Registration of Runner",
         },
-        { id: "implementation-4", name: "4.4 Termination of EC2 runners" },
-        { id: "implementation-5", name: "4.5 S3 Bucket Cache Store" },
-        { id: "implementation-6", name: "4.6 Node modules cache" },
-        { id: "implementation-7", name: "4.7 API Platform Integration" },
-        { id: "implementation-8", name: "4.8 Minimal Workflow Modification" },
-        { id: "implementation-9", name: "4.9 Overall Architecture" },
-        { id: "implementation-10", name: "4.10 Deployment" },
-        { id: "implementation-11", name: "4.11 Performance benchmarks" },
+        { id: "implementation-4", name: "Termination of EC2 runners" },
+        { id: "implementation-5", name: "S3 Bucket Cache Store" },
+        { id: "implementation-6", name: "Node modules cache" },
+        { id: "implementation-7", name: "API Platform Integration" },
+        { id: "implementation-8", name: "Minimal Workflow Modification" },
+        { id: "implementation-9", name: "Overall Architecture" },
+        { id: "implementation-10", name: "Deployment" },
+        { id: "implementation-11", name: "Performance benchmarks" },
+        { id: "implementation-12", name: "Sources" },
       ],
     },
     {
