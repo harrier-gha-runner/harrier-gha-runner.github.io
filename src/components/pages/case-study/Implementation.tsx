@@ -1104,7 +1104,7 @@ const Implementation = () => {
         </p>
         <br />
 
-        <div className="place-content-center scale-125">
+        <div className="scale-125 place-content-center">
           <ImageContentModal
             src={OverallArchitecture}
             alt={"Overall architecture"}
@@ -1112,7 +1112,10 @@ const Implementation = () => {
         </div>
         <br />
         <br />
-        <p className="text-center font-bold">Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout Lambda, and the Cache Eviction Lambda</p>
+        <p className="text-center font-bold">
+          Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout
+          Lambda, and the Cache Eviction Lambda
+        </p>
         <div className="place-self-center">
           <ImageContentModal src={ThreeLambdas} alt={"Three Lambdas"} />
         </div>
@@ -1191,25 +1194,53 @@ const Implementation = () => {
           </li>
 
           <li
-  id="cache-eviction-lambda"
-  className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
->
-  <TextContentModal title="The Cache Eviction Lambda" description="The Cache Eviction Lambda">
-    <>
-      <CgFileDocument size="28" className="text-harrierBLUE" />
-      <span>The Cache Eviction Lambda</span>
-    </>
-    <p>The Cache Eviction Lambda is triggered by an EventBridge Scheduler. By default, the scheduler triggers the Lambda every night at 3:00 AM, a time chosen to minimize interference with workflow activity. The Lambda scans the user’s S3 and deletes cache files that have not been accessed in the past 72 hours. </p>
-  </TextContentModal>
-</li>
-
+            id="cache-eviction-lambda"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal
+              title="The Cache Eviction Lambda"
+              description="The Cache Eviction Lambda"
+            >
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>The Cache Eviction Lambda</span>
+              </>
+              <p>
+                The Cache Eviction Lambda is triggered by an EventBridge
+                Scheduler. By default, the scheduler triggers the Lambda every
+                night at 3:00 AM, a time chosen to minimize interference with
+                workflow activity. The Lambda scans the user’s S3 and deletes
+                cache files that have not been accessed in the past 72 hours.{" "}
+              </p>
+            </TextContentModal>
+          </li>
         </ul>
       </section>
 
       <section id="implementation-10">
         <SectionInView sectionId="implementation-10" onInView={handleInView} />
         <h2>{subheaderNames[10]}</h2>
-        <p>[ COMING SOON ]</p>
+        <p>
+          To begin, the user must follow the steps in the Harrier Installation
+          Guide to configure the required settings in AWS and GitHub. This
+          includes creating IAM roles, setting up secrets, establishing identity
+          providers in AWS, and generating a personal access token in GitHub.
+        </p>
+        <p>
+          Once these configurations are complete, the user can interact with the
+          Harrier frontend to specify their preferences, such as the AWS region
+          and EC2 instance types. They will then receive a setup.yml file, which
+          can be executed as a workflow action in any repository within their
+          GitHub organization to deploy Harrier.
+        </p>
+        <p>
+          The setup.yml file initializes the Harrier system on AWS. It automates
+          preparatory tasks, such as setting up Node.js and configuring AWS
+          credentials with the user's designated IAM role. Once the groundwork
+          is complete, the workflow invokes a custom action called Harrier
+          Setup, which handles the deployment of the required infrastructure
+          using code from the action repository.
+        </p>
       </section>
       <section id="implementation-11">
         <SectionInView sectionId="implementation-11" onInView={handleInView} />
@@ -1219,19 +1250,224 @@ const Implementation = () => {
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
         <h2>{subheaderNames[12]}</h2>
-        <p id="sources4">
-          4. AWS Lambda Features: https://aws.amazon.com/lambda/features/ <br />
-          5. AWS Lambda FAQ
-          https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html
-          <br />
-          6. Lambda Timeout:
-          https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
-          <br />
-          7. GitHub Actions Limits:
-          https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration
-        </p>
+
+        <ol>
+          <li>
+            <a href="https://survey.stackoverflow.co/2024/technology">
+              2024 Developer Survey:
+              https://survey.stackoverflow.co/2024/technology
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions">
+              Security Hardening for GitHub Actions:
+              https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions
+            </a>
+          </li>
+          <li>
+            <a href="https://www.pluralsight.com/resources/blog/tech-operations/what-is-aws-cdk-cloud-development">
+              SDK vs CDK:
+              https://www.pluralsight.com/resources/blog/tech-operations/what-is-aws-cdk-cloud-development
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/lambda/features/">
+              AWS Lambda Features: https://aws.amazon.com/lambda/features/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html">
+              AWS Lambda FAQ:
+              https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html">
+              Lambda Timeout:
+              https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration">
+              GitHub Actions Limits:
+              https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html">
+              AWS Fargate:
+              https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
+            </a>
+          </li>
+          <li>
+            <a href="https://www.reddit.com/r/aws/comments/165wkns/ecs_fargate_vs_ec2/">
+              Reddit EC2 vs Fargate:
+              https://www.reddit.com/r/aws/comments/165wkns/ecs_fargate_vs_ec2/
+            </a>
+          </li>
+          <li>
+            <a href="https://www.warpbuild.com/blog/self-hosting-github-actions#self-hosting-github-actions-runners-on-aws-a-comprehensive-guide">
+              Deploying self-hosted runners on AWS:
+              https://www.warpbuild.com/blog/self-hosting-github-actions#self-hosting-github-actions-runners-on-aws-a-comprehensive-guide
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">
+              EC2 Warm Pools:
+              https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">
+              What is EC2:
+              https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/ebs/">
+              What is EBS: https://aws.amazon.com/ebs/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">
+              EC2 Warm Pools:
+              https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/infrastructure-security.html">
+              VPC Isolation:
+              https://docs.aws.amazon.com/vpc/latest/userguide/infrastructure-security.html
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/changelog/2024-09-25-actions-new-images-and-ubuntu-latest-changes/">
+              Ubuntu Latest to 24.04 in 2024:
+              https://github.blog/changelog/2024-09-25-actions-new-images-and-ubuntu-latest-changes/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners">
+              About GHA self-hosted runners:
+              https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/rest/actions/self-hosted-runners">
+              GitHub Self-hosted runner REST docs:
+              https://docs.github.com/en/rest/actions/self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/changelog/2023-06-02-github-actions-just-in-time-self-hosted-runners/">
+              GitHub Blog Intro for JIT Runners:
+              https://github.blog/changelog/2023-06-02-github-actions-just-in-time-self-hosted-runners/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/removing-self-hosted-runners">
+              Removing Self-hosted Runners:
+              https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/removing-self-hosted-runners
+            </a>
+          </li>
+          <li>
+            <a href="https://www.redhat.com/en/topics/automation/what-is-a-webhook">
+              What is a Webhook:
+              https://www.redhat.com/en/topics/automation/what-is-a-webhook
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">
+              AWS API Gateway:
+              https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
+            </a>
+          </li>
+          <li>
+            <a href="https://aws.amazon.com/s3">
+              AWS S3: https://aws.amazon.com/s3
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow">
+              Pre-written Actions in Workflows:
+              https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-pre-written-building-blocks-in-your-workflow
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace">
+              Publishing in Actions Marketplace:
+              https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace
+            </a>
+          </li>
+          <li>
+            <a href="https://www.docker.com/resources/what-container/">
+              Docker container: https://www.docker.com/resources/what-container/
+            </a>
+          </li>
+          <li>
+            <a href="https://depot.dev/blog/faster-builds-with-docker-caching">
+              Docker Layer Caching:
+              https://depot.dev/blog/faster-builds-with-docker-caching
+            </a>
+          </li>
+          <li>
+            <a href="https://www.atlassian.com/devops/what-is-devops/agile-vs-devops">
+              Devops vs. Agile:
+              https://www.atlassian.com/devops/what-is-devops/agile-vs-devops
+            </a>
+          </li>
+          <li>
+            <a href="https://www.geeksforgeeks.org/what-is-workflow/">
+              What is a workflow?:
+              https://www.geeksforgeeks.org/what-is-workflow/
+            </a>
+          </li>
+          <li>
+            <a href="https://kestra.io/blogs/2023-12-01-yaml-pitfalls">
+              YAML Pitfalls: https://kestra.io/blogs/2023-12-01-yaml-pitfalls
+            </a>
+          </li>
+          <li>
+            <a href="https://github.blog/engineering/experiment-the-hidden-costs-of-waiting-on-slow-build-times/">
+              Experiment: The hidden costs of waiting on slow build times:
+              https://github.blog/engineering/experiment-the-hidden-costs-of-waiting-on-slow-build-times/
+            </a>
+          </li>
+          <li>
+            <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy">
+              GitHub Action Docs - Usage limits and eviction policy:
+              https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy
+            </a>
+          </li>
+          <li>
+            <a href="https://news.ycombinator.com/item?id=39956327">
+              Hacker News - Cache is King:
+              https://news.ycombinator.com/item?id=39956327
+            </a>
+          </li>
+          <li>
+            <a href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching">
+              CI/CD caching with Bitrise:
+              https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching
+            </a>
+          </li>
+          <li>
+            <a href="https://www.atlassian.com/git/tutorials/monorepos">
+              Atlassian - Monorepos:
+              https://www.atlassian.com/git/tutorials/monorepos
+            </a>
+          </li>
+          <li>
+            <a href="https://news.ycombinator.com/item?id=28460342">
+              Y-Combinator community post:
+              https://news.ycombinator.com/item?id=28460342
+            </a>
+          </li>
+        </ol>
       </section>
     </>
   );
 };
 export default Implementation;
+
+<a href="LINK1">TEXT1 Developer Survey: LINK1</a>;
