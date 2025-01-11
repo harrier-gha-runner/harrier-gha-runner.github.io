@@ -47,24 +47,27 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "design",
       name: "Design",
       subheaders: [
-        { id: "design-0", name: "3. Harrier Design" },
+        {
+          id: "design-0",
+          name: "Design",
+        },
         {
           id: "design-1",
-          name: "3.1 Isolated Runner Environment in User’s Cloud",
+          name: "Isolated Runner Environment in User’s Cloud",
         },
-        { id: "design-2", name: "3.2 Warm-pool of self-hosted runners" },
+        { id: "design-2", name: "Warm-pool of self-hosted runners" },
         {
           id: "design-3",
-          name: "3.3 Connect Runners with Specific Workflow Jobs",
+          name: "Connect Runners with Specific Workflow Jobs",
         },
-        { id: "design-4", name: "3.4 Termination of ephemeral runner" },
-        { id: "design-5", name: "3.5 Dedicated Persistent Cache Store" },
+        { id: "design-4", name: "Termination of ephemeral runner" },
+        { id: "design-5", name: "Dedicated Persistent Cache Store" },
         {
           id: "design-6",
-          name: "3.6 Out-of-the-box cache management of dependencies",
+          name: "Out-of-the-box cache management of dependencies",
         },
-        { id: "design-7", name: "3.7 Workflow-driven start/stop of runners" },
-        { id: "design-8", name: "3.8 Minimal workflow modification" },
+        { id: "design-7", name: "Workflow-driven start and stop of runners" },
+        { id: "design-8", name: "Minimal workflow modification" },
       ],
     },
     {
@@ -102,10 +105,10 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "future-work",
       name: "Future Work",
       subheaders: [
-        { id: "future-work-1", name: "Future Work 1" },
-        { id: "future-work-2", name: "Future Work 2" },
-        { id: "future-work-3", name: "Future Work 3" },
-        { id: "future-work-4", name: "Future Work 4" },
+        { id: "future-work-0", name: "Future Work" },
+        { id: "future-work-1", name: "Caching" },
+        { id: "future-work-2", name: "Provisioning self-hosted runners" },
+        { id: "future-work-3", name: "Executing workflows" },
       ],
     },
   ]);
