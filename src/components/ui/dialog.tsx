@@ -141,16 +141,18 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <img
-          className="m-0 cursor-pointer"
-          src={src}
-          alt={alt}
-          style={{
-            width: "100%",
-            height: "auto",
-            maxWidth: "800px",
-          }}
-        />
+        <div className="flex w-full items-center justify-center py-6">
+          <img
+            className="m-0 cursor-pointer"
+            src={src}
+            alt={alt}
+            style={{
+              width: "50%",
+              height: "auto",
+              maxWidth: "650px",
+            }}
+          />
+        </div>
       </DialogTrigger>
       <DialogContent className="bg-harrierBLACK">
         <DialogHeader>
