@@ -14,6 +14,7 @@ import JobSession from "@/assets/3.3.job-session-consistent-runner.png";
 import TeminatedRunner from "@/assets/3.4.terminated-runner.png";
 import DedicatedCache from "@/assets/3.5.dedicated-cache-storage.png";
 import CacheManagement from "@/assets/3.6.cache-management.png";
+import ApiIntegration from "@/assets/3.7.api-integration-trsprt.png";
 
 const SectionInView = ({
   sectionId,
@@ -199,7 +200,7 @@ const Design = () => {
       <section id="design-7">
         <SectionInView sectionId="design-7" onInView={handleInView} />
         <h2>{subheaderNames[7]}</h2>
-        <ImageContentModal src={ApiIntegration} alt={"API I"} />
+        <ImageContentModal src={ApiIntegration} alt={"API Integration"} />
         <p>
           With the alternative runner infrastructure provisioned and configured
           within the user’s cloud environment, integration with the GHA
