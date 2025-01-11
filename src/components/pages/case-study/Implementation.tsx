@@ -93,7 +93,74 @@ const Implementation = () => {
           <ImageContentModal
             src={OverallArchitecture}
             alt={"Full Harrier AWS Architecture"}
-          />
+          />{" "}
+          <p>The Right Cloud Platform for Harrier Users</p>
+          <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
+            <li
+              id="aws-cloud-platform"
+              className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+            >
+              <TextContentModal
+                title="AWS Cloud Platform"
+                description="description"
+              >
+                <>
+                  <CgFileDocument size="28" className="text-harrierBLUE" />
+                  <span>AWS Cloud Platform</span>
+                </>
+                We selected AWS as the cloud platform for hosting the user's
+                self-hosted runner because it met all our criteria. AWS is the
+                most widely adopted cloud platform among developers in 20241.
+                AWS offers various configuration options for setting up GitHub
+                Actions self-hosted runner infrastructure, tailored with
+                different processors, storage, and networking to meet users'
+                preferences. It also meets our security criteria, with a Secrets
+                Manager function and adopting OIDC standards for secure
+                integration with GitHub. Lastly, the AWS combination of API
+                Gateway and Lambda is highly effective for managing webhooks,
+                which we use to process GitHub Actions workflows. Setting up
+                cloud resources securely minimizes a known risk of sensitive
+                information exposure when reusing hardware for self-hosted
+                runners.2 Harrier provisions servers exclusively for running
+                workflows, ensuring they are isolated within a dedicated area of
+                the user's AWS environment. These servers are restricted from
+                accessing any other parts of the user's infrastructure,
+                maintaining a strict separation of resources and data.
+              </TextContentModal>
+            </li>
+            <li
+              id="provisioning-infrastructure-programmatically"
+              className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+            >
+              <TextContentModal
+                title="Provisioning Infrastructure Programmatically"
+                description="description"
+              >
+                <>
+                  <CgFileDocument size="28" className="text-harrierBLUE" />
+                  <span>Provisioning Infrastructure Programmatically</span>
+                </>
+                We selected AWS as the cloud platform for hosting the user's
+                self-hosted runner because it met all our criteria. AWS is the
+                most widely adopted cloud platform among developers in 20241.
+                AWS offers various configuration options for setting up GitHub
+                Actions self-hosted runner infrastructure, tailored with
+                different processors, storage, and networking to meet users'
+                preferences. It also meets our security criteria, with a Secrets
+                Manager function and adopting OIDC standards for secure
+                integration with GitHub. Lastly, the AWS combination of API
+                Gateway and Lambda is highly effective for managing webhooks,
+                which we use to process GitHub Actions workflows. Setting up
+                cloud resources securely minimizes a known risk of sensitive
+                information exposure when reusing hardware for self-hosted
+                runners.2 Harrier provisions servers exclusively for running
+                workflows, ensuring they are isolated within a dedicated area of
+                the user's AWS environment. These servers are restricted from
+                accessing any other parts of the user's infrastructure,
+                maintaining a strict separation of resources and data.
+              </TextContentModal>
+            </li>
+          </ul>
         </div>
       </section>
       <section id="implementation-1">
@@ -117,45 +184,18 @@ const Implementation = () => {
 
         <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
           <li
-            id="private-versus-public-subnets"
+            id="placeholder"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
           >
-            <TextContentModal
-              title="Private Versus Public Subnets"
-              description="description"
-            >
+            <TextContentModal title="placeholder" description="description">
               <>
                 <CgFileDocument size="28" className="text-harrierBLUE" />
-                <span>Public Versus Private Subnets</span>
+                <span>placeholder</span>
               </>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
               non ipsa, asperiores eligendi repellendus, assumenda rem
               distinctio iure esse reprehenderit sit temporibus eos perspiciatis
               beatae fugit totam tempora. Sit, aliquam.
-            </TextContentModal>
-          </li>
-          <li
-            id="eni-for-lambdas"
-            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
-          >
-            <TextContentModal title="ENI for Lambdas" description="description">
-              <>
-                <SiAwslambda size="28" className="text-harrierPINK" />
-                <span>ENI for Lambdas</span>
-              </>
-              CONTENT
-            </TextContentModal>
-          </li>
-          <li
-            id="cidr-blocks"
-            className="border-lg m-0 inline-block flex-shrink-0 rounded-full bg-harrierBLACK p-0 text-white"
-          >
-            <TextContentModal title="CIDR Blocks" description="description">
-              <>
-                <AiOutlineBlock size="28" className="text-harrierYELLOW" />
-                <span>CIDR Blocks</span>
-              </>
-              CONTENT
             </TextContentModal>
           </li>
         </ul>
@@ -231,29 +271,77 @@ const Implementation = () => {
           as the runner that will be started up to run a workflow will be
           terminated upon completion of the job.
         </p>
-        click here for detailed insight into challenges and problem solving
-        approach
-        <br />
-        EC2 vs Fargate vs Lambda
-        <br /> Script options
-        <br /> Necessary pre-config options
-        <br /> Bootup time
-        <br /> What happens to an EC2 at stop vs terminate?
-        <br />
-        Introduce EBS volume?
-        <br />
+        <p>
+          <h4>Runner Deployment Method</h4>
+        </p>
+        <p>
+          AWS cloud infrastructure can be customized to deploy GitHub Actions
+          runners in various ways. We compared the three most viable methods:
+          AWS Lambda, Fargate, and EC2.
+        </p>
         <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
           <li
-            id="ec2-vs-fargate-vs-lambda"
+            id="aws-lambda"
             className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
           >
-            <TextContentModal
-              title="EC2 vs Fargate vs Lambda"
-              description="description"
-            >
+            <TextContentModal title="AWS Lambda" description="description">
               <>
                 <CgFileDocument size="28" className="text-harrierBLUE" />
-                <span>EC2 vs Fargate vs Lambda</span>
+                <span>AWS Lambda</span>
+              </>
+              AWS Lambda is a serverless compute service that executes your code
+              in response to events while automatically managing the underlying
+              compute resources.
+              <sup>
+                <a
+                  href="#sources4"
+                  className="text-blue-500 underline hover:text-blue-700"
+                >
+                  4
+                </a>
+              </sup>{" "}
+              However, after thorough research and testing, we have determined
+              Lambdas to be unsuitable for deploying self-hosted runners to
+              process jobs for most users for two primary reasons: First, Lambda
+              functions are designed to process individual events or complete
+              single tasks rapidly—typically within one second for most
+              production invocations.<sup>5</sup> In contrast, user workflows
+              usually consist of multiple steps within a job rather than just
+              one isolated task or event. Second, AWS Lambdas can run code for a
+              maximum of 900 seconds (15 minutes) before timing out and halting
+              execution.<sup>6</sup> This limitation does not allow enough time
+              to complete GitHub Actions workflows, which often exceed 15
+              minutes. In comparison, GitHub-hosted runners permit each job in a
+              workflow to run for up to 6 hours.<sup>7</sup>
+            </TextContentModal>
+          </li>
+        </ul>
+        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
+          <li
+            id="placeholder"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal title="placeholder" description="description">
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>placeholder</span>
+              </>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
+              non ipsa, asperiores eligendi repellendus, assumenda rem
+              distinctio iure esse reprehenderit sit temporibus eos perspiciatis
+              beatae fugit totam tempora. Sit, aliquam.
+            </TextContentModal>
+          </li>
+        </ul>
+        <ul className="m-0 flex flex-row justify-start space-x-4 p-0">
+          <li
+            id="placeholder"
+            className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
+          >
+            <TextContentModal title="placeholder" description="description">
+              <>
+                <CgFileDocument size="28" className="text-harrierBLUE" />
+                <span>placeholder</span>
               </>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
               non ipsa, asperiores eligendi repellendus, assumenda rem
@@ -537,19 +625,19 @@ const Implementation = () => {
         <p>Example:</p>
         <pre className="overflow-auto rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
           <code>
-            <span className="text-blue-600">
+            <span className="font-mono text-blue-600">
               jobs:
               <br />
               &nbsp;&nbsp;build:
               <br />
-              <span className="bg-red-200 px-1 text-red-900">
+              <span className="block bg-red-200 px-1 font-mono text-red-900">
                 -&nbsp;&nbsp;runs-on: ubuntu-latest
               </span>
               <br />
-              <span className="bg-green-200 px-1 text-green-900">
+              <span className="block bg-green-200 px-1 font-mono text-green-900">
                 +&nbsp;&nbsp;runs-on: self-hosted
                 <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;env:
+                +&nbsp;&nbsp;&nbsp;&nbsp;env:
                 <br />
                 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPO_NAME: ${"{{"}
                 github.event.repository.name{"}}"} <br />
@@ -569,26 +657,26 @@ const Implementation = () => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses:
               actions/checkout@v4
               <br />
-              <span className="bg-green-200 px-1 text-green-900">
+              <br />
+              <span className="block bg-green-200 px-1 font-mono text-green-900">
                 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Load Cache with Harrier
                 <br />
                 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses:
                 harrier-gha-runner/harrier-cache-load@main
               </span>
-              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Install
-              Dependencies
-              <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: npm
-              install
               <br />
-              <span className="bg-green-200 px-1 text-green-900">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Install Dependencies
+              <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: npm install
+              <br />
+              <br />
+              <span className="block bg-green-200 px-1 font-mono text-green-900">
                 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Store Cache with Harrier
                 <br />
                 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses:
                 harrier-gha-runner/harrier-cache-store@main
               </span>
-              <br />
             </span>
-            <br />
           </code>
         </pre>
       </section>
@@ -615,6 +703,21 @@ const Implementation = () => {
         <SectionInView sectionId="implementation-11" onInView={handleInView} />
         <h2>{subheaderNames[11]}</h2>
         <p>[ COMING SOON ]</p>
+      </section>
+      <section id="implementation-12">
+        <SectionInView sectionId="implementation-12" onInView={handleInView} />
+        <h2>{subheaderNames[11]}</h2>
+        <p id="sources4">
+          4. AWS Lambda Features: https://aws.amazon.com/lambda/features/ <br />
+          5. AWS Lambda FAQ
+          https://docs.aws.amazon.com/lambda/latest/dg/event-driven-faq.html
+          <br />
+          6. Lambda Timeout:
+          https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html
+          <br />
+          7. GitHub Actions Limits:
+          https://docs.github.com/en/actions/administering-github-actions/usage-limits-billing-and-administration
+        </p>
       </section>
     </>
   );
