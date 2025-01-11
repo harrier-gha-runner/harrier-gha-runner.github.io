@@ -64,7 +64,6 @@ const Design = () => {
     <>
       <section id="design-0">
         <SectionInView sectionId="design-0" onInView={handleInView} />
-        <h2>{subheaderNames[0]}</h2>
         <p>
           The design of a 3rd-party supported DIY option for leveraging cache in
           GHA workflows involved two major pieces of work:
@@ -220,8 +219,8 @@ const Design = () => {
           To ease migration from default GHA runners to self-hosted runners and
           minimize workflow disruption, Harrier requires simple one-line
           modifications to existing workflow YAML files. Similarly, Harrier
-          allows users to take advantage of the built-in cache strategy through
-          simple one-line drop-in changes to existing workflow yaml files.
+          allows users to take advantage of the built-in cache strategy by
+          simply adding a few lines to existing workflow yaml files.
         </p>
       </section>
     </>
