@@ -6,6 +6,11 @@ import { useInView } from "react-intersection-observer";
 
 // Importing images
 import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
+import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
+import GitHubComponents from "@/assets/2.1.github-components.png";
+import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
+import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
+import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
 
 const SectionInView = ({
   sectionId,
@@ -53,13 +58,9 @@ const ProblemDomain = () => {
 
   return (
     <>
-      <section id="problem-domain-2-0">
-        <SectionInView sectionId="problem-domain-2-0" onInView={handleInView} />
-        <h2>{subheaderNames[0]}</h2>
-      </section>
       <section id="problem-domain-2-1">
         <SectionInView sectionId="problem-domain-2-1" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
+        <h2>{subheaderNames[0]}</h2>
         <p className="callout">
           <p>Overview:</p>
           <ul>
@@ -92,12 +93,8 @@ const ProblemDomain = () => {
           </ul>
         </p>
       </section>
-      <section id="problem-domain-2-1-1">
-        <SectionInView
-          sectionId="problem-domain-2-1-1"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[2]}</h2>
+      <section>
+        <h2>CI/CD and DevOps: The Backbone of Modern Software Development</h2>
         <p>
           Modern software development is a complex endeavor performed by large
           teams of experts, which require a great deal of communication and
@@ -151,20 +148,19 @@ const ProblemDomain = () => {
           focus more on innovation and less on manual or repetitive tasks.
         </p>
       </section>
-      <section id="problem-domain-2-1-2">
-        <SectionInView
-          sectionId="problem-domain-2-1-2"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[3]}</h2>
+      <section>
+        <h2>GHA Workflow Automation</h2>
         <p>
           Automation is the implementation of tasks or processes without human
           intervention, enabling increased efficiency and productivity. It
           involves streamlining repetitive, time-consuming, or error-prone
-          tasks, freeing up developers to focus on higher-value activities and
-          ultimately leading to higher-quality outcomes.
+          tasks, freeing up developers to focus on higher value activities and
+          ultimately leading to higher quality outcomes.
         </p>
-        <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} />
+        <ImageContentModal
+          src={AutomationSoft}
+          alt={"Automated processes for higher quality outcomes"}
+        />
         <p>
           Within software development, a <strong>workflow</strong> as a concept
           is a defined sequence of automated steps and processes that coordinate
@@ -190,12 +186,8 @@ const ProblemDomain = () => {
           development. (source: github pr post)
         </p>
       </section>
-      <section id="problem-domain-2-1-3">
-        <SectionInView
-          sectionId="problem-domain-2-1-3"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[4]}</h2>
+      <section>
+        <h2>GHA and CI/CD automation</h2>
         <p>
           Given that GitHub Actions was designed to provide native CI/CD
           automation support, GitHub workflows are almost entirely related to
@@ -271,7 +263,7 @@ const ProblemDomain = () => {
       </section>
       <section id="problem-domain-2-2">
         <SectionInView sectionId="problem-domain-2-2" onInView={handleInView} />
-        <h2>{subheaderNames[5]}</h2>
+        <h2>{subheaderNames[1]}</h2>
         <p className="overview">
           <p>Overview:</p>
           <ul>
@@ -310,12 +302,8 @@ const ProblemDomain = () => {
           </ul>
         </p>
       </section>
-      <section id="problem-domain-2-2-1">
-        <SectionInView
-          sectionId="problem-domain-2-2-1"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[6]}</h2>
+      <section>
+        <h2>Unpacking GHA’s original design</h2>
         <p>
           GitHub Action’s automated workflows are executed on servers that are
           called runners. GitHub provides default runners as a service in order
@@ -330,6 +318,10 @@ const ProblemDomain = () => {
           concerns, GitHub provisions brand new virtual machines (VMs) for each
           job specified in workflow files, which are promptly destroyed after
           job completion.
+          <ImageContentModal
+            src={GitHubComponents}
+            alt={"GitHub Actions components"}
+          />
         </p>
         <p className="callout">
           <p>What is caching?</p>
@@ -348,8 +340,13 @@ const ProblemDomain = () => {
           immediately after job completion necessitates the cache to be placed
           in a persistent storage outside of the VM. However, GitHub did not
           provide such a storage option at the outset, making it extremely
-          difficult for users to take advantage of caching in their CI builds.{" "}
+          difficult for users to take advantage of caching in their CI builds.
         </p>
+        <ImageContentModal
+          src={GHARunnerNoCache}
+          alt={"GitHub runner with no persistent storage for cache"}
+        />
+
         <p>
           In addition to the limitation presented by the runner infrastructure
           design, GitHub only provides limited runner infrastructure hardware
@@ -357,12 +354,8 @@ const ProblemDomain = () => {
           of vertical scaling.
         </p>
       </section>
-      <section id="problem-domain-2-2-2">
-        <SectionInView
-          sectionId="problem-domain-2-2-2"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[7]}</h2>
+      <section>
+        <h2>Limitations of GHA Cache Action</h2>
         <p>
           The limitations around CI build speed within GHA were significant
           enough to warrant GitHub itself taking action. Within a couple years
@@ -372,6 +365,11 @@ const ProblemDomain = () => {
           much-demanded native cache solution on the GHA Marketplace,
           actions/cache.
         </p>
+        <ImageContentModal
+          src={GHALimitedCache}
+          alt={"GitHub runner limited cache via cache action"}
+        />
+
         <p>
           GitHub’s cache feature seeks to enhance overall workflow efficiency by
           storing and reusing dependencies and files produced from workflow run
@@ -425,7 +423,7 @@ const ProblemDomain = () => {
       </section>
       <section id="problem-domain-2-3">
         <SectionInView sectionId="problem-domain-2-3" onInView={handleInView} />
-        <h2>{subheaderNames[8]}</h2>
+        <h2>{subheaderNames[2]}</h2>
         <p className="overview">
           <p>Overview:</p>
           <ul>
@@ -463,6 +461,11 @@ const ProblemDomain = () => {
             </li>
           </ul>
         </p>
+        <ImageContentModal
+          src={AltRunnerInfra}
+          alt={"Alternative infrastructure for self-hosted runner"}
+        />
+
         <p className="callout">
           <p>What is a self-hosted runner?</p>
           <ul>
@@ -492,12 +495,8 @@ const ProblemDomain = () => {
           </ul>
         </p>
       </section>
-      <section id="problem-domain-2-3-1">
-        <SectionInView
-          sectionId="problem-domain-2-3-1"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[9]}</h2>
+      <section>
+        <h2>Implementation Options for self-hosted runners</h2>
         <p>
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
@@ -608,12 +607,8 @@ const ProblemDomain = () => {
           contribution.
         </p>
       </section>
-      <section id="problem-domain-2-3-2">
-        <SectionInView
-          sectionId="problem-domain-2-3-2"
-          onInView={handleInView}
-        />
-        <h2>{subheaderNames[10]}</h2>
+      <section>
+        <h2>Opportunity for 3rd-Party-Supported DIY</h2>
         <p>
           GitHub Actions users want to experience faster workflow automation
           through accelerated CI builds. However, they cannot afford to put
