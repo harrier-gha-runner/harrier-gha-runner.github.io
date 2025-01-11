@@ -1,6 +1,6 @@
-import { SiAwslambda } from "react-icons/si";
+// import { SiAwslambda } from "react-icons/si";
 import { CgFileDocument } from "react-icons/cg";
-import { AiOutlineBlock } from "react-icons/ai";
+// import { AiOutlineBlock } from "react-icons/ai";
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 
