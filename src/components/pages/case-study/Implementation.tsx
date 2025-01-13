@@ -93,7 +93,6 @@ const Implementation = () => {
                 implementation.
               </li>
             </ul>
-
           </div>
           <ImageContentModal
             src={OverallArchitecture}
@@ -1217,7 +1216,7 @@ const Implementation = () => {
                 We used AWS API Gateway to create and manage a simple REST API
                 for receiving webhooks from GitHub Actions. REST APIs act as the
                 "front door" for applications to access data, business logic, or
-                functionality from backend services.<sup>22</sup> ​​API Gateway
+                functionality from backend services.<sup>22</sup> API Gateway
                 handles all the tasks involved in accepting and processing API
                 calls, including traffic management, authorization, and access
                 control, monitoring, and API version management.
@@ -1479,7 +1478,7 @@ const Implementation = () => {
         </ul>
       </section>
 
-           <section id="implementation-10">
+      <section id="implementation-10">
         <SectionInView sectionId="implementation-10" onInView={handleInView} />
         <h2>{subheaderNames[9]}</h2>
         <p>
