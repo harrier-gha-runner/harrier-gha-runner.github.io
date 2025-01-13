@@ -54,7 +54,7 @@ const Future = () => {
   return (
     <>
       <section id="future-work-0">
-        <SectionInView sectionId="future-work-0" onInView={handleInView} />
+        <h2>Future Work</h2>
         <p>
           Harrier is an open-source GitHub Actions self-hosted runner deployment
           tool designed to provide users with an alternative to GitHub Actions’
@@ -86,7 +86,7 @@ const Future = () => {
       </section>
       <section id="future-work-1">
         <SectionInView sectionId="future-work-1" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
+        <h2>{subheaderNames[0]}</h2>
         <p>
           Harrier assumed that the root cause for the lack of caching
           capabilities within GHA was due to GHA’s initial VM architecture
@@ -128,7 +128,7 @@ const Future = () => {
       </section>
       <section id="future-work-2">
         <SectionInView sectionId="future-work-2" onInView={handleInView} />
-        <h2>{subheaderNames[2]}</h2>
+        <h2>{subheaderNames[1]}</h2>
         <p>
           Harrier assumed that the baseline workflow runtime performance,
           without using cache, was directly correlated to the hardware specs of
@@ -170,7 +170,7 @@ const Future = () => {
       </section>
       <section id="future-work-3">
         <SectionInView sectionId="future-work-3" onInView={handleInView} />
-        <h2>{subheaderNames[3]}</h2>
+        <h2>{subheaderNames[2]}</h2>
         <p>
           Harrier assumed that replacing a GHA default runner with a self-hosted
           runner would be as simple as executing the GHA self-hosted runner

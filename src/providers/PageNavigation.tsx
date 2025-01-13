@@ -48,10 +48,6 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Design",
       subheaders: [
         {
-          id: "design-0",
-          name: "Design",
-        },
-        {
           id: "design-1",
           name: "Isolated Runner Environment in User’s Cloud",
         },
@@ -74,10 +70,6 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "implementation",
       name: "Implementation",
       subheaders: [
-        {
-          id: "implementation-0",
-          name: "Harrier Implementation",
-        },
         {
           id: "implementation-1",
           name: "Isolated VPC in User's AWS Account",
@@ -105,7 +97,6 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       id: "future-work",
       name: "Future Work",
       subheaders: [
-        { id: "future-work-0", name: "Future Work" },
         { id: "future-work-1", name: "Caching" },
         { id: "future-work-2", name: "Provisioning self-hosted runners" },
         { id: "future-work-3", name: "Executing workflows" },
