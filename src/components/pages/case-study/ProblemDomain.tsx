@@ -5,12 +5,18 @@ import { ImageContentModal } from "@/components/ui/dialog";
 import { useInView } from "react-intersection-observer";
 
 // Importing images
+import HarrierIntro from "@/assets/1.harrier-intro.png";
 import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
+import ComparisonChart from "@/assets/2.3.2.comparison-chart.png";
+import Compare1 from "@/assets/2.3.1.compare-1-user.png";
+import Compare2 from "@/assets/2.3.1.compare-2-3rd-party.png";
+import Compare3 from "@/assets/2.3.1.compare-3-user-hosted.png";
+import Compare4 from "@/assets/2.3.1.compare-4-user-hosted-user-managed.png";
 
 const SectionInView = ({
   sectionId,
@@ -58,10 +64,55 @@ const ProblemDomain = () => {
 
   return (
     <>
-      <section id="problem-domain-2-1">
+      <section id="problem-domain-0">
+        <SectionInView sectionId="problem-domain-0" onInView={handleInView} />
+        <h2>Introduction</h2>
+        <p>
+          Harrier is an open-source infrastructure deployment agent designed to
+          accelerate automated workflow runtimes in GitHub Actions (GHA) through
+          optimized caching mechanisms made possible by using GitHub’s very own
+          self-hosted runner feature.
+        </p>
+        <ImageContentModal
+          src={HarrierIntro}
+          alt={"Harrier introduction diagram"}
+        />
+        <p>
+          GHA default runners for workflows are ephemeral virtual machines (VMs)
+          by design, ensuring that workflow artifacts are destroyed upon
+          completion. This design, while providing users with important benefits
+          of a clean runtime environment and secure data management, is not
+          conducive for utilizing cache to re-use previously created data and
+          reduce redundant work.
+        </p>
+        <p>
+          There are many workarounds for accelerating workflow runtimes by
+          providing a cache mechanism that sits outside of the GitHub ecosystem,
+          with many of them taking advantage of GitHub’s self-hosted runner
+          feature that allows any server to connect to GHA as an available
+          runner. However, none of these are a one-size-fits-all solution as
+          there are a series of tradeoffs that must be taken into consideration,
+          such as the level of user engagement required for implementing and
+          managing the solution, degree of risk related to data security, and
+          the financial implication to name a few.
+        </p>
+        <p>
+          Harrier is ideal for developers and teams who are not afraid of
+          hosting their own cloud resources on a pay-as-you-go pricing plan but
+          do not have the time nor the requisite knowledge to stand up a robust
+          GHA runner infrastructure. As an open-source agent, Harrier provisions
+          and configures the necessary cloud resources, integrates the cloud
+          platform to GitHub and the GHA ecosystem, and provides an easy to use
+          out-of-the-box dependency caching mechanism, all with just a few
+          clicks from the user.
+        </p>
+      </section>
+
+      <section id="problem-domain-1">
+        <SectionInView sectionId="problem-domain-1" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
-        <p className="callout">
-          <p>Overview:</p>
+        <div className="callout">
+          Overview:
           <ul>
             <li>
               <strong>
@@ -90,7 +141,7 @@ const ProblemDomain = () => {
               compounding effects across the entire development pipeline.
             </li>
           </ul>
-        </p>
+        </div>
       </section>
       <section>
         <h2>CI/CD and DevOps: The Backbone of Modern Software Development</h2>
@@ -129,14 +180,14 @@ const ProblemDomain = () => {
           By automating the software development and release processes, CI/CD
           enables teams to streamline their workflows and enjoy the following
           benefits (source: Codefresh):
-          <ul>
-            <li>Early detection of issues</li>
-            <li>Improved team collaboration</li>
-            <li>Faster release cycles and rapid releases</li>
-            <li>Reduced risk of failed deployments</li>
-            <li>Improved and faster user feedback</li>
-          </ul>
         </p>
+        <ul>
+          <li>Early detection of issues</li>
+          <li>Improved team collaboration</li>
+          <li>Faster release cycles and rapid releases</li>
+          <li>Reduced risk of failed deployments</li>
+          <li>Improved and faster user feedback</li>
+        </ul>
         <p>
           These benefits help establish a more stable and efficient development
           environment. As software development grows increasingly complex, the
@@ -198,21 +249,21 @@ const ProblemDomain = () => {
         <p>
           However, GHA as a CI/CD tool is not without its limitations (source:
           reddit.) Areas where some consider it falling short are:
-          <ul>
-            <li>
-              Limited visibility of workflow artifacts & robust artifact
-              management.
-            </li>
-            <li>Limited tooling for debugging workflows.</li>
-            <li>
-              Limited support for event-based workflow triggers originating
-              outside of GitHub itself. (send a “respository_dispatch” event via
-              the GitHub API)
-            </li>
-            <li>Performance ceiling for enterprise-level workflows.</li>
-            <li>YAML-based workflow configuration.30</li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            Limited visibility of workflow artifacts & robust artifact
+            management.
+          </li>
+          <li>Limited tooling for debugging workflows.</li>
+          <li>
+            Limited support for event-based workflow triggers originating
+            outside of GitHub itself. (send a “respository_dispatch” event via
+            the GitHub API)
+          </li>
+          <li>Performance ceiling for enterprise-level workflows.</li>
+          <li>YAML-based workflow configuration.30</li>
+        </ul>
         <p>
           The above limitations may lead a developer or organization to consider
           alternative approaches to address their specific CI/CD needs.
@@ -239,19 +290,17 @@ const ProblemDomain = () => {
           Despite the advantages the above alternative approaches provide, still
           many developers and teams opt to stay within the GHA ecosystem for the
           following reasons:
-          <ul>
-            <li>
-              Native integration between code base and workflow automation tools
-            </li>
-            <li>
-              Zero responsibility for infrastructure management by the user
-            </li>
-            <li>
-              Access to open-sourced marketplace for various automation
-              customization and innovation
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            Native integration between code base and workflow automation tools
+          </li>
+          <li>Zero responsibility for infrastructure management by the user</li>
+          <li>
+            Access to open-sourced marketplace for various automation
+            customization and innovation
+          </li>
+        </ul>
         <p>
           GitHub Actions strikes a balance, offering flexible, GitHub-centric
           workflows with easy setup and scalable performance. In addition, with
@@ -260,10 +309,10 @@ const ProblemDomain = () => {
           explore various ways to make a contribution.
         </p>
       </section>
-      <section id="problem-domain-2-2">
-        <SectionInView sectionId="problem-domain-2-2" onInView={handleInView} />
+      <section id="problem-domain-2">
+        <SectionInView sectionId="problem-domain-2" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
-        <p className="overview">
+        <div className="overview">
           <p>Overview:</p>
           <ul>
             <li>
@@ -299,7 +348,7 @@ const ProblemDomain = () => {
               </ul>
             </li>
           </ul>
-        </p>
+        </div>
       </section>
       <section>
         <h2>Unpacking GHA’s original design</h2>
@@ -317,12 +366,12 @@ const ProblemDomain = () => {
           concerns, GitHub provisions brand new virtual machines (VMs) for each
           job specified in workflow files, which are promptly destroyed after
           job completion.
-          <ImageContentModal
-            src={GitHubComponents}
-            alt={"GitHub Actions components"}
-          />
         </p>
-        <p className="callout">
+        <ImageContentModal
+          src={GitHubComponents}
+          alt={"GitHub Actions components"}
+        />
+        <div className="callout">
           <p>What is caching?</p>
           Caching is a data-management method that reuses previously created
           information (i.e. cache) rather than creating it again.34 For a highly
@@ -331,7 +380,7 @@ const ProblemDomain = () => {
           computations run quicker when the need to create the same thing over
           and over is eliminated. Caching is made possible by storing the cache
           data in a temporary storage so that it can be accessed in the future.
-        </p>
+        </div>
         <p>
           One of the most significant impacts of GitHub’s runner infrastructure
           on CI build speed is that it severely limits the use of caching
@@ -373,15 +422,15 @@ const ProblemDomain = () => {
           GitHub’s cache feature seeks to enhance overall workflow efficiency by
           storing and reusing dependencies and files produced from workflow run
           operations. Key features include:
-          <ul>
-            <li>Seamless integration with existing workflow files.</li>
-            <li>
-              Preset cache eviction strategy with no option for further
-              customization and 7 day automatic deletion.
-            </li>
-            <li>10 GB cache data storage per repository.</li>
-          </ul>
         </p>
+        <ul>
+          <li>Seamless integration with existing workflow files.</li>
+          <li>
+            Preset cache eviction strategy with no option for further
+            customization and 7 day automatic deletion.
+          </li>
+          <li>10 GB cache data storage per repository.</li>
+        </ul>
         <p>
           This native cache solution satisfied some users, but for others, the
           solution proved woefully inadequate. To better understand this second
@@ -420,10 +469,10 @@ const ProblemDomain = () => {
           alternative solutions.
         </p>
       </section>
-      <section id="problem-domain-2-3">
-        <SectionInView sectionId="problem-domain-2-3" onInView={handleInView} />
+      <section id="problem-domain-3">
+        <SectionInView sectionId="problem-domain-3" onInView={handleInView} />
         <h2>{subheaderNames[2]}</h2>
-        <p className="overview">
+        <div className="overview">
           <p>Overview:</p>
           <ul>
             <li>
@@ -459,13 +508,13 @@ const ProblemDomain = () => {
               </ul>
             </li>
           </ul>
-        </p>
+        </div>
         <ImageContentModal
           src={AltRunnerInfra}
           alt={"Alternative infrastructure for self-hosted runner"}
         />
 
-        <p className="callout">
+        <div className="callout">
           <p>What is a self-hosted runner?</p>
           <ul>
             <li>
@@ -492,7 +541,7 @@ const ProblemDomain = () => {
               within a private network.
             </li>
           </ul>
-        </p>
+        </div>
       </section>
       <section>
         <h2>Implementation Options for self-hosted runners</h2>
@@ -500,12 +549,12 @@ const ProblemDomain = () => {
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
           an on-premises server or even one’s local machine:
-          <ul>
-            <li>Pay-as-you-go pricing model</li>
-            <li>Trusted security and compliance</li>
-            <li>Vendor-supported infrastructure management</li>
-          </ul>
         </p>
+        <ul>
+          <li>Pay-as-you-go pricing model</li>
+          <li>Trusted security and compliance</li>
+          <li>Vendor-supported infrastructure management</li>
+        </ul>
         <p>
           As mentioned previously, Github provides a free, DIY solution to
           create an alternative runner infrastructure in the form of the GH
@@ -514,6 +563,11 @@ const ProblemDomain = () => {
           ecosystem while retaining the capability to fully customize the runner
           infrastructure on their preferred server environment.
         </p>
+        <img
+          src={Compare1}
+          width="300"
+          alt="Chart showing responsibilities of DIY solution"
+        />
         <p>
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
@@ -524,11 +578,11 @@ const ProblemDomain = () => {
         <p>
           Taking this approach comes with tradeoffs. For one, developers must
           invest their time and energy to learn how to design, deploy, and
-          utilize their alternative runner infrastructure. They also shoulder
-          the burden (to a certain degree) of using, managing, and maintaining
-          their alternative runner infrastructure’s components. Additionally,
-          there is the opportunity cost of starting down this road, investing
-          significant time, and never actually realizing any benefits.
+          utilize their alternative runner infrastructure. They also attempt to
+          shoulder the burden of using, managing, and maintaining their
+          alternative runner infrastructure’s components. Additionally, there is
+          the opportunity cost of starting down this road, investing significant
+          time, and never actually realizing any benefits.
         </p>
         <p>
           For organizations or teams who already have on-premises servers with
@@ -549,20 +603,26 @@ const ProblemDomain = () => {
           typically pays a subscription fee to conveniently access and
           experience the benefits of a customized runner infrastructure.
         </p>
+        <img
+          src={Compare2}
+          width="300"
+          alt="Chart showing 3rd party hosted option responsible parties"
+        />
         <p>
-          An example of such a 3rd-party provider is BuildJet (link)., a
-          hardware-first solution. BuildJet started off by providing users with
-          superior physical runner infrastructure for running GHA workflows.
-          Over time they recognized the need for a complementary cache
-          optimization solution and thus expanded their service offering to be
-          more of a hybrid hardware and software solution.
+          An example of such a 3rd-party provider is
+          <a href="https://buildjet.com/">BuildJet</a>, a hardware-first
+          solution. BuildJet started off by providing users with superior
+          physical runner infrastructure for running GHA workflows. Over time
+          they recognized the need for a complementary cache optimization
+          solution and thus expanded their service offering to be more of a
+          hybrid hardware and software solution.
         </p>
         <p>
-          Another example is Depot (https://depot.dev/), a company that started
-          off as a remote container service for building Docker images. They too
-          realized the opportunity for expanding into general CI/CD builds and
-          leveraged their software optimization expertise to provide users with
-          alternative GHA runner infrastructures.
+          Another example is <a href="https://depot.dev/">Depot</a>, a company
+          that started off as a remote container service for building Docker
+          images. They too realized the opportunity for expanding into general
+          CI/CD builds and leveraged their software optimization expertise to
+          provide users with alternative GHA runner infrastructures.
         </p>
         <p>
           In addition to a financial tradeoff for using these 3rd-party
@@ -577,12 +637,17 @@ const ProblemDomain = () => {
         <p>
           Given the tradeoffs posed by established 3rd-party solutions, efforts
           are being made to bring some degree of control back into the users’
-          hands. One such example is Runs-On (link), a project developed by one
-          individual to specifically address the security risks of exposing code
-          and secrets to a 3rd-party. Runs-On aims to be a drop-in replacement
-          for GHA default runners, which are provisioned in the user’s own AWS
-          account.
+          hands. One such example is <a href="https://runs-on.com/">Runs-On</a>,
+          a project developed by one individual to specifically address the
+          security risks of exposing code and secrets to a 3rd-party. Runs-On
+          aims to be a drop-in replacement for GHA default runners, which are
+          provisioned in the user’s own AWS account.
         </p>
+        <img
+          src={Compare3}
+          width="300"
+          alt="Chart showing 3rd party managed option responsible parties"
+        />
         <p>
           In a solution such as Runs-On, moving the infrastructure hosting task
           back to the user resolves some of the data security risks that arise
@@ -614,6 +679,11 @@ const ProblemDomain = () => {
           their code and secrets at risk and are willing to pay a modest amount
           of money for a solution that meets their needs.
         </p>
+        <img
+          src={Compare4}
+          width="300"
+          alt="Chart showing Harrier setup user managed option"
+        />
         <p>
           To meet the need for customizable, secure GHA self-hosted runner
           setups, Harrier offers a 3rd-party supported DIY solution. This
@@ -627,6 +697,10 @@ const ProblemDomain = () => {
           provisioning process, gaining intimate knowledge of their
           infrastructure.
         </p>
+        <ImageContentModal
+          src={ComparisonChart}
+          alt={"Chart comparing Harrier to other options"}
+        />
       </section>
     </>
   );
