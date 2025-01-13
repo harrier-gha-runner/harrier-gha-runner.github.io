@@ -35,7 +35,7 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
         },
         {
           id: "problem-domain-2-2",
-          name: "Slower than desirable GHA Automation",
+          name: "Slower than Desirable GHA Automation",
         },
         {
           id: "problem-domain-2-3",
@@ -51,19 +51,19 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
           id: "design-1",
           name: "Isolated Runner Environment in User’s Cloud",
         },
-        { id: "design-2", name: "Warm-pool of self-hosted runners" },
+        { id: "design-2", name: "Warm-Pool of Self-Hosted Runners" },
         {
           id: "design-3",
           name: "Connect Runners with Specific Workflow Jobs",
         },
-        { id: "design-4", name: "Termination of ephemeral runner" },
+        { id: "design-4", name: "Termination of Ephemeral Runner" },
         { id: "design-5", name: "Dedicated Persistent Cache Store" },
         {
           id: "design-6",
-          name: "Out-of-the-box cache management of dependencies",
+          name: "Out-of-the-Box Cache Management of Dependencies",
         },
-        { id: "design-7", name: "Workflow-driven start and stop of runners" },
-        { id: "design-8", name: "Minimal workflow modification" },
+        { id: "design-7", name: "Workflow-Driven Start and Stop of Runners" },
+        { id: "design-8", name: "Minimal Workflow Modification" },
       ],
     },
     {
@@ -76,15 +76,15 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
         },
         {
           id: "implementation-2",
-          name: "Fleet of EC2 runners placed in standby",
+          name: "Fleet of EC2 Runners Placed in Standby",
         },
         {
           id: "implementation-3",
           name: "Just-In-Time Token Registration of Runner",
         },
-        { id: "implementation-4", name: "Termination of EC2 runners" },
+        { id: "implementation-4", name: "Termination of EC2 Runners" },
         { id: "implementation-5", name: "S3 Bucket Cache Store" },
-        { id: "implementation-6", name: "Node modules cache" },
+        { id: "implementation-6", name: "Node Modules Cache" },
         { id: "implementation-7", name: "API Platform Integration" },
         { id: "implementation-8", name: "Minimal Workflow Modification" },
         { id: "implementation-9", name: "Overall Architecture" },
@@ -98,8 +98,8 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Future Work",
       subheaders: [
         { id: "future-work-1", name: "Caching" },
-        { id: "future-work-2", name: "Provisioning self-hosted runners" },
-        { id: "future-work-3", name: "Executing workflows" },
+        { id: "future-work-2", name: "Provisioning Self-Hosted Runners" },
+        { id: "future-work-3", name: "Executing Workflows" },
       ],
     },
   ]);
