@@ -88,3 +88,15 @@ h2 {
     transform: translateY(100px);
   }
 }
+
+@layer base {
+  :root {
+    --chart-1: 29 97% 79%;
+    --chart-2: 210 100% 65%;
+  }
+
+  .dark {
+    --chart-1: 220 70% 50%;
+    --chart-2: 213 94% 89%;
+  }
+}

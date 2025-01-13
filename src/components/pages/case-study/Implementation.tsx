@@ -7,6 +7,9 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
 import { useInView } from "react-intersection-observer";
 
+// import { AxiosChart } from "@/components/AxiosChart";
+// import { VSCodeChart } from "@/components/VSCodeChart";
+
 // Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
@@ -74,24 +77,23 @@ const Implementation = () => {
   return (
     <>
       <section id="implementation-0">
-        <SectionInView sectionId="implementation-0" onInView={handleInView} />
+        <h2>Harrier Implementation</h2>
         <div className="">
           <div className="">
-            <p>
-              Specific scope of Harrier implementation:
-              <ul>
-                <li>
-                  Harrier is implemented in AWS which provides secure GH
-                  integration through OIDC standards, with a secrets manager
-                  function.
-                </li>
-                <li>
-                  As the most common runtime environment on GitHub, focusing on
-                  Node.js offered significant ROI for Harrier’s initial
-                  implementation.
-                </li>
-              </ul>
-            </p>
+            <ul>
+              <li>
+                Harrier is implemented in AWS which provides secure GH
+                integration through OIDC standards, with a secrets manager
+                function.
+              </li>
+              <li>
+                {" "}
+                As the most common runtime environment on GitHub, focusing on
+                Node.js offered significant ROI for Harrier’s initial
+                implementation.
+              </li>
+            </ul>
+
           </div>
           <ImageContentModal
             src={OverallArchitecture}
@@ -177,7 +179,7 @@ const Implementation = () => {
 
       <section id="implementation-1">
         <SectionInView sectionId="implementation-1" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
+        <h2>{subheaderNames[0]}</h2>
         <ImageContentModal
           src={IsolatedVPC}
           alt={"Isolated VPC in user's AWS account"}
@@ -232,7 +234,7 @@ const Implementation = () => {
 
       <section id="implementation-2">
         <SectionInView sectionId="implementation-2" onInView={handleInView} />
-        <h2>{subheaderNames[2]}</h2>
+        <h2>{subheaderNames[1]}</h2>
         <ImageContentModal
           src={FleetOfEC2Runners}
           alt={"Fleet of EC2 runners"}
@@ -570,7 +572,7 @@ const Implementation = () => {
 
       <section id="implementation-3">
         <SectionInView sectionId="implementation-3" onInView={handleInView} />
-        <h2>{subheaderNames[3]}</h2>
+        <h2>{subheaderNames[2]}</h2>
         <p>
           While the GHA self-hosted runner application is installed in a
           pre-configured Harrier EC2, the application must have a GHA runner
@@ -774,7 +776,7 @@ const Implementation = () => {
 
       <section id="implementation-4">
         <SectionInView sectionId="implementation-4" onInView={handleInView} />
-        <h2>{subheaderNames[4]}</h2>
+        <h2>{subheaderNames[3]}</h2>
         <p>
           Harrier runners are ephemeral VMs designed to ensure an isolated and
           clean runtime environment for each workflow job and prevent data
@@ -820,7 +822,7 @@ const Implementation = () => {
 
       <section id="implementation-5">
         <SectionInView sectionId="implementation-5" onInView={handleInView} />
-        <h2>{subheaderNames[5]}</h2>
+        <h2>{subheaderNames[4]}</h2>
         <ImageContentModal
           src={S3BucketCacheStore}
           alt={"S3 bucket cache store"}
@@ -882,7 +884,7 @@ const Implementation = () => {
 
       <section id="implementation-6">
         <SectionInView sectionId="implementation-6" onInView={handleInView} />
-        <h2>{subheaderNames[6]}</h2>
+        <h2>{subheaderNames[5]}</h2>
         <p>
           During the dependency installation step of a Node.js workflow, the npm
           package manager first inventories currently installed dependencies,
@@ -1115,7 +1117,7 @@ const Implementation = () => {
 
       <section id="implementation-7">
         <SectionInView sectionId="implementation-7" onInView={handleInView} />
-        <h2>{subheaderNames[7]}</h2>
+        <h2>{subheaderNames[6]}</h2>
         <ImageContentModal
           src={ApiPlatformIntegration}
           alt={"API Platform Integration Webhook Event"}
@@ -1255,7 +1257,7 @@ const Implementation = () => {
 
       <section id="implementation-8">
         <SectionInView sectionId="implementation-8" onInView={handleInView} />
-        <h2>{subheaderNames[8]}</h2>
+        <h2>{subheaderNames[7]}</h2>
         <div className="h-[100px] overflow-hidden">
           <ImageContentModal
             src={MinimalWorkflowModification}
@@ -1351,7 +1353,11 @@ const Implementation = () => {
 
       <section id="implementation-9">
         <SectionInView sectionId="implementation-9" onInView={handleInView} />
-        <h2>{subheaderNames[9]}</h2>
+        <h2>{subheaderNames[8]}</h2>
+        <ImageContentModal
+          src={OverallArchitecture}
+          alt={"Overall architecture"}
+        />
         <p>
           Here is a diagram that outlines the overall system architecture
           created by the Harrier agent within the user’s cloud account.
@@ -1473,9 +1479,9 @@ const Implementation = () => {
         </ul>
       </section>
 
-      <section id="implementation-10">
+           <section id="implementation-10">
         <SectionInView sectionId="implementation-10" onInView={handleInView} />
-        <h2>{subheaderNames[10]}</h2>
+        <h2>{subheaderNames[9]}</h2>
         <p>
           To begin, the user must follow the steps in the Harrier Installation
           Guide to configure the required settings in AWS and GitHub. This
@@ -1498,14 +1504,20 @@ const Implementation = () => {
           using code from the action repository.
         </p>
       </section>
-      <section id="implementation-11">
+      {/* <section id="implementation-11">
         <SectionInView sectionId="implementation-11" onInView={handleInView} />
-        <h2>{subheaderNames[11]}</h2>
-        <p>[ COMING SOON ]</p>
-      </section>
+        <h2>{subheaderNames[10]}</h2>
+        <div className="flex w-full items-center justify-center border-2 md:w-1/2">
+          <VSCodeChart />
+        </div>
+
+        <div className="flex w-full items-center justify-center border-2 md:w-1/2">
+          <AxiosChart />
+        </div>
+      </section> */}
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
-        <h2>{subheaderNames[12]}</h2>
+        <h2>{subheaderNames[11]}</h2>
 
         <ol>
           <li>

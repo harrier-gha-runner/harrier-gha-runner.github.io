@@ -59,7 +59,6 @@ const ProblemDomain = () => {
   return (
     <>
       <section id="problem-domain-2-1">
-        <SectionInView sectionId="problem-domain-2-1" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
         <p className="callout">
           <p>Overview:</p>

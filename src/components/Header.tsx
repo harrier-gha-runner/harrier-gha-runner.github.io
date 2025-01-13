@@ -84,13 +84,13 @@ export const Header = () => {
             className="mx-2 h-8 border-l border-harrierGRAY"
           />
           <NavItem to="/team">Team</NavItem>
-          <Separator
+          {/* <Separator
             orientation="vertical"
             className="mx-2 h-8 border-l border-harrierGRAY"
           />
           <NavItem to="https://github.com/harrier-gha-runner/harrier-self-hosted-runner">
             Try Harrier
-          </NavItem>
+          </NavItem> */}
         </div>
       </div>
     </header>

@@ -63,7 +63,7 @@ const Design = () => {
   return (
     <>
       <section id="design-0">
-        <SectionInView sectionId="design-0" onInView={handleInView} />
+        <h2>Harrier Design</h2>
         <p>
           The design of a 3rd-party supported DIY option for leveraging cache in
           GHA workflows involved two major pieces of work:

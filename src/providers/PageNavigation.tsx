@@ -48,10 +48,6 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Design",
       subheaders: [
         {
-          id: "design-0",
-          name: "Design",
-        },
-        {
           id: "design-1",
           name: "Isolated Runner Environment in User’s Cloud",
         },
@@ -75,10 +71,6 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Implementation",
       subheaders: [
         {
-          id: "implementation-0",
-          name: "Harrier Implementation",
-        },
-        {
           id: "implementation-1",
           name: "Isolated VPC in User's AWS Account",
         },
@@ -96,16 +88,15 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
         { id: "implementation-7", name: "API Platform Integration" },
         { id: "implementation-8", name: "Minimal Workflow Modification" },
         { id: "implementation-9", name: "Overall Architecture" },
-        { id: "implementation-10", name: "Deployment" },
-        { id: "implementation-11", name: "Performance Benchmarks" },
-        { id: "implementation-12", name: "Sources" },
+        // { id: "implementation-10", name: "Deployment" },
+        // { id: "implementation-11", name: "Performance benchmarks" },
+        // { id: "implementation-12", name: "Sources" },
       ],
     },
     {
       id: "future-work",
       name: "Future Work",
       subheaders: [
-        { id: "future-work-0", name: "Future Work" },
         { id: "future-work-1", name: "Caching" },
         { id: "future-work-2", name: "Provisioning Self-Hosted Runners" },
         { id: "future-work-3", name: "Executing Workflows" },

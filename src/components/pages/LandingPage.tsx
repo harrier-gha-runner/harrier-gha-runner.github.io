@@ -65,9 +65,9 @@ const LandingPage = () => {
   ];
   return (
     <>
-      <div className="flex h-[36rem] flex-col bg-harrierBLACK text-center">
+      <div className="flex h-[24rem] flex-col items-center justify-center bg-harrierBLACK text-center">
         {/* <FloatingBirds /> */}
-        <h1 className="mt-44 text-center text-7xl font-semibold text-harrierWHITE">
+        <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
           Harrier
         </h1>
         <div>
