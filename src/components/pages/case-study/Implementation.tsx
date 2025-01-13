@@ -7,6 +7,9 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
 import { useInView } from "react-intersection-observer";
 
+// import { AxiosChart } from "@/components/AxiosChart";
+// import { VSCodeChart } from "@/components/VSCodeChart";
+
 // Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners-full.png";
@@ -631,7 +634,7 @@ const Implementation = () => {
         </p>
       </section>
 
-      <section id="implementation-10">
+      {/* <section id="implementation-10">
         <SectionInView sectionId="implementation-10" onInView={handleInView} />
         <h2>{subheaderNames[9]}</h2>
         <p>[ COMING SOON ]</p>
@@ -639,8 +642,14 @@ const Implementation = () => {
       <section id="implementation-11">
         <SectionInView sectionId="implementation-11" onInView={handleInView} />
         <h2>{subheaderNames[10]}</h2>
-        <p>[ COMING SOON ]</p>
-      </section>
+        <div className="flex w-full items-center justify-center border-2 md:w-1/2">
+          <VSCodeChart />
+        </div>
+
+        <div className="flex w-full items-center justify-center border-2 md:w-1/2">
+          <AxiosChart />
+        </div>
+      </section> */}
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
         <h2>{subheaderNames[11]}</h2>
