@@ -30,15 +30,15 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Problem Domain",
       subheaders: [
         {
-          id: "problem-domain-2-1",
+          id: "problem-domain-1",
           name: "GitHub Actions: A Powerful CI/CD Tool",
         },
         {
-          id: "problem-domain-2-2",
+          id: "problem-domain-2",
           name: "Slower than Desirable GHA Automation",
         },
         {
-          id: "problem-domain-2-3",
+          id: "problem-domain-3",
           name: "Accelerate GHA Workflows with Cache",
         },
       ],

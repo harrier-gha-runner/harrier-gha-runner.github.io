@@ -67,18 +67,18 @@ const Design = () => {
         <p>
           The design of a 3rd-party supported DIY option for leveraging cache in
           GHA workflows involved two major pieces of work:
-          <ul>
-            <li>
-              Provision and configure an alternative GHA runner infrastructure
-              with a dedicated persistent cache store into the user’s own cloud
-              environment.
-            </li>
-            <li>
-              Facilitate the user’s access to and utilization of the newly
-              provisioned alternative runner infrastructure.
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            Provision and configure an alternative GHA runner infrastructure
+            with a dedicated persistent cache store into the user’s own cloud
+            environment.
+          </li>
+          <li>
+            Facilitate the user’s access to and utilization of the newly
+            provisioned alternative runner infrastructure.
+          </li>
+        </ul>
         <ImageContentModal
           src={HarrierDesignLevelHigh}
           alt={"Harrier Design Level High"}

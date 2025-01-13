@@ -54,6 +54,7 @@ const Future = () => {
   return (
     <>
       <section id="future-work-0">
+        <SectionInView sectionId="future-work-0" onInView={handleInView} />
         <h2>Future Work</h2>
         <p>
           Harrier is an open-source GitHub Actions self-hosted runner deployment

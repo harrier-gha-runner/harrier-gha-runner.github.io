@@ -242,26 +242,26 @@ const Implementation = () => {
           Harrier deploys to Amazon’s Elastic Compute Cloud (EC2) service which
           functions as the GHA self-hosted runner, providing the following
           benefits:
-          <ul>
-            <li>
-              Instances are launched on an as-needed basis, making it possible
-              to provision on-demand runners.
-            </li>
-            <li>
-              Instances can be stopped when no longer in use, facilitating
-              resource optimization.
-            </li>
-            <li>
-              Instances can be terminated after each use, making them truly
-              ephemeral.
-            </li>
-            <li>
-              Instances can be customized to run on any operating system using a
-              variety of hardware (i.e., CPU, RAM, storage, networking) and
-              network configurations.
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            Instances are launched on an as-needed basis, making it possible to
+            provision on-demand runners.
+          </li>
+          <li>
+            Instances can be stopped when no longer in use, facilitating
+            resource optimization.
+          </li>
+          <li>
+            Instances can be terminated after each use, making them truly
+            ephemeral.
+          </li>
+          <li>
+            Instances can be customized to run on any operating system using a
+            variety of hardware (i.e., CPU, RAM, storage, networking) and
+            network configurations.
+          </li>
+        </ul>
         <p>
           These benefits empower users to take full advantage of the intended
           purpose of GitHub’s self-hosted runner feature, which enables users to
@@ -301,9 +301,7 @@ const Implementation = () => {
           as the runner that will be started up to run a workflow will be
           terminated upon completion of the job.
         </p>
-        <p>
-          <h4 className="text-center">Runner Deployment Method</h4>
-        </p>
+        <h4 className="text-center">Runner Deployment Method</h4>
         <p>
           AWS cloud infrastructure can be customized to deploy GitHub Actions
           runners in various ways. We compared the three most viable methods:
