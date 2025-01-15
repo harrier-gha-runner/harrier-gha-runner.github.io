@@ -109,7 +109,6 @@ export default function CaseStudyHomePage() {
                 <li
                   key={subheader.id}
                   onClick={() => {
-                    // setActiveSubheader(subheaderIdx);
                     scrollToElement(subheader.id);
                   }}
                   className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 font-semibold" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
