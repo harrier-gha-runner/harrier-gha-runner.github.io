@@ -1290,7 +1290,7 @@ const Implementation = () => {
           alt={"minimal workflow modification"}
         />
         <p>Example:</p>
-        <pre className="w-3/4 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
+        <pre className="inline-block rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
           <code>
             <span className="font-mono text-blue-600">
               jobs:
@@ -1514,8 +1514,8 @@ const Implementation = () => {
       </section> */}
       <section id="implementation-12">
         <SectionInView sectionId="implementation-12" onInView={handleInView} />
-        <h2>{subheaderNames[11]}</h2>
-
+        <hr />
+        <h2>{subheaderNames[10]}</h2>
         <ol>
           <li>
             <a href="https://survey.stackoverflow.co/2024/technology">

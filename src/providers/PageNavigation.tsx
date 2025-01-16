@@ -88,9 +88,9 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
         { id: "implementation-7", name: "API Platform Integration" },
         { id: "implementation-8", name: "Minimal Workflow Modification" },
         { id: "implementation-9", name: "Overall Architecture" },
-        // { id: "implementation-10", name: "Deployment" },
+        { id: "implementation-10", name: "Deployment" },
         // { id: "implementation-11", name: "Performance benchmarks" },
-        // { id: "implementation-12", name: "Sources" },
+        { id: "implementation-12", name: "Sources" },
       ],
     },
     {

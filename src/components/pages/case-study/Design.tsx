@@ -4,8 +4,8 @@ import { ImageContentModal } from "@/components/ui/dialog";
 
 import { useInView } from "react-intersection-observer";
 
-// Importing images
-// import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
+// images
+// import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
 import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
 import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
 import VpcIsolation from "@/assets/3.1.vpc-isolation.png";
@@ -64,6 +64,10 @@ const Design = () => {
     <>
       <section id="design-0">
         <h2>Harrier Design</h2>
+        <ImageContentModal
+          src={HarrierDesignLevelHigh}
+          alt={"Harrier Design Level High"}
+        />
         <p>
           The design of a 3rd-party supported DIY option for leveraging cache in
           GHA workflows involved two major pieces of work:
@@ -80,17 +84,13 @@ const Design = () => {
           </li>
         </ul>
         <ImageContentModal
-          src={HarrierDesignLevelHigh}
-          alt={"Harrier Design Level High"}
-        />
-        <ImageContentModal
           src={AlternateInfrastructure}
           alt={"Alternate Infrastructure"}
         />
       </section>
       <section id="design-1">
         <SectionInView sectionId="design-1" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
+        <h2>{subheaderNames[0]}</h2>
         <ImageContentModal src={VpcIsolation} alt={"VPC Isolation"} />
         <p>
           Harrier provides an alternative runner infrastructure within a user’s
@@ -104,7 +104,7 @@ const Design = () => {
       </section>
       <section id="design-2">
         <SectionInView sectionId="design-2" onInView={handleInView} />
-        <h2>{subheaderNames[2]}</h2>
+        <h2>{subheaderNames[1]}</h2>
         <ImageContentModal src={WarmPool} alt={"Warm Pool"} />
         <p>
           Provisioning a runner within the user’s cloud entails configuring a
@@ -124,7 +124,7 @@ const Design = () => {
       </section>
       <section id="design-3">
         <SectionInView sectionId="design-3" onInView={handleInView} />
-        <h2>{subheaderNames[3]}</h2>
+        <h2>{subheaderNames[2]}</h2>
         <ImageContentModal src={JobSession} alt={"Job Sessions"} />
         <p>
           A provisioned VM runner must be registered with GitHub so that it is
@@ -140,7 +140,7 @@ const Design = () => {
       </section>
       <section id="design-4">
         <SectionInView sectionId="design-4" onInView={handleInView} />
-        <h2>{subheaderNames[4]}</h2>
+        <h2>{subheaderNames[3]}</h2>
         <ImageContentModal src={TeminatedRunner} alt={"Terminated Runner"} />
         <p>
           To preserve the benefits of GHA’s original ephemeral runner design, a
@@ -154,7 +154,7 @@ const Design = () => {
       <section id="design-5">
         <SectionInView sectionId="design-5" onInView={handleInView} />
         <ImageContentModal src={DedicatedCache} alt={"Dedicated Runner"} />
-        <h2>{subheaderNames[5]}</h2>
+        <h2>{subheaderNames[4]}</h2>
         <p>
           Alongside the provisioning of its VMs, Harrier provisions a persistent
           data store within the user’s cloud environment. This cache store is
@@ -164,7 +164,7 @@ const Design = () => {
       </section>
       <section id="design-6">
         <SectionInView sectionId="design-6" onInView={handleInView} />
-        <h2>{subheaderNames[6]}</h2>
+        <h2>{subheaderNames[5]}</h2>
         <p>
           Since the data store is mounted directly to the local file system, the
           user can leverage caching at any point of the workflow where duplicate
@@ -198,7 +198,7 @@ const Design = () => {
       </section>
       <section id="design-7">
         <SectionInView sectionId="design-7" onInView={handleInView} />
-        <h2>{subheaderNames[7]}</h2>
+        <h2>{subheaderNames[6]}</h2>
         <ImageContentModal src={ApiIntegration} alt={"API Integration"} />
         <p>
           With the alternative runner infrastructure provisioned and configured
@@ -214,15 +214,42 @@ const Design = () => {
       </section>
       <section id="design-8">
         <SectionInView sectionId="design-8" onInView={handleInView} />
-        <h2>{subheaderNames[8]}</h2>
+        <h2>{subheaderNames[7]}</h2>
         <p>
           To ease migration from default GHA runners to self-hosted runners and
           minimize workflow disruption, Harrier requires simple one-line
-          modifications to existing workflow YAML files. Similarly, Harrier
-          allows users to take advantage of the built-in cache strategy by
-          simply adding a few lines to existing workflow yaml files.
+          modifications to existing workflow YAML files.
         </p>
+        <p>
+          Similarly, Harrier allows users to take advantage of the built-in
+          cache strategy by simply adding a few lines to existing workflow yaml
+          files.
+        </p>
+        <p>Example:</p>
+        <pre className="w-1/2 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
+          <code>
+            <span className="font-mono text-blue-600">...</span>
+            <br />
+            <br />
+            <span className="font-mono text-blue-600">
+              jobs:
+              <br />
+              &nbsp;&nbsp;build:
+              <br />
+              <span className="block bg-red-200 px-1 font-mono text-red-900">
+                -&nbsp;&nbsp;runs-on: ubuntu-latest
+              </span>
+              <span className="block bg-green-200 px-1 font-mono text-green-900">
+                +&nbsp;&nbsp;runs-on: self-hosted
+              </span>
+              <br />
+              <span className="font-mono text-blue-600">...</span>
+              <br />
+            </span>
+          </code>
+        </pre>
       </section>
+      {/* <img src={HarrierColor} alt="Harrier Blue Logo" className="h-28 w-auto" /> */}
     </>
   );
 };
