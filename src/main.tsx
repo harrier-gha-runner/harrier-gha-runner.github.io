@@ -1,6 +1,6 @@
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider, Navigate } from "react-router-dom";
 import { PageNavigationProvider } from "../src/providers/PageNavigation";
 
 import TryHarrierPage from "./components/pages/TryHarrierPage";
@@ -37,6 +37,12 @@ createRoot(document.getElementById("app")!).render(
                   element: <CaseStudyHomePage />,
                   errorElement: <NotFoundPage />,
                   children: [
+                    {
+                      // If someone goes to #/case-study with no further path,
+                      // this child route will redirect them.
+                      index: true,
+                      element: <Navigate to="problem-domain" replace />,
+                    },
                     {
                       path: "problem-domain",
                       element: <ProblemDomain />,
