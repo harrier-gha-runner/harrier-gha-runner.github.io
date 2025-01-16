@@ -1,25 +1,30 @@
 import { useState } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-// import SetupForm from "@/components/utility/SetupForm";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselContent,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import SetupForm from "@/components/utility/SetupForm";
+import { FaChevronRight } from "react-icons/fa";
+import { Separator } from "../ui/separator";
+
+type StepType = "form" | "visual" | "other";
 
 type Step = {
+  type: StepType;
+  numericTitle: number;
   id: string;
-  name: string;
-  images?: { alt?: string }[];
-  showForm?: boolean;
+  title: string;
+  content?: { alt?: string; caption: string; aside?: string }[];
+  form?: React.ReactNode;
+};
+
+type TryHarrierNavProps = {
+  steps: Step[];
+  activeStep: number;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const TryHarrierNav = ({
   steps,
-  currentActiveStep,
-  setCurrentActiveStep,
+  activeStep,
+  setActiveStep,
 }: TryHarrierNavProps) => {
   const viewportWideEnough = useViewportWidth();
 
@@ -32,19 +37,19 @@ const TryHarrierNav = ({
         <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
           {steps?.map((step, stepIdx) => (
             <div
-              // to={`/try-harrier#${step.id}`}
               key={step.id}
-              onClick={() => setCurrentActiveStep(stepIdx)}
+              onClick={() => setActiveStep(stepIdx)}
               className="relative"
             >
               <div
-                className={`overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
-                  stepIdx === currentActiveStep
+                className={`flex items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
+                  stepIdx === activeStep
                     ? "bg-harrierBLACK text-harrierWHITE/85"
                     : "bg-quaternary/85 text-harrierBLACK"
                 }`}
               >
-                {step.name}
+                Step {step.numericTitle}
+                {<FaChevronRight className="ml-2" />}
               </div>
             </div>
           ))}
@@ -54,110 +59,152 @@ const TryHarrierNav = ({
   );
 };
 
-const StepSection = ({ currentStep }: { currentStep: Step }) => {
-  return (
-    <>
-      <section
-        id={`${currentStep.id}`}
-        className="flex flex-1 flex-col items-center justify-center"
-      >
-        {currentStep.showForm && <form>a form!</form>}
-        <div className="w-full max-w-6xl">
-          {currentStep?.images && (
-            <Carousel>
-              <CarouselContent>
-                {Array.from({ length: currentStep.images.length }).map(
-                  (_, index) => (
-                    <CarouselItem key={`${currentStep.id}-${index}`}>
-                      <figcaption
-                        id={`${currentStep.id}-${index + 1}`}
-                        className="text-lg font-semibold"
-                      >
-                        {currentStep.name} image #{index + 1}
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Voluptates accusamus illo laboriosam, fuga
-                          corrupti vel suscipit totam repellat unde placeat ab
-                          atque voluptas esse consequatur nisi quidem quibusdam,
-                          natus eaque.
-                        </p>
-                      </figcaption>
-                      <div className="relative">
-                        <figure
-                          aria-labelledby={`${currentStep.id}-${index + 1}`}
-                        >
-                          <img
-                            src={`/src/assets/screenshots/${currentStep.id}/${index}.jpg`}
-                            alt=""
-                            className="h-auto w-full object-contain"
-                          />
-                        </figure>
-                        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform rounded bg-harrierBLACK/10 px-2 py-1 text-harrierBLACK">
-                        {index + 1}/{currentStep.length}
-                      </div> */}
-                      </div>
-                    </CarouselItem>
-                  ),
-                )}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          )}
-        </div>
-      </section>
-    </>
-  );
-};
-
-type TryHarrierNavProps = {
-  steps: Step[];
-  currentActiveStep: number;
-  setCurrentActiveStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
 const TryHarrierPage = () => {
   const [steps] = useState<Step[]>([
     {
-      id: "preflight-check",
-      name: "Start Here",
+      id: "prerequisites",
+      type: "other",
+      numericTitle: 0,
+      title: "Prerequisites ",
     },
     {
       id: "identity-provider",
-      name: "Step 1",
-      images: Array.from({ length: 10 }),
+      type: "visual",
+      numericTitle: 1,
+      title: "Identity Provider ",
+      content: [
+        { caption: "image 0", aside: "aside 0" },
+        { caption: "image 1" },
+        { caption: "image 2" },
+        { caption: "image 3" },
+        { caption: "image 4" },
+        { caption: "image 5", aside: "aside 5" },
+        { caption: "image 6" },
+        { caption: "image 7" },
+        { caption: "image 8", aside: "aside 8" },
+        { caption: "image 9" },
+      ],
     },
     {
       id: "personal-access-token",
-      name: "Step 2",
-      images: Array.from({ length: 5 }),
+      type: "visual",
+      numericTitle: 2,
+      title: "Personal Access Token ",
+      content: [
+        { caption: "image 0" },
+        { caption: "image 1" },
+        { caption: "image 2" },
+        { caption: "image 3" },
+        { caption: "image 4" },
+        { caption: "image 5" },
+        { caption: "image 6" },
+        { caption: "image 7" },
+        { caption: "image 8" },
+        { caption: "image 9" },
+        { caption: "image 10" },
+      ],
     },
     {
-      id: "secrets-manager",
-      name: "Step 3",
-      images: Array.from({ length: 6 }),
+      id: "create-setup-yaml",
+      type: "form",
+      numericTitle: 3,
+      title: "Create Setup YAML ",
+      form: <SetupForm />,
     },
     {
       id: "workflow-yaml",
-      name: "Step 4",
-      images: Array.from({ length: 6 }),
-      showForm: true,
+      type: "visual",
+      numericTitle: 4,
+      title: "Workflow YAML ",
+      content: [
+        { caption: "image 0" },
+        { caption: "image 1" },
+        { caption: "image 2" },
+        { caption: "image 3" },
+        { caption: "image 4" },
+        { caption: "image 5" },
+        { caption: "image 6" },
+      ],
     },
   ]);
 
-  const [currentActiveStep, setCurrentActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <div className="w-full">
-      <TryHarrierNav
-        steps={steps}
-        currentActiveStep={currentActiveStep}
-        setCurrentActiveStep={setCurrentActiveStep}
-      />
-      <StepSection currentStep={steps[currentActiveStep]} />
+    <div>
+      <div className="flex h-screen flex-col">
+        <TryHarrierNav
+          steps={steps}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
+        <div className="flex flex-1 items-center justify-center p-10">
+          <div className="w-full max-w-7xl">
+            <h2 className="mb-10 text-2xl font-bold">
+              {steps[activeStep].title}
+            </h2>
+            <Separator
+              orientation="horizontal"
+              className="my-2 w-full border-b border-harrierBLACK/10"
+            />
+            <main>
+              <section
+                id={`${steps[activeStep].id}`}
+                className="flex flex-col justify-start"
+              >
+                {steps[activeStep].type === "form" && (
+                  <div>{steps[activeStep].form}</div>
+                )}
+                {steps[activeStep].type === "visual" && (
+                  <>
+                    {steps[activeStep].content?.map((item, idx) => (
+                      <div
+                        key={`${item.alt?.replace(/ /, "")}-${idx}`}
+                        className="w-full"
+                      >
+                        <div>
+                          <figcaption
+                            id={`${steps[activeStep].id}-${idx + 1}`}
+                            className="py-16 text-lg"
+                          >
+                            <p>
+                              Step-{steps[activeStep].numericTitle}-
+                              {item.caption}
+                            </p>
+                            {item.aside && (
+                              <aside className="my-4 rounded border-l-4 border-harrierBLUE bg-harrierBLUE/15 p-4">
+                                <strong>NOTE: </strong>
+                                {item.aside}
+                              </aside>
+                            )}
+                          </figcaption>
+                          <div className="relative pl-8">
+                            <figure
+                              className="goldilocks box rounded-xl"
+                              aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
+                            >
+                              <img
+                                src={`/src/assets/screenshots/${steps[activeStep].id}/${idx}.jpg`}
+                                alt={item.alt || ""}
+                                className="h-auto rounded-lg object-contain shadow"
+                              />
+                            </figure>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
+                {steps[activeStep].type === "other" && (
+                  <div>{steps[activeStep].title}</div>
+                )}
+              </section>
+            </main>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default TryHarrierPage;
-

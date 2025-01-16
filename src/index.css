@@ -43,6 +43,13 @@ button {
   border-radius: 50%;
 }
 
+.goldilocks.box {
+  --shadow-color: hsl(0, 0%, 68%);
+}
+.box {
+  filter: drop-shadow(1px 3px 10px var(--shadow-color));
+}
+
 h2 {
   margin-top: 0px;
 }

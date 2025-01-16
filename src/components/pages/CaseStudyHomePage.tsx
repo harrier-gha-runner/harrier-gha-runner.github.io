@@ -53,7 +53,7 @@ export default function CaseStudyHomePage() {
   }, [location, pages, setActivePage, setActiveSubheader, scrollToElement]);
 
   return (
-    <div className="w-full">
+    <>
       <div id="case-study-nav-container" className="sticky top-[88px] z-10">
         <nav
           id="case-study-nav"
@@ -83,12 +83,6 @@ export default function CaseStudyHomePage() {
       </div>
 
       <div id="page-content-container" className="flex flex-wrap">
-        {/* <div
-          aria-hidden="true"
-          className={`w-[210px] ${window.innerWidth > 1000 ? "" : "hidden"} sticky`}
-          id="filler"
-        ></div> */}
-
         <main
           id="case-study-content"
           className="prose max-w-none flex-[60] flex-row overflow-y-auto p-10 pt-12"
@@ -125,6 +119,6 @@ export default function CaseStudyHomePage() {
           </nav>
         </div>
       </div>
-    </div>
+    </>
   );
 }
