@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-import SetupForm from "@/components/utility/SetupForm";
 import { FaChevronRight } from "react-icons/fa";
 import { Separator } from "../ui/separator";
+import SetupForm from "@/components/utility/SetupForm";
 
 type StepType = "form" | "visual" | "other";
 
@@ -15,7 +15,7 @@ type Step = {
   content?: {
     alt?: string;
     caption: React.ReactElement | string;
-    aside?: { title: "NOTE" | "REMEMBER"; message: string };
+    aside?: { title: "NOTE" | "REMEMBER" | "CAUTION"; message: string };
   }[];
   form?: React.ReactNode;
 };
@@ -64,14 +64,82 @@ const TryHarrierNav = ({
   );
 };
 
-// const Bold = ({ children }: { children: string }) => {
-//   return (
-//     <>
-//       <strong className="font-bold">{children}</strong>
-//     </>
-//   );
-// };
+type TryHarrierContentProps = {
+  steps: Step[];
+  activeStep: number;
+};
 
+const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
+  return (
+    <div id="try-harrier-content-container" className="flex flex-wrap">
+      <main
+        id="try-harrier-content"
+        className="prose mx-auto w-full max-w-screen-xl flex-1 flex-row overflow-y-auto p-10 pt-12"
+      >
+        <h2 className="mb-4 text-2xl font-bold">{steps[activeStep].title}</h2>
+        <Separator
+          orientation="horizontal"
+          className="my-2 w-full border-b border-harrierBLACK/10"
+        />
+        <p className="my-4">{steps[activeStep].introduction}</p>
+        <Separator
+          orientation="horizontal"
+          className="my-2 w-full border-b border-harrierBLACK/10"
+        />
+
+        <section
+          id={`${steps[activeStep].id}`}
+          className="flex flex-col justify-start"
+        >
+          {steps[activeStep].type === "form" && (
+            <div>{steps[activeStep].form}</div>
+          )}
+          {steps[activeStep].type === "visual" && (
+            <>
+              {steps[activeStep].content?.map((item, idx) => (
+                <div
+                  key={`${item.alt?.replace(/ /, "")}-${idx}`}
+                  className="w-full"
+                >
+                  <figcaption
+                    id={`${steps[activeStep].id}-${idx + 1}`}
+                    className="py-0 text-lg"
+                  >
+                    <p className="flex flex-row">{item.caption}</p>
+                    {item.aside && (
+                      <aside className="mt-4 rounded border-l-4 border-harrierBLUE bg-harrierBLUE/15 p-4">
+                        <div className="flex items-center font-bold">
+                          <FaChevronRight size="16" className="mr-2" />
+                          {item.aside.title}
+                        </div>
+                        <p>{item.aside.message}</p>
+                      </aside>
+                    )}
+                  </figcaption>
+                  <div className="relative pl-8">
+                    <figure
+                      className="goldilocks box rounded-xl"
+                      aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
+                    >
+                      <img
+                        src={`/src/assets/screenshots/${steps[activeStep].id}/${idx}.jpg`}
+                        alt={item.alt || ""}
+                        className="h-auto rounded-lg object-contain shadow"
+                      />
+                    </figure>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+          {steps[activeStep].type === "other" && (
+            <div>{steps[activeStep].title}</div>
+          )}
+        </section>
+      </main>
+    </div>
+  );
+};
 export default function TryHarrierPage() {
   const [steps] = useState<Step[]>([
     {
@@ -193,18 +261,32 @@ export default function TryHarrierPage() {
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       title: "Workflow YAML",
       content: [
-        { caption: "image 0" },
-        { caption: "image 1" },
-        { caption: "image 2" },
-        { caption: "image 3" },
-        { caption: "image 4" },
-        { caption: "image 5" },
-        { caption: "image 6" },
+        {
+          caption:
+            "Navigate to the GitHub repository you plan to setup self-hosted runners in.",
+        },
+        { caption: "Click Actions, then set up a workflow yourself." },
+        {
+          caption:
+            "Give your new workflow a sensible file name, paste the YAML you just copied into the editor, and Commit changes...",
+        },
+        {
+          caption: "CAPTION",
+          aside: {
+            title: "NOTE",
+            message: "What makes sense to say here?",
+          },
+        },
+        { caption: "Confirm the changes were committed successfully." },
+        { caption: "Click Actions." },
+        {
+          caption:
+            "In the left-menu, select your new workflow and click Run workflow.",
+        },
       ],
     },
   ]);
-
-  const [activeStep, setActiveStep] = useState<number>(3);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <>
@@ -213,74 +295,7 @@ export default function TryHarrierPage() {
         activeStep={activeStep}
         setActiveStep={setActiveStep}
       />
-
-      <div id="try-harrier-content-container" className="flex flex-wrap">
-        <main
-          id="try-harrier-content"
-          className="prose mx-auto w-full max-w-screen-xl flex-1 flex-row overflow-y-auto p-10 pt-12"
-        >
-          <h2 className="mb-4 text-2xl font-bold">{steps[activeStep].title}</h2>
-          <Separator
-            orientation="horizontal"
-            className="my-2 w-full border-b border-harrierBLACK/10"
-          />
-          <p className="my-4">{steps[activeStep].introduction}</p>
-          <Separator
-            orientation="horizontal"
-            className="my-2 w-full border-b border-harrierBLACK/10"
-          />
-
-          <section
-            id={`${steps[activeStep].id}`}
-            className="flex flex-col justify-start"
-          >
-            {steps[activeStep].type === "form" && (
-              <div>{steps[activeStep].form}</div>
-            )}
-            {steps[activeStep].type === "visual" && (
-              <>
-                {steps[activeStep].content?.map((item, idx) => (
-                  <div
-                    key={`${item.alt?.replace(/ /, "")}-${idx}`}
-                    className="w-full"
-                  >
-                    <figcaption
-                      id={`${steps[activeStep].id}-${idx + 1}`}
-                      className="py-0 text-lg"
-                    >
-                      <p className="flex flex-row">{item.caption}</p>
-                      {item.aside && (
-                        <aside className="mt-4 rounded border-l-4 border-harrierBLUE bg-harrierBLUE/15 p-4">
-                          <div className="flex items-center font-bold">
-                            <FaChevronRight size="16" className="mr-2" />
-                            {item.aside.title}
-                          </div>
-                          <p>{item.aside.message}</p>
-                        </aside>
-                      )}
-                    </figcaption>
-                    <div className="relative pl-8">
-                      <figure
-                        className="goldilocks box rounded-xl"
-                        aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
-                      >
-                        <img
-                          src={`/src/assets/screenshots/${steps[activeStep].id}/${idx}.jpg`}
-                          alt={item.alt || ""}
-                          className="h-auto rounded-lg object-contain shadow"
-                        />
-                      </figure>
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-            {steps[activeStep].type === "other" && (
-              <div>{steps[activeStep].title}</div>
-            )}
-          </section>
-        </main>
-      </div>
+      <TryHarrierContent steps={steps} activeStep={activeStep} />
     </>
   );
 }
