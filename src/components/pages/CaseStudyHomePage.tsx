@@ -3,6 +3,58 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 
+type Page = {
+  id: string;
+  name: string;
+  subheaders?: { id: string; name: string }[];
+};
+
+type CaseStudyNavProps = {
+  pages: Page[];
+  setActivePage: (index: number) => void;
+  setActiveSubheader: (index: number | null) => void;
+  activePage: number;
+};
+
+const CaseStudyNav = ({
+  pages,
+  setActivePage,
+  setActiveSubheader,
+  activePage,
+}: CaseStudyNavProps) => {
+  const viewportWideEnough = useViewportWidth();
+
+  return (
+    <div id="case-study-nav-container" className="sticky top-[88px] z-10">
+      <nav
+        id="case-study-nav"
+        className={`mx-auto flex w-fit justify-center py-2 ${viewportWideEnough ? "" : "hidden"} `}
+      >
+        <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
+          {pages?.map((page, pageIdx) => (
+            <NavLink
+              to={`${page.id}`}
+              key={page.id}
+              onClick={() => {
+                setActivePage(pageIdx);
+                setActiveSubheader(null);
+                window.scrollTo(0, 0);
+              }}
+              className="relative"
+            >
+              <div
+                className={`overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
+              >
+                {page.name}
+              </div>
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+    </div>
+  );
+};
+
 export default function CaseStudyHomePage() {
   const viewportWideEnough = useViewportWidth();
   const pageContext = useContext(PageNavigationContext);
@@ -32,55 +84,25 @@ export default function CaseStudyHomePage() {
   useEffect(() => {
     const { pathname, hash } = location;
     const pageId = pathname.split("/").pop();
-    // const subheaderId = hash ? hash.substring(1) : null;
     const pageIndex = pages.findIndex((page) => page.id === pageId);
 
     if (pageIndex !== -1) {
       setActivePage(pageIndex);
-      //   if (subheaderId) {
-      //     const subheaderIndex = pages[pageIndex].subheaders?.findIndex(
-      //       (subheader) => subheader.id === subheaderId,
-      //     );
-      //     if (subheaderIndex !== -1) {
-      //       setActiveSubheader(subheaderIndex);
-      //     }
-      //   }
     }
 
     if (hash) {
       scrollToElement(hash.substring(1));
     }
-  }, [location, pages, setActivePage, setActiveSubheader, scrollToElement]);
+  }, [location, pages, setActivePage, scrollToElement]);
 
   return (
     <>
-      <div id="case-study-nav-container" className="sticky top-[88px] z-10">
-        <nav
-          id="case-study-nav"
-          className={`mx-auto flex w-fit justify-center py-2 ${viewportWideEnough ? "" : "hidden"} `}
-        >
-          <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
-            {pages?.map((page, pageIdx) => (
-              <NavLink
-                to={`${page.id}`}
-                key={page.id}
-                onClick={() => {
-                  setActivePage(pageIdx);
-                  setActiveSubheader(null);
-                  window.scrollTo(0, 0);
-                }}
-                className="relative"
-              >
-                <div
-                  className={`overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
-                >
-                  {page.name}
-                </div>
-              </NavLink>
-            ))}
-          </div>
-        </nav>
-      </div>
+      <CaseStudyNav
+        pages={pages}
+        setActivePage={setActivePage}
+        setActiveSubheader={setActiveSubheader}
+        activePage={activePage}
+      />
 
       <div id="page-content-container" className="flex flex-wrap">
         <main
