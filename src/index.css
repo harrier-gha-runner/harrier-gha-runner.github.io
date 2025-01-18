@@ -50,6 +50,14 @@ button {
   filter: drop-shadow(1px 3px 10px var(--shadow-color));
 }
 
+.code-block {
+  font-family: "Menlo", monospace;
+  background-color: #ededed;
+  padding: 0px 6px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
 h2 {
   margin-top: 0px;
 }

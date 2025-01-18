@@ -11,7 +11,7 @@ type Step = {
   numericTitle: number;
   id: string;
   title: string;
-  introduction: string;
+  introduction: React.ReactElement | string;
   content?: {
     alt?: string;
     caption: React.ReactElement | string;
@@ -140,21 +140,28 @@ const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
     </div>
   );
 };
+
 export default function TryHarrierPage() {
   const [steps] = useState<Step[]>([
     {
       id: "prerequisites",
       type: "other",
       numericTitle: 0,
-      introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      introduction: (
+        <>
+          <span className="code-block">aws configure</span> more text{" "}
+          <span className="font-semibold">bold text</span>
+        </>
+      ),
       title: "Prerequisites",
+ 
     },
     {
       id: "identity-provider",
       type: "visual",
       numericTitle: 1,
-      introduction: `To create an IAM Identity Provider in AWS, go to IAM in the console, select "Identity Providers," and add an "OpenID Connect" provider with the URL https://token.actions.githubusercontent.com and audience sts.amazonaws.com. Next, assign a role to the provider, select "Web identity," and configure the role with necessary permissions like AmazonVPCFullAccess, EC2, S3, Lambda, and more. Finally, name the role, create it, and note down the ARN for future use.`,
-      title: "Create an IAM Identity Provider",
+      introduction: `<What is an oidc, what does it do, how does it facilitate connection with github?>`,
+      title: "Create an OpenID Connect (OIDC) identity provider in IAM",
       content: [
         {
           caption: "In your AWS Console, navigate to the IAM service.",
@@ -203,7 +210,7 @@ export default function TryHarrierPage() {
       type: "visual",
       numericTitle: 2,
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      title: "Personal Access Token",
+      title: "Create a GitHub Personal Access Token (PAT)",
       content: [
         {
           caption:
@@ -251,7 +258,7 @@ export default function TryHarrierPage() {
       type: "form",
       numericTitle: 3,
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      title: "Create Setup YAML",
+      title: "Select your runner configuration settings",
       form: <SetupForm />,
     },
     {
@@ -259,7 +266,7 @@ export default function TryHarrierPage() {
       type: "visual",
       numericTitle: 4,
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      title: "Workflow YAML",
+      title: "Auto-deploy self-hosted runner fleet into AWS account",
       content: [
         {
           caption:
@@ -286,7 +293,7 @@ export default function TryHarrierPage() {
       ],
     },
   ]);
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
 
   return (
     <>

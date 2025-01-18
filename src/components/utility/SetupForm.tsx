@@ -420,16 +420,16 @@ export default function SetupForm() {
       </Form>
 
       {yamlOutput && (
-        <div className="flex min-h-screen flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
           <div className="relative w-full max-w-7xl">
             <Button
               onClick={copyToClipboard}
               variant="default"
-              className="absolute right-0 top-9 mr-3 mt-3"
+              className="absolute right-0 top-20 mr-2"
             >
               {copied ? <ClipboardCheck /> : <Copy />}
             </Button>
-            <h3 className="text-xl font-semibold">Setup Harrier YAML:</h3>
+            <h3 className="text-xl font-semibold">Copy this workflow YAML:</h3>
             <SyntaxHighlighter
               language="yaml"
               style={ghcolors}
