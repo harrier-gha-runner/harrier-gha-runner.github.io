@@ -1,8 +1,30 @@
-import { useState } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { FaChevronRight } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import SetupForm from "@/components/utility/SetupForm";
+import { useState, useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import yaml from "js-yaml";
+
+const formSchema = z.object({
+  awsRegion: z.enum(["us-east-1", "us-east-2", "us-west-1", "us-west-2", ""], {
+    errorMap: () => ({
+      message:
+        "AWS Region must be one of the following: us-east-1, us-east-2, us-west-1, us-west-2",
+    }),
+  }),
+  awsAccountId: z.string().regex(/^\d{12}$/, {
+    message: "AWS Account ID must consist of exactly 12 digit characters.",
+  }),
+  instanceType: z.string().min(1, { message: "Instance Type is required." }),
+  cacheTtlHours: z.string().min(1, { message: "Cache TTL Hours is required." }),
+  cidrBlockVpc: z.string().min(1, { message: "CIDR Block VPC is required." }),
+  cidrBlockSubnet: z
+    .string()
+    .min(1, { message: "CIDR Block Subnet is required." }),
+});
 
 type StepType = "form" | "visual" | "other";
 
@@ -142,6 +164,22 @@ const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
 };
 
 export default function TryHarrierPage() {
+  const [activeStep, setActiveStep] = useState(3);
+  const [formDataJSON, setFormDataJSON] = useState("");
+  const [yamlOutput, setYamlOutput] = useState("");
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      awsAccountId: "",
+      awsRegion: "us-east-1",
+      instanceType: "",
+      cacheTtlHours: "72",
+      cidrBlockVpc: "10.0.0.0/24",
+      cidrBlockSubnet: "10.0.0.0/24",
+    },
+  });
+
   const [steps] = useState<Step[]>([
     {
       id: "prerequisites",
@@ -154,7 +192,6 @@ export default function TryHarrierPage() {
         </>
       ),
       title: "Prerequisites",
- 
     },
     {
       id: "identity-provider",
@@ -259,7 +296,13 @@ export default function TryHarrierPage() {
       numericTitle: 3,
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       title: "Select your runner configuration settings",
-      form: <SetupForm />,
+      form: (
+        <SetupForm
+          form={form}
+          onSubmit={handleSubmit}
+          yamlOutput={yamlOutput}
+        />
+      ),
     },
     {
       id: "workflow-yaml",
@@ -293,8 +336,96 @@ export default function TryHarrierPage() {
       ],
     },
   ]);
-  const [activeStep, setActiveStep] = useState(3);
 
+  useEffect(() => {
+    if (formDataJSON) {
+      try {
+        const {
+          awsAccountId,
+          awsRegion,
+          cacheTtlHours,
+          cidrBlockSubnet,
+          cidrBlockVPC,
+          instanceType,
+        } = JSON.parse(formDataJSON);
+
+        console.log({
+          awsAccountId,
+          awsRegion,
+          cacheTtlHours,
+          cidrBlockSubnet,
+          cidrBlockVPC,
+          instanceType,
+        });
+        setYamlOutput(
+          yaml.dump(
+            {
+              name: "Set Harrier on AWS infrastructure and GitHub webhooks",
+              on: {
+                workflow_dispatch: null,
+              },
+              jobs: {
+                "setup-harrier-runner": {
+                  "runs-on": "ubuntu-latest",
+                  permissions: {
+                    "id-token": "write",
+                    contents: "read",
+                  },
+                  steps: [
+                    {
+                      name: "Checkout code",
+                      uses: "actions/checkout@v4",
+                    },
+                    {
+                      name: "Set up Node.js",
+                      uses: "actions/setup-node@v4",
+                      with: {
+                        "node-version": 20,
+                      },
+                    },
+                    {
+                      name: "Configure AWS Credentials for Harrier setup",
+                      uses: "aws-actions/configure-aws-credentials@v4",
+                      with: {
+                        audience: "sts.amazonaws.com",
+                        "aws-region": awsRegion,
+                        "role-to-assume": `arn:aws:iam::${awsAccountId}:role/setup-harrier`,
+                      },
+                    },
+                    {
+                      name: "Harrier Self-Hosted Runner Setup",
+                      uses: "harrier-gha-runner/harrier-self-hosted-runner@main",
+                      with: {
+                        "gh-owner-name": "${{ github.repository_owner }}",
+                        "aws-region": awsRegion,
+                        "aws-account-id": parseInt(awsAccountId),
+                        "instance-type": instanceType,
+                        "cache-ttl-hours": parseInt(cacheTtlHours),
+                        "cidr-block-vpc": cidrBlockVPC,
+                        "cidr-block-subnet": cidrBlockSubnet,
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+            {
+              noRefs: true,
+            },
+          ),
+        );
+
+        console.log({ yamlOutput });
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    }
+  }, [formDataJSON, yamlOutput]);
+
+  function handleSubmit(values: z.infer<typeof formSchema>) {
+    console.log("handle submit invoked");
+    setFormDataJSON(JSON.stringify(values, null, 2));
+  }
   return (
     <>
       <TryHarrierNav
