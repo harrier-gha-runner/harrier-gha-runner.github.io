@@ -4,7 +4,7 @@ import { Separator } from "../ui/separator";
 import SetupForm from "@/components/utility/SetupForm";
 import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import yaml from "js-yaml";
 
@@ -20,7 +20,7 @@ const formSchema = z.object({
   }),
   instanceType: z.string().min(1, { message: "Instance Type is required." }),
   cacheTtlHours: z.string().min(1, { message: "Cache TTL Hours is required." }),
-  cidrBlockVpc: z.string().min(1, { message: "CIDR Block VPC is required." }),
+  cidrBlockVPC: z.string().min(1, { message: "CIDR Block VPC is required." }),
   cidrBlockSubnet: z
     .string()
     .min(1, { message: "CIDR Block Subnet is required." }),
@@ -89,9 +89,18 @@ const TryHarrierNav = ({
 type TryHarrierContentProps = {
   steps: Step[];
   activeStep: number;
+  form: ReturnType<typeof useForm>;
+  onSubmit: (values: z.infer<typeof formSchema>) => void;
+  yamlOutput: string;
 };
 
-const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
+const TryHarrierContent = ({
+  steps,
+  activeStep,
+  form,
+  onSubmit,
+  yamlOutput,
+}: TryHarrierContentProps) => {
   return (
     <div id="try-harrier-content-container" className="flex flex-wrap">
       <main
@@ -114,7 +123,11 @@ const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
           className="flex flex-col justify-start"
         >
           {steps[activeStep].type === "form" && (
-            <div>{steps[activeStep].form}</div>
+            <SetupForm
+              form={form}
+              onSubmit={onSubmit}
+              yamlOutput={yamlOutput}
+            />
           )}
           {steps[activeStep].type === "visual" && (
             <>
@@ -164,18 +177,18 @@ const TryHarrierContent = ({ steps, activeStep }: TryHarrierContentProps) => {
 };
 
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(1);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       awsAccountId: "",
       awsRegion: "us-east-1",
       instanceType: "",
       cacheTtlHours: "72",
-      cidrBlockVpc: "10.0.0.0/24",
+      cidrBlockVPC: "10.0.0.0/24",
       cidrBlockSubnet: "10.0.0.0/24",
     },
   });
@@ -197,35 +210,89 @@ export default function TryHarrierPage() {
       id: "identity-provider",
       type: "visual",
       numericTitle: 1,
-      introduction: `<What is an oidc, what does it do, how does it facilitate connection with github?>`,
+      introduction: `OpenID Connect (OIDC) is an authentication protocol built on top of OAuth 2.0, allowing applications to verify user identities through an identity provider like GitHub. It issues ID tokens (usually JWTs) that authenticate users and provide profile information, enabling single sign-on (SSO). OIDC is widely used for secure authentication, and in the context of GitHub, it facilitates connections with external services (e.g., AWS) by enabling secure, temporary credentials through OIDC tokens. This allows GitHub Actions, for instance, to authenticate with cloud providers without requiring static credentials, offering enhanced security and seamless integration for CI/CD workflows.`,
       title: "Create an OpenID Connect (OIDC) identity provider in IAM",
       content: [
         {
-          caption: "In your AWS Console, navigate to the IAM service.",
+          caption: (
+            <span>
+              In AWS Console, navigate to the{" "}
+              <span className="font-semibold">IAM service</span>.
+            </span>
+          ),
         },
         {
-          caption: "Select Identity providers from the left-hand menu.",
+          caption: (
+            <span>
+              Select <span className="font-bold">Identity providers</span> from
+              the left-hand menu.
+            </span>
+          ),
         },
-        { caption: "Click Add provider." },
         {
-          caption:
-            "Select the OpenID Connect provider type, enter the provider URL as https://token.actions.githubusercontent.com, and set the audience to sts.amazonaws.com. Confirm by clicking Add Provider.",
+          caption: (
+            <span>
+              Click <span className="font-bold">Add Provider.</span>
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Select the <span className="font-bold">OpenID Connect</span>{" "}
+              provider type, set provider URL to{" "}
+              <span className="code-block">
+                https://token.actions.githubusercontent.com
+              </span>{" "}
+              and audience to:{" "}
+              <span className="code-block">sts.amazonaws.com</span>. Confirm by
+              clicking <span className="font-semibold">Add Provider</span>.
+            </span>
+          ),
         },
         {
           caption: "Click into your newly-created provider.",
         },
         {
-          caption:
-            "After confirming that the Identity Audience is: sts.amazonaws.com, click the Assign role button.",
+          caption: (
+            <span>
+              After confirming that the Identity Audience is:{" "}
+              <span className="code-block">sts.amazonaws.com</span>, click the{" "}
+              <span className="font-bold">Assign role</span> button.
+            </span>
+          ),
         },
-        { caption: "Choose: Create a new role and click Next." },
         {
-          caption:
-            "Select the Web identity as the Trusted entity type. From the drop-down menu, choose token.actions.githubusercontent.com as the Identity provider. Then, select sts.amazonaws.com as the Audience. Enter your GitHub organization or owner name, such as harrier-gha-runner. Optionally, you can restrict access to a specific GitHub repository and branch. Once completed, click the Next button to begin adding permission policies to the role.",
+          caption: (
+            <span>
+              Select <span className="font-semibold">Create a new role</span>{" "}
+              and click Next.
+            </span>
+          ),
         },
         {
-          caption:
-            "In the Add permissions menu, search for and select the following policies: AmazonVPCFullAccess, AmazonEC2FullAccess, AmazonS3FullAccess, AWSLambda_FullAccess, IAMFullAccess, AmazonAPIGatewayAdministrator, AmazonEventBridgeFullAccess, AWSWAFConsoleFullAccess, SecretsManagerReadWrite.",
+          caption: (
+            <span>
+              Select the Web identity as the Trusted entity type. From the
+              drop-down menu, choose token.actions.githubusercontent.com as the
+              Identity provider. Then, select sts.amazonaws.com as the Audience.
+              Enter your GitHub organization or owner name, such as
+              harrier-gha-runner. Optionally, you can restrict access to a
+              specific GitHub repository and branch. Once completed, click the
+              Next button to begin adding permission policies to the role.
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              In the Add permissions menu, search for and select the following
+              policies: AmazonVPCFullAccess, AmazonEC2FullAccess,
+              AmazonS3FullAccess, AWSLambda_FullAccess, IAMFullAccess,
+              AmazonAPIGatewayAdministrator, AmazonEventBridgeFullAccess,
+              AWSWAFConsoleFullAccess, SecretsManagerReadWrite.
+            </span>
+          ),
           aside: {
             title: "NOTE",
             message:
@@ -296,13 +363,6 @@ export default function TryHarrierPage() {
       numericTitle: 3,
       introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       title: "Select your runner configuration settings",
-      form: (
-        <SetupForm
-          form={form}
-          onSubmit={handleSubmit}
-          yamlOutput={yamlOutput}
-        />
-      ),
     },
     {
       id: "workflow-yaml",
@@ -426,6 +486,7 @@ export default function TryHarrierPage() {
     console.log("handle submit invoked");
     setFormDataJSON(JSON.stringify(values, null, 2));
   }
+
   return (
     <>
       <TryHarrierNav
@@ -433,7 +494,13 @@ export default function TryHarrierPage() {
         activeStep={activeStep}
         setActiveStep={setActiveStep}
       />
-      <TryHarrierContent steps={steps} activeStep={activeStep} />
+      <TryHarrierContent
+        steps={steps}
+        activeStep={activeStep}
+        form={form}
+        onSubmit={handleSubmit}
+        yamlOutput={yamlOutput}
+      />
     </>
   );
 }
