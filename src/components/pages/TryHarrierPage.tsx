@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import yaml from "js-yaml";
+import { Link } from "react-router-dom";
+import { Bold } from "lucide-react";
 
 const formSchema = z.object({
   awsRegion: z.enum(["us-east-1", "us-east-2", "us-west-1", "us-west-2", ""], {
@@ -19,7 +21,9 @@ const formSchema = z.object({
     message: "AWS Account ID must consist of exactly 12 digit characters.",
   }),
   instanceType: z.string().min(1, { message: "Instance Type is required." }),
-  cacheTtlHours: z.string().min(1, { message: "Cache TTL Hours is required." }),
+  cacheTtlHours: z.string().min(1, {
+    message: "Cache TTL Hours must be a number greater than or equal to 1.",
+  }),
   cidrBlockVPC: z.string().min(1, { message: "CIDR Block VPC is required." }),
   cidrBlockSubnet: z
     .string()
@@ -176,8 +180,15 @@ const TryHarrierContent = ({
   );
 };
 
+const BoldText = ({ children }: { children: React.ReactNode }) => (
+  <span className="font-semibold">{children}</span>
+);
+
+const CodeBlock = ({ children }: { children: React.ReactNode }) => (
+  <span className="code-block">{children}</span>
+);
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(2);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -187,7 +198,7 @@ export default function TryHarrierPage() {
       awsAccountId: "",
       awsRegion: "us-east-1",
       instanceType: "",
-      cacheTtlHours: "72",
+      cacheTtlHours: 72,
       cidrBlockVPC: "10.0.0.0/24",
       cidrBlockSubnet: "10.0.0.0/24",
     },
@@ -216,37 +227,33 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              In AWS Console, navigate to the{" "}
-              <span className="font-semibold">IAM service</span>.
+              In AWS Console, navigate to the <BoldText>IAM service</BoldText>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select <span className="font-bold">Identity providers</span> from
-              the left-hand menu.
+              Select <BoldText>Identity providers</BoldText> from the left-hand
+              menu.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Click <span className="font-bold">Add Provider.</span>
+              Click <BoldText>Add Provider.</BoldText>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select the <span className="font-bold">OpenID Connect</span>{" "}
-              provider type, set provider URL to{" "}
-              <span className="code-block">
-                https://token.actions.githubusercontent.com
-              </span>{" "}
-              and audience to:{" "}
-              <span className="code-block">sts.amazonaws.com</span>. Confirm by
-              clicking <span className="font-semibold">Add Provider</span>.
+              Select the <BoldText>OpenID Connect</BoldText> provider type, set
+              provider URL to{" "}
+              <CodeBlock>https://token.actions.githubusercontent.com</CodeBlock>{" "}
+              and audience to: <CodeBlock>sts.amazonaws.com</CodeBlock>. Confirm
+              by clicking <BoldText>Add Provider</BoldText>.
             </span>
           ),
         },
@@ -256,41 +263,49 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              After confirming that the Identity Audience is:{" "}
-              <span className="code-block">sts.amazonaws.com</span>, click the{" "}
-              <span className="font-bold">Assign role</span> button.
+              After confirming that the Audience of the created Identity is:{" "}
+              <CodeBlock>sts.amazonaws.com</CodeBlock>, click{" "}
+              <BoldText>Assign role</BoldText>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select <span className="font-semibold">Create a new role</span>{" "}
-              and click Next.
+              Select <BoldText>Create a new role</BoldText> and click{" "}
+              <BoldText>Next</BoldText>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select the Web identity as the Trusted entity type. From the
-              drop-down menu, choose token.actions.githubusercontent.com as the
-              Identity provider. Then, select sts.amazonaws.com as the Audience.
-              Enter your GitHub organization or owner name, such as
-              harrier-gha-runner. Optionally, you can restrict access to a
-              specific GitHub repository and branch. Once completed, click the
-              Next button to begin adding permission policies to the role.
+              Select <BoldText>Web identity</BoldText> as Trusted entity type.
+              Then, from the drop-down menu, choose{" "}
+              <CodeBlock>token.actions.githubusercontent.com</CodeBlock> as the
+              Identity provider and <CodeBlock>sts.amazonaws.com </CodeBlock> as
+              Audience. Set the GitHub Organization field to the GH organization
+              or owner name, such as harrier-gha-runner. Optionally, you can
+              choose to restrict access to a specific GitHub repository and
+              branch. Once completed, click <BoldText>Next</BoldText> to begin
+              adding permissions to the role.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              In the Add permissions menu, search for and select the following
-              policies: AmazonVPCFullAccess, AmazonEC2FullAccess,
-              AmazonS3FullAccess, AWSLambda_FullAccess, IAMFullAccess,
-              AmazonAPIGatewayAdministrator, AmazonEventBridgeFullAccess,
-              AWSWAFConsoleFullAccess, SecretsManagerReadWrite.
+              In <BoldText>Add permissions</BoldText> menu, search for and
+              select the following policies:{" "}
+              <CodeBlock>AmazonVPCFullAccess</CodeBlock>,
+              <CodeBlock>AmazonEC2FullAccess</CodeBlock>,{" "}
+              <CodeBlock>AmazonS3FullAccess</CodeBlock>,{" "}
+              <CodeBlock>AWSLambda_FullAccess</CodeBlock>,
+              <CodeBlock>IAMFullAccess</CodeBlock>,{" "}
+              <CodeBlock>AmazonAPIGatewayAdministrator</CodeBlock>,
+              <CodeBlock>AmazonEventBridgeFullAccess</CodeBlock>,{" "}
+              <CodeBlock>AWSWAFConsoleFullAccess</CodeBlock>, and
+              <CodeBlock>SecretsManagerReadWrite</CodeBlock>.
             </span>
           ),
           aside: {
@@ -321,25 +336,60 @@ export default function TryHarrierPage() {
             "Identify the GitHub Organization within which you have workflows you wish to begin accelerating.",
         },
         {
-          caption: "Navigate to this url: https://github.com/settings/tokens.",
+          caption: (
+            <span>
+              Navigate to this url:{" "}
+              <a
+                href="https://github.com/settings/tokens"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CodeBlock>github.com/settings/tokens</CodeBlock>
+              </a>
+              .
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Click <BoldText>Generate new token</BoldText> and token type{" "}
+              <BoldText>classic</BoldText>.
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Add a memorable name in the <BoldText>Note</BoldText> field for
+              your token, choose a sensible <BoldText>Expiration</BoldText> and
+              check the following boxes: <CodeBlock>repo</CodeBlock>,{" "}
+              <CodeBlock>workflow</CodeBlock>, <CodeBlock>admin:org</CodeBlock>,
+              and
+              <CodeBlock>admin:org_hook</CodeBlock>. Once the required
+              selections are made, click <BoldText>Generate token</BoldText>.
+            </span>
+          ),
         },
         {
           caption:
-            "Click Generate new token and in the dropdown menu select classic as your token type.",
+            "Take heed of the GitHub notification and copy your freshly-minted personal access token.  You will need it soon.",
         },
         {
-          caption:
-            "Add a meaningful name in the Note field for your token and check the following boxes: repo, workflow, admin:org, and admin:org_hook. Once the selections are made, click Generate token.",
+          caption: (
+            <span>
+              Open <BoldText>AWS Console</BoldText> and navigate to the{" "}
+              <BoldText>Secrets Manager</BoldText> service.
+            </span>
+          ),
         },
         {
-          caption:
-            "Take heed of the blue GitHub notification and copy your freshly-minted personal access token.  You will need it later.",
+          caption: (
+            <span>
+              Click <BoldText>Store a new secret</BoldText>.
+            </span>
+          ),
         },
-        {
-          caption:
-            "Open the AWS Console and navigate to the Secrets Manager service.",
-        },
-        { caption: "Click Store a new secret." },
         {
           caption:
             "In Secret type, select Other type of secret.  In Key/Value pairs, choose plaintext and paste the GH personal access token and click Next.",
@@ -409,14 +459,6 @@ export default function TryHarrierPage() {
           instanceType,
         } = JSON.parse(formDataJSON);
 
-        console.log({
-          awsAccountId,
-          awsRegion,
-          cacheTtlHours,
-          cidrBlockSubnet,
-          cidrBlockVPC,
-          instanceType,
-        });
         setYamlOutput(
           yaml.dump(
             {
@@ -474,8 +516,6 @@ export default function TryHarrierPage() {
             },
           ),
         );
-
-        console.log({ yamlOutput });
       } catch (error) {
         console.error("Error parsing JSON:", error);
       }
@@ -483,7 +523,6 @@ export default function TryHarrierPage() {
   }, [formDataJSON, yamlOutput]);
 
   function handleSubmit(values: z.infer<typeof formSchema>) {
-    console.log("handle submit invoked");
     setFormDataJSON(JSON.stringify(values, null, 2));
   }
 

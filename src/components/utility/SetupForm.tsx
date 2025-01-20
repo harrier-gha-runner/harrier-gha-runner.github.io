@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { ghcolors } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy, ClipboardCheck } from "lucide-react";
 import {
   Form,
@@ -50,7 +50,7 @@ export default function SetupForm({
   async function copyToClipboard() {
     await navigator.clipboard.writeText(yamlOutput);
     setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+    setTimeout(() => setCopied(false), 5000);
   }
   return (
     <>
@@ -193,7 +193,7 @@ export default function SetupForm({
                 render={({ field }) => (
                   <FormItem className="w-40 min-w-40">
                     <FormLabel className="text-left">
-                      Cache Time To Live
+                      Cache TTL (hrs)
                     </FormLabel>
                     <FormControl>
                       <Input type="text" {...field} className="w-full border" />
@@ -216,18 +216,20 @@ export default function SetupForm({
           <div className="relative w-full max-w-7xl">
             <Button
               onClick={copyToClipboard}
-              variant="default"
-              className="absolute right-0 top-20 mr-2"
+              variant="outline"
+              className="absolute right-0 top-20 mr-2 text-harrierGRAY"
             >
               {copied ? <ClipboardCheck /> : <Copy />}
             </Button>
             <h3 className="text-xl font-semibold">Copy this workflow YAML:</h3>
             <SyntaxHighlighter
               language="yaml"
-              style={ghcolors}
+              style={dracula}
               showLineNumbers={true}
               wrapLongLines={true}
               className="rounded-lg p-4"
+              lineNumberStyle={{ color: "#888", fontSize: "12px" }}
+              useInlineStyles={true}
             >
               {yamlOutput}
             </SyntaxHighlighter>
