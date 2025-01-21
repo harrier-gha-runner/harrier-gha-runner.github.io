@@ -20,7 +20,6 @@ export const CodeBlock = ({
       //     title: "Copied to clipboard",
       //     description: children,
       //   });
-      //   console.log("executed toast");
 
       setTimeout(() => setCopied(false), 3000);
     } catch (err) {

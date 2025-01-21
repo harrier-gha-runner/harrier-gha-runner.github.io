@@ -203,13 +203,15 @@ export default function SetupForm({
             </div>
           </div>
 
-          <Button
-            variant="ghost"
-            type="submit"
-            className="bg-harrierYELLOW font-semibold"
-          >
-            Generate
-          </Button>
+          <div className="mr-2 flex justify-end">
+            <Button
+              variant="ghost"
+              type="submit"
+              className="bg-harrierYELLOW font-semibold"
+            >
+              Generate
+            </Button>
+          </div>
         </form>
       </Form>
 

@@ -45,9 +45,8 @@ const Callout = ({
 }: {
   title: string;
   message: string;
-  color?: "BLUE" | "PINK" | "BLACK" | "YELLOW" | "WHITE" | "OFFWHITE";
+  color: "BLUE" | "PINK" | "BLACK" | "YELLOW" | "WHITE" | "OFFWHITE";
 }) => {
-  console.log({ color });
   return (
     <aside
       className={`mx-10 mt-4 rounded border-l-4 border-harrier${color} bg-harrier${color}/15 p-4`}
@@ -188,7 +187,7 @@ const TryHarrierContent = ({
                       <Callout
                         title={item.aside.title}
                         message={item.aside.message}
-                        color="PINK"
+                        color="YELLOW"
                       />
                     )}
                   </figcaption>
