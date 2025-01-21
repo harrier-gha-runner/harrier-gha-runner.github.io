@@ -1,6 +1,12 @@
 import SetupForm from "@/components/utility/SetupForm";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-import { FaChevronRight, FaAws, FaGithub } from "react-icons/fa";
+import {
+  FaChevronRight,
+  FaArrowRight,
+  FaArrowLeft,
+  FaAws,
+  FaGithub,
+} from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { BoldText } from "@/components/utility/BoldText";
@@ -103,7 +109,8 @@ type TryHarrierContentProps = {
   activeStep: number;
   form: ReturnType<typeof useForm>;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
-  handleNextClick: () => void;
+  handleForwardClick: () => void;
+  handleBackwardClick: () => void;
   yamlOutput: string;
 };
 
@@ -113,7 +120,8 @@ const TryHarrierContent = ({
   form,
   onSubmit,
   yamlOutput,
-  handleNextClick,
+  handleForwardClick,
+  handleBackwardClick,
 }: TryHarrierContentProps) => {
   return (
     <div id="try-harrier-content-container" className="flex flex-wrap">
@@ -121,7 +129,28 @@ const TryHarrierContent = ({
         id="try-harrier-content"
         className="prose mx-auto w-full max-w-screen-xl flex-1 flex-row overflow-y-auto p-10 pt-12"
       >
-        <h2 className="mb-4 text-2xl font-bold">{steps[activeStep].title}</h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">{steps[activeStep].title}</h2>
+          <div className="flex justify-between">
+            <Button
+              variant="ghost"
+              size="xl"
+              className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
+              onClick={handleBackwardClick}
+            >
+              <FaArrowLeft className="mr-2" />
+              Previous
+            </Button>
+            <Button
+              variant="ghost"
+              size="xl"
+              className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
+              onClick={handleForwardClick}
+            >
+              Next <FaArrowRight className="ml-2" />
+            </Button>
+          </div>
+        </div>
         <Separator
           orientation="horizontal"
           className="my-2 w-full border-b border-harrierBLACK/10"
@@ -181,14 +210,24 @@ const TryHarrierContent = ({
           )}
           {/* {steps[activeStep].type === "other" && ()} */}
         </section>
-        <div className="flex justify-end">
+        <Separator className="my-2 w-full border-b border-harrierBLACK/10" />
+        <div className="flex justify-between">
           <Button
             variant="ghost"
             size="xl"
-            className="text-lg"
-            onClick={handleNextClick}
+            className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
+            onClick={handleBackwardClick}
           >
-            Next
+            <FaArrowLeft className="mr-2" />
+            Previous
+          </Button>
+          <Button
+            variant="ghost"
+            size="xl"
+            className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
+            onClick={handleForwardClick}
+          >
+            Next <FaArrowRight className="ml-2" />
           </Button>
         </div>
       </main>
@@ -673,7 +712,8 @@ export default function TryHarrierPage() {
         form={form}
         onSubmit={handleSubmit}
         yamlOutput={yamlOutput}
-        handleNextClick={() => setActiveStep(activeStep + 1)}
+        handleForwardClick={() => setActiveStep(activeStep + 1)}
+        handleBackwardClick={() => setActiveStep(activeStep - 1)}
       />
     </>
   );
