@@ -1,34 +1,17 @@
-import { useViewportWidth } from "@/hooks/useViewportWidth";
-import { FaChevronRight } from "react-icons/fa";
-import { Separator } from "../ui/separator";
 import SetupForm from "@/components/utility/SetupForm";
+import { useViewportWidth } from "@/hooks/useViewportWidth";
+import { FaChevronRight, FaAws, FaGithub } from "react-icons/fa";
+import { Separator } from "../ui/separator";
+import { ExternalLink } from "@/components/utility/ExternalLink";
+import { BoldText } from "@/components/utility/BoldText";
+import { CodeBlock } from "@/components/utility/CodeBlock";
 import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
+import { FieldValues, useForm } from "react-hook-form";
 import yaml from "js-yaml";
-import { Link } from "react-router-dom";
-import { Bold } from "lucide-react";
-
-const formSchema = z.object({
-  awsRegion: z.enum(["us-east-1", "us-east-2", "us-west-1", "us-west-2", ""], {
-    errorMap: () => ({
-      message:
-        "AWS Region must be one of the following: us-east-1, us-east-2, us-west-1, us-west-2",
-    }),
-  }),
-  awsAccountId: z.string().regex(/^\d{12}$/, {
-    message: "AWS Account ID must consist of exactly 12 digit characters.",
-  }),
-  instanceType: z.string().min(1, { message: "Instance Type is required." }),
-  cacheTtlHours: z.string().min(1, {
-    message: "Cache TTL Hours must be a number greater than or equal to 1.",
-  }),
-  cidrBlockVPC: z.string().min(1, { message: "CIDR Block VPC is required." }),
-  cidrBlockSubnet: z
-    .string()
-    .min(1, { message: "CIDR Block Subnet is required." }),
-});
+import { formSchema } from "@/schemas/formSchema";
+import { Button } from "../ui/button";
 
 type StepType = "form" | "visual" | "other";
 
@@ -41,9 +24,34 @@ type Step = {
   content?: {
     alt?: string;
     caption: React.ReactElement | string;
-    aside?: { title: "NOTE" | "REMEMBER" | "CAUTION"; message: string };
+    aside?: {
+      title: "Note" | "Remember" | "Caution";
+      message: string;
+    };
   }[];
   form?: React.ReactNode;
+};
+
+const Callout = ({
+  title,
+  message,
+  color = "BLUE",
+}: {
+  title: string;
+  message: string;
+  color?: "BLUE" | "PINK" | "BLACK" | "YELLOW" | "WHITE" | "OFFWHITE";
+}) => {
+  console.log({ color });
+  return (
+    <aside
+      className={`mx-10 mt-4 rounded border-l-4 border-harrier${color} bg-harrier${color}/15 p-4`}
+    >
+      <div className="flex items-center">
+        <FaChevronRight size="16" className="mr-2" />
+        <span className="font-bold">{title}</span>: {message}
+      </div>
+    </aside>
+  );
 };
 
 type TryHarrierNavProps = {
@@ -95,6 +103,7 @@ type TryHarrierContentProps = {
   activeStep: number;
   form: ReturnType<typeof useForm>;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
+  handleNextClick: () => void;
   yamlOutput: string;
 };
 
@@ -104,6 +113,7 @@ const TryHarrierContent = ({
   form,
   onSubmit,
   yamlOutput,
+  handleNextClick,
 }: TryHarrierContentProps) => {
   return (
     <div id="try-harrier-content-container" className="flex flex-wrap">
@@ -116,7 +126,7 @@ const TryHarrierContent = ({
           orientation="horizontal"
           className="my-2 w-full border-b border-harrierBLACK/10"
         />
-        <p className="my-4">{steps[activeStep].introduction}</p>
+        <div className="my-4">{steps[activeStep].introduction}</div>
         <Separator
           orientation="horizontal"
           className="my-2 w-full border-b border-harrierBLACK/10"
@@ -145,14 +155,12 @@ const TryHarrierContent = ({
                     className="py-0 text-lg"
                   >
                     <p className="flex flex-row">{item.caption}</p>
-                    {item.aside && (
-                      <aside className="mt-4 rounded border-l-4 border-harrierBLUE bg-harrierBLUE/15 p-4">
-                        <div className="flex items-center font-bold">
-                          <FaChevronRight size="16" className="mr-2" />
-                          {item.aside.title}
-                        </div>
-                        <p>{item.aside.message}</p>
-                      </aside>
+                    {item.aside && item.aside.message && (
+                      <Callout
+                        title={item.aside.title}
+                        message={item.aside.message}
+                        color="PINK"
+                      />
                     )}
                   </figcaption>
                   <div className="relative pl-8">
@@ -171,24 +179,25 @@ const TryHarrierContent = ({
               ))}
             </>
           )}
-          {steps[activeStep].type === "other" && (
-            <div>{steps[activeStep].title}</div>
-          )}
+          {/* {steps[activeStep].type === "other" && ()} */}
         </section>
+        <div className="flex justify-end">
+          <Button
+            variant="ghost"
+            size="xl"
+            className="text-lg"
+            onClick={handleNextClick}
+          >
+            Next
+          </Button>
+        </div>
       </main>
     </div>
   );
 };
 
-const BoldText = ({ children }: { children: React.ReactNode }) => (
-  <span className="font-semibold">{children}</span>
-);
-
-const CodeBlock = ({ children }: { children: React.ReactNode }) => (
-  <span className="code-block">{children}</span>
-);
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -198,7 +207,7 @@ export default function TryHarrierPage() {
       awsAccountId: "",
       awsRegion: "us-east-1",
       instanceType: "",
-      cacheTtlHours: 72,
+      cacheTtlHours: "72",
       cidrBlockVPC: "10.0.0.0/24",
       cidrBlockSubnet: "10.0.0.0/24",
     },
@@ -210,19 +219,59 @@ export default function TryHarrierPage() {
       type: "other",
       numericTitle: 0,
       introduction: (
-        <>
-          <span className="code-block">aws configure</span> more text{" "}
-          <span className="font-semibold">bold text</span>
-        </>
+        <span className="">
+          Before proceeding, ensure you have a <BoldText> AWS Account</BoldText>{" "}
+          and an <BoldText>Github Organization</BoldText>. If you don't yet have
+          these, you can create them by following the links below. If you
+          already have these, you can skip this step and continue to step 1.
+          <ol className="flex flex-col align-middle">
+            <li>
+              <ExternalLink href="https://aws.amazon.com/">
+                Create a paid AWS Account
+              </ExternalLink>
+            </li>
+            {/* <FaAws size="30" className="mr-2 inline-block" /> */}
+            <li>
+              <ExternalLink href="https://github.com/organizations/plan">
+                Create a GH Organization
+              </ExternalLink>
+            </li>
+
+            {/* <FaGithub size="30" className="mr-2 inline-block" /> */}
+          </ol>
+        </span>
       ),
       title: "Prerequisites",
+      //   content: [
+      //     { caption: "Paid AWS account" },
+      //     { caption: "GitHub Organization" },
+      //   ],
     },
     {
       id: "identity-provider",
       type: "visual",
       numericTitle: 1,
-      introduction: `OpenID Connect (OIDC) is an authentication protocol built on top of OAuth 2.0, allowing applications to verify user identities through an identity provider like GitHub. It issues ID tokens (usually JWTs) that authenticate users and provide profile information, enabling single sign-on (SSO). OIDC is widely used for secure authentication, and in the context of GitHub, it facilitates connections with external services (e.g., AWS) by enabling secure, temporary credentials through OIDC tokens. This allows GitHub Actions, for instance, to authenticate with cloud providers without requiring static credentials, offering enhanced security and seamless integration for CI/CD workflows.`,
-      title: "Create an OpenID Connect (OIDC) identity provider in IAM",
+      introduction: (
+        <span>
+          <ExternalLink href="https://openid.net/developers/how-connect-works/">
+            OpenID Connect
+          </ExternalLink>{" "}
+          (OIDC) is an authentication protocol built on top of OAuth 2.0,
+          allowing applications to verify user identities through an identity
+          provider like GitHub. OIDC issues ID tokens (usually JWTs) that
+          authenticate users and provide profile information, enabling{" "}
+          <ExternalLink href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso">
+            single sign-on
+          </ExternalLink>{" "}
+          (SSO). OIDC is widely used for secure authentication, and in the
+          context of GitHub, facilitates connections with external services by
+          enabling secure, temporary credentials through OIDC tokens. This
+          allows GitHub Actions to authenticate with cloud providers without
+          requiring static credentials, thus offering enhanced security and
+          seamless integration for CI/CD workflows.
+        </span>
+      ),
+      title: "Create an OpenID Connect identity provider in IAM",
       content: [
         {
           caption: (
@@ -258,7 +307,11 @@ export default function TryHarrierPage() {
           ),
         },
         {
-          caption: "Click into your newly-created provider.",
+          caption: (
+            <span>
+              Click into your new <BoldText>Identity provider</BoldText>.
+            </span>
+          ),
         },
         {
           caption: (
@@ -309,7 +362,7 @@ export default function TryHarrierPage() {
             </span>
           ),
           aside: {
-            title: "NOTE",
+            title: "Note",
             message:
               "We had said we wanted to apply the principle of least privilege to our permissions. However, for the sake of this tutorial, we are granting broad permissions to the role. In a production environment, you should restrict permissions to only what is necessary.",
           },
@@ -317,7 +370,7 @@ export default function TryHarrierPage() {
         {
           caption: "",
           aside: {
-            title: "REMEMBER",
+            title: "Remember",
             message:
               "MISSING a slide here for step 3: Name, review, and create",
           },
@@ -328,25 +381,42 @@ export default function TryHarrierPage() {
       id: "personal-access-token",
       type: "visual",
       numericTitle: 2,
-      introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      title: "Create a GitHub Personal Access Token (PAT)",
+      introduction: (
+        <span>
+          A{" "}
+          <ExternalLink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens">
+            Personal Access Token
+          </ExternalLink>{" "}
+          (PAT) is used to securely authenticate and authorize access to a
+          platform's APIs, enabling actions like managing resources and
+          automating tasks without exposing sensitive credentials. Harrier
+          requires a PAT to facilitate the authentication of{" "}
+          <ExternalLink href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28">
+            API requests
+          </ExternalLink>{" "}
+          to GitHub from AWS. By securely storing the token in AWS Secrets
+          Manager, we ensure that it is protected and accessible only when
+          needed, minimizing the risk of unauthorized access.
+        </span>
+      ),
+      title: "Create a Personal Access Token on GitHub",
       content: [
         {
-          caption:
-            "Identify the GitHub Organization within which you have workflows you wish to begin accelerating.",
+          caption: (
+            <span>
+              Identify the <BoldText>GitHub Organization</BoldText> within which
+              you have workflows you wish to begin accelerating.
+            </span>
+          ),
         },
         {
           caption: (
             <span>
-              Navigate to this url:{" "}
-              <a
-                href="https://github.com/settings/tokens"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <CodeBlock>github.com/settings/tokens</CodeBlock>
-              </a>
-              .
+              Click on the following link:{" "}
+              <ExternalLink href="https://github.com/settings/tokens">
+                github.com/settings/tokens
+              </ExternalLink>{" "}
+              to create a new personal access token.
             </span>
           ),
         },
@@ -365,15 +435,21 @@ export default function TryHarrierPage() {
               your token, choose a sensible <BoldText>Expiration</BoldText> and
               check the following boxes: <CodeBlock>repo</CodeBlock>,{" "}
               <CodeBlock>workflow</CodeBlock>, <CodeBlock>admin:org</CodeBlock>,
-              and
-              <CodeBlock>admin:org_hook</CodeBlock>. Once the required
+              and <CodeBlock>admin:org_hook</CodeBlock>. Once the required
               selections are made, click <BoldText>Generate token</BoldText>.
             </span>
           ),
         },
         {
-          caption:
-            "Take heed of the GitHub notification and copy your freshly-minted personal access token.  You will need it soon.",
+          caption: (
+            <span>
+              Take heed of the GitHub notification and{" "}
+              <BoldText className="text-harrierBLACK">
+                copy your freshly-minted personal access token
+              </BoldText>
+              . You will need it soon.
+            </span>
+          ),
         },
         {
           caption: (
@@ -391,19 +467,40 @@ export default function TryHarrierPage() {
           ),
         },
         {
-          caption:
-            "In Secret type, select Other type of secret.  In Key/Value pairs, choose plaintext and paste the GH personal access token and click Next.",
+          caption: (
+            <span>
+              In Secret type, select Other type of secret. Choose{" "}
+              <BoldText>plaintext</BoldText> in Key/value pairs and paste the GH
+              personal access token from before into the editor. Click{" "}
+              <BoldText>Next</BoldText>.
+            </span>
+          ),
         },
         {
-          caption:
-            "Input: github/pat/harrier into the Secret name field, optionally provide a description of the secret, and optionally add any tags or additional resource permissions. Click Next.",
+          caption: (
+            <span>
+              Input: <CodeBlock>github/pat/harrier</CodeBlock> into the Secret
+              name field and optionally provide a description of the secret, any
+              tags, and any additional resource permissions. Click{" "}
+              <BoldText>Next</BoldText>.
+            </span>
+          ),
         },
         {
-          caption:
-            "Leave the Configure automatic rotation in its default (left) position.  Click Next.",
+          caption: (
+            <span>
+              Leave Configure automatic rotation in its default position and
+              click <BoldText>Next</BoldText>.
+            </span>
+          ),
         },
         {
-          caption: "After reviewing configuration details, click Store.",
+          caption: (
+            <span>
+              After reviewing configuration details, click{" "}
+              <BoldText>Store</BoldText>.
+            </span>
+          ),
         },
       ],
     },
@@ -411,7 +508,17 @@ export default function TryHarrierPage() {
       id: "create-setup-yaml",
       type: "form",
       numericTitle: 3,
-      introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      introduction: (
+        <span>
+          Fill out the form fields below to and click{" "}
+          <BoldText>Generate</BoldText> to render a your{" "}
+          <CodeBlock>harrier_setup.yaml</CodeBlock>. Executing this workflow
+          will deploy a fleet of self-hosted runners into your AWS account,
+          enabling you to run your GitHub Actions workflows on your own AWS
+          infrastructure. If you would like to learn more about the specific
+          field, simply hover a label.
+        </span>
+      ),
       title: "Select your runner configuration settings",
     },
     {
@@ -425,23 +532,50 @@ export default function TryHarrierPage() {
           caption:
             "Navigate to the GitHub repository you plan to setup self-hosted runners in.",
         },
-        { caption: "Click Actions, then set up a workflow yourself." },
         {
-          caption:
-            "Give your new workflow a sensible file name, paste the YAML you just copied into the editor, and Commit changes...",
+          caption: (
+            <span>
+              Click <BoldText>Actions</BoldText> and then{" "}
+              <BoldText>set up a workflow yourself</BoldText>.
+            </span>
+          ),
         },
         {
-          caption: "CAPTION",
-          aside: {
-            title: "NOTE",
-            message: "What makes sense to say here?",
-          },
+          caption: (
+            <span>
+              Give the new workflow file a sensible name, paste the YAML you
+              just copied into the text editor, and{" "}
+              <BoldText>Commit changes...</BoldText>
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Confirm that a <CodeBlock>.github/workflows</CodeBlock> folder
+              exists in your repository.
+            </span>
+          ),
+          //   aside: {
+          //     title: "Note",
+          //     message: "If ",
+          //   },
         },
         { caption: "Confirm the changes were committed successfully." },
-        { caption: "Click Actions." },
         {
-          caption:
-            "In the left-menu, select your new workflow and click Run workflow.",
+          caption: (
+            <span>
+              Click <BoldText>Actions</BoldText>.
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              In the left-menu, select your new workflow and click{" "}
+              <BoldText>Run workflow</BoldText>.
+            </span>
+          ),
         },
       ],
     },
@@ -462,12 +596,12 @@ export default function TryHarrierPage() {
         setYamlOutput(
           yaml.dump(
             {
-              name: "Set Harrier on AWS infrastructure and GitHub webhooks",
+              name: "Harrier Setup",
               on: {
                 workflow_dispatch: null,
               },
               jobs: {
-                "setup-harrier-runner": {
+                "setup-harrier": {
                   "runs-on": "ubuntu-latest",
                   permissions: {
                     "id-token": "write",
@@ -539,6 +673,7 @@ export default function TryHarrierPage() {
         form={form}
         onSubmit={handleSubmit}
         yamlOutput={yamlOutput}
+        handleNextClick={() => setActiveStep(activeStep + 1)}
       />
     </>
   );

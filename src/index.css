@@ -91,7 +91,10 @@ h2 {
   padding-top: 0.25rem;
   padding-left: 2rem;
 }
-
+*:not(img)::selection {
+    background-color: #fee01b;
+    color: black;
+}
 @keyframes bird-x-axis {
   50% {
     transform: translateX(470px);

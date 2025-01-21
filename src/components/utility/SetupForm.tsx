@@ -192,9 +192,7 @@ export default function SetupForm({
                 name="cacheTtlHours"
                 render={({ field }) => (
                   <FormItem className="w-40 min-w-40">
-                    <FormLabel className="text-left">
-                      Cache TTL (hrs)
-                    </FormLabel>
+                    <FormLabel className="text-left">Cache TTL (hrs)</FormLabel>
                     <FormControl>
                       <Input type="text" {...field} className="w-full border" />
                     </FormControl>
@@ -205,8 +203,12 @@ export default function SetupForm({
             </div>
           </div>
 
-          <Button variant="ghost" type="submit">
-            Submit
+          <Button
+            variant="ghost"
+            type="submit"
+            className="bg-harrierYELLOW font-semibold"
+          >
+            Generate
           </Button>
         </form>
       </Form>

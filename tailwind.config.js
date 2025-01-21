@@ -12,6 +12,7 @@ module.exports = {
         harrierGRAY: "#9ca3af",
         harrierYELLOW: "#FEE01B",
         harrierOFFWHITE: "#ececec",
+        harrierLINKBLUE: "#3b82f6",
       },
     },
   },
