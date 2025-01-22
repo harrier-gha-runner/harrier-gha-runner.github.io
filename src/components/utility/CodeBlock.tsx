@@ -1,39 +1,43 @@
 import { useState } from "react";
-// import { useToast } from "@/hooks/use-toast";
 
 export const CodeBlock = ({
   children,
-  canCopy,
+  canCopy = true,
 }: {
   children: string;
   canCopy?: boolean;
 }) => {
   const [copied, setCopied] = useState(false);
-  //   const { toast } = useToast();
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   async function copyToClipboard() {
     if (!canCopy) return;
     try {
       await navigator.clipboard.writeText(children);
       setCopied(true);
-      //   toast({
-      //     title: "Copied to clipboard",
-      //     description: children,
-      //   });
-
-      setTimeout(() => setCopied(false), 3000);
+      setShowCopiedMessage(true);
+      setTimeout(() => {
+        setCopied(false);
+        setShowCopiedMessage(false);
+      }, 1500);
     } catch (err) {
       console.error("Failed to copy: ", err);
     }
   }
 
   return (
-    <span
-      className={`code-block ${copied ? "bg-harrierBLUE" : ""}`}
-      onClick={canCopy ? copyToClipboard : undefined}
-      style={{ cursor: canCopy ? "pointer" : "default" }}
-    >
-      {children}
-    </span>
+    <>
+      <span
+        className={`code-block ${copied ? "bg-harrierBLUE" : ""} ${canCopy ? "cursor-pointer" : "cursor-default"}`}
+        onClick={canCopy ? copyToClipboard : undefined}
+      >
+        {children}
+      </span>
+      {showCopiedMessage && (
+        <div className="fixed bottom-4 right-4 z-50 rounded bg-harrierBLACK bg-opacity-75 px-4 py-2 text-white">
+          copied
+        </div>
+      )}
+    </>
   );
 };

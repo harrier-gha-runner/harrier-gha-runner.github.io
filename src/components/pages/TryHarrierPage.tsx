@@ -131,7 +131,7 @@ const TryHarrierContent = ({
       >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold">{steps[activeStep].title}</h2>
-          <div className="flex justify-start">
+          <nav className="flex justify-start">
             <Button
               variant="ghost"
               size="lg"
@@ -148,7 +148,7 @@ const TryHarrierContent = ({
             >
               <FaArrowRight className="ml-2" />
             </Button>
-          </div>
+          </nav>
         </div>
         <Separator
           orientation="horizontal"
@@ -209,7 +209,7 @@ const TryHarrierContent = ({
           )}
         </section>
 
-        <div className="flex justify-between">
+        <nav className="flex justify-between">
           <Button
             variant="ghost"
             size="lg"
@@ -226,14 +226,14 @@ const TryHarrierContent = ({
           >
             <FaArrowRight className="ml-2" />
           </Button>
-        </div>
+        </nav>
       </main>
     </div>
   );
 };
 
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -388,23 +388,6 @@ export default function TryHarrierPage() {
             <span>
               In <BoldText>Add permissions</BoldText> menu, search for and
               select the following policies:{" "}
-              {/* <ul>
-                {[
-                  "AmazonVPCFullAccess",
-                  "AmazonEC2FullAccess",
-                  "AmazonS3FullAccess",
-                  "AWSLambda_FullAccess",
-                  "IAMFullAccess",
-                  "AmazonAPIGatewayAdministrator",
-                  "AmazonEventBridgeFullAccess",
-                  "AWSWAFConsoleFullAccess",
-                  "SecretsManagerReadWrite",
-                ].map((policy) => (
-                  <li>
-                    <CodeBlock>{policy}</CodeBlock>
-                  </li>
-                ))}
-              </ul> */}
               <CodeBlock>AmazonVPCFullAccess</CodeBlock>,
               <CodeBlock>AmazonEC2FullAccess</CodeBlock>,{" "}
               <CodeBlock>AmazonS3FullAccess</CodeBlock>,{" "}
@@ -492,8 +475,9 @@ export default function TryHarrierPage() {
               your token, choose a sensible <BoldText>Expiration</BoldText> and
               check the following boxes: <CodeBlock>repo</CodeBlock>,{" "}
               <CodeBlock>workflow</CodeBlock>, <CodeBlock>admin:org</CodeBlock>,
-              and <CodeBlock>admin:org_hook</CodeBlock>. Once the required
-              selections are made, click <BoldText>Generate token</BoldText>.
+              and <CodeBlock canCopy={false}>admin:org_hook</CodeBlock>. Once
+              the required selections are made, click{" "}
+              <BoldText>Generate token</BoldText>.
             </span>
           ),
         },
@@ -602,7 +586,7 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Click <BoldText>Actions</BoldText>, then{" "}
-              <BoldText>set up a workflow yourself</BoldText>.
+              <BoldText>set up a workflow.</BoldText>
             </span>
           ),
         },

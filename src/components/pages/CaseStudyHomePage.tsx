@@ -73,6 +73,7 @@ export default function CaseStudyHomePage() {
     activeSubheader,
     setActiveSubheader,
   } = pageContext;
+
   const scrollToElement = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {

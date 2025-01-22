@@ -3,6 +3,7 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 
 import { useInView } from "react-intersection-observer";
+import { SuperScript } from "../../utility/SuperScript";
 
 // Importing images
 import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
@@ -11,17 +12,6 @@ import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
-
-const SuperscriptExample = ({ sourceID }: { sourceID: string }) => {
-  return (
-    <sup
-      className="cursor-pointer align-super text-xs font-normal hover:text-harrierBLUE"
-      onClick={() => console.log("open modal!")}
-    >
-      {sourceID}
-    </sup>
-  );
-};
 
 const SectionInView = ({
   sectionId,
@@ -69,11 +59,6 @@ const ProblemDomain = () => {
 
   return (
     <>
-      <div>
-        <p>
-          some claim 5<sup className="align-super text-xs">2</sup>
-        </p>
-      </div>
       <section id="problem-domain-2-1">
         <h2>{subheaderNames[0]}</h2>
         <p className="callout">
@@ -118,9 +103,8 @@ const ProblemDomain = () => {
           throughout the entire development process. DevOps is a philosophy and
           culture that enables agile development while supporting collaboration,
           automation, and continuous improvement.
-          <SuperscriptExample sourceID="28" /> One of the key components of
-          DevOps is Continuous Integration and Continuous Delivery/Deployment
-          (CI/CD).
+          <SuperScript sourceID="28" /> One of the key components of DevOps is
+          Continuous Integration and Continuous Delivery/Deployment (CI/CD).
         </p>
         <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} />
         <p>
