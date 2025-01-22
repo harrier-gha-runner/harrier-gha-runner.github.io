@@ -12,6 +12,17 @@ import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
 
+const SuperscriptExample = ({ sourceID }: { sourceID: string }) => {
+  return (
+    <sup
+      className="cursor-pointer align-super text-xs font-normal hover:text-harrierBLUE"
+      onClick={() => console.log("open modal!")}
+    >
+      {sourceID}
+    </sup>
+  );
+};
+
 const SectionInView = ({
   sectionId,
   onInView,
@@ -58,6 +69,11 @@ const ProblemDomain = () => {
 
   return (
     <>
+      <div>
+        <p>
+          some claim 5<sup className="align-super text-xs">2</sup>
+        </p>
+      </div>
       <section id="problem-domain-2-1">
         <h2>{subheaderNames[0]}</h2>
         <p className="callout">
@@ -101,7 +117,8 @@ const ProblemDomain = () => {
           successfully, it is important to have as much alignment between teams
           throughout the entire development process. DevOps is a philosophy and
           culture that enables agile development while supporting collaboration,
-          automation, and continuous improvement.28 One of the key components of
+          automation, and continuous improvement.
+          <SuperscriptExample sourceID="28" /> One of the key components of
           DevOps is Continuous Integration and Continuous Delivery/Deployment
           (CI/CD).
         </p>

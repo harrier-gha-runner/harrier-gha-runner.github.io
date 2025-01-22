@@ -4,8 +4,8 @@ import {
   FaChevronRight,
   FaArrowRight,
   FaArrowLeft,
-  FaAws,
-  FaGithub,
+  //   FaAws,
+  //   FaGithub,
 } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { ExternalLink } from "@/components/utility/ExternalLink";
@@ -27,6 +27,7 @@ type Step = {
   id: string;
   title: string;
   introduction: React.ReactElement | string;
+  conclusion?: React.ReactElement | string;
   content?: {
     alt?: string;
     caption: React.ReactElement | string;
@@ -130,23 +131,22 @@ const TryHarrierContent = ({
       >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-bold">{steps[activeStep].title}</h2>
-          <div className="flex justify-between">
+          <div className="flex justify-start">
             <Button
               variant="ghost"
-              size="xl"
+              size="lg"
               className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
               onClick={handleBackwardClick}
             >
               <FaArrowLeft className="mr-2" />
-              Previous
             </Button>
             <Button
               variant="ghost"
-              size="xl"
+              size="lg"
               className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
               onClick={handleForwardClick}
             >
-              Next <FaArrowRight className="ml-2" />
+              <FaArrowRight className="ml-2" />
             </Button>
           </div>
         </div>
@@ -207,26 +207,24 @@ const TryHarrierContent = ({
               ))}
             </>
           )}
-          {/* {steps[activeStep].type === "other" && ()} */}
         </section>
-        <Separator className="my-2 w-full border-b border-harrierBLACK/10" />
+
         <div className="flex justify-between">
           <Button
             variant="ghost"
-            size="xl"
+            size="lg"
             className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
             onClick={handleBackwardClick}
           >
             <FaArrowLeft className="mr-2" />
-            Previous
           </Button>
           <Button
             variant="ghost"
-            size="xl"
+            size="lg"
             className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
             onClick={handleForwardClick}
           >
-            Next <FaArrowRight className="ml-2" />
+            <FaArrowRight className="ml-2" />
           </Button>
         </div>
       </main>
@@ -235,7 +233,7 @@ const TryHarrierContent = ({
 };
 
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -256,6 +254,7 @@ export default function TryHarrierPage() {
       id: "prerequisites",
       type: "other",
       numericTitle: 0,
+      title: "Prerequisites",
       introduction: (
         <span className="">
           Before proceeding, ensure you have a <BoldText> AWS Account</BoldText>{" "}
@@ -271,7 +270,7 @@ export default function TryHarrierPage() {
             {/* <FaAws size="30" className="mr-2 inline-block" /> */}
             <li>
               <ExternalLink href="https://github.com/organizations/plan">
-                Create a GH Organization
+                Create a GitHub Organization
               </ExternalLink>
             </li>
 
@@ -279,7 +278,7 @@ export default function TryHarrierPage() {
           </ol>
         </span>
       ),
-      title: "Prerequisites",
+      conclusion: "conclusion",
       //   content: [
       //     { caption: "Paid AWS account" },
       //     { caption: "GitHub Organization" },
@@ -289,6 +288,7 @@ export default function TryHarrierPage() {
       id: "identity-provider",
       type: "visual",
       numericTitle: 1,
+      title: "Create an OpenID Connect identity provider in IAM",
       introduction: (
         <span>
           <ExternalLink href="https://openid.net/developers/how-connect-works/">
@@ -300,16 +300,16 @@ export default function TryHarrierPage() {
           authenticate users and provide profile information, enabling{" "}
           <ExternalLink href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso">
             single sign-on
-          </ExternalLink>{" "}
-          (SSO). OIDC is widely used for secure authentication, and in the
-          context of GitHub, facilitates connections with external services by
-          enabling secure, temporary credentials through OIDC tokens. This
-          allows GitHub Actions to authenticate with cloud providers without
-          requiring static credentials, thus offering enhanced security and
-          seamless integration for CI/CD workflows.
+          </ExternalLink>
+          . OIDC is widely used for secure authentication, and in the context of
+          GitHub, facilitates connections with external services by enabling
+          secure, temporary credentials through OIDC tokens. This allows GitHub
+          Actions to authenticate with cloud providers without requiring static
+          credentials, thus offering enhanced security and seamless integration
+          for CI/CD workflows.
         </span>
       ),
-      title: "Create an OpenID Connect identity provider in IAM",
+      conclusion: "conclusion",
       content: [
         {
           caption: (
@@ -337,9 +337,9 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Select the <BoldText>OpenID Connect</BoldText> provider type, set
-              provider URL to{" "}
+              Provider URL to{" "}
               <CodeBlock>https://token.actions.githubusercontent.com</CodeBlock>{" "}
-              and audience to: <CodeBlock>sts.amazonaws.com</CodeBlock>. Confirm
+              and Audience to: <CodeBlock>sts.amazonaws.com</CodeBlock>. Confirm
               by clicking <BoldText>Add Provider</BoldText>.
             </span>
           ),
@@ -375,11 +375,11 @@ export default function TryHarrierPage() {
               Then, from the drop-down menu, choose{" "}
               <CodeBlock>token.actions.githubusercontent.com</CodeBlock> as the
               Identity provider and <CodeBlock>sts.amazonaws.com </CodeBlock> as
-              Audience. Set the GitHub Organization field to the GH organization
-              or owner name, such as harrier-gha-runner. Optionally, you can
-              choose to restrict access to a specific GitHub repository and
-              branch. Once completed, click <BoldText>Next</BoldText> to begin
-              adding permissions to the role.
+              Audience. Set the <BoldText>GitHub Organization</BoldText> field
+              to the GH organization or owner name, such as harrier-gha-runner.
+              Optionally, choose to restrict access to a specific GitHub
+              repository and branch. Once completed, click{" "}
+              <BoldText>Next</BoldText> to begin adding permissions to the role.
             </span>
           ),
         },
@@ -388,6 +388,23 @@ export default function TryHarrierPage() {
             <span>
               In <BoldText>Add permissions</BoldText> menu, search for and
               select the following policies:{" "}
+              {/* <ul>
+                {[
+                  "AmazonVPCFullAccess",
+                  "AmazonEC2FullAccess",
+                  "AmazonS3FullAccess",
+                  "AWSLambda_FullAccess",
+                  "IAMFullAccess",
+                  "AmazonAPIGatewayAdministrator",
+                  "AmazonEventBridgeFullAccess",
+                  "AWSWAFConsoleFullAccess",
+                  "SecretsManagerReadWrite",
+                ].map((policy) => (
+                  <li>
+                    <CodeBlock>{policy}</CodeBlock>
+                  </li>
+                ))}
+              </ul> */}
               <CodeBlock>AmazonVPCFullAccess</CodeBlock>,
               <CodeBlock>AmazonEC2FullAccess</CodeBlock>,{" "}
               <CodeBlock>AmazonS3FullAccess</CodeBlock>,{" "}
@@ -401,8 +418,7 @@ export default function TryHarrierPage() {
           ),
           aside: {
             title: "Note",
-            message:
-              "We had said we wanted to apply the principle of least privilege to our permissions. However, for the sake of this tutorial, we are granting broad permissions to the role. In a production environment, you should restrict permissions to only what is necessary.",
+            message: "Principle of least privilege",
           },
         },
         {
@@ -419,31 +435,34 @@ export default function TryHarrierPage() {
       id: "personal-access-token",
       type: "visual",
       numericTitle: 2,
+      title: "Create a Personal Access Token on GitHub",
       introduction: (
         <span>
           A{" "}
           <ExternalLink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens">
-            Personal Access Token
+            Personal Access Tokens
           </ExternalLink>{" "}
-          (PAT) is used to securely authenticate and authorize access to a
+          (PAT) are used to securely authenticate and authorize access to a
           platform's APIs, enabling actions like managing resources and
           automating tasks without exposing sensitive credentials. Harrier
           requires a PAT to facilitate the authentication of{" "}
           <ExternalLink href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28">
-            API requests
+            API request/response cycles.
           </ExternalLink>{" "}
-          to GitHub from AWS. By securely storing the token in AWS Secrets
-          Manager, we ensure that it is protected and accessible only when
-          needed, minimizing the risk of unauthorized access.
+          By securely storing the token in AWS Secrets Manager, Harrier ensures
+          it remains protected and accessible only when required, reducing the
+          risk of unauthorized access and maintaining strict control over
+          sensitive credentials.
         </span>
       ),
-      title: "Create a Personal Access Token on GitHub",
+      conclusion: "conclusion",
+
       content: [
         {
           caption: (
             <span>
-              Identify the <BoldText>GitHub Organization</BoldText> within which
-              you have workflows you wish to begin accelerating.
+              Identify and navigate to a{" "}
+              <BoldText>GitHub Organization.</BoldText>
             </span>
           ),
         },
@@ -483,9 +502,8 @@ export default function TryHarrierPage() {
             <span>
               Take heed of the GitHub notification and{" "}
               <BoldText className="text-harrierBLACK">
-                copy your freshly-minted personal access token
+                copy the freshly-minted personal access token.
               </BoldText>
-              . You will need it soon.
             </span>
           ),
         },
@@ -546,6 +564,7 @@ export default function TryHarrierPage() {
       id: "create-setup-yaml",
       type: "form",
       numericTitle: 3,
+      title: "Select your runner configuration settings",
       introduction: (
         <span>
           Fill out the form fields below to and click{" "}
@@ -554,26 +573,35 @@ export default function TryHarrierPage() {
           will deploy a fleet of self-hosted runners into your AWS account,
           enabling you to run your GitHub Actions workflows on your own AWS
           infrastructure. If you would like to learn more about the specific
-          field, simply hover a label.
+          field, simply hover the respective label.
         </span>
       ),
-      title: "Select your runner configuration settings",
+      conclusion: "conclusion",
     },
     {
       id: "workflow-yaml",
       type: "visual",
       numericTitle: 4,
-      introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       title: "Auto-deploy self-hosted runner fleet into AWS account",
+      introduction: (
+        <span>
+          With <CodeBlock>harrier_setup.yaml</CodeBlock> in tow, all that's left
+          to do is add the yaml to a GitHub repository and execute the workflow.
+        </span>
+      ),
+      conclusion: "conclusion",
       content: [
         {
-          caption:
-            "Navigate to the GitHub repository you plan to setup self-hosted runners in.",
+          caption: (
+            <span>
+              Navigate to a <BoldText>GitHub repository.</BoldText>
+            </span>
+          ),
         },
         {
           caption: (
             <span>
-              Click <BoldText>Actions</BoldText> and then{" "}
+              Click <BoldText>Actions</BoldText>, then{" "}
               <BoldText>set up a workflow yourself</BoldText>.
             </span>
           ),
@@ -581,17 +609,16 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              Give the new workflow file a sensible name, paste the YAML you
-              just copied into the text editor, and{" "}
-              <BoldText>Commit changes...</BoldText>
+              Name the file, paste the content of{" "}
+              <CodeBlock>harrier_setup.yaml</CodeBlock> into the editor, and
+              click <BoldText>Commit changes...</BoldText>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Confirm that a <CodeBlock>.github/workflows</CodeBlock> folder
-              exists in your repository.
+              Confirm <CodeBlock>.github/workflows</CodeBlock> is present.
             </span>
           ),
           //   aside: {
@@ -599,18 +626,25 @@ export default function TryHarrierPage() {
           //     message: "If ",
           //   },
         },
-        { caption: "Confirm the changes were committed successfully." },
         {
           caption: (
             <span>
-              Click <BoldText>Actions</BoldText>.
+              Double-check <CodeBlock>harrier_setup.yaml</CodeBlock> was
+              committed successfully.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              In the left-menu, select your new workflow and click{" "}
+              Navigate to <BoldText>Actions</BoldText>.
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              In the left-menu, select the new workflow and click{" "}
               <BoldText>Run workflow</BoldText>.
             </span>
           ),

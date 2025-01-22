@@ -27,9 +27,8 @@ import {
 } from "@/components/ui/command";
 import { ChevronsUpDown, Check } from "lucide-react";
 
-// Define the props expected by SetupForm
 interface SetupFormProps {
-  form: any; // React Hook Form instance
+  form: any;
   onSubmit: (values: any) => void;
   yamlOutput: string;
 }
@@ -59,8 +58,8 @@ export default function SetupForm({
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-4"
         >
-          <div className="mt-8 flex flex-row flex-wrap">
-            <div className="h-20 min-w-40 flex-grow object-contain">
+          <div className="mt-8 flex flex-wrap">
+            <div className="h-20 min-w-40">
               <FormField
                 control={form.control}
                 name="awsAccountId"
@@ -75,7 +74,7 @@ export default function SetupForm({
                 )}
               />
             </div>
-            <div className="h-20 min-w-40 flex-grow object-contain">
+            <div className="h-20 min-w-40">
               <FormField
                 control={form.control}
                 name="awsRegion"
@@ -131,7 +130,7 @@ export default function SetupForm({
                 )}
               />
             </div>
-            <div className="h-20 min-w-40 flex-grow object-contain">
+            <div className="h-20 min-w-40">
               <FormField
                 control={form.control}
                 name="instanceType"
@@ -186,7 +185,7 @@ export default function SetupForm({
                 )}
               />
             </div>
-            <div className="h-20 min-w-40 flex-grow object-contain">
+            <div className="h-20 min-w-40">
               <FormField
                 control={form.control}
                 name="cacheTtlHours"
@@ -237,6 +236,7 @@ export default function SetupForm({
             >
               {yamlOutput}
             </SyntaxHighlighter>
+            <span>Take this </span>
           </div>
         </div>
       )}
