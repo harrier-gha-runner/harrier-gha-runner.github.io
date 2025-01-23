@@ -24,11 +24,10 @@ export const CodeBlock = ({
       console.error("Failed to copy: ", err);
     }
   }
-
   return (
     <>
       <span
-        className={`code-block ${copied ? "bg-harrierBLUE" : ""} ${canCopy ? "cursor-pointer" : "cursor-default"}`}
+        className={`code-block ${copied ? "bg-harrierBLUE" : ""} ${canCopy ? "cursor-copy" : "cursor-default"}`}
         onClick={canCopy ? copyToClipboard : undefined}
       >
         {children}

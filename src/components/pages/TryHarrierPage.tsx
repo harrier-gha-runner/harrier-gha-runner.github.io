@@ -9,8 +9,8 @@ import {
 } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { ExternalLink } from "@/components/utility/ExternalLink";
-import { BoldText } from "@/components/utility/BoldText";
-import { CodeBlock } from "@/components/utility/CodeBlock";
+import { BoldText as BT } from "@/components/utility/BoldText";
+import { CodeBlock as Code } from "@/components/utility/CodeBlock";
 import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -209,15 +209,15 @@ const TryHarrierContent = ({
           )}
         </section>
 
-        <nav className="flex justify-between">
-          <Button
+        <nav className="flex justify-end">
+          {/* <Button
             variant="ghost"
             size="lg"
             className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
             onClick={handleBackwardClick}
           >
             <FaArrowLeft className="mr-2" />
-          </Button>
+          </Button> */}
           <Button
             variant="ghost"
             size="lg"
@@ -233,7 +233,7 @@ const TryHarrierContent = ({
 };
 
 export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -257,10 +257,10 @@ export default function TryHarrierPage() {
       title: "Prerequisites",
       introduction: (
         <span className="">
-          Before proceeding, ensure you have a <BoldText> AWS Account</BoldText>{" "}
-          and an <BoldText>Github Organization</BoldText>. If you don't yet have
-          these, you can create them by following the links below. If you
-          already have these, you can skip this step and continue to step 1.
+          Before proceeding, ensure you have a <BT> AWS Account</BT> and an{" "}
+          <BT>Github Organization</BT>. If you don't yet have these, you can
+          create them by following the links below. If you already have these,
+          you can skip this step and continue to step 1.
           <ol className="flex flex-col align-middle">
             <li>
               <ExternalLink href="https://aws.amazon.com/">
@@ -314,103 +314,102 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              In AWS Console, navigate to the <BoldText>IAM service</BoldText>.
+              In AWS Console, navigate to the <BT>IAM service</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select <BoldText>Identity providers</BoldText> from the left-hand
-              menu.
+              Select <BT>Identity providers</BT> from the left-hand menu.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Click <BoldText>Add Provider.</BoldText>
+              Click <BT>Add Provider.</BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select the <BoldText>OpenID Connect</BoldText> provider type, set
-              Provider URL to{" "}
-              <CodeBlock>https://token.actions.githubusercontent.com</CodeBlock>{" "}
-              and Audience to: <CodeBlock>sts.amazonaws.com</CodeBlock>. Confirm
-              by clicking <BoldText>Add Provider</BoldText>.
+              Select <BT>OpenID Connect</BT> as the provider type, set Provider
+              URL to <Code>token.actions.githubusercontent.com</Code>, and
+              Audience to: <Code>sts.amazonaws.com</Code>. Confirm by clicking{" "}
+              <BT>Add Provider.</BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Click into your new <BoldText>Identity provider</BoldText>.
+              Click into your new <BT>Identity provider</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              After confirming that the Audience of the created Identity is:{" "}
-              <CodeBlock>sts.amazonaws.com</CodeBlock>, click{" "}
-              <BoldText>Assign role</BoldText>.
+              After confirming that the <BT>Audience</BT> of the created
+              Identity is: <Code>sts.amazonaws.com</Code>, click{" "}
+              <BT>Assign role</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select <BoldText>Create a new role</BoldText> and click{" "}
-              <BoldText>Next</BoldText>.
+              Select <BT>Create a new role</BT> then click <BT>Next</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Select <BoldText>Web identity</BoldText> as Trusted entity type.
-              Then, from the drop-down menu, choose{" "}
-              <CodeBlock>token.actions.githubusercontent.com</CodeBlock> as the
-              Identity provider and <CodeBlock>sts.amazonaws.com </CodeBlock> as
-              Audience. Set the <BoldText>GitHub Organization</BoldText> field
-              to the GH organization or owner name, such as harrier-gha-runner.
-              Optionally, choose to restrict access to a specific GitHub
-              repository and branch. Once completed, click{" "}
-              <BoldText>Next</BoldText> to begin adding permissions to the role.
+              Select <BT>Web identity</BT> as Trusted entity type. Then, from
+              the drop-down menu, choose{" "}
+              <Code>token.actions.githubusercontent.com</Code> as the Identity
+              provider and <Code>sts.amazonaws.com </Code> as Audience. Set the{" "}
+              <BT>GitHub Organization</BT> field to the GH organization or owner
+              name, such as "Mock-Org". Optionally, choose to restrict access to
+              a specific GitHub repository and branch. Once completed, click{" "}
+              <BT>Next</BT> to begin adding permissions to the role.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              In <BoldText>Add permissions</BoldText> menu, search for and
-              select the following policies:{" "}
-              <CodeBlock>AmazonVPCFullAccess</CodeBlock>,
-              <CodeBlock>AmazonEC2FullAccess</CodeBlock>,{" "}
-              <CodeBlock>AmazonS3FullAccess</CodeBlock>,{" "}
-              <CodeBlock>AWSLambda_FullAccess</CodeBlock>,
-              <CodeBlock>IAMFullAccess</CodeBlock>,{" "}
-              <CodeBlock>AmazonAPIGatewayAdministrator</CodeBlock>,
-              <CodeBlock>AmazonEventBridgeFullAccess</CodeBlock>,{" "}
-              <CodeBlock>AWSWAFConsoleFullAccess</CodeBlock>, and
-              <CodeBlock>SecretsManagerReadWrite</CodeBlock>.
+              In <BT>Add permissions</BT> menu, search for and select the
+              following policies: <Code>AmazonVPCFullAccess</Code>,
+              <Code>AmazonEC2FullAccess</Code>, <Code>AmazonS3FullAccess</Code>,{" "}
+              <Code>AWSLambda_FullAccess</Code>,<Code>IAMFullAccess</Code>,{" "}
+              <Code>AmazonAPIGatewayAdministrator</Code>,
+              <Code>AmazonEventBridgeFullAccess</Code>,{" "}
+              <Code>AWSWAFConsoleFullAccess</Code>, and
+              <Code>SecretsManagerReadWrite</Code>.
             </span>
           ),
-          aside: {
-            title: "Note",
-            message: "Principle of least privilege",
-          },
+          //   aside: {
+          //     title: "Note",
+          //     message: "Principle of least privilege",
+          //   },
         },
         {
-          caption: "",
-          aside: {
-            title: "Remember",
-            message:
-              "MISSING a slide here for step 3: Name, review, and create",
-          },
+          caption: (
+            <span>
+              After selecting the above policies, click <BT>Next.</BT>
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Name the role, review permissions, and click <BT>Create role</BT>.
+            </span>
+          ),
         },
       ],
     },
@@ -418,10 +417,10 @@ export default function TryHarrierPage() {
       id: "personal-access-token",
       type: "visual",
       numericTitle: 2,
+
       title: "Create a Personal Access Token on GitHub",
       introduction: (
         <span>
-          A{" "}
           <ExternalLink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens">
             Personal Access Tokens
           </ExternalLink>{" "}
@@ -439,13 +438,11 @@ export default function TryHarrierPage() {
         </span>
       ),
       conclusion: "conclusion",
-
       content: [
         {
           caption: (
             <span>
-              Identify and navigate to a{" "}
-              <BoldText>GitHub Organization.</BoldText>
+              Identify and navigate to a <BT>GitHub Organization.</BT>
             </span>
           ),
         },
@@ -463,21 +460,19 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              Click <BoldText>Generate new token</BoldText> and token type{" "}
-              <BoldText>classic</BoldText>.
+              Click <BT>Generate new token</BT> and token type <BT>classic</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Add a memorable name in the <BoldText>Note</BoldText> field for
-              your token, choose a sensible <BoldText>Expiration</BoldText> and
-              check the following boxes: <CodeBlock>repo</CodeBlock>,{" "}
-              <CodeBlock>workflow</CodeBlock>, <CodeBlock>admin:org</CodeBlock>,
-              and <CodeBlock canCopy={false}>admin:org_hook</CodeBlock>. Once
-              the required selections are made, click{" "}
-              <BoldText>Generate token</BoldText>.
+              Add a memorable name in the <BT>Note</BT> field for your token,
+              choose a sensible <BT>Expiration</BT> and check the following
+              boxes: <Code>repo</Code>, <Code>workflow</Code>,{" "}
+              <Code>admin:org</Code>, and{" "}
+              <Code canCopy={false}>admin:org_hook</Code>. Once the required
+              selections are made, click <BT>Generate token</BT>.
             </span>
           ),
         },
@@ -485,24 +480,24 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Take heed of the GitHub notification and{" "}
-              <BoldText className="text-harrierBLACK">
+              <BT className="text-harrierBLACK">
                 copy the freshly-minted personal access token.
-              </BoldText>
+              </BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Open <BoldText>AWS Console</BoldText> and navigate to the{" "}
-              <BoldText>Secrets Manager</BoldText> service.
+              Open <BT>AWS Console</BT> and navigate to the{" "}
+              <BT>Secrets Manager</BT> service.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Click <BoldText>Store a new secret</BoldText>.
+              Click <BT>Store a new secret</BT>.
             </span>
           ),
         },
@@ -510,19 +505,17 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               In Secret type, select Other type of secret. Choose{" "}
-              <BoldText>plaintext</BoldText> in Key/value pairs and paste the GH
-              personal access token from before into the editor. Click{" "}
-              <BoldText>Next</BoldText>.
+              <BT>plaintext</BT> in Key/value pairs and paste the GH personal
+              access token from before into the editor. Click <BT>Next</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Input: <CodeBlock>github/pat/harrier</CodeBlock> into the Secret
-              name field and optionally provide a description of the secret, any
-              tags, and any additional resource permissions. Click{" "}
-              <BoldText>Next</BoldText>.
+              Input: <Code>github/pat/harrier</Code> into the Secret name field
+              and optionally provide a description of the secret, any tags, and
+              any additional resource permissions. Click <BT>Next</BT>.
             </span>
           ),
         },
@@ -530,15 +523,14 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Leave Configure automatic rotation in its default position and
-              click <BoldText>Next</BoldText>.
+              click <BT>Next</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              After reviewing configuration details, click{" "}
-              <BoldText>Store</BoldText>.
+              After reviewing configuration details, click <BT>Store</BT>.
             </span>
           ),
         },
@@ -551,9 +543,8 @@ export default function TryHarrierPage() {
       title: "Select your runner configuration settings",
       introduction: (
         <span>
-          Fill out the form fields below to and click{" "}
-          <BoldText>Generate</BoldText> to render a your{" "}
-          <CodeBlock>harrier_setup.yaml</CodeBlock>. Executing this workflow
+          Fill out the form fields below to and click <BT>Generate</BT> to
+          render a your <Code>harrier_setup.yaml</Code>. Executing this workflow
           will deploy a fleet of self-hosted runners into your AWS account,
           enabling you to run your GitHub Actions workflows on your own AWS
           infrastructure. If you would like to learn more about the specific
@@ -569,8 +560,8 @@ export default function TryHarrierPage() {
       title: "Auto-deploy self-hosted runner fleet into AWS account",
       introduction: (
         <span>
-          With <CodeBlock>harrier_setup.yaml</CodeBlock> in tow, all that's left
-          to do is add the yaml to a GitHub repository and execute the workflow.
+          With <Code>harrier_setup.yaml</Code> in tow, all that's left to do is
+          add the yaml to a GitHub repository and execute the workflow.
         </span>
       ),
       conclusion: "conclusion",
@@ -578,15 +569,14 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              Navigate to a <BoldText>GitHub repository.</BoldText>
+              Navigate to a <BT>GitHub repository.</BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Click <BoldText>Actions</BoldText>, then{" "}
-              <BoldText>set up a workflow.</BoldText>
+              Click <BT>Actions</BT>, then <BT>set up a workflow.</BT>
             </span>
           ),
         },
@@ -594,15 +584,15 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Name the file, paste the content of{" "}
-              <CodeBlock>harrier_setup.yaml</CodeBlock> into the editor, and
-              click <BoldText>Commit changes...</BoldText>
+              <Code>harrier_setup.yaml</Code> into the editor, and click{" "}
+              <BT>Commit changes...</BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Confirm <CodeBlock>.github/workflows</CodeBlock> is present.
+              Confirm <Code>.github/workflows</Code> is present.
             </span>
           ),
           //   aside: {
@@ -613,15 +603,15 @@ export default function TryHarrierPage() {
         {
           caption: (
             <span>
-              Double-check <CodeBlock>harrier_setup.yaml</CodeBlock> was
-              committed successfully.
+              Double-check <Code>harrier_setup.yaml</Code> was committed
+              successfully.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Navigate to <BoldText>Actions</BoldText>.
+              Navigate to <BT>Actions</BT>.
             </span>
           ),
         },
@@ -629,7 +619,7 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               In the left-menu, select the new workflow and click{" "}
-              <BoldText>Run workflow</BoldText>.
+              <BT>Run workflow</BT>.
             </span>
           ),
         },
