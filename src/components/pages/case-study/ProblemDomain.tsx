@@ -106,7 +106,7 @@ const ProblemDomain = () => {
           <SuperScript sourceID="28" /> One of the key components of DevOps is
           Continuous Integration and Continuous Delivery/Deployment (CI/CD).
         </p>
-        <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} />
+        {/* <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} /> */}
         <p>
           Continuous Integration (CI) centers around integrating code changes
           from multiple developers into a shared repository, as frequently as

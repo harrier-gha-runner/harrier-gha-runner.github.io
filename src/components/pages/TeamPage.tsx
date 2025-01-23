@@ -60,8 +60,6 @@ const TeamPage = () => {
           <TeamMember member={member} key={member.name} />
         ))}
       </div>
-
-      {/* <img src={HarrierBW} alt="GitHub Actions" className="m-4 h-64 w-auto" /> */}
     </div>
   );
 };

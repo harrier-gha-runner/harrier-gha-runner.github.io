@@ -65,7 +65,7 @@ const LandingPage = () => {
   ];
   return (
     <>
-      <div className="flex h-[24rem] flex-col items-center justify-center bg-harrierBLACK text-center">
+      <div className="flex h-[36rem] flex-col items-center justify-center bg-harrierBLACK text-center">
         {/* <FloatingBirds /> */}
         <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
           Harrier
@@ -73,16 +73,18 @@ const LandingPage = () => {
         <div>
           <p className="mb-9 mt-7 text-2xl text-white">
             an automated{" "}
-            <span className="font-semibold text-harrierPINK">
+            <span className="font-semibold">
+              <a
+                href="https://github.com/features/actions"
+                className="hover:bg-teriary underline underline-offset-2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub Actions
+              </a>{" "}
               self-hosted runner
             </span>{" "}
-            setup tool for{" "}
-            <a
-              href="https://github.com/features/actions"
-              className="hover:bg-teriary"
-            >
-              GitHub Actions
-            </a>
+            deployment tool
           </p>
           <Button
             onClick={() => {

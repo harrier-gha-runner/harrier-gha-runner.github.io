@@ -26,6 +26,11 @@ const PageNavigationContext = createContext<PageNavigationContextProps | null>(
 const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
   const [pages] = useState([
     {
+      id: "introduction",
+      name: "Introduction",
+      subheaders: [],
+    },
+    {
       id: "problem-domain",
       name: "Problem Domain",
       subheaders: [

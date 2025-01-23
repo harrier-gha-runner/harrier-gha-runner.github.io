@@ -54,6 +54,10 @@ createRoot(document.getElementById("app")!).render(
                       element: <FutureWork />,
                     },
                     {
+                      path: "introduction",
+                      element: <div>introduction</div>,
+                    },
+                    {
                       path: "*",
                       element: <NotFoundPage />,
                     },
