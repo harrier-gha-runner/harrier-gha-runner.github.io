@@ -19,6 +19,8 @@ import yaml from "js-yaml";
 import { formSchema } from "@/schemas/formSchema";
 import { Button } from "../ui/button";
 
+// import ip0 from "@/assets/screenshots/identity-provider/0.jpg";
+
 type StepType = "form" | "visual" | "other";
 
 type Step = {
@@ -197,7 +199,7 @@ const TryHarrierContent = ({
                       aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
                     >
                       <img
-                        src={`/src/assets/screenshots/${steps[activeStep].id}/${idx}.jpg`}
+                        src={`${process.env.PUBLIC_URL}/screenshots/${steps[activeStep].id}/${idx}.jpg`}
                         alt={item.alt || ""}
                         className="h-auto rounded-lg object-contain shadow"
                       />
