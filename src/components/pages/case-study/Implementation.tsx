@@ -77,13 +77,13 @@ const Implementation = () => {
 
   return (
     <>
-      <section id="implementation-0">
+      <section>
         <Separator
           orientation="horizontal"
           className="my-2 w-full border-b border-harrierBLACK/10"
         />
         <div className="my-4">
-          <h2>Harrier Implementation</h2>
+          <h4 className="m-0">Overview</h4>
           <div className="">
             <ul>
               <li>
@@ -104,7 +104,7 @@ const Implementation = () => {
           className="my-2 w-full border-b border-harrierBLACK/10"
         />
       </section>
-      <section id="implementation-0">
+      {/* <section id="implementation-0">
         <h2>Harrier Implementation</h2>
         <div className="">
           <ul>
@@ -120,10 +120,10 @@ const Implementation = () => {
           </ul>
         </div>
 
-        {/* <h4 className="text-center">
+        <h4 className="text-center">
           The Right Cloud Platform for Harrier Users
-        </h4> */}
-        {/* <ul className="m-0 space-x-4 p-0 text-center">
+        </h4>
+        <ul className="m-0 space-x-4 p-0 text-center">
             <li
               id="aws-cloud-platform"
               className="m-0 inline-block flex-shrink-0 rounded-full border-[0.1rem] border-gray-200 p-0 text-gray-600 hover:border-gray-300 hover:bg-harrierOFFWHITE/50 hover:text-harrierBLACK hover:shadow-sm"
@@ -194,8 +194,8 @@ const Implementation = () => {
                 </p>
               </TextContentModal>
             </li>
-          </ul> */}
-      </section>
+          </ul>
+      </section> */}
 
       <section id="implementation-1">
         <SectionInView sectionId="implementation-1" onInView={handleInView} />
