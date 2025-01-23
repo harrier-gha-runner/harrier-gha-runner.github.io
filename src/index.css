@@ -25,6 +25,18 @@ body {
   min-height: 100vh;
 }
 
+.major-h {
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #28282a;
+}
+.minor-h {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #28282a;
+}
 /* #case-study-container {
   font-family: "Roboto", "Source Sans 3", sans-serif;
 } */
@@ -38,6 +50,11 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.case-study-margins {
+  margin-right: auto;
+  margin-left: calc(auto / 2);
 }
 
 .goldilocks.box {

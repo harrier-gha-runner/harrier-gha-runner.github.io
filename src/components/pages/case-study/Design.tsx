@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
-
+import { Cite } from "@/components/utility/Cite";
 import { useInView } from "react-intersection-observer";
 
 // Importing images
@@ -15,6 +15,7 @@ import TeminatedRunner from "@/assets/3.4.terminated-runner.png";
 import DedicatedCache from "@/assets/3.5.dedicated-cache-storage.png";
 import CacheManagement from "@/assets/3.6.cache-management.png";
 import ApiIntegration from "@/assets/3.7.api-integration-trsprt.png";
+import { Overview } from "@/components/utility/Overview";
 
 const SectionInView = ({
   sectionId,
@@ -62,9 +63,8 @@ const Design = () => {
 
   return (
     <>
-      <section id="design-0">
-        <h2>Harrier Design</h2>
-        <p>
+      <Overview>
+        <span>
           The design of a 3rd-party supported DIY option for leveraging cache in
           GHA workflows involved two major pieces of work:
           <ul>
@@ -78,16 +78,16 @@ const Design = () => {
               provisioned alternative runner infrastructure.
             </li>
           </ul>
-        </p>
-        <ImageContentModal
+        </span>
+        {/* <ImageContentModal
           src={HarrierDesignLevelHigh}
           alt={"Harrier Design Level High"}
         />
         <ImageContentModal
           src={AlternateInfrastructure}
           alt={"Alternate Infrastructure"}
-        />
-      </section>
+        /> */}
+      </Overview>
       <section id="design-1">
         <SectionInView sectionId="design-1" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
@@ -173,28 +173,36 @@ const Design = () => {
           cache. Harrier provides users with an out-of-the-box cache strategy to
           help them quickly get started. A typical CI build process requires
           dependency installation, which can take advantage of previously
-          created files, presenting itself as an opportunity to cache (source:
-          ). Typically, package managers that handle the dependency
-          installations will avoid installing pre-existing packages and only
-          fetch and install packages as needed. For example, npm, a package
-          manager for Node.js, will compare the existing packages saved in the
-          node modules folder with the required package inventory list that is
-          the package.json file.
+          created files, presenting itself as an opportunity to cache.
+          <Cite num={9999} label="???" href="" /> Typically, package managers
+          that handle the dependency installations will avoid installing
+          pre-existing packages and only fetch and install packages as needed.
+          For example, npm, a package manager for Node.js, will compare the
+          existing packages saved in the node modules folder with the required
+          package inventory list that is the package.json file.
         </p>
         <ImageContentModal src={CacheManagement} alt={"Cache Management"} />
-        <p>
+        <span>
           After identifying which packages need to actually be installed, npm
           will then first check to see if the packages have been previously
           downloaded and saved in a hidden local cache directory. Only if the
           cache does not exist will npm fetch the package from the npm library
           over the network and then install the dependencies. This highlights
-          two areas for caching – 1) use cache, as npm uses ./npm_cache, to
-          short circuit the network fetch step and 2) use cache, as npm uses
-          ./node_modules directory, to short circuit the actual installation.
-          Harrier provides users with the ability to cache the entire file
-          structure of existing dependencies, which results in a greater time
-          savings during the dependency installation step.
-        </p>
+          two areas for caching:{" "}
+          <ol>
+            <li>
+              use cache, as npm uses ./npm_cache, to short circuit the network
+              fetch step
+            </li>
+            <li>
+              use cache, as npm uses ./node_modules directory, to short circuit
+              the actual installation.
+            </li>
+          </ol>
+          and 2) Harrier provides users with the ability to cache the entire
+          file structure of existing dependencies, which results in a greater
+          time savings during the dependency installation step.
+        </span>
       </section>
       <section id="design-7">
         <SectionInView sectionId="design-7" onInView={handleInView} />

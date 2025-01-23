@@ -3,13 +3,15 @@ import { CgFileDocument } from "react-icons/cg";
 // import { AiOutlineBlock } from "react-icons/ai";
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-
+import { Cite } from "@/components/utility/Cite";
+import { CodeBlock } from "@/components/utility/CodeBlock";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
 import { useInView } from "react-intersection-observer";
 
 // import { AxiosChart } from "@/components/AxiosChart";
 // import { VSCodeChart } from "@/components/VSCodeChart";
 
+import { BoldText as BT, BoldText } from "@/components/utility/BoldText";
 // Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
@@ -29,7 +31,7 @@ import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
 import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
 import WebhookSetup from "@/assets/4.1.6.webhook-setup.png";
 import WebhookJSONExample from "@/assets/4.1.6.json-object-code-example.png";
-import { Separator } from "@/components/ui/separator";
+import { Overview } from "../../utility/Overview";
 
 const SectionInView = ({
   sectionId,
@@ -77,33 +79,22 @@ const Implementation = () => {
 
   return (
     <>
-      <section>
-        <Separator
-          orientation="horizontal"
-          className="my-2 w-full border-b border-harrierBLACK/10"
-        />
-        <div className="my-4">
-          <h4 className="m-0">Overview</h4>
-          <div className="">
-            <ul>
-              <li>
-                Harrier is implemented in AWS which provides secure GH
-                integration through OIDC standards, with a secrets manager
-                function.
-              </li>
-              <li>
-                As the most common runtime environment on GitHub, focusing on
-                Node.js offered significant ROI for Harrier's initial
-                implementation.
-              </li>
-            </ul>
-          </div>
+      <Overview>
+        <div>
+          <ul>
+            <li>
+              Harrier is <BT>implemented in AWS </BT> which provides secure GH
+              integration through OIDC standards, with a secrets manager
+              function.
+            </li>
+            <li>
+              As the most common runtime environment on GitHub,{" "}
+              <BT>focusing on Node.js</BT> offered significant return on
+              investment for Harrier's initial implementation.
+            </li>
+          </ul>
         </div>
-        <Separator
-          orientation="horizontal"
-          className="my-2 w-full border-b border-harrierBLACK/10"
-        />
-      </section>
+      </Overview>
       {/* <section id="implementation-0">
         <h2>Harrier Implementation</h2>
         <div className="">
@@ -430,6 +421,7 @@ const Implementation = () => {
                 of GitHub's default VM runners.
               </p>
               <br />
+
               <p>
                 Regardless of startup time, it is agreed upon by engineers that
                 a workflow is almost always faster with caching than without
@@ -898,11 +890,11 @@ const Implementation = () => {
           leakage from one run to the next. As such, the EC2s must be terminated
           upon completion of the workflow run. When a GHA workflow is completed,
           GH generates a webhook notification and sends it to the user's Amazon
-          API Gateway, set up by Harrier (detailed discussion in 4.7). The
-          webhook payload contains the instance ID of the EC2 (obtained at the
-          time of token registration) that just completed the workflow run,
-          which is then passed to an AWS Lambda so that the EC2 can be
-          terminated.
+          API Gateway, set up by Harrier (discussed at length in{" "}
+          <BoldText>API Platform Integration section</BoldText>). The webhook
+          payload contains the instance ID of the EC2 (obtained at the time of
+          token registration) that just completed the workflow run, which is
+          then passed to an AWS Lambda so that the EC2 can be terminated.
         </p>
         <p>
           Harrier enhances the standard termination mechanism by introducing an
@@ -1744,19 +1736,22 @@ const Implementation = () => {
         </p>
         <p>
           In order to begin running workflows on the newly provisioned
-          self-hosted runners, users have to simply change the `runs-on` value
-          in the YAML file of the workflow to “self-hosted”. Harrier uses the
-          “self-hosted” label instead of a custom label such as “harrier-runner”
-          to emphasize the fact that the entire alternative runner
-          infrastructure is hosted and managed by the user.
+          self-hosted runners, users have to simply change the{" "}
+          <CodeBlock canCopy={false}>runs-on</CodeBlock> value in the YAML file
+          of the workflow to <CodeBlock>self-hosted</CodeBlock> . Harrier uses
+          the “self-hosted” label instead of a custom label such as
+          “harrier-runner” to emphasize the fact that the entire alternative
+          runner infrastructure is hosted and managed by the user.
         </p>
         <p>
           Harrier also provides a simple mechanism for using the out-of-the-box
           solution for caching dependencies through two public actions on the
-          GitHub Actions Marketplace: `harrier-cache-load` and
-          `harrier-cache-store`. Users have to simply drop in these one-line
-          steps before and after the dependency installation step in their
-          workflow in order to experience faster workflow build speeds.
+          GitHub Actions Marketplace:{" "}
+          <CodeBlock canCopy={false}>harrier-cache-load</CodeBlock> and{" "}
+          <CodeBlock canCopy={false}>harrier-cache-store</CodeBlock>. Users have
+          to simply drop in these one-line steps before and after the dependency
+          installation step in their workflow in order to experience faster
+          workflow build speeds.
         </p>
         {/* <ImageContentModal
           src={MinimalWorkflowModification}

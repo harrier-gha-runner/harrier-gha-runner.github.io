@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
+import { ExternalLink } from "@/components/utility/ExternalLink";
 import { ImageContentModal } from "@/components/ui/dialog";
-
+import { CodeBlock } from "@/components/utility/CodeBlock";
+import { BoldText as BT } from "@/components/utility/BoldText";
 import { useInView } from "react-intersection-observer";
-import { SuperScript } from "../../utility/SuperScript";
-
+import { Cite } from "@/components/utility/Cite";
+import { Overview } from "@/components/utility/Overview";
 // Importing images
-import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
+// import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
@@ -60,15 +62,14 @@ const ProblemDomain = () => {
   return (
     <>
       <section id="problem-domain-2-1">
-        <h2>{subheaderNames[0]}</h2>
-        <p className="callout">
-          <p>Overview:</p>
+        <h2 className="major-h">{subheaderNames[0]}</h2>
+        <Overview>
           <ul>
             <li>
-              <strong>
+              <BT>
                 GitHub Actions (GHA) as a cornerstone of modern software
                 development.
-              </strong>
+              </BT>
               GitHub Actions empowers developers and teams to streamline their
               CI/CD workflows as its primary function.
             </li>
@@ -91,10 +92,12 @@ const ProblemDomain = () => {
               compounding effects across the entire development pipeline.
             </li>
           </ul>
-        </p>
+        </Overview>
       </section>
       <section>
-        <h2>CI/CD and DevOps: The Backbone of Modern Software Development</h2>
+        <h3 className="minor-h">
+          CI/CD and DevOps: The Backbone of Modern Software Development
+        </h3>
         <p>
           Modern software development is a complex endeavor performed by large
           teams of experts, which require a great deal of communication and
@@ -103,33 +106,58 @@ const ProblemDomain = () => {
           throughout the entire development process. DevOps is a philosophy and
           culture that enables agile development while supporting collaboration,
           automation, and continuous improvement.
-          <SuperScript sourceID="28" /> One of the key components of DevOps is
-          Continuous Integration and Continuous Delivery/Deployment (CI/CD).
+          <Cite
+            num={0}
+            href="https://survey.stackoverflow.co/2024/technology"
+            label="2024 Developer Survey"
+          />
+          One of the key components of DevOps is Continuous Integration and
+          Continuous Delivery/Deployment (CI/CD).
         </p>
         {/* <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} /> */}
         <p>
           Continuous Integration (CI) centers around integrating code changes
           from multiple developers into a shared repository, as frequently as
-          possible (source: codefresh). The desired impact of this practice is
-          to stabilize the code base by discovering and resolving issues as
-          early as possible in the development lifecycle. The output of CI is
-          tested high-quality code that can be deployed to a staging or
-          production environment.
+          possible.
+          <Cite
+            num={1}
+            label="What is Continuous Integration?"
+            href="https://codefresh.io/learn/continuous-integration/"
+          />
+          The desired impact of this practice is to stabilize the code base by
+          discovering and resolving issues as early as possible in the
+          development lifecycle. The output of CI is tested high-quality code
+          that can be deployed to a staging or production environment.
         </p>
         <p>
           Continuous Delivery (CD) utilizes the artifacts created by the CI
           process and ensures that the software is always in a releasable state
           by subjecting the code to rigorous tests and checks in a staging
-          environment so that it is production ready (source: codefresh).
+          environment so that it is production ready.
+          <Cite
+            num={2}
+            label="What is Continuous Delivery?"
+            href="https://codefresh.io/learn/continuous-delivery/"
+          />
           Continuous Deployment is an advancement from CD that removes human
           intervention from the deployment process with the addition of
-          automated acceptance testing as the final step of the release cycle
-          (source: geeksforgeeks).
+          automated acceptance testing as the final step of the release cycle.{" "}
+          <Cite
+            num={3}
+            label="CI/CD: Continuous Integration and Continuous Delivery"
+            href="https://www.geeksforgeeks.org/ci-cd-continuous-integration-and-continuous-delivery/"
+          />
         </p>
         <p>
           By automating the software development and release processes, CI/CD
           enables teams to streamline their workflows and enjoy the following
-          benefits (source: Codefresh):
+          benefits:{" "}
+          <Cite
+            num={4}
+            label="CI vs. CD: Differences, Similarities, and Best Practices"
+            href="https://codefresh.io/learn/ci-cd/ci-vs-cd-differences-similarities-and-best-practices/"
+          />
+          {"  "}
           <ul>
             <li>Early detection of issues</li>
             <li>Improved team collaboration</li>
@@ -162,12 +190,18 @@ const ProblemDomain = () => {
           alt={"Automated processes for higher quality outcomes"}
         />
         <p>
-          Within software development, a <strong>workflow</strong> as a concept
-          is a defined sequence of automated steps and processes that coordinate
-          tasks, tools, and resources.29 Workflows are designed to minimize or
-          completely eliminate bottlenecks and improve the speed and quality of
-          software delivery, therefore decreasing the need for human
-          intervention and enhancing overall developer productivity.
+          Within software development, a <BT>workflow</BT> as a concept is a
+          defined sequence of automated steps and processes that coordinate
+          tasks, tools, and resources.
+          <Cite
+            num={5}
+            label="What is a workflow?"
+            href="https://www.geeksforgeeks.org/what-is-workflow/"
+          />
+          Workflows are designed to minimize or completely eliminate bottlenecks
+          and improve the speed and quality of software delivery, therefore
+          decreasing the need for human intervention and enhancing overall
+          developer productivity.
         </p>{" "}
         <p>
           GitHub Actions (GHA) lets developers automate workflows directly from
@@ -177,13 +211,14 @@ const ProblemDomain = () => {
           events.
         </p>
         <p>
-          As of 2023, <strong>over 100 million users</strong> are using GitHub
-          globally to manage over 400 million code base repositories and
-          coordinate their software development activities. With over 200
-          million repositories with actively deployed workflow automations
-          (source for 57.8% of GH using GHA), GHA has established itself in just
-          over five years since launch as an indispensable tool for software
-          development. (source: github pr post)
+          As of 2023, <BT>over 100 million users</BT> are using GitHub globally
+          to manage over 400 million code base repositories and coordinate their
+          software development activities. With over 200 million repositories
+          with actively deployed workflow automations,
+          <Cite num={9999} label="57% number" href="#" /> GHA has established
+          itself in just over five years since launch as an indispensable tool
+          for software development.
+          <Cite num={9999} label="github pr post" href="#" />
         </p>
       </section>
       <section>
@@ -191,14 +226,16 @@ const ProblemDomain = () => {
         <p>
           Given that GitHub Actions was designed to provide native CI/CD
           automation support, GitHub workflows are almost entirely related to
-          CI/CD processes (source: github launch deck). Through GHA, one can
-          automate tasks such as linting tests before a project build, the
-          actual build process, unit tests performed after a build, auto deploy,
-          just to name a few.
+          CI/CD processes.
+          <Cite num={9999} label="github launch deck" href="#" /> Through GHA,
+          one can automate tasks such as linting tests before a project build,
+          the actual build process, unit tests performed after a build, auto
+          deploy, just to name a few.
         </p>
         <p>
-          However, GHA as a CI/CD tool is not without its limitations (source:
-          reddit.) Areas where some consider it falling short are:
+          However, GHA as a CI/CD tool is not without its limitations
+          <Cite num={9999} label="reddit" href="#" /> Areas where some consider
+          it falling short are:
           <ul>
             <li>
               Limited visibility of workflow artifacts & robust artifact
@@ -211,7 +248,14 @@ const ProblemDomain = () => {
               the GitHub API)
             </li>
             <li>Performance ceiling for enterprise-level workflows.</li>
-            <li>YAML-based workflow configuration.30</li>
+            <li>
+              YAML-based workflow configuration.
+              <Cite
+                num={9999}
+                label="YAML pitfalls"
+                href="https://kestra.io/blogs/2023-12-01-yaml-pitfalls "
+              />
+            </li>
           </ul>
         </p>
         <p>
@@ -326,12 +370,18 @@ const ProblemDomain = () => {
         <p className="callout">
           <p>What is caching?</p>
           Caching is a data-management method that reuses previously created
-          information (i.e. cache) rather than creating it again.34 For a highly
-          iterative and repetitive process such as code integration where each
-          integration may represent only a small change in the code base,
-          computations run quicker when the need to create the same thing over
-          and over is eliminated. Caching is made possible by storing the cache
-          data in a temporary storage so that it can be accessed in the future.
+          information (i.e. cache) rather than creating it again.{" "}
+          <Cite
+            num={9999}
+            label="Why you should care about caching"
+            href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching"
+          />
+          For a highly iterative and repetitive process such as code integration
+          where each integration may represent only a small change in the code
+          base, computations run quicker when the need to create the same thing
+          over and over is eliminated. Caching is made possible by storing the
+          cache data in a temporary storage so that it can be accessed in the
+          future.
         </p>
         <p>
           One of the most significant impacts of GitHub’s runner infrastructure
@@ -362,8 +412,11 @@ const ProblemDomain = () => {
           after launch, GitHub Actions introduced a paid-tier offering featuring
           more powerful machines to help address CI build speed concerns. In
           addition, they also released and incrementally improved a
-          much-demanded native cache solution on the GHA Marketplace,
-          actions/cache.
+          much-demanded native cache solution on the GHA Marketplace,{" "}
+          <ExternalLink
+            href="https://github.com/actions/cache"
+            children="actions/cache."
+          />{" "}
         </p>
         <ImageContentModal
           src={GHALimitedCache}
@@ -389,36 +442,52 @@ const ProblemDomain = () => {
           category, let’s use an example.
         </p>
         <p>
-          Developers working on complex mono-repo–codebases that contain
+          Developers working on complex mono-repo-codebases that contain
           multiple, often unrelated, logical projects within the same repository
           (such as an IOS client, a web application, and other components that
-          may or may not share dependencies)35–can quickly encounter significant
-          challenges with GitHub Actions' caching limitations.36 Due to the
-          tendency of node_modules directories and large Docker image artifacts
-          to exceed 10 GB, the limited repository cache — coupled with its
-          age-based eviction strategy becomes a significant constraint. This
-          storage pressure creates an immediate performance bottleneck, forcing
-          teams to constantly juggle and optimize their dependency management
-          strategies.
+          may or may not share dependencies)-can quickly encounter significant
+          challenges with GitHub Actions' caching limitations.
+          <Cite
+            num={9999}
+            label="Monorepos"
+            href="https://www.atlassian.com/git/tutorials/monorepos"
+          />
+          Due to the tendency of node_modules directories and large Docker image
+          artifacts to exceed 10 GB, the limited repository cache — coupled with
+          its age-based eviction strategy becomes a significant constraint.
+          <Cite
+            num={9999}
+            label="GitHub Actions limitations and gotchas"
+            href="https://news.ycombinator.com/item?id=28460342"
+          />
+          This storage pressure creates an immediate performance bottleneck,
+          forcing teams to constantly juggle and optimize their dependency
+          management strategies.
         </p>
         <p>
           The introduction of multiple branches further complicates cache
           resource utilization and limits the efficacy of cache generally. Each
           branch, with potentially unique dependencies and workflow
-          configurations, competes for limited cache space32—creating an
-          environment where a single feature branch's large dependency update
-          could unexpectedly evict critical cached artifacts that the main
-          branch’s builds rely upon. This volatility renders cache utilization
-          unpredictable, turning what was originally intended as a performance
-          enhancement strategy into a fragile and, at times, unreliable build
-          speed optimization strategy. What emerges is a complex challenge where
-          intelligent cache management becomes as crucial as the software
-          development cycle it seeks to streamline.
+          configurations, competes for limited cache space
+          <Cite
+            num={9999}
+            label="Usage limits and eviction policy"
+            href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy"
+          />
+          —creating an environment where a single feature branch's large
+          dependency update could unexpectedly evict critical cached artifacts
+          that the main branch’s builds rely upon. This volatility renders cache
+          utilization unpredictable, turning what was originally intended as a
+          performance enhancement strategy into a fragile and, at times,
+          unreliable build speed optimization strategy. What emerges is a
+          complex challenge where intelligent cache management becomes as
+          crucial as the software development cycle it seeks to streamline.
         </p>
         <p>
-          Considering the limitations of actions/cache and the healthy demand
-          for faster CI builds, cache within GHA is a great area for exploring
-          alternative solutions.
+          Considering the limitations of{" "}
+          <CodeBlock canCopy={false}>actions/cache</CodeBlock> and the healthy
+          demand for faster CI builds, cache within GHA is a great area for
+          exploring alternative solutions.
         </p>
       </section>
       <section id="problem-domain-2-3">
@@ -439,7 +508,12 @@ const ProblemDomain = () => {
                   possible solution is provisioning an alternative runner
                   infrastructure with large storage discs which allows users to
                   reimagine the GHA CI build environment using persistent cache
-                  storage.33
+                  storage.
+                  <Cite
+                    num={9999}
+                    label="Cache is King"
+                    href="https://news.ycombinator.com/item?id=39956327"
+                  />
                 </li>
               </ul>
             </li>
@@ -453,9 +527,9 @@ const ProblemDomain = () => {
               administrative overhead
               <ul>
                 <li>
-                  The <strong>Self-Hosted Runner</strong> feature can be
-                  deployed on a local machine, on-premises server, or even on a
-                  cloud infrastructure.{" "}
+                  The <BT>Self-Hosted Runner</BT> feature can be deployed on a
+                  local machine, on-premises server, or even on a cloud
+                  infrastructure.{" "}
                 </li>
               </ul>
             </li>
@@ -519,8 +593,10 @@ const ProblemDomain = () => {
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
           the inner workings of GHA runners, as evidenced by the many case
-          studies published online (sources) as well as the how-to guides
-          (source) that have racked up tens of thousand of views.
+          studies published online <Cite num={9999} label="sources" href="" />
+          as well as the how-to guides{" "}
+          <Cite num={9999} label="sources" href="" /> that have racked up tens
+          of thousand of views.
         </p>
         <p>
           Taking this approach comes with tradeoffs. For one, developers must
@@ -551,19 +627,24 @@ const ProblemDomain = () => {
           experience the benefits of a customized runner infrastructure.
         </p>
         <p>
-          An example of such a 3rd-party provider is BuildJet (link)., a
-          hardware-first solution. BuildJet started off by providing users with
-          superior physical runner infrastructure for running GHA workflows.
-          Over time they recognized the need for a complementary cache
-          optimization solution and thus expanded their service offering to be
-          more of a hybrid hardware and software solution.
+          An example of such a 3rd-party provider is{" "}
+          <ExternalLink
+            href="https://buildjet.com/for-github-actions"
+            children="BuildJet"
+          />
+          , a hardware-first solution. BuildJet started off by providing users
+          with superior physical runner infrastructure for running GHA
+          workflows. Over time they recognized the need for a complementary
+          cache optimization solution and thus expanded their service offering
+          to be more of a hybrid hardware and software solution.
         </p>
         <p>
-          Another example is Depot (https://depot.dev/), a company that started
-          off as a remote container service for building Docker images. They too
-          realized the opportunity for expanding into general CI/CD builds and
-          leveraged their software optimization expertise to provide users with
-          alternative GHA runner infrastructures.
+          Another example is{" "}
+          <ExternalLink href="https://depot.dev/" children="Depot" />, a company
+          that started off as a remote container service for building Docker
+          images. They too realized the opportunity for expanding into general
+          CI/CD builds and leveraged their software optimization expertise to
+          provide users with alternative GHA runner infrastructures.
         </p>
         <p>
           In addition to a financial tradeoff for using these 3rd-party
@@ -578,11 +659,12 @@ const ProblemDomain = () => {
         <p>
           Given the tradeoffs posed by established 3rd-party solutions, efforts
           are being made to bring some degree of control back into the users’
-          hands. One such example is Runs-On (link), a project developed by one
-          individual to specifically address the security risks of exposing code
-          and secrets to a 3rd-party. Runs-On aims to be a drop-in replacement
-          for GHA default runners, which are provisioned in the user’s own AWS
-          account.
+          hands. One such example is{" "}
+          <ExternalLink href="https://runs-on.com/" children="Runs-On" />, a
+          project developed by one individual to specifically address the
+          security risks of exposing code and secrets to a 3rd-party. Runs-On
+          aims to be a drop-in replacement for GHA default runners, which are
+          provisioned in the user's own AWS account.
         </p>
         <p>
           In a solution such as Runs-On, moving the infrastructure hosting task

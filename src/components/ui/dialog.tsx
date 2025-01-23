@@ -2,7 +2,12 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import { FaMagnifyingGlass, FaExpand, FaChevronRight } from "react-icons/fa6";
+import {
+  FaMagnifyingGlass,
+  FaLink,
+  FaExpand,
+  FaChevronRight,
+} from "react-icons/fa6";
 import { SlBulb } from "react-icons/sl";
 
 const Dialog = DialogPrimitive.Root;
@@ -175,6 +180,42 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   );
 };
 
+// type CitationsModalProps = {
+//   triggerText: string;
+//   href: string;
+//   source: string;
+//   //   children: React.ReactNode;
+// };
+
+// const CitationsModal = ({
+//   triggerText,
+//   href,
+//   source,
+//   //   children,
+// }: CitationsModalProps) => {
+//   return (
+//     <Dialog>
+//       <DialogTrigger asChild>
+//         <sup className="cursor-pointer align-super text-xs hover:text-harrierPINK">
+//           {triggerText}
+//         </sup>
+//       </DialogTrigger>
+//       <DialogContent className="bg-harrierBLACK">
+//         <DialogDescription asChild>
+//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4 text-center">
+//             <div className="m-2 flex flex-row text-harrierWHITE">
+//               {triggerText}
+//               <FaLink size="24" className="mr-4 text-harrierPINK" />
+//               <a href={href}>{source}: </a>
+//             </div>
+//           </div>
+//         </DialogDescription>
+//         {/* <DialogFooter></DialogFooter> */}
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
+
 export {
   Dialog,
   DialogPortal,
@@ -186,6 +227,7 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-  TextContentModal, // we created these 2 components
+  TextContentModal, // we created these 3 components
   ImageContentModal,
+//   CitationsModal,
 };

@@ -3,6 +3,7 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 // import { ImageContentModal } from "@/components/ui/dialog";
 
 import { useInView } from "react-intersection-observer";
+import { Overview } from "@/components/utility/Overview";
 
 // Importing images
 // import blank from "@/assets/3.1.vpc-isolation.png";
@@ -53,8 +54,7 @@ const Future = () => {
 
   return (
     <>
-      <section id="future-work-0">
-        <h2>Future Work</h2>
+      <Overview>
         <p>
           Harrier is an open-source GitHub Actions self-hosted runner deployment
           tool designed to provide users with an alternative to GitHub Actions’
@@ -83,7 +83,7 @@ const Future = () => {
           the project, paving the way for a refinement of hypotheses and
           illuminating a roadmap for future exploration.
         </p>
-      </section>
+      </Overview>
       <section id="future-work-1">
         <SectionInView sectionId="future-work-1" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>

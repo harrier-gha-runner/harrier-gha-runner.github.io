@@ -108,16 +108,16 @@ export default function CaseStudyHomePage() {
       <div id="page-content-container" className="flex flex-wrap">
         <main
           id="case-study-content"
-          className="prose max-w-none flex-[60] flex-row overflow-y-auto p-10 pt-12"
+          //   className="prose w-full max-w-4xl flex-1 flex-row p-10 pt-12"
+          className="prose mx-auto w-full max-w-screen-md p-10 pt-12"
         >
           <Outlet />
         </main>
-
         <div
           id="on-this-page-container"
-          className={`w-[210px] ${viewportWideEnough ? "" : "hidden"} mr-4`}
+          className={`w-[250px] ${viewportWideEnough ? "" : "hidden"} mr-4`}
         >
-          <nav className="sticky top-[152px]" id="on-this-page">
+          <nav className="sticky top-[170px]" id="on-this-page">
             <h3 className="mb-6 text-xl font-semibold text-harrierBLACK">
               On this page
             </h3>
@@ -128,7 +128,7 @@ export default function CaseStudyHomePage() {
                   onClick={() => {
                     scrollToElement(subheader.id);
                   }}
-                  className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 font-semibold" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
+                  className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 text-harrierBLACK" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
                 >
                   <NavLink
                     to={`#${subheader.id}`}

@@ -18,6 +18,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import yaml from "js-yaml";
 import { formSchema } from "@/schemas/formSchema";
 import { Button } from "../ui/button";
+import { Overview } from "../utility/Overview";
 
 // import ip0 from "@/assets/screenshots/identity-provider/0.jpg";
 
@@ -152,16 +153,7 @@ const TryHarrierContent = ({
             </Button>
           </nav>
         </div>
-        <Separator
-          orientation="horizontal"
-          className="my-2 w-full border-b border-harrierBLACK/10"
-        />
-        <div className="my-4">{steps[activeStep].introduction}</div>
-        <Separator
-          orientation="horizontal"
-          className="my-2 w-full border-b border-harrierBLACK/10"
-        />
-
+        <Overview>{steps[activeStep].introduction}</Overview>
         <section
           id={`${steps[activeStep].id}`}
           className="flex flex-col justify-start"
@@ -265,15 +257,17 @@ export default function TryHarrierPage() {
           you can skip this step and continue to step 1.
           <ol className="flex flex-col align-middle">
             <li>
-              <ExternalLink href="https://aws.amazon.com/">
-                Create a paid AWS Account
-              </ExternalLink>
+              <ExternalLink
+                href="https://aws.amazon.com/"
+                children="Create a paid AWS Account"
+              />
             </li>
             {/* <FaAws size="30" className="mr-2 inline-block" /> */}
             <li>
-              <ExternalLink href="https://github.com/organizations/plan">
-                Create a GitHub Organization
-              </ExternalLink>
+              <ExternalLink
+                href="https://github.com/organizations/plan"
+                children="Create a GitHub Organization"
+              />
             </li>
 
             {/* <FaGithub size="30" className="mr-2 inline-block" /> */}
@@ -293,16 +287,18 @@ export default function TryHarrierPage() {
       title: "Create an OpenID Connect identity provider in IAM",
       introduction: (
         <span>
-          <ExternalLink href="https://openid.net/developers/how-connect-works/">
-            OpenID Connect
-          </ExternalLink>{" "}
+          <ExternalLink
+            href="https://openid.net/developers/how-connect-works/"
+            children="OpenID Connect"
+          />{" "}
           (OIDC) is an authentication protocol built on top of OAuth 2.0,
           allowing applications to verify user identities through an identity
           provider like GitHub. OIDC issues ID tokens (usually JWTs) that
           authenticate users and provide profile information, enabling{" "}
-          <ExternalLink href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso">
-            single sign-on
-          </ExternalLink>
+          <ExternalLink
+            href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso"
+            children="single sign-on"
+          />
           . OIDC is widely used for secure authentication, and in the context of
           GitHub, facilitates connections with external services by enabling
           secure, temporary credentials through OIDC tokens. This allows GitHub
@@ -423,16 +419,18 @@ export default function TryHarrierPage() {
       title: "Create a Personal Access Token on GitHub",
       introduction: (
         <span>
-          <ExternalLink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens">
-            Personal Access Tokens
-          </ExternalLink>{" "}
+          <ExternalLink
+            href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens"
+            children="Personal Access Tokens"
+          />{" "}
           (PAT) are used to securely authenticate and authorize access to a
           platform's APIs, enabling actions like managing resources and
           automating tasks without exposing sensitive credentials. Harrier
           requires a PAT to facilitate the authentication of{" "}
-          <ExternalLink href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28">
-            API request/response cycles.
-          </ExternalLink>{" "}
+          <ExternalLink
+            href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28"
+            children="API request/response cycles."
+          />
           By securely storing the token in AWS Secrets Manager, Harrier ensures
           it remains protected and accessible only when required, reducing the
           risk of unauthorized access and maintaining strict control over
@@ -452,9 +450,10 @@ export default function TryHarrierPage() {
           caption: (
             <span>
               Click on the following link:{" "}
-              <ExternalLink href="https://github.com/settings/tokens">
-                github.com/settings/tokens
-              </ExternalLink>{" "}
+              <ExternalLink
+                href="https://github.com/settings/tokens"
+                children="github.com/settings/tokens"
+              />{" "}
               to create a new personal access token.
             </span>
           ),
