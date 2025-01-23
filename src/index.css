@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+@import url("https://cdn.jsdelivr.net/npm/font-proxima-nova@1.0.1/style.min.css");
+@import url("https://fonts.cdnfonts.com/css/mona-sans");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,9 +44,24 @@ button {
   border-radius: 50%;
 }
 
-h2 {
-  margin-top: 0px;
+.goldilocks.box {
+  --shadow-color: hsl(0, 0%, 68%);
 }
+.box {
+  filter: drop-shadow(1px 3px 10px var(--shadow-color));
+}
+
+.code-block {
+  font-family: "Menlo", monospace;
+  background-color: #f5f5f5;
+  padding: 0px 6px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* h2 {
+  margin-top: 0px;
+} */
 .bird {
   top: 20%;
   width: 30px;
@@ -76,7 +92,10 @@ h2 {
   padding-top: 0.25rem;
   padding-left: 2rem;
 }
-
+*:not(img)::selection {
+  background-color: #fee01b;
+  color: black;
+}
 @keyframes bird-x-axis {
   50% {
     transform: translateX(470px);
@@ -88,7 +107,7 @@ h2 {
     transform: translateY(100px);
   }
 }
-
+/* 
 @layer base {
   :root {
     --chart-1: 29 97% 79%;
@@ -99,4 +118,4 @@ h2 {
     --chart-1: 220 70% 50%;
     --chart-2: 213 94% 89%;
   }
-}
+} */

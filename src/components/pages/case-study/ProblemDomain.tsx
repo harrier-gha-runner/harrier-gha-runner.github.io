@@ -3,6 +3,7 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 
 import { useInView } from "react-intersection-observer";
+import { SuperScript } from "../../utility/SuperScript";
 
 // Importing images
 import HarrierIntro from "@/assets/1.harrier-intro.png";
@@ -152,9 +153,9 @@ const ProblemDomain = () => {
           successfully, it is important to have as much alignment between teams
           throughout the entire development process. DevOps is a philosophy and
           culture that enables agile development while supporting collaboration,
-          automation, and continuous improvement.28 One of the key components of
-          DevOps is Continuous Integration and Continuous Delivery/Deployment
-          (CI/CD).
+          automation, and continuous improvement.
+          <SuperScript sourceID="28" /> One of the key components of DevOps is
+          Continuous Integration and Continuous Delivery/Deployment (CI/CD).
         </p>
         <ImageContentModal src={CiCdCircles} alt={"CI/CD process"} />
         <p>

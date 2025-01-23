@@ -9,7 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        navigation: "bg-harrierBLUE text-harrierBLUE-foreground hover:bg-harrierBLUE/90",
+        navigation:
+          "bg-harrierBLUE text-harrierBLUE-foreground hover:bg-harrierBLUE/90",
         default:
           "bg-harrierBLUE text-harrierBLUE-foreground hover:bg-harrierBLUE/90 border-2 border-harrierBLUE",
         destructive:
@@ -17,8 +18,8 @@ const buttonVariants = cva(
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-harrierPINK/70 text-harrierPINK-foreground hover:bg-harrierPINK",
-        test: "bg-harrierBLUE text-harrierBLUE-foreground hover:bg-harrierBLUE/90 border-2 border-harrierBLUE",
+          "bg-harrierPINK/90 text-harrierPINK-foreground hover:bg-harrierPINK",
+        test: "bg-harrierGray text-harrierGray-foreground hover:bg-harrierBLUE/90 border-2 border-harrierBLUE",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-harrierBLUE underline-offset-4 hover:underline",
       },

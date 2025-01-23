@@ -143,14 +143,9 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
       <DialogTrigger asChild>
         <div className="flex w-full items-center py-6">
           <img
-            className="m-0 cursor-pointer"
+            className="m-0 h-auto w-full max-w-3xl cursor-pointer"
             src={src}
             alt={alt}
-            style={{
-              width: "50%",
-              height: "auto",
-              maxWidth: "650px",
-            }}
           />
         </div>
       </DialogTrigger>
