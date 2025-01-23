@@ -54,35 +54,33 @@ const Future = () => {
 
   return (
     <>
-      <Overview>
-        <p>
-          Harrier is an open-source GitHub Actions self-hosted runner deployment
-          tool designed to provide users with an alternative to GitHub Actions’
-          default VM runners. The premise of Harrier is built on three primary
-          hypotheses:{" "}
-        </p>
-        <ul>
-          <li>
-            Providing a dedicated cache storage will enable users to optimize
-            their workflows with caching strategies
-          </li>
-          <li>
-            Self-hosted runners provisioned on a user’s own cloud platform can
-            easily match the baseline performance of GitHub's default VM runners
-          </li>
-          <li>
-            Running a GitHub Actions workflow using self-hosted runners is as
-            simple as registering a VM with the self-hosted runner token
-          </li>
-        </ul>
-        <p>
-          While the current implementation of Harrier, as a proof-of-concept,
-          has validated many aspects of the above hypotheses, the development
-          process has provided insights into the complexities of GitHub Actions
-          that were not taken into consideration for the current iteration of
-          the project, paving the way for a refinement of hypotheses and
-          illuminating a roadmap for future exploration.
-        </p>
+      <Overview title="Towards a Refinement of Hypotheses">
+        <span>
+          <p>
+            Harrier is has validated many aspects of its three primary
+            hypotheses:
+          </p>
+          <ul>
+            <li>
+              Providing a dedicated cache storage will enable users to optimize
+              their workflows with caching strategies
+            </li>
+            <li>
+              Self-hosted runners provisioned on a user’s own cloud platform can
+              easily match the baseline performance of GitHub's default VM
+              runners
+            </li>
+            <li>
+              Running a GitHub Actions workflow using self-hosted runners is as
+              simple as registering a VM with the self-hosted runner token
+            </li>
+          </ul>
+          <p>
+            However, the development process has highlighted complexities within
+            GHA that were not taken into consideration for the current
+            prototype, illuminating a roadmap for future exploration.
+          </p>
+        </span>
       </Overview>
       <section id="future-work-1">
         <SectionInView sectionId="future-work-1" onInView={handleInView} />

@@ -99,7 +99,7 @@ const LandingPage = () => {
           </Button>
         </div>
       </div>
-      <div className="flex h-auto flex-col gap-8 bg-harrierWHITE p-8 md:h-[36rem] md:flex-row">
+      <div className="flex h-[36rem] flex-row gap-8 bg-harrierWHITE p-8">
         <div className="flex w-full items-center justify-center md:w-1/2">
           <img
             src={HarrierSetupAltInfra}
@@ -123,7 +123,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="flex h-auto flex-col gap-8 bg-harrierOFFWHITE p-8 md:h-[36rem] md:flex-row">
+      <div className="flex h-[36rem] flex-row gap-8 bg-harrierOFFWHITE p-8">
         {/* Text Div */}
         <div className="flex w-full items-center justify-center md:w-3/5">
           <div className="max-w-full space-y-4 text-left md:max-w-[90%]">

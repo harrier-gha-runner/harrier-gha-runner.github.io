@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { Cite } from "@/components/utility/Cite";
 import { CodeBlock } from "@/components/utility/CodeBlock";
+
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
 import { useInView } from "react-intersection-observer";
 
@@ -79,21 +80,21 @@ const Implementation = () => {
 
   return (
     <>
-      <Overview>
-        <div>
+      <Overview title="Prototyped using AWS, focused on Node.js projects">
+        <span>
           <ul>
             <li>
-              Harrier is <BT>implemented in AWS </BT> which provides secure GH
-              integration through OIDC standards, with a secrets manager
-              function.
+              <BT>Prioritizing data security. </BT>AWS provides secure GitHub
+              integration through OIDC standards and protects user secrets using
+              their trusted AWS Secrets Manager.
             </li>
             <li>
-              As the most common runtime environment on GitHub,{" "}
-              <BT>focusing on Node.js</BT> offered significant return on
-              investment for Harrier's initial implementation.
+              <BT>Building for a wide scope of use.</BT> JavaScript, often
+              paired with Node.js for server-side code, is one of the most
+              prevalent languages and runtime environments on GitHub.
             </li>
           </ul>
-        </div>
+        </span>
       </Overview>
       {/* <section id="implementation-0">
         <h2>Harrier Implementation</h2>
@@ -188,8 +189,8 @@ const Implementation = () => {
           </ul>
       </section> */}
 
-      <section id="implementation-1">
-        <SectionInView sectionId="implementation-1" onInView={handleInView} />
+      <section id="implementation-0">
+        <SectionInView sectionId="implementation-0" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
         <p>
           Harrier sets up a dedicated Amazon Virtual Private Cloud (VPC) within
@@ -274,8 +275,8 @@ const Implementation = () => {
         </ul>
       </section>
 
-      <section id="implementation-2">
-        <SectionInView sectionId="implementation-2" onInView={handleInView} />
+      <section id="implementation-1">
+        <SectionInView sectionId="implementation-1" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
         <p>
           Harrier deploys to Amazon's Elastic Compute Cloud (EC2) service which
@@ -610,8 +611,8 @@ const Implementation = () => {
         </ul> */}
       </section>
 
-      <section id="implementation-3">
-        <SectionInView sectionId="implementation-3" onInView={handleInView} />
+      <section id="implementation-2">
+        <SectionInView sectionId="implementation-2" onInView={handleInView} />
         <h2>{subheaderNames[2]}</h2>
         <p>
           While the GHA self-hosted runner application is installed in a
@@ -881,8 +882,8 @@ const Implementation = () => {
         </ul> */}
       </section>
 
-      <section id="implementation-4">
-        <SectionInView sectionId="implementation-4" onInView={handleInView} />
+      <section id="implementation-3">
+        <SectionInView sectionId="implementation-3" onInView={handleInView} />
         <h2>{subheaderNames[3]}</h2>
         <p>
           Harrier runners are ephemeral VMs designed to ensure an isolated and
@@ -1000,8 +1001,8 @@ const Implementation = () => {
         </ul>
       </section>
 
-      <section id="implementation-5">
-        <SectionInView sectionId="implementation-5" onInView={handleInView} />
+      <section id="implementation-4">
+        <SectionInView sectionId="implementation-4" onInView={handleInView} />
         <h2>{subheaderNames[4]}</h2>
         <p>
           Setting up the alternative runner infrastructure in the user's own AWS
@@ -1148,8 +1149,8 @@ const Implementation = () => {
             </TextContentModal>
           </li>
         </ul> */}
-      <section id="implementation-6">
-        <SectionInView sectionId="implementation-6" onInView={handleInView} />
+      <section id="implementation-5">
+        <SectionInView sectionId="implementation-5" onInView={handleInView} />
         <h2>{subheaderNames[5]}</h2>
         <p>
           During the dependency installation step of a Node.js workflow, the npm
@@ -1468,8 +1469,8 @@ const Implementation = () => {
         </ul> */}
       </section>
 
-      <section id="implementation-7">
-        <SectionInView sectionId="implementation-7" onInView={handleInView} />
+      <section id="implementation-6">
+        <SectionInView sectionId="implementation-6" onInView={handleInView} />
         <h2>{subheaderNames[6]}</h2>
         <ImageContentModal
           src={ApiPlatformIntegration}
@@ -1661,8 +1662,8 @@ const Implementation = () => {
         </ul> */}
       </section>
 
-      <section id="implementation-8">
-        <SectionInView sectionId="implementation-8" onInView={handleInView} />
+      <section id="implementation-7">
+        <SectionInView sectionId="implementation-7" onInView={handleInView} />
         <h2>{subheaderNames[7]}</h2>
         {/* <div className="h-[100px] overflow-hidden">
           <ImageContentModal
@@ -1791,8 +1792,8 @@ const Implementation = () => {
         </ul>
       </section>
 
-      <section id="implementation-9">
-        <SectionInView sectionId="implementation-9" onInView={handleInView} />
+      <section id="implementation-8">
+        <SectionInView sectionId="implementation-8" onInView={handleInView} />
         <h2>{subheaderNames[8]}</h2>
         <ImageContentModal
           src={OverallArchitecture}

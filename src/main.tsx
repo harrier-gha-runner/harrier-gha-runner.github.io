@@ -9,6 +9,7 @@ import Layout from "./components/utility/Layout";
 import LandingPage from "./components/pages/LandingPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import CaseStudyHomePage from "./components/pages/CaseStudyHomePage";
+import Introduction from "./components/pages/case-study/Introduction";
 import ProblemDomain from "./components/pages/case-study/ProblemDomain";
 import Design from "./components/pages/case-study/Design";
 import Implementation from "./components/pages/case-study/Implementation";
@@ -55,7 +56,7 @@ createRoot(document.getElementById("app")!).render(
                     },
                     {
                       path: "introduction",
-                      element: <div>introduction</div>,
+                      element: <Introduction />,
                     },
                     {
                       path: "*",

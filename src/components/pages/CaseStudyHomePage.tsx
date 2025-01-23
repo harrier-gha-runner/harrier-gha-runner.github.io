@@ -55,8 +55,57 @@ const CaseStudyNav = ({
   );
 };
 
-export default function CaseStudyHomePage() {
+const scrollToElement = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const offset = element.offsetTop - 152;
+    window.scrollTo({ top: offset, behavior: "smooth" });
+  }
+};
+
+const CaseStudyOnThisPageNav = ({
+  pages,
+  activePage,
+  activeSubheader,
+}: {
+  pages: Page[];
+  activePage: number;
+  activeSubheader: number | null;
+}) => {
   const viewportWideEnough = useViewportWidth();
+  return (
+    <div
+      id="on-this-page-container"
+      className={`w-[250px] ${viewportWideEnough ? "" : "hidden"} mr-4`}
+    >
+      <nav className="sticky top-[170px]" id="on-this-page">
+        <h3 className="mb-6 text-xl font-semibold text-harrierBLACK">
+          On this page
+        </h3>
+        <ul>
+          {pages[activePage]?.subheaders?.map((subheader, subheaderIdx) => {
+            return (
+              <li
+                key={subheader.id}
+                onClick={() => scrollToElement(subheader.id)}
+                className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 text-harrierBLACK" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
+              >
+                <NavLink
+                  to={{ hash: `#${subheader.id}` }}
+                  className="relative flex flex-row no-underline"
+                >
+                  {subheader.name}
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+  );
+};
+
+export default function CaseStudyHomePage() {
   const pageContext = useContext(PageNavigationContext);
   const location = useLocation();
 
@@ -74,14 +123,6 @@ export default function CaseStudyHomePage() {
     setActiveSubheader,
   } = pageContext;
 
-  const scrollToElement = useCallback((id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = element.offsetTop - 152;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-  }, []);
-
   useEffect(() => {
     const { pathname, hash } = location;
     const pageId = pathname.split("/").pop();
@@ -94,7 +135,7 @@ export default function CaseStudyHomePage() {
     if (hash) {
       scrollToElement(hash.substring(1));
     }
-  }, [location, pages, setActivePage, scrollToElement]);
+  }, [location, pages, setActivePage]);
 
   return (
     <>
@@ -113,34 +154,13 @@ export default function CaseStudyHomePage() {
         >
           <Outlet />
         </main>
-        <div
-          id="on-this-page-container"
-          className={`w-[250px] ${viewportWideEnough ? "" : "hidden"} mr-4`}
-        >
-          <nav className="sticky top-[170px]" id="on-this-page">
-            <h3 className="mb-6 text-xl font-semibold text-harrierBLACK">
-              On this page
-            </h3>
-            <ul>
-              {pages[activePage]?.subheaders?.map((subheader, subheaderIdx) => (
-                <li
-                  key={subheader.id}
-                  onClick={() => {
-                    scrollToElement(subheader.id);
-                  }}
-                  className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 text-harrierBLACK" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
-                >
-                  <NavLink
-                    to={`#${subheader.id}`}
-                    className="relative flex flex-row no-underline"
-                  >
-                    {subheader.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+        {activePage !== 0 && (
+          <CaseStudyOnThisPageNav
+            pages={pages}
+            activePage={activePage}
+            activeSubheader={activeSubheader}
+          />
+        )}
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 import { Cite } from "@/components/utility/Cite";
+import { BoldText as BT } from "@/components/utility/BoldText";
 import { useInView } from "react-intersection-observer";
 
 // Importing images
@@ -63,22 +64,29 @@ const Design = () => {
 
   return (
     <>
-      <Overview>
+      <Overview title="Alternative GHA runner infrastructure in user’s own cloud">
         <span>
-          The design of a 3rd-party supported DIY option for leveraging cache in
-          GHA workflows involved two major pieces of work:
           <ul>
             <li>
-              Provision and configure an alternative GHA runner infrastructure
-              with a dedicated persistent cache store into the user’s own cloud
-              environment.
+              <BT>Harrier as an automated deployment tool.</BT> Harrier is a
+              3rd-party supported DIY option for leveraging cache in GHA
+              workflows.
             </li>
             <li>
-              Facilitate the user’s access to and utilization of the newly
-              provisioned alternative runner infrastructure.
+              <BT>More than just a GHA-registered VM.</BT> Harrier provisions
+              and configures an entire fleet of VMs and a dedicated persistent
+              cache store, with automated runner management.
+            </li>
+            <li>
+              <BT>
+                Seamless integration with minimal impact on existing workflows.
+              </BT>{" "}
+              Harrier manages the platform integration and facilitates access to
+              and utilization of new runner infrastructure.
             </li>
           </ul>
         </span>
+
         {/* <ImageContentModal
           src={HarrierDesignLevelHigh}
           alt={"Harrier Design Level High"}
@@ -88,10 +96,9 @@ const Design = () => {
           alt={"Alternate Infrastructure"}
         /> */}
       </Overview>
-      <section id="design-1">
-        <SectionInView sectionId="design-1" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
-        <ImageContentModal src={VpcIsolation} alt={"VPC Isolation"} />
+      <section id="design-0">
+        <SectionInView sectionId="design-0" onInView={handleInView} />
+        <h2>{subheaderNames[0]}</h2>
         <p>
           Harrier provides an alternative runner infrastructure within a user’s
           existing cloud account. It is important to ensure that the
@@ -101,11 +108,11 @@ const Design = () => {
           virtual private cloud that is dedicated to housing the core
           infrastructure components of the self-hosted runner.
         </p>
+        <ImageContentModal src={VpcIsolation} alt={"VPC Isolation"} />
       </section>
-      <section id="design-2">
-        <SectionInView sectionId="design-2" onInView={handleInView} />
-        <h2>{subheaderNames[2]}</h2>
-        <ImageContentModal src={WarmPool} alt={"Warm Pool"} />
+      <section id="design-1">
+        <SectionInView sectionId="design-1" onInView={handleInView} />
+        <h2>{subheaderNames[1]}</h2>
         <p>
           Provisioning a runner within the user’s cloud entails configuring a
           virtual machine (VM) with the GHA self-hosted runner application.
@@ -121,11 +128,11 @@ const Design = () => {
           provisioning VMs is then reused as a “VM factory” to replenish and
           maintain the runner fleet.
         </p>
+        <ImageContentModal src={WarmPool} alt={"Warm Pool"} />
       </section>
-      <section id="design-3">
-        <SectionInView sectionId="design-3" onInView={handleInView} />
-        <h2>{subheaderNames[3]}</h2>
-        <ImageContentModal src={JobSession} alt={"Job Sessions"} />
+      <section id="design-2">
+        <SectionInView sectionId="design-2" onInView={handleInView} />
+        <h2>{subheaderNames[2]}</h2>
         <p>
           A provisioned VM runner must be registered with GitHub so that it is
           visible to GHA as an available runner. There are two forms of runner
@@ -137,11 +144,11 @@ const Design = () => {
           dynamically obtain a token at the time of the initial workflow
           dispatch.
         </p>
+        <ImageContentModal src={JobSession} alt={"Job Sessions"} />
       </section>
-      <section id="design-4">
-        <SectionInView sectionId="design-4" onInView={handleInView} />
-        <h2>{subheaderNames[4]}</h2>
-        <ImageContentModal src={TeminatedRunner} alt={"Terminated Runner"} />
+      <section id="design-3">
+        <SectionInView sectionId="design-3" onInView={handleInView} />
+        <h2>{subheaderNames[3]}</h2>
         <p>
           To preserve the benefits of GHA’s original ephemeral runner design, a
           VM runner must be fully terminated at the end of each workflow run.
@@ -150,21 +157,22 @@ const Design = () => {
           Harrier terminates the VM after receiving a notification that the
           workflow run has completed.
         </p>
+        <ImageContentModal src={TeminatedRunner} alt={"Terminated Runner"} />
       </section>
-      <section id="design-5">
-        <SectionInView sectionId="design-5" onInView={handleInView} />
-        <ImageContentModal src={DedicatedCache} alt={"Dedicated Runner"} />
-        <h2>{subheaderNames[5]}</h2>
+      <section id="design-4">
+        <SectionInView sectionId="design-4" onInView={handleInView} />
+        <h2>{subheaderNames[4]}</h2>
         <p>
           Alongside the provisioning of its VMs, Harrier provisions a persistent
           data store within the user’s cloud environment. This cache store is
           made accessible to every VM as a mounted local file system so that
           cache files can be conveniently loaded and stored.
         </p>
+        <ImageContentModal src={DedicatedCache} alt={"Dedicated Runner"} />
       </section>
-      <section id="design-6">
-        <SectionInView sectionId="design-6" onInView={handleInView} />
-        <h2>{subheaderNames[6]}</h2>
+      <section id="design-5">
+        <SectionInView sectionId="design-5" onInView={handleInView} />
+        <h2>{subheaderNames[5]}</h2>
         <p>
           Since the data store is mounted directly to the local file system, the
           user can leverage caching at any point of the workflow where duplicate
@@ -204,10 +212,10 @@ const Design = () => {
           time savings during the dependency installation step.
         </span>
       </section>
-      <section id="design-7">
-        <SectionInView sectionId="design-7" onInView={handleInView} />
-        <h2>{subheaderNames[7]}</h2>
-        <ImageContentModal src={ApiIntegration} alt={"API Integration"} />
+      <section id="design-6">
+        <SectionInView sectionId="design-6" onInView={handleInView} />
+        <h2>{subheaderNames[6]}</h2>
+
         <p>
           With the alternative runner infrastructure provisioned and configured
           within the user’s cloud environment, integration with the GHA
@@ -219,10 +227,11 @@ const Design = () => {
           triggers a VM to start up from the warm pool at the start of the
           workflow and also terminate upon completion of the workflow.{" "}
         </p>
+        <ImageContentModal src={ApiIntegration} alt={"API Integration"} />
       </section>
-      <section id="design-8">
-        <SectionInView sectionId="design-8" onInView={handleInView} />
-        <h2>{subheaderNames[8]}</h2>
+      <section id="design-7">
+        <SectionInView sectionId="design-7" onInView={handleInView} />
+        <h2>{subheaderNames[7]}</h2>
         <p>
           To ease migration from default GHA runners to self-hosted runners and
           minimize workflow disruption, Harrier requires simple one-line

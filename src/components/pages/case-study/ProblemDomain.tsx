@@ -7,8 +7,6 @@ import { BoldText as BT } from "@/components/utility/BoldText";
 import { useInView } from "react-intersection-observer";
 import { Cite } from "@/components/utility/Cite";
 import { Overview } from "@/components/utility/Overview";
-// Importing images
-// import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
@@ -63,35 +61,29 @@ const ProblemDomain = () => {
     <>
       <section id="problem-domain-2-1">
         <h2 className="major-h">{subheaderNames[0]}</h2>
-        <Overview>
-          <ul>
-            <li>
-              <BT>
-                GitHub Actions (GHA) as a cornerstone of modern software
-                development.
-              </BT>
-              GitHub Actions empowers developers and teams to streamline their
-              CI/CD workflows as its primary function.
-            </li>
-            <li>
-              Given GHA's widespread adoption, identifying and addressing
-              friction points within its workflows can have a substantial impact
-              on the day-to-day experience and overall productivity of
-              developers.
-              <ul>
-                <li>
-                  By improving GHA itself, teams can work more efficiently and
-                  reduce delays in the CI/CD process.
-                </li>
-              </ul>
-            </li>
-            <li>
-              For this reason, finding opportunities for optimizing GHA
-              workflows became a strategic priority for the Harrier team—because
-              even small performance improvements at this stage can have
-              compounding effects across the entire development pipeline.
-            </li>
-          </ul>
+        <Overview title="GitHub Actions: Cornerstone of Modern Software Development">
+          <span>
+            <ul>
+              <li>
+                <BT>GHA empowers developers and teams.</BT>With CI/CD workflows
+                as its primary function GHA streamlines processes from
+                development to production.{" "}
+              </li>
+              <li>
+                <BT>GHA has widespread adoption.</BT> GHA is a go-to choice for
+                automation for its ease of use, flexibility, and ability to run
+                workflows directly from within the GitHub repo.
+              </li>
+              <li>
+                <BT>
+                  GHA optimization can have substantial impact on productivity.
+                </BT>{" "}
+                Identifying and addressing friction points within GHA leads to
+                increased efficiency and effectiveness, making it a strategic
+                priority for Harrier.
+              </li>
+            </ul>
+          </span>
         </Overview>
       </section>
       <section>

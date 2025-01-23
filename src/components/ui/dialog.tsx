@@ -120,7 +120,6 @@ type TextContentModalProps = {
 
 const TextContentModal = ({ title, children }: TextContentModalProps) => {
   //   const [trigger, ...content] = React.Children.toArray(children);
-  //   console.log({ children });
 
   return (
     <Dialog>
@@ -229,5 +228,5 @@ export {
   DialogDescription,
   TextContentModal, // we created these 3 components
   ImageContentModal,
-//   CitationsModal,
+  //   CitationsModal,
 };
