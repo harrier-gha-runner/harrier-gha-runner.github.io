@@ -199,7 +199,7 @@ const TryHarrierContent = ({
                       aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
                     >
                       <img
-                        src={`${process.env.PUBLIC_URL}/screenshots/${steps[activeStep].id}/${idx}.jpg`}
+                        src={`/screenshots/${steps[activeStep].id}/${idx}.jpg`}
                         alt={item.alt || ""}
                         className="h-auto rounded-lg object-contain shadow"
                       />
