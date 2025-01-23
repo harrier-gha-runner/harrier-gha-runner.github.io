@@ -2,6 +2,8 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
+import { FaMagnifyingGlass, FaExpand, FaChevronRight } from "react-icons/fa6";
+import { SlBulb } from "react-icons/sl";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -35,7 +37,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-md border-0 bg-harrierGRAY px-8 py-6 shadow-lg duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "fixed left-[50%] top-[50%] z-50 w-full max-w-3xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-md border-0 bg-harrierGRAY px-8 py-6 shadow-lg duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
         className,
       )}
       {...props}
@@ -112,25 +114,30 @@ type TextContentModalProps = {
 };
 
 const TextContentModal = ({ title, children }: TextContentModalProps) => {
-  const [trigger, ...content] = React.Children.toArray(children);
+  //   const [trigger, ...content] = React.Children.toArray(children);
+  //   console.log({ children });
 
   return (
     <Dialog>
       <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
-        {trigger}
+        <SlBulb size="22" className="mr-2 text-harrierYELLOW" />
+        <>{title}</>
       </DialogTrigger>
       <DialogContent className="bg-harrierBLACK">
         <DialogHeader>
           <DialogTitle asChild>
-            <h5>{title}</h5>
+            <h5 className="mb-5 flex flex-row justify-center text-3xl">
+              <FaMagnifyingGlass size="28" className="mr-4 text-harrierPINK" />
+              {title}
+            </h5>
           </DialogTitle>
         </DialogHeader>
         <DialogDescription asChild>
           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
-            <p className="m-0 text-gray-200">{content}</p>
+            <div className="m-2 text-harrierWHITE">{children}</div>
           </div>
         </DialogDescription>
-        <DialogFooter></DialogFooter>
+        {/* <DialogFooter></DialogFooter> */}
       </DialogContent>
     </Dialog>
   );

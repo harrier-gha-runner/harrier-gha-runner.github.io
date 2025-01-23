@@ -4,14 +4,9 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-//   CardFooter,
+  //   CardFooter,
 } from "@/components/ui/card";
-import {
-  FaLinkedin,
-  FaGithub,
-  FaRegFilePdf,
-  FaLocationArrow,
-} from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 import { Member } from "@/components/pages/LandingPage";
 
 const TeamMember = ({ member }: { member: Member }) => {
@@ -28,11 +23,12 @@ const TeamMember = ({ member }: { member: Member }) => {
             alt={member.name}
             className="h-48 w-48 rounded-full object-cover"
           />
-          <CardTitle className="text-center text-xl font-semibold">
+          <CardTitle className="text-center text-xl font-semibold pt-2">
             {member.name}
           </CardTitle>
-          <CardDescription className="text-center text-sm text-gray-600">
-            {member.location}
+          <CardDescription className="flex items-center justify-center text-center text-sm text-gray-600">
+            <FaLocationDot className="mr-2" />
+            <span>{member.location}</span>
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col items-center p-4 pb-6 pt-0">
