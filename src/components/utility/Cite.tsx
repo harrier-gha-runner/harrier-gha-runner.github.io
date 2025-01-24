@@ -19,7 +19,7 @@ export const Cite = ({ num, href, label }: CiteProps) => {
           <TooltipTrigger asChild>
             <sup className="relative mr-1 inline-block cursor-pointer align-super text-xs">
               <a
-                className="font-semibold text-harrierPINK no-underline"
+                className="text-harrierPINK no-underline"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={href}

@@ -2,7 +2,7 @@ import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "@/providers/PageNavigation";
-import { TeamProvider } from "@/providers/TeamProvider";
+import { TeamProvider } from "@/providers/Team";
 
 import { TryHarrierPage } from "./components/pages/TryHarrierPage";
 import { TeamPage } from "./components/pages/TeamPage";

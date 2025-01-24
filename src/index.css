@@ -105,7 +105,7 @@ button {
   padding-left: 2rem;
 }
 *:not(img)::selection {
-  background-color: #fee01b;
+  background-color: #a2ff57; /* #fee01b */
   color: black;
 }
 @keyframes bird-x-axis {

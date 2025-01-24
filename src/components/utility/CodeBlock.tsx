@@ -2,16 +2,16 @@ import { useState } from "react";
 
 export const CodeBlock = ({
   children,
-  canCopy = true,
+  copy = true,
 }: {
   children: string;
-  canCopy?: boolean;
+  copy?: boolean;
 }) => {
   const [copied, setCopied] = useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   async function copyToClipboard() {
-    if (!canCopy) return;
+    if (!copy) return;
     try {
       await navigator.clipboard.writeText(children);
       setCopied(true);
@@ -27,8 +27,8 @@ export const CodeBlock = ({
   return (
     <>
       <span
-        className={`code-block ${copied ? "bg-harrierBLUE" : ""} ${canCopy ? "cursor-copy" : "cursor-default"}`}
-        onClick={canCopy ? copyToClipboard : undefined}
+        className={`code-block ${copied ? "bg-harrierBLUE" : ""} ${copy ? "cursor-copy" : "cursor-default"}`}
+        onClick={copy ? copyToClipboard : undefined}
       >
         {children}
       </span>

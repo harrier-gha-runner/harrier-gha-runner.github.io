@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-import { TeamContext } from "@/providers/TeamProvider";
+import { TeamContext } from "@/providers/Team";
 import { Button } from "@/components/ui/button";
 // import FloatingBirds from "@/components/FloatingBirds";
 import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { Overview } from "@/components/utility/Overview";
+import { BoldText as BT } from "@/components/utility/BoldText";
+import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { SectionInView } from "@/components/utility/SectionInView";
 
 export const FutureWork = () => {
@@ -32,49 +34,45 @@ export const FutureWork = () => {
   return (
     <>
       <Overview title="Towards a Refinement of Hypotheses">
-        <span>
-          <p>
-            Harrier is has validated many aspects of its three primary
-            hypotheses:
-          </p>
-          <ul>
-            <li>
-              Providing a dedicated cache storage will enable users to optimize
-              their workflows with caching strategies
-            </li>
-            <li>
-              Self-hosted runners provisioned on a user’s own cloud platform can
-              easily match the baseline performance of GitHub's default VM
-              runners
-            </li>
-            <li>
-              Running a GitHub Actions workflow using self-hosted runners is as
-              simple as registering a VM with the self-hosted runner token
-            </li>
-          </ul>
-          <p>
-            However, the development process has highlighted complexities within
-            GHA that were not taken into consideration for the current
-            prototype, illuminating a roadmap for future exploration.
-          </p>
-        </span>
+        <p>
+          Harrier is has validated many aspects of its three primary hypotheses:
+        </p>
+        <ul>
+          <li>
+            Providing a dedicated cache storage will enable users to optimize
+            their workflows with caching strategies
+          </li>
+          <li>
+            Self-hosted runners provisioned on a users own cloud platform can
+            easily match the baseline performance of GitHub's default VM runners
+          </li>
+          <li>
+            Running a GitHub Actions workflow using self-hosted runners is as
+            simple as registering a VM with the self-hosted runner token
+          </li>
+        </ul>
+        <p>
+          However, the development process has highlighted complexities within
+          GHA that were not taken into consideration for the current prototype,
+          illuminating a roadmap for future exploration.
+        </p>
       </Overview>
       <section id="future-work-1">
         <SectionInView sectionId="future-work-1" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
         <p>
           Harrier assumed that the root cause for the lack of caching
-          capabilities within GHA was due to GHA’s initial VM architecture
+          capabilities within GHA was due to GHA's initial VM architecture
           design of ephemeral runners without data persistence. This assumption
-          seems to be validated by GHA’s own cache workaround (actions/cache) as
-          well as by other 3rd-party solutions. However, Harrier’s hypothesis
-          that the act of providing a dedicated cache storage through an
-          alternative runner infrastructure would enable users to optimize their
-          workflows may have overlooked the importance of human-centered design
-          in devising a meaningful solution.
+          seems to be validated by GHA's own cache workaround:
+          <CB copy={false}>actions/cache</CB> as well as by other 3rd-party
+          solutions. However, Harrier's hypothesis that the act of providing a
+          dedicated cache storage through an alternative runner infrastructure
+          would enable users to optimize their workflows may have overlooked the
+          importance of human-centered design in devising a meaningful solution.
         </p>
         <p>
-          Harrier’s dedicated S3 bucket for persistent cache storage made
+          Harrier's dedicated S3 bucket for persistent cache storage made
           caching a possibility. However, given the complexities of how a
           workflow executes a CI build, caching only became a reality once
           Harrier shouldered the work of identifying the proper cache sequence,
@@ -91,8 +89,9 @@ export const FutureWork = () => {
         <ul>
           <li>
             Identify additional cacheable data commonly present in GHA workflows
-            (i.e. fetched npm_cache packages above and beyond node_modules
-            directory files, docker layers, etc.)
+            (i.e. fetched <CB copy={false}>npm_cache</CB> packages above and
+            beyond <CB copy={false}>node_modules</CB> directory files, docker
+            layers, etc.)
           </li>
           <li>
             Generalize the Harrier cache actions to accept arguments that
@@ -110,7 +109,7 @@ export const FutureWork = () => {
           the VM runner. Under this assumption, Harrier was designed to provide
           users with AWS EC2s with CPU and memory specs that are equal to or
           better than GHA VMs, with the only major consideration placed on
-          pricing considerations.{" "}
+          pricing considerations.
         </p>
         <p>
           During testing, the actual execution time of the workflow between
@@ -170,7 +169,7 @@ export const FutureWork = () => {
         </p>
         <p>
           Looking forward, the opportunities for exploration should focus around
-          properly integrating with GHA’s runner request mechanism to ensure
+          properly integrating with GHA's runner request mechanism to ensure
           that all workflow jobs are executed. This effort would include:
         </p>
         <ul>

@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { ImageContentModal } from "@/components/ui/dialog";
-import { CodeBlock } from "@/components/utility/CodeBlock";
+import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { BoldText as BT } from "@/components/utility/BoldText";
 import { Cite } from "@/components/utility/Cite";
 import { Overview } from "@/components/utility/Overview";
 import { SectionInView } from "@/components/utility/SectionInView";
+import { Callout } from "@/components/utility/Callout";
 
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
@@ -212,17 +213,17 @@ export const ProblemDomain = () => {
           <ul>
             <li>
               Limited visibility of workflow artifacts & robust artifact
-              management.
+              management
             </li>
-            <li>Limited tooling for debugging workflows.</li>
+            <li>Limited tooling for debugging workflows</li>
             <li>
               Limited support for event-based workflow triggers originating
-              outside of GitHub itself. (send a “respository_dispatch” event via
-              the GitHub API)
+              outside of GitHub itself (send a <CB>respository_dispatch</CB>{" "}
+              event via the GitHub API)
             </li>
-            <li>Performance ceiling for enterprise-level workflows.</li>
+            <li>Performance ceiling for enterprise-level workflows</li>
             <li>
-              YAML-based workflow configuration.
+              YAML-based workflow configuration
               <Cite
                 num={9999}
                 label="YAML pitfalls"
@@ -237,7 +238,7 @@ export const ProblemDomain = () => {
         </p>
         <p>
           One approach is to consider alternative open-source DIY solutions,
-          such as Jenkins or Red Hat’s Ansible. Such approaches allow for a
+          such as Jenkins or Red Hat's Ansible. Such approaches allow for a
           greater degree of control and customizability at the cost of
           considerable ramp-up investment, introducing cross-platform
           integration complexity, and shouldering the responsibility for
@@ -246,12 +247,17 @@ export const ProblemDomain = () => {
         <p>
           To alleviate the efforts required by taking a DIY approach, another
           approach is to consider 3rd-party managed CI/CD services, such as
-          Travis CI or Circle CI. These subscription-based solutions involve
-          minimal setup, strong performance optimizations, and seamless scaling
-          on managed infrastructure. Compelling as they are, taking this
-          approach isn’t optimal for specific users as it comes at the cost of
-          exposing code to an external source and being locked within the 3rd
-          party provider’s platform.{" "}
+          <ExternalLink
+            href="https://www.travis-ci.com/"
+            children="Travis CI"
+          />{" "}
+          or <ExternalLink href="https://circleci.com/" children="Circle CI" />.
+          These subscription-based solutions involve minimal setup, strong
+          performance optimizations, and seamless scaling on managed
+          infrastructure. Compelling as they are, taking this approach isn't
+          optimal for specific users as it comes at the cost of exposing code to
+          an external source and being locked within the 3rd party provider's
+          platform.{" "}
         </p>
         <p>
           Despite the advantages the above alternative approaches provide, still
@@ -297,10 +303,10 @@ export const ProblemDomain = () => {
             </li>
             <li>
               <BT>
-                GHA’s cloud infrastructure design prohibits effective caching.
+                GHA's cloud infrastructure design prohibits effective caching.
               </BT>{" "}
               Caching, a primary workaround for accelerating workflows, is
-              difficult in GHA’s ephemeral VM architecture.
+              difficult in GHA's ephemeral VM architecture.
             </li>
           </ul>
         </span>
@@ -309,7 +315,7 @@ export const ProblemDomain = () => {
         <SectionInView sectionId="problem-domain-3" onInView={handleInView} />
         <h2>{subheaderNames[3]}</h2>
         <p>
-          GitHub Action’s automated workflows are executed on servers that are
+          GitHub Action's automated workflows are executed on servers that are
           called runners. GitHub provides default runners as a service in order
           to abstract away the process of provisioning and setting up a server,
           thus freeing up the user to focus on the details of the workflow.{" "}
@@ -317,18 +323,17 @@ export const ProblemDomain = () => {
         <p>
           Given the need to provide over 100 million GitHub users with a clean
           runtime environment and minimize the risk of data leakage between jobs
-          or users, GitHub leverages the Microsoft Azure cloud platform (since
-          GitHub is a Microsoft company). To address isolation and security
-          concerns, GitHub provisions brand new virtual machines (VMs) for each
-          job specified in workflow files, which are promptly destroyed after
-          job completion.
+          or users, GitHub leverages its parent company Microsoft's Azure cloud
+          platform. To address isolation and security concerns, GitHub
+          provisions brand new virtual machines (VMs) for each job specified in
+          workflow files, which are promptly destroyed after job completion.
           <ImageContentModal
             src={GitHubComponents}
             alt={"GitHub Actions components"}
           />
         </p>
-        <p className="callout">
-          <p>What is caching?</p>
+
+        <Callout title="What is Caching?">
           Caching is a data-management method that reuses previously created
           information (i.e. cache) rather than creating it again.{" "}
           <Cite
@@ -342,9 +347,10 @@ export const ProblemDomain = () => {
           over and over is eliminated. Caching is made possible by storing the
           cache data in a temporary storage so that it can be accessed in the
           future.
-        </p>
+        </Callout>
+
         <p>
-          One of the most significant impacts of GitHub’s runner infrastructure
+          One of the most significant impacts of GitHub's runner infrastructure
           on CI build speed is that it severely limits the use of caching
           throughout the workflow execution. The destruction of the VM
           immediately after job completion necessitates the cache to be placed
@@ -385,7 +391,7 @@ export const ProblemDomain = () => {
         />
 
         <p>
-          GitHub’s cache feature seeks to enhance overall workflow efficiency by
+          GitHub's cache feature seeks to enhance overall workflow efficiency by
           storing and reusing dependencies and files produced from workflow run
           operations. Key features include:
           <ul>
@@ -400,22 +406,23 @@ export const ProblemDomain = () => {
         <p>
           This native cache solution satisfied some users, but for others, the
           solution proved woefully inadequate. To better understand this second
-          category, let’s use an example.
+          category, let's use an example.
         </p>
         <p>
           Developers working on complex mono-repo-codebases that contain
           multiple, often unrelated, logical projects within the same repository
           (such as an IOS client, a web application, and other components that
-          may or may not share dependencies)-can quickly encounter significant
+          may or may not share dependencies) can quickly encounter significant
           challenges with GitHub Actions' caching limitations.
           <Cite
             num={9999}
             label="Monorepos"
             href="https://www.atlassian.com/git/tutorials/monorepos"
           />
-          Due to the tendency of node_modules directories and large Docker image
-          artifacts to exceed 10 GB, the limited repository cache — coupled with
-          its age-based eviction strategy becomes a significant constraint.
+          Due to the tendency of <CB copy={false}>node_modules</CB> directories
+          and large Docker image artifacts to exceed 10 GB, the limited
+          repository cache — coupled with its age-based eviction strategy
+          becomes a significant constraint.
           <Cite
             num={9999}
             label="GitHub Actions limitations and gotchas"
@@ -437,7 +444,7 @@ export const ProblemDomain = () => {
           />
           —creating an environment where a single feature branch's large
           dependency update could unexpectedly evict critical cached artifacts
-          that the main branch’s builds rely upon. This volatility renders cache
+          that the main branch's builds rely upon. This volatility renders cache
           utilization unpredictable, turning what was originally intended as a
           performance enhancement strategy into a fragile and, at times,
           unreliable build speed optimization strategy. What emerges is a
@@ -445,10 +452,9 @@ export const ProblemDomain = () => {
           crucial as the software development cycle it seeks to streamline.
         </p>
         <p>
-          Considering the limitations of{" "}
-          <CodeBlock canCopy={false}>actions/cache</CodeBlock> and the healthy
-          demand for faster CI builds, cache within GHA is a great area for
-          exploring alternative solutions.
+          Considering the limitations of <CB copy={false}>actions/cache</CB> and
+          the healthy demand for faster CI builds, cache within GHA is a great
+          area for exploring alternative solutions.
         </p>
       </section>
       <br />
@@ -480,8 +486,7 @@ export const ProblemDomain = () => {
           </ul>
         </span>
       </Overview>
-      <p className="callout">
-        <p>What is a self-hosted runner?</p>
+      <Callout title="What is a self-hosted runner?">
         <ul>
           <li>
             GitHub recognized the user demand for exploring higher degrees of
@@ -496,8 +501,8 @@ export const ProblemDomain = () => {
             performance optimization strategies.
           </li>
           <li>
-            GitHub’s Self-Hosted Runner feature allows users to configure their
-            own infrastructure by downloading and installing GH’s runner
+            GitHub's Self-Hosted Runner feature allows users to configure their
+            own infrastructure by downloading and installing GH's runner
             application, which installs the necessary software to connect and
             execute GHA workflows. Through this application, the user can
             optimize their hardware, operating system, and software environment
@@ -507,14 +512,15 @@ export const ProblemDomain = () => {
             within a private network.
           </li>
         </ul>
-      </p>
+      </Callout>
+
       <section id="problem-domain-5">
         <SectionInView sectionId="problem-domain-5" onInView={handleInView} />
         <h2>{subheaderNames[5]}</h2>
         <span>
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
-          an on-premises server or even one’s local machine:
+          an on-premises server or even one's local machine:
           <ul>
             <li>Pay-as-you-go pricing model</li>
             <li>Trusted security and compliance</li>
@@ -547,7 +553,7 @@ export const ProblemDomain = () => {
           invest their time and energy to learn how to design, deploy, and
           utilize their alternative runner infrastructure. They also shoulder
           the burden (to a certain degree) of using, managing, and maintaining
-          their alternative runner infrastructure’s components. Additionally,
+          their alternative runner infrastructure's components. Additionally,
           there is the opportunity cost of starting down this road, investing
           significant time, and never actually realizing any benefits.
         </p>
@@ -594,7 +600,7 @@ export const ProblemDomain = () => {
           In addition to a financial tradeoff for using these 3rd-party
           solutions, users are faced with an unknown data security risk as they
           are now forced to check out their code into a 3rd-party owned
-          infrastructure with zero to minimal transparency on the provider’s
+          infrastructure with zero to minimal transparency on the provider's
           data management practices. Beyond having to trust blindly, over time
           users may become too dependent on the vendors, making it difficult
           and/or costly to switch to new platforms should their needs change in
@@ -602,7 +608,7 @@ export const ProblemDomain = () => {
         </p>
         <p>
           Given the tradeoffs posed by established 3rd-party solutions, efforts
-          are being made to bring some degree of control back into the users’
+          are being made to bring some degree of control back into the users'
           hands. One such example is{" "}
           <ExternalLink href="https://runs-on.com/" children="Runs-On" />, a
           project developed by one individual to specifically address the

@@ -5,7 +5,7 @@ import { FaChevronRight, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { SetupForm } from "@/components/utility/SetupForm";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { BoldText as BT } from "@/components/utility/BoldText";
-import { CodeBlock as Code } from "@/components/utility/CodeBlock";
+import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FieldValues, useForm } from "react-hook-form";
@@ -13,6 +13,7 @@ import yaml from "js-yaml";
 import { formSchema } from "@/schemas/formSchema";
 import { Button } from "../ui/button";
 import { Overview } from "../utility/Overview";
+import { Callout } from "../utility/Callout";
 
 // import ip0 from "@/assets/screenshots/identity-provider/0.jpg";
 
@@ -34,27 +35,6 @@ type Step = {
     };
   }[];
   form?: React.ReactNode;
-};
-
-const Callout = ({
-  title,
-  message,
-  color = "BLUE",
-}: {
-  title: string;
-  message: string;
-  color: "BLUE" | "PINK" | "BLACK" | "YELLOW" | "WHITE" | "OFFWHITE";
-}) => {
-  return (
-    <aside
-      className={`mx-10 mt-4 rounded border-l-4 border-harrier${color} bg-harrier${color}/15 p-4`}
-    >
-      <div className="flex items-center">
-        <FaChevronRight size="16" className="mr-2" />
-        <span className="font-bold">{title}</span>: {message}
-      </div>
-    </aside>
-  );
 };
 
 type TryHarrierNavProps = {
@@ -179,7 +159,6 @@ const TryHarrierContent = ({
                       <Callout
                         title={item.aside.title}
                         message={item.aside.message}
-                        color="YELLOW"
                       />
                     )}
                   </figcaption>
@@ -286,8 +265,9 @@ export const TryHarrierPage = () => {
             />{" "}
             (OIDC) is an authentication protocol built on top of OAuth 2.0,
             allowing applications to verify user identities through an identity
-            provider like GitHub. OIDC issues ID tokens (usually JWTs) that
-            authenticate users and provide profile information, enabling{" "}
+            provider like GitHub. OIDC issues ID tokens (usually JSON Web
+            Tokens) that authenticate users and provide profile information,
+            enabling{" "}
             <ExternalLink
               href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso"
               children="single sign-on"
@@ -328,8 +308,8 @@ export const TryHarrierPage = () => {
           caption: (
             <span>
               Select <BT>OpenID Connect</BT> as the provider type, set Provider
-              URL to <Code>token.actions.githubusercontent.com</Code>, and
-              Audience to: <Code>sts.amazonaws.com</Code>. Confirm by clicking{" "}
+              URL to <CB>token.actions.githubusercontent.com</CB>, and Audience
+              to: <CB>sts.amazonaws.com</CB>. Confirm by clicking{" "}
               <BT>Add Provider.</BT>
             </span>
           ),
@@ -345,7 +325,7 @@ export const TryHarrierPage = () => {
           caption: (
             <span>
               After confirming that the <BT>Audience</BT> of the created
-              Identity is: <Code>sts.amazonaws.com</Code>, click{" "}
+              Identity is: <CB>sts.amazonaws.com</CB>, click{" "}
               <BT>Assign role</BT>.
             </span>
           ),
@@ -362,8 +342,8 @@ export const TryHarrierPage = () => {
             <span>
               Select <BT>Web identity</BT> as Trusted entity type. Then, from
               the drop-down menu, choose{" "}
-              <Code>token.actions.githubusercontent.com</Code> as the Identity
-              provider and <Code>sts.amazonaws.com </Code> as Audience. Set the{" "}
+              <CB>token.actions.githubusercontent.com</CB> as the Identity
+              provider and <CB>sts.amazonaws.com </CB> as Audience. Set the{" "}
               <BT>GitHub Organization</BT> field to the GH organization or owner
               name, such as "Mock-Org". Optionally, choose to restrict access to
               a specific GitHub repository and branch. Once completed, click{" "}
@@ -375,19 +355,19 @@ export const TryHarrierPage = () => {
           caption: (
             <span>
               In <BT>Add permissions</BT> menu, search for and select the
-              following policies: <Code>AmazonVPCFullAccess</Code>,
-              <Code>AmazonEC2FullAccess</Code>, <Code>AmazonS3FullAccess</Code>,{" "}
-              <Code>AWSLambda_FullAccess</Code>,<Code>IAMFullAccess</Code>,{" "}
-              <Code>AmazonAPIGatewayAdministrator</Code>,
-              <Code>AmazonEventBridgeFullAccess</Code>,{" "}
-              <Code>AWSWAFConsoleFullAccess</Code>, and
-              <Code>SecretsManagerReadWrite</Code>.
+              following policies: <CB>AmazonVPCFullAccess</CB>,
+              <CB>AmazonEC2FullAccess</CB>, <CB>AmazonS3FullAccess</CB>,{" "}
+              <CB>AWSLambda_FullAccess</CB>,<CB>IAMFullAccess</CB>,{" "}
+              <CB>AmazonAPIGatewayAdministrator</CB>,
+              <CB>AmazonEventBridgeFullAccess</CB>,{" "}
+              <CB>AWSWAFConsoleFullAccess</CB>, and
+              <CB>SecretsManagerReadWrite</CB>.
             </span>
           ),
-          //   aside: {
-          //     title: "Note",
-          //     message: "Principle of least privilege",
-          //   },
+          aside: {
+            title: "Note",
+            message: "Principle of least privilege",
+          },
         },
         {
           caption: (
@@ -410,7 +390,7 @@ export const TryHarrierPage = () => {
       type: "visual",
       numericTitle: 2,
 
-      title: "Create a Personal Access Token on GitHub",
+      title: "Create a personal access token on GitHub",
       introduction: (
         <span>
           <p>
@@ -425,7 +405,7 @@ export const TryHarrierPage = () => {
             <ExternalLink
               href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28"
               children="API request/response cycles."
-            />
+            />{" "}
             By securely storing the token in AWS Secrets Manager, Harrier
             ensures it remains protected and accessible only when required,
             reducing the risk of unauthorized access and maintaining strict
@@ -466,10 +446,9 @@ export const TryHarrierPage = () => {
             <span>
               Add a memorable name in the <BT>Note</BT> field for your token,
               choose a sensible <BT>Expiration</BT> and check the following
-              boxes: <Code>repo</Code>, <Code>workflow</Code>,{" "}
-              <Code>admin:org</Code>, and{" "}
-              <Code canCopy={false}>admin:org_hook</Code>. Once the required
-              selections are made, click <BT>Generate token</BT>.
+              boxes: <CB>repo</CB>, <CB>workflow</CB>, <CB>admin:org</CB>, and{" "}
+              <CB copy={false}>admin:org_hook</CB>. Once the required selections
+              are made, click <BT>Generate token</BT>.
             </span>
           ),
         },
@@ -510,9 +489,9 @@ export const TryHarrierPage = () => {
         {
           caption: (
             <span>
-              Input: <Code>github/pat/harrier</Code> into the Secret name field
-              and optionally provide a description of the secret, any tags, and
-              any additional resource permissions. Click <BT>Next</BT>.
+              Input: <CB>github/pat/harrier</CB> into the Secret name field and
+              optionally provide a description of the secret, any tags, and any
+              additional resource permissions. Click <BT>Next</BT>.
             </span>
           ),
         },
@@ -543,11 +522,11 @@ export const TryHarrierPage = () => {
           <p>
             {" "}
             Fill out the form fields below to and click <BT>Generate</BT> to
-            render a your <Code>harrier_setup.yaml</Code>. Executing this
-            workflow will deploy a fleet of self-hosted runners into your AWS
-            account, enabling you to run your GitHub Actions workflows on your
-            own AWS infrastructure. If you would like to learn more about the
-            specific field, simply hover the respective label.
+            render a your <CB>harrier_setup.yaml</CB>. Executing this workflow
+            will deploy a fleet of self-hosted runners into your AWS account,
+            enabling you to run your GitHub Actions workflows on your own AWS
+            infrastructure. If you would like to learn more about the specific
+            field, simply hover the respective label.
           </p>
         </span>
       ),
@@ -561,8 +540,8 @@ export const TryHarrierPage = () => {
       introduction: (
         <span>
           <p>
-            With <Code>harrier_setup.yaml</Code> in tow, all that's left to do
-            is add the yaml to a GitHub repository and execute the workflow.
+            With <CB>harrier_setup.yaml</CB> in tow, all that's left to do is
+            add the yaml to a GitHub repository and execute the workflow.
           </p>
         </span>
       ),
@@ -585,16 +564,15 @@ export const TryHarrierPage = () => {
         {
           caption: (
             <span>
-              Name the file, paste the content of{" "}
-              <Code>harrier_setup.yaml</Code> into the editor, and click{" "}
-              <BT>Commit changes...</BT>
+              Name the file, paste the content of <CB>harrier_setup.yaml</CB>{" "}
+              into the editor, and click <BT>Commit changes...</BT>
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Confirm <Code>.github/workflows</Code> is present.
+              Confirm <CB>.github/workflows</CB> is present.
             </span>
           ),
           //   aside: {
@@ -605,7 +583,7 @@ export const TryHarrierPage = () => {
         {
           caption: (
             <span>
-              Double-check <Code>harrier_setup.yaml</Code> was committed
+              Double-check <CB>harrier_setup.yaml</CB> was committed
               successfully.
             </span>
           ),

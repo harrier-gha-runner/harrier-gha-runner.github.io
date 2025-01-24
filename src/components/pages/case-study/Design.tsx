@@ -3,12 +3,9 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 import { Cite } from "@/components/utility/Cite";
 import { BoldText as BT } from "@/components/utility/BoldText";
+import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { SectionInView } from "@/components/utility/SectionInView";
 
-// Importing images
-// import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
-// import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
-// import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
 import VpcIsolation from "@/assets/3.1.vpc-isolation.png";
 import WarmPool from "@/assets/3.2.warm-pool-new-runner.png";
 import JobSession from "@/assets/3.3.job-session-consistent-runner.png";
@@ -17,6 +14,9 @@ import DedicatedCache from "@/assets/3.5.dedicated-cache-storage.png";
 import CacheManagement from "@/assets/3.6.cache-management.png";
 import ApiIntegration from "@/assets/3.7.api-integration-trsprt.png";
 import { Overview } from "@/components/utility/Overview";
+// import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
+// import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
+// import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
 
 export const Design = () => {
   const pageContext = useContext(PageNavigationContext);
@@ -46,7 +46,7 @@ export const Design = () => {
 
   return (
     <>
-      <Overview title="Alternative GHA runner infrastructure in user’s own cloud">
+      <Overview title="Alternative GHA runner infrastructure in user's own cloud">
         <span>
           <ul>
             <li>
@@ -82,10 +82,10 @@ export const Design = () => {
         <SectionInView sectionId="design-0" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
         <p>
-          Harrier provides an alternative runner infrastructure within a user’s
+          Harrier provides an alternative runner infrastructure within a user's
           existing cloud account. It is important to ensure that the
           newly-provisioned resources do not impinge upon the functionality or
-          compromise the security of the user’s existing cloud resources.
+          compromise the security of the user's existing cloud resources.
           Therefore, the core runner infrastructure must be placed within a
           virtual private cloud that is dedicated to housing the core
           infrastructure components of the self-hosted runner.
@@ -96,19 +96,18 @@ export const Design = () => {
         <SectionInView sectionId="design-1" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
         <p>
-          Provisioning a runner within the user’s cloud entails configuring a
-          virtual machine (VM) with the GHA self-hosted runner application.
-          Given the time required to provision and configure a VM from scratch,
-          it is desirable to have pre-configured VMs that can engage with a
-          workflow as quickly as possible. To accommodate the need for
-          concurrent runners by workflows, it is important to have a fleet of
-          VMs that can handle the necessary throughput of workflows. Therefore,
-          during its initial setup, Harrier provisions a fleet of VMs which are
-          pre-configured with the runner application. Upon successful setup, the
-          VMs are placed on standby in a warm pool to optimize cloud resource
-          utilization. As each VM is meant for one-time use, the code for
-          provisioning VMs is then reused as a “VM factory” to replenish and
-          maintain the runner fleet.
+          Provisioning a runner within the user's cloud entails configuring a
+          virtual machine with the GHA self-hosted runner application. Given the
+          time required to provision and configure a VM from scratch, it is
+          desirable to have pre-configured VMs that can engage with a workflow
+          as quickly as possible. To accommodate the need for concurrent runners
+          by workflows, it is important to have a fleet of VMs that can handle
+          the necessary throughput of workflows. Therefore, during its initial
+          setup, Harrier provisions a fleet of VMs which are pre-configured with
+          the runner application. Upon successful setup, the VMs are placed on
+          standby in a warm pool to optimize cloud resource utilization. As each
+          VM is meant for one-time use, the code for provisioning VMs is then
+          reused as a “VM factory” to replenish and maintain the runner fleet.
         </p>
         <ImageContentModal src={WarmPool} alt={"Warm Pool"} />
       </section>
@@ -132,10 +131,10 @@ export const Design = () => {
         <SectionInView sectionId="design-3" onInView={handleInView} />
         <h2>{subheaderNames[3]}</h2>
         <p>
-          To preserve the benefits of GHA’s original ephemeral runner design, a
+          To preserve the benefits of GHA's original ephemeral runner design, a
           VM runner must be fully terminated at the end of each workflow run.
           However, there is no mechanism within GitHub Actions that terminates
-          the VM provisioned in the user’s runner infrastructure. Therefore,
+          the VM provisioned in the user's runner infrastructure. Therefore,
           Harrier terminates the VM after receiving a notification that the
           workflow run has completed.
         </p>
@@ -146,7 +145,7 @@ export const Design = () => {
         <h2>{subheaderNames[4]}</h2>
         <p>
           Alongside the provisioning of its VMs, Harrier provisions a persistent
-          data store within the user’s cloud environment. This cache store is
+          data store within the user's cloud environment. This cache store is
           made accessible to every VM as a mounted local file system so that
           cache files can be conveniently loaded and stored.
         </p>
@@ -167,9 +166,10 @@ export const Design = () => {
           <Cite num={9999} label="???" href="" /> Typically, package managers
           that handle the dependency installations will avoid installing
           pre-existing packages and only fetch and install packages as needed.
-          For example, npm, a package manager for Node.js, will compare the
-          existing packages saved in the node modules folder with the required
-          package inventory list that is the package.json file.
+          For example, <CB copy={false}>npm</CB>, a package manager for Node.js,
+          will compare the existing packages saved in the{" "}
+          <CB copy={false}>node_modules</CB> folder with the required package
+          inventory list that is the package.json file.
         </p>
         <ImageContentModal src={CacheManagement} alt={"Cache Management"} />
         <span>
@@ -181,17 +181,17 @@ export const Design = () => {
           two areas for caching:{" "}
           <ol>
             <li>
-              use cache, as npm uses ./npm_cache, to short circuit the network
-              fetch step
+              use cache, as npm uses <CB copy={false}>./npm_cache</CB>, to short
+              circuit the network fetch step
             </li>
             <li>
-              use cache, as npm uses ./node_modules directory, to short circuit
-              the actual installation.
+              use cache, as npm uses <CB copy={false}>./node_modules</CB>{" "}
+              directory, to short circuit the actual installation.
             </li>
           </ol>
-          and 2) Harrier provides users with the ability to cache the entire
-          file structure of existing dependencies, which results in a greater
-          time savings during the dependency installation step.
+          Harrier provides users with the ability to cache the entire file
+          structure of existing dependencies, which results in a greater time
+          savings during the dependency installation step.
         </span>
       </section>
       <section id="design-6">
@@ -200,10 +200,10 @@ export const Design = () => {
 
         <p>
           With the alternative runner infrastructure provisioned and configured
-          within the user’s cloud environment, integration with the GHA
+          within the user's cloud environment, integration with the GHA
           ecosystem is necessary. Harrier facilitates connection by deploying a
           REST API configured to receive inbound communications from GitHub.
-          Next, Harrier setups a webhook on the user’s GitHub organization with
+          Next, Harrier setups a webhook on the user's GitHub organization with
           the specific REST API endpoint to deliver workflow data. Finally,
           Harrier deploys an events manager that parses the workflow data and
           triggers a VM to start up from the warm pool at the start of the

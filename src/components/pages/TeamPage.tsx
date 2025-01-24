@@ -1,5 +1,5 @@
 import TeamMember from "@/components/TeamMember";
-import { TeamContext } from "@/providers/TeamProvider";
+import { TeamContext } from "@/providers/Team";
 import { useContext } from "react";
 
 export const TeamPage = () => {

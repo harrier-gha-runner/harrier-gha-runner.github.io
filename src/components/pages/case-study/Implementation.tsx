@@ -1,17 +1,12 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 
-import { CodeBlock } from "@/components/utility/CodeBlock";
+import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { BoldText as BT } from "@/components/utility/BoldText";
 import { Overview } from "@/components/utility/Overview";
+import { SectionInView } from "@/components/utility/SectionInView";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
 
-import { SectionInView } from "@/components/utility/SectionInView";
-
-// import { AxiosChart } from "@/components/AxiosChart";
-// import { VSCodeChart } from "@/components/VSCodeChart";
-
-// Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
 import JustInTimeTokenRegistration from "@/assets/4.3.just-in-time-token-registration-of-runner.png";
@@ -23,14 +18,17 @@ import OverallArchitecture from "@/assets/4.overall-architecture.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
+import { Callout } from "@/components/utility/Callout";
 
-import MinimalWorkflowModification from "@/assets/4.8.minimal-workflow-modification-v1.gif";
-import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
-import JITRunnerToken from "@/assets/4.1.5.2.just-in-time-runner-token.png";
-import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
-import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
-import WebhookSetup from "@/assets/4.1.6.webhook-setup.png";
-import WebhookJSONExample from "@/assets/4.1.6.json-object-code-example.png";
+// import { AxiosChart } from "@/components/AxiosChart";
+// import { VSCodeChart } from "@/components/VSCodeChart";
+// import MinimalWorkflowModification from "@/assets/4.8.minimal-workflow-modification-v1.gif";
+// import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
+// import JITRunnerToken from "@/assets/4.1.5.2.just-in-time-runner-token.png";
+// import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
+// import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
+// import WebhookSetup from "@/assets/4.1.6.webhook-setup.png";
+// import WebhookJSONExample from "@/assets/4.1.6.json-object-code-example.png";
 
 export const Implementation = () => {
   const pageContext = useContext(PageNavigationContext);
@@ -389,8 +387,6 @@ export const Implementation = () => {
               </p>
             </TextContentModal>
           </li>
-        </ul>
-        <ul className="space-x-4 p-0 text-center">
           <li id="is-a-warm-pool-start-fast-enough" className="modal-item">
             <TextContentModal title="Is a warm pool start fast enough?">
               <p>
@@ -599,12 +595,12 @@ export const Implementation = () => {
           pre-configured Harrier EC2, the application must have a GHA runner
           token passed into it as an argument at the time of execution in order
           to register the EC2 with GitHub as an available runner. Harrier
-          utilizes Just-in-Time (JIT) tokens to register the EC2s, as the JIT
-          tokens are designed to execute only a single job, automatically
-          removing the runner from the list of available runners upon
-          completion. By requiring a unique token for every workflow run, JIT
-          runners minimize the risks associated with long-lived credentials or
-          the exposure of sensitive data.
+          utilizes Just-in-Time tokens to register the EC2s, as the JIT tokens
+          are designed to execute only a single job, automatically removing the
+          runner from the list of available runners upon completion. By
+          requiring a unique token for every workflow run, JIT runners minimize
+          the risks associated with long-lived credentials or the exposure of
+          sensitive data.
         </p>
         <p>
           Harrier registers the EC2s by first making a GitHub API call to fetch
@@ -632,7 +628,7 @@ export const Implementation = () => {
                 valid indefinitely until manually revoked. This means that an
                 attacker has an increased window of opportunity to exploit the
                 runner across multiple jobs or workflows to potentially run
-                malicious code in the context of the user’s repositories.
+                malicious code in the context of the user's repositories.
               </p>
               <br />
               <p>
@@ -649,11 +645,11 @@ export const Implementation = () => {
           <li id="why-use-ssm" className="modal-item">
             <TextContentModal title="Why use SSM?">
               <p>
-                AWS SDK’s EC2 client is a powerful tool that provides Harrier
-                with access to every aspect of the EC2’s operations, and most of
-                Harrier’s self-hosted runner fleet management is conducted
+                AWS SDK's EC2 client is a powerful tool that provides Harrier
+                with access to every aspect of the EC2's operations, and most of
+                Harrier's self-hosted runner fleet management is conducted
                 through the EC2 client. During the pre-configuration step of the
-                Harrier runner fleet, the SDK EC2 client’s LAUNCHINSTANCE
+                Harrier runner fleet, the SDK EC2 client's LAUNCHINSTANCE
                 command is used to automate the VM configuration along with the
                 installation of all necessary applications by passing in a bash
                 script as an argument to the SDK command. Unfortunately, this
@@ -665,7 +661,7 @@ export const Implementation = () => {
               <p>
                 Even though it is possible to SSH into the EC2 and execute to
                 final runner configuration using the just-in-time token,
-                Harrier’s design subscribes to AWS Systems Manager (SSM) in
+                Harrier's design subscribes to AWS Systems Manager (SSM) in
                 order to leverage proven services rather than implementing
                 custom code. SSM is a comprehensive management service that
                 allows users to automate and streamline administrative tasks for
@@ -913,7 +909,7 @@ export const Implementation = () => {
           >
             <TextContentModal title="What are the risks for reusing a runner?">
               <p>
-                Harrier’s design intent is to mimic the advantages of GHA as
+                Harrier's design intent is to mimic the advantages of GHA as
                 much as possible while accelerating workflows. One of the
                 biggest advantages of GHA is the ephemeral nature of the default
                 runners, as the use-only-once feature of the VMs provide users
@@ -949,13 +945,13 @@ export const Implementation = () => {
               <p>
                 It would be ideal for Harrier to only provision new VMs when a
                 runner is requested. However, such a design makes it difficult
-                to mimic another of GHA’s advantages where a runner request
+                to mimic another of GHA's advantages where a runner request
                 results in a near instantaneous provisioning of the default
                 runner.
               </p>
               <br />
               <p>
-                Given that Harrier’s design intent is to not only mimic the
+                Given that Harrier's design intent is to not only mimic the
                 advantages of GHA, but also to accelerate workflows, the Harrier
                 runner infrastructure management has been optimized to reuse
                 runners when possible, which would result in faster workflow
@@ -1005,9 +1001,10 @@ export const Implementation = () => {
           The provisioning and mounting of the S3 bucket to the EC2 allows users
           to configure their workflow yaml file to cache any duplicate work,
           whether it is through user-generated custom steps or publicly
-          available actions (e.g. Docker's build-push-action provides users with
-          optional parameters that designate cache endpoints, enabling the
-          caching of docker image layers).
+          available actions (e.g. Docker's{" "}
+          <CB copy={false}>build-push-action</CB> provides users with optional
+          parameters that designate cache endpoints, enabling the caching of
+          docker image layers).
         </p>
         <ImageContentModal
           src={S3BucketCacheStore}
@@ -1024,7 +1021,7 @@ export const Implementation = () => {
                 instances simultaneously. Even though the EFS is designed to be
                 a sharable and scalable data storage, optimal for use as a
                 persistent cache for an alternative GHA runner infrastructure,
-                the performance boost is beyond Harrier’s needs and it comes at
+                the performance boost is beyond Harrier's needs and it comes at
                 a higher cost than the S3. Amazon DynamoDB: This is a fully
                 managed, NoSQL key-value and document database that serves as a
                 great option for caching structured data with very low latency.
@@ -1064,7 +1061,7 @@ export const Implementation = () => {
                 Given that the S3 bucket is used as the one and only central
                 data store, the S3 houses data that go beyond what any one
                 workflow may require. Without proper permissions, an EC2 runner
-                may have access to data that it shouldn’t or the S3 may give
+                may have access to data that it shouldn't or the S3 may give
                 unnecessary access to sensitive data. The narrowing of
                 permissions is an implementation task that Harrier has taken
                 quite seriously, and sees it as an on-going effort to maintain
@@ -1075,8 +1072,8 @@ export const Implementation = () => {
                 Beyond data access, mounting the S3 onto an EC2 instance
                 provisioned in a public subnet with direct internet access
                 exposes sensitive data to potential attacks. Fortunately,
-                Harrier’s ephemeral runners registered using Just-In-Time (JIT)
-                tokens minimizes the data exposure risk.
+                Harrier's ephemeral runners registered using Just-In-Time tokens
+                minimizes the data exposure risk.
               </p>
             </TextContentModal>
           </li>
@@ -1140,34 +1137,37 @@ export const Implementation = () => {
           that need to be installed, thus bypassing the network fetch step.
           Harrier's out-of-the-box cache support focuses on short circuiting the
           installation step for maximum time savings. For Node.js projects, this
-          is accomplished by caching the entire node_modules directory.
+          is accomplished by caching the entire{" "}
+          <CB copy={false}>node_modules</CB> directory.
         </p>
         <p>
           During the first run of a project's workflow through the
           Harrier-provisioned runner infrastructure, the workflow will go
           through a full installation of dependencies as the cache is empty.
-          This first run will create a node_modules directory on the EC2 as part
-          of the workflow run, allowing Harrier to cache the newly created
-          node_modules directory into the S3 bucket. Due to the size of the
-          node_modules directory (the directory can be as small as 10MB for
-          small projects, but could be 1GB or larger for bigger projects) as
-          well as the presence of symlinks (symbolic links), Harrier compresses
-          the entire node modules directory into a TAR archive file and saves it
-          into the S3 bucket. At this time, a timestamped cache key is also
-          created using the checksum hash of the package.json file, with the
-          idea that a modification in the package.json file would invalidate the
-          cache.
+          This first run will create a <CB copy={false}>node_modules</CB>{" "}
+          directory on the EC2 as part of the workflow run, allowing Harrier to
+          cache the newly created
+          <CB copy={false}>node_modules</CB> directory into the S3 bucket. Due
+          to the size of the
+          <CB copy={false}>node_modules</CB> directory (the directory can be as
+          small as 10MB for small projects, but could be 1GB or larger for
+          bigger projects) as well as the presence of symlinks (symbolic links),
+          Harrier compresses the entire node modules directory into a TAR
+          archive file and saves it into the S3 bucket. At this time, a
+          timestamped cache key is also created using the checksum hash of the
+          package.json file, with the idea that a modification in the
+          package.json file would invalidate the cache.
         </p>
         <p>
           After this first run, Harrier provides users with the option to load
-          the node_modules directory from the cache, prior to the dependency
-          installation step. Unlike GHA's cache action, Harrier does not
-          invalidate the cache at this point even if the package.json file has
-          been modified from the previous run, as Harrier is of the opinion that
-          any amount of installation short circuiting is preferable to a full
-          dependency installation. Once the node_modules directory has been
-          loaded, the npm install step will proceed with an incremental
-          installation.
+          the <CB copy={false}>node_modules</CB> directory from the cache, prior
+          to the dependency installation step. Unlike GHA's cache action,
+          Harrier does not invalidate the cache at this point even if the
+          package.json file has been modified from the previous run, as Harrier
+          is of the opinion that any amount of installation short circuiting is
+          preferable to a full dependency installation. Once the{" "}
+          <CB copy={false}>node_modules</CB> directory has been loaded, the npm
+          install step will proceed with an incremental installation.
         </p>
         <p>
           Only after the dependency installation step has been completed will
@@ -1176,10 +1176,11 @@ export const Implementation = () => {
           checksum hash of the package.json file, then there is no need to
           modify the cache and so no further steps are required. However, if the
           package.json file has been modified, then the newly modified
-          node_modules directory is compressed into a new TAR file and saved
-          into the S3 bucket. The cache-store process ends up overwriting the
-          previously cached TAR file since the cache-load process only cares
-          about loading the most recent node_modules directory.{" "}
+          <CB copy={false}>node_modules</CB> directory is compressed into a new
+          TAR file and saved into the S3 bucket. The cache-store process ends up
+          overwriting the previously cached TAR file since the cache-load
+          process only cares about loading the most recent{" "}
+          <CB copy={false}>node_modules</CB> directory.{" "}
         </p>
         <ImageContentModal src={CacheByHarrier} alt={"Cache by Harrier"} />
         <p>
@@ -1206,13 +1207,13 @@ export const Implementation = () => {
                 the need to re-fetch or re-compute expensive or time-consuming
                 tasks. The data most commonly cached in a CI/CD workflow relate
                 to dependencies that do not change frequently, but the following
-                data, to name just a few, are also cacheable with Harrier’s
+                data, to name just a few, are also cacheable with Harrier's
                 cache storage: Build artifacts - If the build process involves
                 compiling source code into binaries or other artifacts (e.g.,
                 .tar, .jar, .apk, .exe), these artifacts can be cached to avoid
                 recompiling them on every run. Package manager cache - Package
                 managers often cache downloaded dependencies to prevent
-                re-downloading packages that haven’t changed. These downloaded
+                re-downloading packages that haven't changed. These downloaded
                 files can be cached to avoid unnecessary fetch operations.
                 Docker layers - Docker builds an image by generating a Docker
                 layer for each Docker command, with each layer contributing to
@@ -1490,15 +1491,16 @@ export const Implementation = () => {
           event manager service handles the provisioning of a new replacement
           EC2 instance to maintain the warm pool and runner fleet.
         </p>
-        <p className="callout">
-          <p>What is a webhook?</p>A webhook is a lightweight, event-driven
-          communication that automatically sends data between applications via
-          HTTP21. When a workflow runs on GitHub Actions, a webhook event is
-          triggered to send data to the Harrier app hosted on the user's AWS
-          environment. This webhook transmits information about the workflow run
-          as a JSON object, which includes an "action" property specifying the
-          event type, such as "queued" or "completed."
-        </p>
+        <Callout title="What is a webhook?">
+          A webhook is a lightweight, event-driven communication that
+          automatically sends data between applications via HTTP21. When a
+          workflow runs on GitHub Actions, a webhook event is triggered to send
+          data to the Harrier app hosted on the user's AWS environment. This
+          webhook transmits information about the workflow run as a JSON object,
+          which includes an "action" property specifying the event type, such as
+          "queued" or "completed."
+        </Callout>
+
         <ul className="space-x-4 p-0 text-center">
           <li id="why-use-api-gateway?" className="modal-item">
             <TextContentModal title="Why use API Gateway?">
@@ -1529,10 +1531,10 @@ export const Implementation = () => {
             <TextContentModal title="How does Harrier access the GH PAT?">
               <p>
                 A GitHub Personal Access Token (PAT) is a secure, token-based
-                authentication method used to access GitHub’s API or perform Git
+                authentication method used to access GitHub's API or perform Git
                 operations instead of using a password. The GitHub webhook
-                necessary for integrating Harrier runners into the user’s GHA
-                ecosystem can be created using GitHub’s API, and thus requires a
+                necessary for integrating Harrier runners into the user's GHA
+                ecosystem can be created using GitHub's API, and thus requires a
                 PAT as an Authentication header in the HTTP request.
               </p>
               <br />
@@ -1545,10 +1547,10 @@ export const Implementation = () => {
                 GitHub PAT, with the appropriately restricted scope and
                 permissions, and copy it into their own AWS Secrets Manager.
                 Once placed in the AWS Secrets Manager, the permission given to
-                Harrier’s OIDC identity allows Harrier to describe the secret
+                Harrier's OIDC identity allows Harrier to describe the secret
                 and use it to generate the necessary HTTP request for setting up
                 a GitHub webhook, but Harrier will not be able directly access
-                the PAT’s contents.
+                the PAT's contents.
               </p>
             </TextContentModal>
           </li>
@@ -1718,19 +1720,18 @@ export const Implementation = () => {
         <p>
           In order to begin running workflows on the newly provisioned
           self-hosted runners, users have to simply change the{" "}
-          <CodeBlock canCopy={false}>runs-on</CodeBlock> value in the YAML file
-          of the workflow to <CodeBlock>self-hosted</CodeBlock> . Harrier uses
-          the “self-hosted” label instead of a custom label such as
-          “harrier-runner” to emphasize the fact that the entire alternative
-          runner infrastructure is hosted and managed by the user.
+          <CB copy={false}>runs-on</CB> value in the YAML file of the workflow
+          to <CB>self-hosted</CB> . Harrier uses the “self-hosted” label instead
+          of a custom label such as “harrier-runner” to emphasize the fact that
+          the entire alternative runner infrastructure is hosted and managed by
+          the user.
         </p>
         <p>
           Harrier also provides a simple mechanism for using the out-of-the-box
           solution for caching dependencies through two public actions on the
-          GitHub Actions Marketplace:{" "}
-          <CodeBlock canCopy={false}>harrier-cache-load</CodeBlock> and{" "}
-          <CodeBlock canCopy={false}>harrier-cache-store</CodeBlock>. Users have
-          to simply drop in these one-line steps before and after the dependency
+          GitHub Actions Marketplace: <CB copy={false}>harrier-cache-load</CB>{" "}
+          and <CB copy={false}>harrier-cache-store</CB>. Users have to simply
+          drop in these one-line steps before and after the dependency
           installation step in their workflow in order to experience faster
           workflow build speeds.
         </p>
