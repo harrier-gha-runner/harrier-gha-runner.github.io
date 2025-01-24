@@ -128,7 +128,7 @@ const TextContentModal = ({
         </DialogHeader>
         <DialogDescription asChild>
           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
-            <p className="m-0 text-gray-200">{content}</p>
+            <div className="m-0 text-gray-200">{content}</div>
           </div>
         </DialogDescription>
         <DialogFooter></DialogFooter>
@@ -141,9 +141,9 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex w-full items-center py-6">
+        <div className="flex w-full justify-center py-6">
           <img
-            className="m-0 h-auto w-full max-w-3xl cursor-pointer"
+            className="h-auto w-full max-w-xl cursor-pointer object-contain"
             src={src}
             alt={alt}
           />
@@ -156,9 +156,9 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
           </DialogTitle>
         </DialogHeader>
         <DialogDescription asChild>
-          <div className="rounded-md border-gray-400 bg-harrierOFFWHITE p-4">
+          <div className="flex w-full justify-center p-4">
             <img
-              className="max-h-full max-w-full object-contain"
+              className="max-h-[80vh] max-w-[90vw] object-contain"
               src={src}
               alt={alt}
             />
