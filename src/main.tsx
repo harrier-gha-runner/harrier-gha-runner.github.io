@@ -1,3 +1,4 @@
+/* main.tsx */
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createHashRouter, RouterProvider, Navigate } from "react-router-dom";
@@ -38,8 +39,6 @@ createRoot(document.getElementById("app")!).render(
                   errorElement: <NotFoundPage />,
                   children: [
                     {
-                      // If someone goes to #/case-study with no further path,
-                      // this child route will redirect them.
                       index: true,
                       element: <Navigate to="problem-domain" replace />,
                     },
@@ -72,7 +71,13 @@ createRoot(document.getElementById("app")!).render(
                 {
                   path: "try-harrier",
                   element: (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense
+                      fallback={
+                        <div className="flex h-screen items-center justify-center">
+                          Loading...
+                        </div>
+                      }
+                    >
                       <TryHarrierPage />
                     </Suspense>
                   ),

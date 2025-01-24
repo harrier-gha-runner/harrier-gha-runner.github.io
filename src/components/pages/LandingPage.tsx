@@ -29,6 +29,7 @@ const LandingPage = () => {
   }
 
   const { setActivePage, setActiveSubheader } = pageContext;
+
   const team = [
     {
       name: "Wook Kim",
@@ -63,55 +64,55 @@ const LandingPage = () => {
       githubProfile: "https://github.com/joelbarton406",
     },
   ];
+
   return (
     <>
-      <div className="flex h-[24rem] flex-col items-center justify-center bg-harrierBLACK text-center">
-        {/* <FloatingBirds /> */}
-        <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
+      {/* hero section */}
+      <div className="0text-center flex flex-col items-center justify-center bg-harrierBLACK px-6 pb-16 pt-16">
+        <h1 className="text-3xl font-semibold text-harrierWHITE md:text-5xl lg:text-6xl">
           Harrier
         </h1>
-        <div>
-          <p className="mb-9 mt-7 text-2xl text-white">
-            an automated{" "}
-            <span className="font-semibold text-harrierPINK">
-              self-hosted runner
-            </span>{" "}
-            setup tool for{" "}
-            <a
-              href="https://github.com/features/actions"
-              className="hover:bg-teriary"
-            >
-              GitHub Actions
-            </a>
-          </p>
-          <Button
-            onClick={() => {
-              navigate("/case-study/problem-domain");
-              setActivePage(0);
-              setActiveSubheader(null);
-            }}
-            className="inline-flex items-center p-6 text-white"
-            variant="secondary"
+        <p className="mb-6 mt-4 text-base text-white md:text-lg lg:text-xl">
+          an automated{" "}
+          <span className="font-semibold text-harrierPINK">
+            self-hosted runner
+          </span>{" "}
+          setup tool for{" "}
+          <a
+            href="https://github.com/features/actions"
+            className="underline hover:text-harrierPINK"
           >
-            <span className="text-lg">Read the Case Study</span>
-          </Button>
-        </div>
+            GitHub Actions
+          </a>
+        </p>
+        <Button
+          onClick={() => {
+            navigate("/case-study/problem-domain");
+            setActivePage(0);
+            setActiveSubheader(null);
+          }}
+          className="inline-flex items-center px-4 py-2 text-white md:px-6 md:py-3"
+          variant="secondary"
+        >
+          <span className="text-sm md:text-lg">Read the Case Study</span>
+        </Button>
       </div>
-      <div className="flex h-auto flex-col gap-8 bg-harrierWHITE p-8 md:h-[36rem] md:flex-row">
+
+      {/* Feature Section */}
+      <div className="flex flex-col gap-8 bg-harrierWHITE px-4 py-6 md:flex-row md:gap-12 md:px-12">
         <div className="flex w-full items-center justify-center md:w-1/2">
           <img
             src={HarrierSetupAltInfra}
             alt="Harrier Setup alternative infrastructure"
-            className="h-[60%] w-auto md:h-[80%]"
+            className="max-h-72 w-auto md:max-h-96"
           />
         </div>
-
-        <div className="flex w-full items-center justify-start md:w-1/2 lg:w-1/3">
-          <div className="max-w-full space-y-4 text-left">
-            <h2 className="text-2xl font-bold md:text-3xl">
+        <div className="flex w-full items-center justify-center md:w-1/2 lg:w-1/3">
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">
               Automated Deployment of Runners and Persistent Cache Storage
             </h2>
-            <p className="text-base leading-relaxed md:text-lg">
+            <p className="text-sm leading-relaxed md:text-base lg:text-lg">
               Harrier is an open-source infrastructure deployment agent designed
               to accelerate automated workflow runtimes in GitHub Actions (GHA)
               through optimized caching mechanisms made possible by using
@@ -121,59 +122,50 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="flex h-auto flex-col gap-8 bg-harrierOFFWHITE p-8 md:h-[36rem] md:flex-row">
-        {/* Text Div */}
-        <div className="flex w-full items-center justify-center md:w-3/5">
-          <div className="max-w-full space-y-4 text-left md:max-w-[90%]">
-            <h2 className="text-2xl font-bold md:text-3xl">
-              Go Faster with Harrier
-            </h2>
-            <ul className="list-inside list-disc space-y-2">
-              <li>
-                Supports faster GitHub Actions workflows with self-hosted
-                runners
-              </li>
-              <li>
-                Reduces build times by up to 90% through S3-backed caching
-              </li>
-              <li>Seamlessly provisions ephemeral runners in a secure VPC</li>
-              <li>
-                Automates warm-pool management for instant workflow execution
-              </li>
-              <li>
-                Enables dependency and build artifact cache and reuse across
-                branches
-              </li>
-              <li>
-                Transparent setup process via a public GitHub Action repository
-              </li>
-              <li>Minimal workflow changes with drop-in caching actions</li>
-            </ul>
-          </div>
+      {/* benefits section */}
+      <div className="flex flex-col gap-8 bg-harrierOFFWHITE px-4 py-6 md:flex-row md:gap-12 md:px-12">
+        <div className="w-full md:w-3/5">
+          <h2 className="text-xl font-bold md:text-2xl lg:text-3xl">
+            Go Faster with Harrier
+          </h2>
+          <ul className="list-inside list-disc space-y-2 text-sm md:text-base lg:text-lg">
+            <li>
+              Supports faster GitHub Actions workflows with self-hosted runners
+            </li>
+            <li>Reduces build times by up to 90% through S3-backed caching</li>
+            <li>Seamlessly provisions ephemeral runners in a secure VPC</li>
+            <li>
+              Automates warm-pool management for instant workflow execution
+            </li>
+            <li>
+              Enables dependency and build artifact cache and reuse across
+              branches
+            </li>
+            <li>
+              Transparent setup process via a public GitHub Action repository
+            </li>
+            <li>Minimal workflow changes with drop-in caching actions</li>
+          </ul>
         </div>
-
-        {/* Image Div */}
-        <div className="justify-left flex w-full items-center md:w-2/5">
+        <div className="flex w-full items-center justify-center md:w-2/5">
           <img
             src={HarrierColor}
             alt="Harrier Blue Logo"
-            className="h-40 w-auto"
+            className="max-h-32 md:max-h-40"
           />
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16">
-        <h3 className="mb-8 text-3xl font-semibold text-harrierBLACK">
+      {/* team section */}
+      <div className="flex flex-col items-center justify-center bg-harrierWHITE px-4 py-8">
+        <h3 className="mb-8 text-2xl font-semibold text-harrierBLACK md:text-3xl">
           Meet the Team
         </h3>
-
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
           {team.map((member) => (
             <TeamMember member={member} key={member.name} />
           ))}
         </div>
-
-        {/* <img src={HarrierBW} alt="GitHub Actions" className="m-4 h-64 w-auto" /> */}
       </div>
     </>
   );

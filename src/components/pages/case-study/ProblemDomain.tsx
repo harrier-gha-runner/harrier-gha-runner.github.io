@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 
@@ -32,7 +32,12 @@ const SectionInView = ({
     rootMargin: "0px 0px -60% 0px",
   });
 
-  if (inView) onInView(sectionId);
+  // Ensure state updates happen outside the render phase
+  useEffect(() => {
+    if (inView) {
+      onInView(sectionId);
+    }
+  }, [inView, sectionId, onInView]);
 
   return <div ref={ref}></div>;
 };
