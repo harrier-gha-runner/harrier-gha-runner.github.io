@@ -2,6 +2,7 @@ import { useContext, useEffect, useCallback } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { PageNavigationContext } from "@/providers/PageNavigation";
+import { FaChevronRight } from "react-icons/fa6";
 
 type Page = {
   id: string;
@@ -9,19 +10,19 @@ type Page = {
   subheaders?: { id: string; name: string }[];
 };
 
-type CaseStudyNavProps = {
+type CaseStudyMainNavProps = {
   pages: Page[];
   setActivePage: (index: number) => void;
   setActiveSubheader: (index: number | null) => void;
   activePage: number;
 };
 
-const CaseStudyNav = ({
+const CaseStudyMainNav = ({
   pages,
   setActivePage,
   setActiveSubheader,
   activePage,
-}: CaseStudyNavProps) => {
+}: CaseStudyMainNavProps) => {
   const viewportWideEnough = useViewportWidth();
 
   return (
@@ -43,9 +44,10 @@ const CaseStudyNav = ({
               className="relative"
             >
               <div
-                className={`overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
+                className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
               >
-                {page.name}
+                <div>{page.name}</div>
+                <FaChevronRight className="ml-2" />
               </div>
             </NavLink>
           ))}
@@ -53,14 +55,6 @@ const CaseStudyNav = ({
       </nav>
     </div>
   );
-};
-
-const scrollToElement = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    const offset = element.offsetTop - 152;
-    window.scrollTo({ top: offset, behavior: "smooth" });
-  }
 };
 
 const CaseStudyOnThisPageNav = ({
@@ -105,7 +99,15 @@ const CaseStudyOnThisPageNav = ({
   );
 };
 
-export default function CaseStudyHomePage() {
+const scrollToElement = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const offset = element.offsetTop - 152;
+    window.scrollTo({ top: offset, behavior: "smooth" });
+  }
+};
+
+export const CaseStudyHomePage = () => {
   const pageContext = useContext(PageNavigationContext);
   const location = useLocation();
 
@@ -139,7 +141,7 @@ export default function CaseStudyHomePage() {
 
   return (
     <>
-      <CaseStudyNav
+      <CaseStudyMainNav
         pages={pages}
         setActivePage={setActivePage}
         setActiveSubheader={setActiveSubheader}
@@ -164,4 +166,4 @@ export default function CaseStudyHomePage() {
       </div>
     </>
   );
-}
+};

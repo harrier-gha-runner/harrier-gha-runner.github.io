@@ -36,11 +36,11 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       subheaders: [
         {
           id: "problem-domain-0",
-          name: "CI/CD and DevOps: The Backbone of Modern Software Development",
+          name: "CI/CD and DevOps",
         },
         {
           id: "problem-domain-1",
-          name: "GHA Workflow Automation",
+          name: "Workflow Automation",
         },
         {
           id: "problem-domain-2",

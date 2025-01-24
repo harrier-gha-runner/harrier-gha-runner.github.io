@@ -1,6 +1,5 @@
-// import HarrierIntro from "@/assets/1.harrier-intro.png"
-// import { ImageContentModal } from "@/components/ui/dialog";
-export default function Introduction() {
+import { ImageContentModal } from "@/components/ui/dialog";
+export const Introduction = () => {
   return (
     <>
       <p>
@@ -9,7 +8,10 @@ export default function Introduction() {
         optimized caching mechanisms made possible by using GitHub’s very own
         self-hosted runner feature.
       </p>
-      {/* <ImageContentModal src={ImageContentModal} alt="Harrier Intro/> */}
+      <ImageContentModal
+        src={"src/assets/1.harrier-intro.png"}
+        alt="Harrier Intro"
+      />
       <p>
         GHA default runners for workflows are ephemeral virtual machines (VMs)
         by design, ensuring that workflow artifacts are destroyed upon
@@ -41,4 +43,4 @@ export default function Introduction() {
       </p>
     </>
   );
-}
+};

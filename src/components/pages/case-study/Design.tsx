@@ -3,12 +3,12 @@ import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ImageContentModal } from "@/components/ui/dialog";
 import { Cite } from "@/components/utility/Cite";
 import { BoldText as BT } from "@/components/utility/BoldText";
-import { useInView } from "react-intersection-observer";
+import { SectionInView } from "@/components/utility/SectionInView";
 
 // Importing images
 // import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
-import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
-import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
+// import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
+// import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
 import VpcIsolation from "@/assets/3.1.vpc-isolation.png";
 import WarmPool from "@/assets/3.2.warm-pool-new-runner.png";
 import JobSession from "@/assets/3.3.job-session-consistent-runner.png";
@@ -18,25 +18,7 @@ import CacheManagement from "@/assets/3.6.cache-management.png";
 import ApiIntegration from "@/assets/3.7.api-integration-trsprt.png";
 import { Overview } from "@/components/utility/Overview";
 
-const SectionInView = ({
-  sectionId,
-  onInView,
-}: {
-  sectionId: string;
-  onInView: (id: string) => void;
-}) => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
-    rootMargin: "0px 0px -60% 0px",
-  });
-
-  if (inView) onInView(sectionId);
-
-  return <div ref={ref}></div>;
-};
-
-const Design = () => {
+export const Design = () => {
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -243,5 +225,3 @@ const Design = () => {
     </>
   );
 };
-
-export default Design;

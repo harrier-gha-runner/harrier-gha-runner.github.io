@@ -1,32 +1,9 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-// import { ImageContentModal } from "@/components/ui/dialog";
-
-import { useInView } from "react-intersection-observer";
 import { Overview } from "@/components/utility/Overview";
+import { SectionInView } from "@/components/utility/SectionInView";
 
-// Importing images
-// import blank from "@/assets/3.1.vpc-isolation.png";
-
-const SectionInView = ({
-  sectionId,
-  onInView,
-}: {
-  sectionId: string;
-  onInView: (id: string) => void;
-}) => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
-    rootMargin: "0px 0px -60% 0px",
-  });
-
-  if (inView) onInView(sectionId);
-
-  return <div ref={ref}></div>;
-};
-
-const Future = () => {
+export const FutureWork = () => {
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -211,5 +188,3 @@ const Future = () => {
     </>
   );
 };
-
-export default Future;

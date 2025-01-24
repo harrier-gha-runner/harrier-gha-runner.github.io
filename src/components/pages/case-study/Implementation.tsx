@@ -1,18 +1,16 @@
-// import { SiAwslambda } from "react-icons/si";
-import { CgFileDocument } from "react-icons/cg";
-// import { AiOutlineBlock } from "react-icons/ai";
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-import { Cite } from "@/components/utility/Cite";
-import { CodeBlock } from "@/components/utility/CodeBlock";
 
+import { CodeBlock } from "@/components/utility/CodeBlock";
+import { BoldText as BT } from "@/components/utility/BoldText";
+import { Overview } from "@/components/utility/Overview";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
-import { useInView } from "react-intersection-observer";
+
+import { SectionInView } from "@/components/utility/SectionInView";
 
 // import { AxiosChart } from "@/components/AxiosChart";
 // import { VSCodeChart } from "@/components/VSCodeChart";
 
-import { BoldText as BT, BoldText } from "@/components/utility/BoldText";
 // Importing images
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
@@ -25,6 +23,7 @@ import OverallArchitecture from "@/assets/4.overall-architecture.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
+
 import MinimalWorkflowModification from "@/assets/4.8.minimal-workflow-modification-v1.gif";
 import QueuedNewRunner from "@/assets/4.1.6.queued-new-runner.png";
 import JITRunnerToken from "@/assets/4.1.5.2.just-in-time-runner-token.png";
@@ -32,27 +31,8 @@ import SingleUse from "@/assets/4.1.5.2.single-use-runner.png";
 import ThreeLambdas from "@/assets/4.1.7.three-lambdas.png";
 import WebhookSetup from "@/assets/4.1.6.webhook-setup.png";
 import WebhookJSONExample from "@/assets/4.1.6.json-object-code-example.png";
-import { Overview } from "../../utility/Overview";
 
-const SectionInView = ({
-  sectionId,
-  onInView,
-}: {
-  sectionId: string;
-  onInView: (id: string) => void;
-}) => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
-    rootMargin: "0px 0px -60% 0px",
-  });
-
-  if (inView) onInView(sectionId);
-
-  return <div ref={ref}></div>;
-};
-
-const Implementation = () => {
+export const Implementation = () => {
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -892,10 +872,10 @@ const Implementation = () => {
           upon completion of the workflow run. When a GHA workflow is completed,
           GH generates a webhook notification and sends it to the user's Amazon
           API Gateway, set up by Harrier (discussed at length in{" "}
-          <BoldText>API Platform Integration section</BoldText>). The webhook
-          payload contains the instance ID of the EC2 (obtained at the time of
-          token registration) that just completed the workflow run, which is
-          then passed to an AWS Lambda so that the EC2 can be terminated.
+          <BT>API Platform Integration section</BT>). The webhook payload
+          contains the instance ID of the EC2 (obtained at the time of token
+          registration) that just completed the workflow run, which is then
+          passed to an AWS Lambda so that the EC2 can be terminated.
         </p>
         <p>
           Harrier enhances the standard termination mechanism by introducing an
@@ -2176,6 +2156,3 @@ const Implementation = () => {
     </>
   );
 };
-export default Implementation;
-
-<a href="LINK1">TEXT1 Developer Survey: LINK1</a>;

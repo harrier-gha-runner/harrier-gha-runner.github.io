@@ -29,7 +29,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, onClick, children }) => {
   }
 
   return (
-    <NavLink to={to} onClick={onClick} className="">
+    <NavLink to={to} onClick={onClick}>
       {children}
     </NavLink>
   );
@@ -63,7 +63,7 @@ export const Header = () => {
         </NavItem>
         <div className="ml-auto mr-4 flex items-center space-x-4 text-lg font-semibold">
           <NavItem
-            to="/case-study/problem-domain"
+            to="/case-study/introduction"
             onClick={() => {
               setActivePage(0);
             }}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
+import { TeamContext } from "@/providers/TeamProvider";
 import { Button } from "@/components/ui/button";
 // import FloatingBirds from "@/components/FloatingBirds";
 import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
@@ -19,53 +20,30 @@ export type Member = {
   personalSiteUrl?: string;
 };
 
-const LandingPage = () => {
+export const LandingPage = () => {
   const navigate = useNavigate();
-  const pageContext = useContext(PageNavigationContext);
-  if (!pageContext) {
+  const page = useContext(PageNavigationContext);
+  const team = useContext(TeamContext);
+
+  if (!page || !team) {
     throw new Error(
       "Make sure the component you want to use the context in is wrapped within the provider component",
     );
   }
 
-  const { setActivePage, setActiveSubheader } = pageContext;
-  const team = [
-    {
-      name: "Wook Kim",
-      role: "Software Engineer",
-      photoUrl: "https://avatars.githubusercontent.com/u/68617800?v=4",
-      location: "Los Angeles, CA.",
-      linkedinProfile: "https://www.linkedin.com/in/wook-kim/",
-      githubProfile: "https://github.com/wook2000",
-    },
-    {
-      name: "Jesse Kercheval",
-      role: "Software Engineer",
-      photoUrl: "https://avatars.githubusercontent.com/u/56614846?v=4",
-      location: "Los Angeles, CA.",
-      linkedinProfile: "https://www.linkedin.com/in/jessekercheval/",
-      githubProfile: "https://github.com/jessekerch",
-    },
-    {
-      name: "Shane Ziegler",
-      role: "Software Engineer",
-      photoUrl: "https://avatars.githubusercontent.com/u/56492231?v=4",
-      location: "Minneapolis, MN.",
-      linkedinProfile: "https://www.linkedin.com/in/shane-ziegler-b1647b11/",
-      githubProfile: "https://github.com/shaneziegler",
-    },
-    {
-      name: "Joel Barton",
-      role: "Software Engineer",
-      photoUrl: "https://avatars.githubusercontent.com/u/86934356?v=4",
-      location: "Seattle, WA.",
-      linkedinProfile: "https://www.linkedin.com/in/joel-barton1/",
-      githubProfile: "https://github.com/joelbarton-io",
-    },
-  ];
+  const { setActivePage, setActiveSubheader } = page;
   return (
     <>
-      <div className="flex h-[36rem] flex-col items-center justify-center bg-harrierBLACK text-center">
+      {/*
+        we accelerate GHA CI builds (through cache) 
+
+    panel 1: challenge/solution 
+        panel 2: how to get it (deployment)
+        panel 3: feature 
+        panel 4: team
+        
+    */}
+      <div className="flex h-[40rem] flex-col items-center justify-center bg-harrierBLACK text-center">
         {/* <FloatingBirds /> */}
         <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
           Harrier
@@ -88,7 +66,7 @@ const LandingPage = () => {
           </p>
           <Button
             onClick={() => {
-              navigate("/case-study/problem-domain");
+              navigate("/case-study/introduction");
               setActivePage(0);
               setActiveSubheader(null);
             }}
@@ -124,7 +102,6 @@ const LandingPage = () => {
       </div>
 
       <div className="flex h-[36rem] flex-row gap-8 bg-harrierOFFWHITE p-8">
-        {/* Text Div */}
         <div className="flex w-full items-center justify-center md:w-3/5">
           <div className="max-w-full space-y-4 text-left md:max-w-[90%]">
             <h2 className="text-2xl font-bold md:text-3xl">
@@ -151,7 +128,6 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Image Div */}
         <div className="justify-left flex w-full items-center md:w-2/5">
           <img
             src={HarrierColor}
@@ -171,11 +147,7 @@ const LandingPage = () => {
             <TeamMember member={member} key={member.name} />
           ))}
         </div>
-
-        {/* <img src={HarrierBW} alt="GitHub Actions" className="m-4 h-64 w-auto" /> */}
       </div>
     </>
   );
 };
-
-export default LandingPage;

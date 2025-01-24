@@ -4,34 +4,17 @@ import { ExternalLink } from "@/components/utility/ExternalLink";
 import { ImageContentModal } from "@/components/ui/dialog";
 import { CodeBlock } from "@/components/utility/CodeBlock";
 import { BoldText as BT } from "@/components/utility/BoldText";
-import { useInView } from "react-intersection-observer";
 import { Cite } from "@/components/utility/Cite";
 import { Overview } from "@/components/utility/Overview";
+import { SectionInView } from "@/components/utility/SectionInView";
+
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
 
-const SectionInView = ({
-  sectionId,
-  onInView,
-}: {
-  sectionId: string;
-  onInView: (id: string) => void;
-}) => {
-  const { ref, inView } = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
-    rootMargin: "0px 0px -60% 0px",
-  });
-
-  if (inView) onInView(sectionId);
-
-  return <div ref={ref}></div>;
-};
-
-const ProblemDomain = () => {
+export const ProblemDomain = () => {
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -59,37 +42,33 @@ const ProblemDomain = () => {
 
   return (
     <>
-      <section id="problem-domain-2-1">
-        <h2 className="major-h">{subheaderNames[0]}</h2>
-        <Overview title="GitHub Actions: Cornerstone of Modern Software Development">
-          <span>
-            <ul>
-              <li>
-                <BT>GHA empowers developers and teams.</BT>With CI/CD workflows
-                as its primary function GHA streamlines processes from
-                development to production.{" "}
-              </li>
-              <li>
-                <BT>GHA has widespread adoption.</BT> GHA is a go-to choice for
-                automation for its ease of use, flexibility, and ability to run
-                workflows directly from within the GitHub repo.
-              </li>
-              <li>
-                <BT>
-                  GHA optimization can have substantial impact on productivity.
-                </BT>{" "}
-                Identifying and addressing friction points within GHA leads to
-                increased efficiency and effectiveness, making it a strategic
-                priority for Harrier.
-              </li>
-            </ul>
-          </span>
-        </Overview>
-      </section>
-      <section>
-        <h3 className="minor-h">
-          CI/CD and DevOps: The Backbone of Modern Software Development
-        </h3>
+      <Overview title="GitHub Actions: Cornerstone of modern software development">
+        <span>
+          <ul>
+            <li>
+              <BT>GHA empowers developers and teams.</BT> With CI/CD workflows
+              as its primary function GHA streamlines processes from development
+              to production.
+            </li>
+            <li>
+              <BT>GHA has widespread adoption.</BT> GHA is a go-to choice for
+              automation for its ease of use, flexibility, and ability to run
+              workflows directly from within the GitHub repo.
+            </li>
+            <li>
+              <BT>
+                GHA optimization can have substantial impact on productivity.
+              </BT>{" "}
+              Identifying and addressing friction points within GHA leads to
+              increased efficiency and effectiveness, making it a strategic
+              priority for Harrier.
+            </li>
+          </ul>
+        </span>
+      </Overview>
+      <section id="problem-domain-0">
+        <SectionInView sectionId="problem-domain-0" onInView={handleInView} />
+        <h2>{subheaderNames[0]}</h2>
         <p>
           Modern software development is a complex endeavor performed by large
           teams of experts, which require a great deal of communication and
@@ -168,8 +147,9 @@ const ProblemDomain = () => {
           focus more on innovation and less on manual or repetitive tasks.
         </p>
       </section>
-      <section>
-        <h2>GHA Workflow Automation</h2>
+      <section id="problem-domain-1">
+        <SectionInView sectionId="problem-domain-1" onInView={handleInView} />
+        <h2>{subheaderNames[1]}</h2>
         <p>
           Automation is the implementation of tasks or processes without human
           intervention, enabling increased efficiency and productivity. It
@@ -213,8 +193,9 @@ const ProblemDomain = () => {
           <Cite num={9999} label="github pr post" href="#" />
         </p>
       </section>
-      <section>
-        <h2>GHA and CI/CD automation</h2>
+      <section id="problem-domain-2">
+        <SectionInView sectionId="problem-domain-2" onInView={handleInView} />
+        <h2>{subheaderNames[2]}</h2>
         <p>
           Given that GitHub Actions was designed to provide native CI/CD
           automation support, GitHub workflows are almost entirely related to
@@ -297,49 +278,36 @@ const ProblemDomain = () => {
           explore various ways to make a contribution.
         </p>
       </section>
-      <section id="problem-domain-2-2">
-        <SectionInView sectionId="problem-domain-2-2" onInView={handleInView} />
-        <h2>{subheaderNames[1]}</h2>
-        <p className="overview">
-          <p>Overview:</p>
+      <br />
+      <br />
+      <Overview title="GHA often cited as the cause of slower than desirable CI builds">
+        <span>
           <ul>
             <li>
-              Speed of automation is a critical factor in unlocking the full
-              benefits of CI/CD
-              <ul>
-                <li>
-                  faster automation processes equate to rapid feedback loops,
-                  and faster the feedback, the more agile and efficient the
-                  development workflow.
-                </li>
-                <li>
-                  Faster automation can dramatically reduce developer context
-                  switching and idle time31, transforming waiting periods into
-                  productive coding opportunities.
-                </li>
-              </ul>
+              <BT>
+                Speed is a critical factor in unlocking full benefits of CI/CD.
+              </BT>
+              Faster automation equates to rapid feedback, and faster feedback
+              leads to more agile and efficient development.
             </li>
             <li>
-              Despite the numerous benefits of utilizing GHA as a CI/CD tool,
-              GHA itself is often cited as the cause of slower than desirable CI
-              builds
-              <ul>
-                <li>
-                  numerous GitHub Issues and GitHub feature requests (link to
-                  GitHub’s own Issues page filtered ) related to slow CI builds
-                  submitted by GHA users
-                </li>
-                <li>
-                  significant investment being made within the tech sector on
-                  products and services that accelerate GHA workflows.
-                </li>
-              </ul>
+              <BT>Speed also impacts developer productivity.</BT> Unnecessary
+              idle time and context switching leads to longer and less effective
+              development.
+            </li>
+            <li>
+              <BT>
+                GHA’s cloud infrastructure design prohibits effective caching.
+              </BT>{" "}
+              Caching, a primary workaround for accelerating workflows, is
+              difficult in GHA’s ephemeral VM architecture.
             </li>
           </ul>
-        </p>
-      </section>
-      <section>
-        <h2>Unpacking GHA’s original design</h2>
+        </span>
+      </Overview>
+      <section id="problem-domain-3">
+        <SectionInView sectionId="problem-domain-3" onInView={handleInView} />
+        <h2>{subheaderNames[3]}</h2>
         <p>
           GitHub Action’s automated workflows are executed on servers that are
           called runners. GitHub provides default runners as a service in order
@@ -396,8 +364,9 @@ const ProblemDomain = () => {
           of vertical scaling.
         </p>
       </section>
-      <section>
-        <h2>Limitations of GHA Cache Action</h2>
+      <section id="problem-domain-4">
+        <SectionInView sectionId="problem-domain-4" onInView={handleInView} />
+        <h2>{subheaderNames[4]}</h2>
         <p>
           The limitations around CI build speed within GHA were significant
           enough to warrant GitHub itself taking action. Within a couple years
@@ -482,88 +451,67 @@ const ProblemDomain = () => {
           exploring alternative solutions.
         </p>
       </section>
-      <section id="problem-domain-2-3">
-        <SectionInView sectionId="problem-domain-2-3" onInView={handleInView} />
-        <h2>{subheaderNames[2]}</h2>
-        <p className="overview">
-          <p>Overview:</p>
+      <br />
+      <br />
+      <Overview title="Self-hosted runners with storage make caching available within GHA">
+        <span>
           <ul>
             <li>
-              DIY solutions to get around the caching challenge posed by GHA’s
-              infrastructure limitations accomplished by provisioning an
-              alternative runner infrastructure with storage designed into the
-              systems architecture
-              <ul>
-                <li>
-                  For those exploring innovative DIY solutions to get around the
-                  caching challenge posed by GHA’s infrastructure limitations, a
-                  possible solution is provisioning an alternative runner
-                  infrastructure with large storage discs which allows users to
-                  reimagine the GHA CI build environment using persistent cache
-                  storage.
-                  <Cite
-                    num={9999}
-                    label="Cache is King"
-                    href="https://news.ycombinator.com/item?id=39956327"
-                  />
-                </li>
-              </ul>
+              <BT>
+                GitHub enables users to create alternative GHA runner
+                infrastructures.
+              </BT>{" "}
+              GHA Self-Hosted Runner feature allows users to reimagine the GHA
+              CI build environment.
             </li>
             <li>
-              GitHub enables users to create alternative runner infrastructures
-              using their own Self-Hosted Runner feature
+              <BT>
+                Significant investment being made in solutions using GHA
+                self-hosted runners.
+              </BT>{" "}
+              Vendors are offering to offload self-hosted runner provisioning
+              and management from users.
             </li>
             <li>
-              On-demand self-hosted runners on a managed cloud infrastructure
-              would best meet the needs for resource optimization and minimal
-              administrative overhead
-              <ul>
-                <li>
-                  The <BT>Self-Hosted Runner</BT> feature can be deployed on a
-                  local machine, on-premises server, or even on a cloud
-                  infrastructure.{" "}
-                </li>
-              </ul>
+              <BT>Opportunity for a cheaper, minimal effort DIY solution.</BT>{" "}
+              Demand for solutions that rely less on 3rd party SaaS providers,
+              decreasing code exposure, with minimal administrative overhead.
             </li>
           </ul>
-        </p>
-        <ImageContentModal
-          src={AltRunnerInfra}
-          alt={"Alternative infrastructure for self-hosted runner"}
-        />
-
-        <p className="callout">
-          <p>What is a self-hosted runner?</p>
-          <ul>
-            <li>
-              GitHub recognized the user demand for exploring higher degrees of
-              runner customization than what can be provided by the
-              out-of-the-box configurations and released a Self-Hosted Runner
-              feature soon after launching GHA. The self-hosted runner solution
-              was meant to provide users with greater control and
-              customizability that they wanted while allowing GitHub to offload
-              the responsibility for maintaining these one-off infrastructures
-              to the users themselves. For those users who really want to remain
-              in the GHA ecosystem, self-hosted runners can be utilized as a key
-              component to their CI build performance optimization strategies.
-            </li>
-            <li>
-              GitHub’s Self-Hosted Runner feature allows users to configure
-              their own infrastructure by downloading and installing GH’s runner
-              application, which installs the necessary software to connect and
-              execute GHA workflows. Through this application, the user can
-              optimize their hardware, operating system, and software
-              environment to meet specific CI build requirements. For example,
-              it is now possible to utilize machines with higher CPU or memory
-              specifications, install proprietary software, or access resources
-              within a private network.
-            </li>
-          </ul>
-        </p>
-      </section>
-      <section>
-        <h2>Implementation Options for self-hosted runners</h2>
-        <p>
+        </span>
+      </Overview>
+      <p className="callout">
+        <p>What is a self-hosted runner?</p>
+        <ul>
+          <li>
+            GitHub recognized the user demand for exploring higher degrees of
+            runner customization than what can be provided by the out-of-the-box
+            configurations and released a Self-Hosted Runner feature soon after
+            launching GHA. The self-hosted runner solution was meant to provide
+            users with greater control and customizability that they wanted
+            while allowing GitHub to offload the responsibility for maintaining
+            these one-off infrastructures to the users themselves. For those
+            users who really want to remain in the GHA ecosystem, self-hosted
+            runners can be utilized as a key component to their CI build
+            performance optimization strategies.
+          </li>
+          <li>
+            GitHub’s Self-Hosted Runner feature allows users to configure their
+            own infrastructure by downloading and installing GH’s runner
+            application, which installs the necessary software to connect and
+            execute GHA workflows. Through this application, the user can
+            optimize their hardware, operating system, and software environment
+            to meet specific CI build requirements. For example, it is now
+            possible to utilize machines with higher CPU or memory
+            specifications, install proprietary software, or access resources
+            within a private network.
+          </li>
+        </ul>
+      </p>
+      <section id="problem-domain-5">
+        <SectionInView sectionId="problem-domain-5" onInView={handleInView} />
+        <h2>{subheaderNames[5]}</h2>
+        <span>
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
           an on-premises server or even one’s local machine:
@@ -572,7 +520,11 @@ const ProblemDomain = () => {
             <li>Trusted security and compliance</li>
             <li>Vendor-supported infrastructure management</li>
           </ul>
-        </p>
+        </span>
+        <ImageContentModal
+          src={AltRunnerInfra}
+          alt={"Alternative infrastructure for self-hosted runner"}
+        />
         <p>
           As mentioned previously, Github provides a free, DIY solution to
           create an alternative runner infrastructure in the form of the GH
@@ -681,8 +633,9 @@ const ProblemDomain = () => {
           contribution.
         </p>
       </section>
-      <section>
-        <h2>Opportunity for 3rd-Party-Supported DIY</h2>
+      <section id="problem-domain-6">
+        <SectionInView sectionId="problem-domain-6" onInView={handleInView} />
+        <h2>{subheaderNames[6]}</h2>
         <p>
           GitHub Actions users want to experience faster workflow automation
           through accelerated CI builds. However, they cannot afford to put
@@ -706,5 +659,3 @@ const ProblemDomain = () => {
     </>
   );
 };
-
-export default ProblemDomain;

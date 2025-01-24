@@ -1,17 +1,11 @@
-import SetupForm from "@/components/utility/SetupForm";
+import { useState, useEffect } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-import {
-  FaChevronRight,
-  FaArrowRight,
-  FaArrowLeft,
-  //   FaAws,
-  //   FaGithub,
-} from "react-icons/fa";
-import { Separator } from "../ui/separator";
+import { FaChevronRight, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+
+import { SetupForm } from "@/components/utility/SetupForm";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { BoldText as BT } from "@/components/utility/BoldText";
 import { CodeBlock as Code } from "@/components/utility/CodeBlock";
-import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FieldValues, useForm } from "react-hook-form";
@@ -90,14 +84,14 @@ const TryHarrierNav = ({
               className="relative"
             >
               <div
-                className={`flex items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
+                className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
                   stepIdx === activeStep
                     ? "bg-harrierBLACK text-harrierWHITE/85"
                     : "bg-quaternary/85 text-harrierBLACK"
                 }`}
               >
-                Step {step.numericTitle}
-                {<FaChevronRight className="ml-2" />}
+                <div>Step {step.numericTitle}</div>
+                <FaChevronRight className="ml-2" />
               </div>
             </div>
           ))}
@@ -132,9 +126,8 @@ const TryHarrierContent = ({
         id="try-harrier-content"
         className="prose mx-auto w-full max-w-screen-xl flex-1 flex-row overflow-y-auto p-10 pt-12"
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-2xl font-bold">{steps[activeStep].title}</h2>
-          <nav className="flex justify-start">
+        <div className="mb-4 flex items-center justify-end">
+          <nav className="flex justify-start space-x-2">
             <Button
               variant="ghost"
               size="lg"
@@ -142,18 +135,23 @@ const TryHarrierContent = ({
               onClick={handleBackwardClick}
             >
               <FaArrowLeft className="mr-2" />
+              Prev
             </Button>
+
             <Button
               variant="ghost"
               size="lg"
               className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
               onClick={handleForwardClick}
             >
+              Next
               <FaArrowRight className="ml-2" />
             </Button>
           </nav>
         </div>
-        <Overview>{steps[activeStep].introduction}</Overview>
+        <Overview title={steps[activeStep].title}>
+          {steps[activeStep].introduction}
+        </Overview>
         <section
           id={`${steps[activeStep].id}`}
           className="flex flex-col justify-start"
@@ -204,14 +202,6 @@ const TryHarrierContent = ({
         </section>
 
         <nav className="flex justify-end">
-          {/* <Button
-            variant="ghost"
-            size="lg"
-            className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
-            onClick={handleBackwardClick}
-          >
-            <FaArrowLeft className="mr-2" />
-          </Button> */}
           <Button
             variant="ghost"
             size="lg"
@@ -226,8 +216,8 @@ const TryHarrierContent = ({
   );
 };
 
-export default function TryHarrierPage() {
-  const [activeStep, setActiveStep] = useState(1);
+export const TryHarrierPage = () => {
+  const [activeStep, setActiveStep] = useState(0);
   const [formDataJSON, setFormDataJSON] = useState("");
   const [yamlOutput, setYamlOutput] = useState("");
 
@@ -250,11 +240,13 @@ export default function TryHarrierPage() {
       numericTitle: 0,
       title: "Prerequisites",
       introduction: (
-        <span className="">
-          Before proceeding, ensure you have a <BT> AWS Account</BT> and an{" "}
-          <BT>Github Organization</BT>. If you don't yet have these, you can
-          create them by following the links below. If you already have these,
-          you can skip this step and continue to step 1.
+        <span>
+          <p>
+            Before proceeding, ensure you have a <BT> AWS Account</BT> and an{" "}
+            <BT>Github Organization</BT>. If you don't yet have these, you can
+            create them by following the links below. If you already have these,
+            you can skip this step and continue to step 1.
+          </p>
           <ol className="flex flex-col align-middle">
             <li>
               <ExternalLink
@@ -287,24 +279,26 @@ export default function TryHarrierPage() {
       title: "Create an OpenID Connect identity provider in IAM",
       introduction: (
         <span>
-          <ExternalLink
-            href="https://openid.net/developers/how-connect-works/"
-            children="OpenID Connect"
-          />{" "}
-          (OIDC) is an authentication protocol built on top of OAuth 2.0,
-          allowing applications to verify user identities through an identity
-          provider like GitHub. OIDC issues ID tokens (usually JWTs) that
-          authenticate users and provide profile information, enabling{" "}
-          <ExternalLink
-            href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso"
-            children="single sign-on"
-          />
-          . OIDC is widely used for secure authentication, and in the context of
-          GitHub, facilitates connections with external services by enabling
-          secure, temporary credentials through OIDC tokens. This allows GitHub
-          Actions to authenticate with cloud providers without requiring static
-          credentials, thus offering enhanced security and seamless integration
-          for CI/CD workflows.
+          <p>
+            <ExternalLink
+              href="https://openid.net/developers/how-connect-works/"
+              children="OpenID Connect"
+            />{" "}
+            (OIDC) is an authentication protocol built on top of OAuth 2.0,
+            allowing applications to verify user identities through an identity
+            provider like GitHub. OIDC issues ID tokens (usually JWTs) that
+            authenticate users and provide profile information, enabling{" "}
+            <ExternalLink
+              href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-sso"
+              children="single sign-on"
+            />
+            . OIDC is widely used for secure authentication, and in the context
+            of GitHub, facilitates connections with external services by
+            enabling secure, temporary credentials through OIDC tokens. This
+            allows GitHub Actions to authenticate with cloud providers without
+            requiring static credentials, thus offering enhanced security and
+            seamless integration for CI/CD workflows.
+          </p>
         </span>
       ),
       conclusion: "conclusion",
@@ -419,22 +413,24 @@ export default function TryHarrierPage() {
       title: "Create a Personal Access Token on GitHub",
       introduction: (
         <span>
-          <ExternalLink
-            href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens"
-            children="Personal Access Tokens"
-          />{" "}
-          (PAT) are used to securely authenticate and authorize access to a
-          platform's APIs, enabling actions like managing resources and
-          automating tasks without exposing sensitive credentials. Harrier
-          requires a PAT to facilitate the authentication of{" "}
-          <ExternalLink
-            href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28"
-            children="API request/response cycles."
-          />
-          By securely storing the token in AWS Secrets Manager, Harrier ensures
-          it remains protected and accessible only when required, reducing the
-          risk of unauthorized access and maintaining strict control over
-          sensitive credentials.
+          <p>
+            <ExternalLink
+              href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens"
+              children="Personal Access Tokens"
+            />{" "}
+            (PAT) are used to securely authenticate and authorize access to a
+            platform's APIs, enabling actions like managing resources and
+            automating tasks without exposing sensitive credentials. Harrier
+            requires a PAT to facilitate the authentication of{" "}
+            <ExternalLink
+              href="https://docs.github.com/en/rest/about-the-rest-api/about-the-rest-api?apiVersion=2022-11-28"
+              children="API request/response cycles."
+            />
+            By securely storing the token in AWS Secrets Manager, Harrier
+            ensures it remains protected and accessible only when required,
+            reducing the risk of unauthorized access and maintaining strict
+            control over sensitive credentials.
+          </p>
         </span>
       ),
       conclusion: "conclusion",
@@ -544,12 +540,15 @@ export default function TryHarrierPage() {
       title: "Select your runner configuration settings",
       introduction: (
         <span>
-          Fill out the form fields below to and click <BT>Generate</BT> to
-          render a your <Code>harrier_setup.yaml</Code>. Executing this workflow
-          will deploy a fleet of self-hosted runners into your AWS account,
-          enabling you to run your GitHub Actions workflows on your own AWS
-          infrastructure. If you would like to learn more about the specific
-          field, simply hover the respective label.
+          <p>
+            {" "}
+            Fill out the form fields below to and click <BT>Generate</BT> to
+            render a your <Code>harrier_setup.yaml</Code>. Executing this
+            workflow will deploy a fleet of self-hosted runners into your AWS
+            account, enabling you to run your GitHub Actions workflows on your
+            own AWS infrastructure. If you would like to learn more about the
+            specific field, simply hover the respective label.
+          </p>
         </span>
       ),
       conclusion: "conclusion",
@@ -561,8 +560,10 @@ export default function TryHarrierPage() {
       title: "Auto-deploy self-hosted runner fleet into AWS account",
       introduction: (
         <span>
-          With <Code>harrier_setup.yaml</Code> in tow, all that's left to do is
-          add the yaml to a GitHub repository and execute the workflow.
+          <p>
+            With <Code>harrier_setup.yaml</Code> in tow, all that's left to do
+            is add the yaml to a GitHub repository and execute the workflow.
+          </p>
         </span>
       ),
       conclusion: "conclusion",
@@ -725,4 +726,4 @@ export default function TryHarrierPage() {
       />
     </>
   );
-}
+};
