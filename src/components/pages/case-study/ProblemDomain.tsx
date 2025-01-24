@@ -285,7 +285,6 @@ export const ProblemDomain = () => {
         </p>
       </section>
       <br />
-      <br />
       <Overview title="GHA often cited as the cause of slower than desirable CI builds">
         <span>
           <ul>
@@ -458,8 +457,7 @@ export const ProblemDomain = () => {
         </p>
       </section>
       <br />
-      <br />
-      <Overview title="Self-hosted runners with storage make caching available within GHA">
+      <Overview title="Self-hosted runners with storage enable caching in GHA">
         <span>
           <ul>
             <li>
