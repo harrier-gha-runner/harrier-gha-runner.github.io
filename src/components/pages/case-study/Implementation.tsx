@@ -6,6 +6,8 @@ import { BoldText as BT } from "@/components/utility/BoldText";
 import { Overview } from "@/components/utility/Overview";
 import { SectionInView } from "@/components/utility/SectionInView";
 import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
+import { Callout } from "@/components/utility/Callout";
+import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 
 import IsolatedVPC from "@/assets/4.1.isolated-vpc-in-users-aws-account.png";
 import FleetOfEC2Runners from "@/assets/4.2.fleet-of-ec2-runners.png";
@@ -18,7 +20,6 @@ import OverallArchitecture from "@/assets/4.overall-architecture.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
-import { Callout } from "@/components/utility/Callout";
 
 // import { AxiosChart } from "@/components/AxiosChart";
 // import { VSCodeChart } from "@/components/VSCodeChart";
@@ -330,7 +331,107 @@ export const Implementation = () => {
           AWS cloud infrastructure can be customized to deploy GitHub Actions
           runners in various ways. We compared the three most viable methods:
         </p> */}
-        <ul className="space-x-4 p-0 text-center">
+
+        <AccordianFAQ
+          faqs={[
+            {
+              question: "Why EC2 over Fargate or Lambda?",
+              answer: (
+                <>
+                  <p>
+                    AWS provides a variety of cloud compute options besides the
+                    EC2, namely AWS Fargate and AWS Lambda.{" "}
+                  </p>
+                  <p>
+                    AWS Fargate is a serverless compute engine specifically
+                    designed to run containers without having to manage the
+                    underlying infrastructure, typically used as part of the
+                    Amazon Elastic Container Service (ECS) and Elastic
+                    Kubernetes Service (EKS).
+                  </p>
+                  <p>
+                    AWS Lambda is a serverless compute service that runs code in
+                    response to event triggers. Users upload the function code,
+                    define the relevant triggers, and the Lambda service handles
+                    the provisioning, execution, scaling, and infrastructure
+                    management automatically.
+                  </p>
+                  <p>
+                    Even though the idea of “serverless” seems desirable with
+                    its minimal infrastructure management responsibilities that
+                    would be placed on the user, neither AWS Fargate nor AWS
+                    Lambda are actually a good option as a GHA self-hosted
+                    runner.
+                  </p>
+                  <p>
+                    The GHA self-hosted runner application needs to be executed
+                    at the command line, which would then register the server
+                    with GitHub and prepare it to receive the codebase,
+                    requisite data, and automation instructions from GHA, thus
+                    setting up for the workflow to run its course . It is
+                    possible to encapsulate this entire process to occur within
+                    a container, but the added layer of complexity fights
+                    against the need for speed, eliminating the AWS Fargate as a
+                    possible runner option.
+                  </p>
+                  <p>
+                    As described above, a self-hosted runner is more than just
+                    an application that needs to be executed. The runner is the
+                    server onto which the codebase is checked out, automation
+                    executed, with artifacts created as needed. The AWS Lambda
+                    does not have the capability to serve in this capacity.
+                  </p>
+                  <p>
+                    Therefore, Harrier chose to use Amazon EC2 instances to
+                    provide the level of control and persistence necessary for
+                    the provisioned runner VM to function properly as a GHA
+                    self-hosted runner.
+                  </p>
+                  {/* AWS provides a variety of cloud compute options besides the
+                  EC2, namely AWS Fargate and AWS Lambda. AWS Fargate is a
+                  serverless compute engine specifically designed to run
+                  containers without having to manage the underlying
+                  infrastructure, typically used as part of the Amazon Elastic
+                  Container Service (ECS) and Elastic Kubernetes Service (EKS).
+                  AWS Lambda is a serverless compute service that runs code in
+                  response to event triggers. Users upload the function code,
+                  define the relevant triggers, and the Lambda service handles
+                  the provisioning, execution, scaling, and infrastructure
+                  management automatically. Even though the idea of “serverless”
+                  seems desirable with its minimal infrastructure management
+                  responsibilities that would be placed on the user, neither AWS
+                  Fargate nor AWS Lambda are actually a good option as a GHA
+                  self-hosted runner. The GHA self-hosted runner application
+                  needs to be executed at the command line, which would then
+                  register the server with GitHub and prepare it to receive the
+                  codebase, requisite data, and automation instructions from
+                  GHA, thus setting up for the workflow to run its course . It
+                  is possible to encapsulate this entire process to occur within
+                  a container, but the added layer of complexity fights against
+                  the need for speed, eliminating the AWS Fargate as a possible
+                  runner option. As described above, a self-hosted runner is
+                  more than just an application that needs to be executed. The
+                  runner is the server onto which the codebase is checked out,
+                  automation executed, with artifacts created as needed. The AWS
+                  Lambda does not have the capability to serve in this capacity.
+                  Therefore, Harrier chose to use Amazon EC2 instances to
+                  provide the level of control and persistence necessary for the
+                  provisioned runner VM to function properly as a GHA
+                  self-hosted runner. */}
+                </>
+              ),
+            },
+            {
+              question: "Is a warm pool start fast enough?",
+              answer: "answer 2",
+            },
+            {
+              question: "Isn't maintaining a warm pool expensive?",
+              answer: "answer 3",
+            },
+          ]}
+        />
+        {/* <ul className="space-x-4 p-0 text-center">
           <li id="why-ec2-over-fargate-or-lambda" className="modal-item">
             <TextContentModal title="Why EC2 over Fargate or Lambda?">
               <p>
@@ -478,7 +579,7 @@ export const Implementation = () => {
               </p>
             </TextContentModal>
           </li>
-        </ul>
+        </ul> */}
 
         {/* 
         <h4 className="text-center">
@@ -1776,23 +1877,24 @@ export const Implementation = () => {
       <section id="implementation-8">
         <SectionInView sectionId="implementation-8" onInView={handleInView} />
         <h2>{subheaderNames[8]}</h2>
-        <ImageContentModal
-          src={OverallArchitecture}
-          alt={"Overall architecture"}
-        />
         <p>
           Here is a diagram that outlines the overall system architecture
           created by the Harrier agent within the user's cloud account.
         </p>
-        <br />
+        <ImageContentModal
+          src={OverallArchitecture}
+          alt={"Overall architecture"}
+        />
 
+        {/* <br /> */}
+        {/* 
         <div className="scale-125 place-content-center">
           <ImageContentModal
             src={OverallArchitecture}
             alt={"Overall architecture"}
           />
-        </div>
-        <br />
+        </div> */}
+        {/* <br /> */}
         {/* <p className="text-center font-bold">
           Harrier uses three AWS Lambdas: the Workflow Lambda, the Timeout
           Lambda, and the Cache Eviction Lambda

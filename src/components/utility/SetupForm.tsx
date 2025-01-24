@@ -215,14 +215,15 @@ export const SetupForm = ({ form, onSubmit, yamlOutput }: SetupFormProps) => {
 
       {yamlOutput && (
         <div className="flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-7xl">
+          <div className="group relative w-full max-w-7xl">
             <Button
               onClick={copyToClipboard}
               variant="outline"
-              className="absolute right-0 top-20 mr-2 text-harrierGRAY"
+              className="absolute right-0 top-20 mr-2 hidden text-harrierGRAY group-hover:block"
             >
               {copied ? <ClipboardCheck /> : <Copy />}
             </Button>
+
             <h3 className="text-xl font-semibold">Copy this workflow YAML:</h3>
             <SyntaxHighlighter
               language="yaml"

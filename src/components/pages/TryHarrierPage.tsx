@@ -164,7 +164,7 @@ const TryHarrierContent = ({
                   </figcaption>
                   <div className="relative pl-8">
                     <figure
-                      className="goldilocks box rounded-xl"
+                      className="goldilocks box rounded-lg"
                       aria-labelledby={`${steps[activeStep].id}-${idx + 1}`}
                     >
                       <img

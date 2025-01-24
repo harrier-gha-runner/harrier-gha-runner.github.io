@@ -138,9 +138,9 @@ export const LandingPage = () => {
       </div>
 
       <div className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16">
-        <h3 className="mb-8 text-3xl font-semibold text-harrierBLACK">
+        <h2 className="mb-8 text-3xl font-semibold text-harrierBLACK">
           Meet the Team
-        </h3>
+        </h2>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {team.map((member) => (

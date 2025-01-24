@@ -1,4 +1,4 @@
-import { useContext, useEffect, useCallback } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { PageNavigationContext } from "@/providers/PageNavigation";
@@ -82,7 +82,7 @@ const CaseStudyOnThisPageNav = ({
               <li
                 key={subheader.id}
                 onClick={() => scrollToElement(subheader.id)}
-                className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 text-harrierBLACK" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
+                className={`relative inline-block rounded-r-sm border-l-4 py-2 pl-6 pr-4 ${activeSubheader === subheaderIdx ? "border-harrierBLUE bg-harrierBLUE/50 font-semibold text-harrierBLACK" : "text-harrierGRAY hover:bg-harrierGRAY/10 hover:text-harrierBLACK"}`}
               >
                 <NavLink
                   to={{ hash: `#${subheader.id}` }}
@@ -152,7 +152,7 @@ export const CaseStudyHomePage = () => {
         <main
           id="case-study-content"
           //   className="prose w-full max-w-4xl flex-1 flex-row p-10 pt-12"
-          className="prose mx-auto w-full max-w-screen-md p-10 pt-12"
+          className="prose mx-auto w-full max-w-screen-md p-10"
         >
           <Outlet />
         </main>
