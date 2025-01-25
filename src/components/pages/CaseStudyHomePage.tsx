@@ -151,8 +151,7 @@ export const CaseStudyHomePage = () => {
       <div id="page-content-container" className="flex flex-wrap">
         <main
           id="case-study-content"
-          //   className="prose w-full max-w-4xl flex-1 flex-row p-10 pt-12"
-          className="prose mx-auto w-full max-w-screen-md p-10"
+          className="prose mx-auto w-full max-w-screen-md px-10 pb-40 pt-4"
         >
           <Outlet />
         </main>

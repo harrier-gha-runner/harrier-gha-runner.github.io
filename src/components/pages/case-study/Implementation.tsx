@@ -5,7 +5,7 @@ import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { BoldText as BT } from "@/components/utility/BoldText";
 import { Overview } from "@/components/utility/Overview";
 import { SectionInView } from "@/components/utility/SectionInView";
-import { TextContentModal, ImageContentModal } from "@/components/ui/dialog";
+import { ImageContentModal } from "@/components/ui/dialog";
 import { Callout } from "@/components/utility/Callout";
 import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 

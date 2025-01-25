@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useViewportWidth = (threshold = 1000) => {
+export const useViewportWidth = (threshold = 1100) => {
   const [isViewportWide, setIsViewportWide] = useState(
     window.innerWidth > threshold,
   );
