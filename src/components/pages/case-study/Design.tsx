@@ -14,6 +14,7 @@ import DedicatedCache from "@/assets/3.5.dedicated-cache-storage.png";
 import CacheManagement from "@/assets/3.6.cache-management.png";
 import ApiIntegration from "@/assets/3.7.api-integration-trsprt.png";
 import { Overview } from "@/components/utility/Overview";
+import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 // import CiCdCircles from "@/assets/2.1.1.ci-cd-simple-circles.png";
 // import AlternateInfrastructure from "@/assets/3.harrier-setup-alternative-infrastructure.png";
 // import HarrierDesignLevelHigh from "@/assets/3.harrier-design-high-level.png";
@@ -197,7 +198,34 @@ export const Design = () => {
       <section id="design-6">
         <SectionInView sectionId="design-6" onInView={handleInView} />
         <h2>{subheaderNames[6]}</h2>
-
+        <AccordianFAQ
+          faqs={[
+            {
+              question: "How does GitHub Actions cache dependencies?",
+              answer: (
+                <>
+                  GitHub's cache action creates and restores a cache identified
+                  by a unique key. When the cache that exactly matches the key,
+                  considered a cache hit, the action restores the cached files.
+                  However, on a cache miss, the workflow continues without the
+                  restored cache and instead creates a new cache if the job
+                  completes successfully. When it comes to caching dependencies,
+                  GitHub's cache action defaults to caching the fetched package
+                  files that are typically stored in `~/.npm` on Linux/macOS
+                  rather than caching the entire node_modules directory. The
+                  design of Harrier's cache action differs from GitHub in that
+                  the cache is restored even without a cache hit, as long as
+                  there is a cache that matches the project. This will allow
+                  workflows to take advantage of cache more frequently than with
+                  GitHub's cache action. In addition, Harrier's cache stores the
+                  entire node_modules directory in its cache store, leading to a
+                  greater degree of short circuiting of the dependency
+                  installation process and thus saving more time.
+                </>
+              ),
+            },
+          ]}
+        />
         <p>
           With the alternative runner infrastructure provisioned and configured
           within the user's cloud environment, integration with the GHA

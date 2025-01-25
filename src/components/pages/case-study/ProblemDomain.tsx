@@ -14,6 +14,7 @@ import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
+import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 
 export const ProblemDomain = () => {
   const pageContext = useContext(PageNavigationContext);
@@ -485,32 +486,53 @@ export const ProblemDomain = () => {
         </span>
       </Overview>
       <Callout title="What is a self-hosted runner?">
-        <ul>
-          <li>
-            GitHub recognized the user demand for exploring higher degrees of
-            runner customization than what can be provided by the out-of-the-box
-            configurations and released a Self-Hosted Runner feature soon after
-            launching GHA. The self-hosted runner solution was meant to provide
-            users with greater control and customizability that they wanted
-            while allowing GitHub to offload the responsibility for maintaining
-            these one-off infrastructures to the users themselves. For those
-            users who really want to remain in the GHA ecosystem, self-hosted
-            runners can be utilized as a key component to their CI build
-            performance optimization strategies.
-          </li>
-          <li>
-            GitHub's Self-Hosted Runner feature allows users to configure their
-            own infrastructure by downloading and installing GH's runner
-            application, which installs the necessary software to connect and
-            execute GHA workflows. Through this application, the user can
-            optimize their hardware, operating system, and software environment
-            to meet specific CI build requirements. For example, it is now
-            possible to utilize machines with higher CPU or memory
-            specifications, install proprietary software, or access resources
-            within a private network.
-          </li>
-        </ul>
+        <p>
+          GitHub recognized the demand for exploring higher degrees of runner
+          customization than what could be provided with the out-of-the-box
+          runner configurations and released a Self-Hosted Runner feature soon
+          after launching GitHub Actions. This feature allows users to configure
+          their own infrastructure by downloading and installing GitHub’s runner
+          application, which installs the necessary software to connect and
+          execute GitHub Actions workflows. The self-hosted runner solution
+          provides users with greater control and customizability necessary to
+          meet specific CI build requirements, such as utilizing machines with
+          higher CPU or memory specifications, installing proprietary software,
+          or accessing resources within a private network. For users who really
+          want to remain in the GitHub Actions ecosystem, self-hosted runners
+          can be utilized as a key component to their CI build performance
+          optimization strategies.
+        </p>
       </Callout>
+      {/* TODO: do we want callouts or just go with the accordian question theme? */}
+      <AccordianFAQ
+        faqs={[
+          {
+            question: "What is a self-hosted runner?",
+            answer: (
+              <>
+                <p>
+                  GitHub recognized the demand for exploring higher degrees of
+                  runner customization than what could be provided with the
+                  out-of-the-box runner configurations and released a
+                  Self-Hosted Runner feature soon after launching GitHub
+                  Actions. This feature allows users to configure their own
+                  infrastructure by downloading and installing GitHub’s runner
+                  application, which installs the necessary software to connect
+                  and execute GitHub Actions workflows. The self-hosted runner
+                  solution provides users with greater control and
+                  customizability necessary to meet specific CI build
+                  requirements, such as utilizing machines with higher CPU or
+                  memory specifications, installing proprietary software, or
+                  accessing resources within a private network. For users who
+                  really want to remain in the GitHub Actions ecosystem,
+                  self-hosted runners can be utilized as a key component to
+                  their CI build performance optimization strategies.
+                </p>
+              </>
+            ),
+          },
+        ]}
+      />
 
       <section id="problem-domain-5">
         <SectionInView sectionId="problem-domain-5" onInView={handleInView} />

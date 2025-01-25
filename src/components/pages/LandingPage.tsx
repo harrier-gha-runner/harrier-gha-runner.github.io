@@ -1,24 +1,13 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
 import { Button } from "@/components/ui/button";
-// import FloatingBirds from "@/components/FloatingBirds";
+import { ExternalLink } from "@/components/utility/ExternalLink";
 import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
 import HarrierSetupAltInfra from "@/assets/3.harrier-setup-alternative-infrastructure.png";
-
+// import FloatingBirds from "@/components/FloatingBirds";
 import TeamMember from "@/components/TeamMember";
-
-export type Member = {
-  name: string;
-  role: string;
-  photoUrl: string;
-  location: string;
-  linkedinProfile: string;
-  githubProfile: string;
-  emailAddress?: string;
-  personalSiteUrl?: string;
-};
 
 export const LandingPage = () => {
   const navigate = useNavigate();
@@ -52,19 +41,29 @@ export const LandingPage = () => {
           <p className="mb-9 mt-7 text-2xl text-white">
             an automated{" "}
             <span className="font-semibold">
-              <a
+              <ExternalLink
                 href="https://github.com/features/actions"
-                className="hover:bg-teriary underline underline-offset-2"
-                target="_blank"
-                rel="noopener noreferrer"
+                color="text-harrierBLUE"
               >
                 GitHub Actions
-              </a>{" "}
+              </ExternalLink>{" "}
               self-hosted runner
             </span>{" "}
             deployment tool
           </p>
-          <Button
+          <NavLink
+            to="/case-study/introduction"
+            className="inline-flex items-center p-6"
+            onClick={() => {
+              setActivePage(0);
+              setActiveSubheader(null);
+            }}
+          >
+            <span className="text-lg font-semibold text-white">
+              Read the Case Study
+            </span>
+          </NavLink>
+          {/* <Button
             onClick={() => {
               navigate("/case-study/introduction");
               setActivePage(0);
@@ -74,7 +73,7 @@ export const LandingPage = () => {
             variant="secondary"
           >
             <span className="text-lg">Read the Case Study</span>
-          </Button>
+          </Button> */}
         </div>
       </div>
       <div className="flex h-[36rem] flex-row gap-8 bg-harrierWHITE p-8">

@@ -48,13 +48,13 @@ const TryHarrierNav = ({
   activeStep,
   setActiveStep,
 }: TryHarrierNavProps) => {
-  const viewportWideEnough = useViewportWidth();
+  const wideEnough = useViewportWidth();
 
   return (
     <div id="try-harrier-nav-container" className="sticky top-[88px] z-10">
       <nav
         id="try-harrier-nav"
-        className={`mx-auto flex w-fit justify-center py-2 ${viewportWideEnough ? "" : "hidden"}`}
+        className={`mx-auto flex w-fit justify-center py-2 ${wideEnough ? "" : "hidden"}`}
       >
         <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
           {steps?.map((step, stepIdx) => (
@@ -117,7 +117,6 @@ const TryHarrierContent = ({
               <FaArrowLeft className="mr-2" />
               Prev
             </Button>
-
             <Button
               variant="ghost"
               size="lg"

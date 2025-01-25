@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 type Page = {
   id: string;
@@ -23,34 +23,80 @@ const CaseStudyMainNav = ({
   setActiveSubheader,
   activePage,
 }: CaseStudyMainNavProps) => {
-  const viewportWideEnough = useViewportWidth();
+  const wideEnough = useViewportWidth();
+
+  const handleForwardClick = () => {
+    setActivePage(activePage + 1);
+  };
+  const handleBackwardClick = () => {
+    setActivePage(activePage - 1);
+    setActiveSubheader(null);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div id="case-study-nav-container" className="sticky top-[88px] z-10">
       <nav
         id="case-study-nav"
-        className={`mx-auto flex w-fit justify-center py-2 ${viewportWideEnough ? "" : "hidden"} `}
+        className={`mx-auto flex w-fit justify-center py-2`}
       >
         <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
-          {pages?.map((page, pageIdx) => (
-            <NavLink
-              to={`${page.id}`}
-              key={page.id}
-              onClick={() => {
-                setActivePage(pageIdx);
-                setActiveSubheader(null);
-                window.scrollTo(0, 0);
-              }}
-              className="relative"
-            >
-              <div
-                className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
-              >
-                <div>{page.name}</div>
-                <FaChevronRight className="ml-2" />
-              </div>
-            </NavLink>
-          ))}
+          {wideEnough ? (
+            <>
+              {pages?.map((page, pageIdx) => (
+                <NavLink
+                  to={`${page.id}`}
+                  key={page.id}
+                  onClick={() => {
+                    setActivePage(pageIdx);
+                    setActiveSubheader(null);
+                    window.scrollTo(0, 0);
+                  }}
+                  className="relative"
+                >
+                  <div
+                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${pageIdx === activePage ? "bg-harrierBLACK text-harrierWHITE/85" : "bg-quaternary/85 text-harrierBLACK"}`}
+                  >
+                    <div>{page.name}</div>
+                    <FaChevronRight size="16" className="ml-2" />
+                  </div>
+                </NavLink>
+              ))}
+            </>
+          ) : (
+            <>
+              {activePage > 0 ? (
+                <NavLink
+                  to={`${pages[activePage - 1]?.id}`}
+                  key={`${pages[activePage - 1]?.id}`}
+                  onClick={handleBackwardClick}
+                  className={`relative`}
+                >
+                  <div
+                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
+                  >
+                    <FaChevronLeft size="16" className="mr-2" />
+                    PREV {/*  {pages[activePage - 1]?.name} */}
+                  </div>
+                </NavLink>
+              ) : null}
+              {activePage < pages.length - 1 ? (
+                <NavLink
+                  to={`${pages[activePage + 1]?.id}`}
+                  key={`${pages[activePage + 1]?.id}`}
+                  onClick={handleForwardClick}
+                  className={`relative ${activePage === pages.length - 1 ? "invisible" : ""}`}
+                >
+                  <div
+                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
+                  >
+                    NEXT {/* pages[activePage + 1]?.name */}
+                    <FaChevronRight size="16" className="ml-2" />
+                  </div>
+                </NavLink>
+              ) : null}
+            </>
+          )}
         </div>
       </nav>
     </div>
@@ -66,11 +112,11 @@ const CaseStudyOnThisPageNav = ({
   activePage: number;
   activeSubheader: number | null;
 }) => {
-  const viewportWideEnough = useViewportWidth();
+  const wideEnough = useViewportWidth();
   return (
     <div
       id="on-this-page-container"
-      className={`w-[250px] ${viewportWideEnough ? "" : "hidden"} mr-4`}
+      className={`w-[250px] ${wideEnough ? "" : "hidden"} mr-4`}
     >
       <nav className="sticky top-[170px]" id="on-this-page">
         <h3 className="mb-6 text-xl font-semibold text-harrierBLACK">
