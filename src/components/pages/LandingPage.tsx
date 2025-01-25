@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
-import { Button } from "@/components/ui/button";
+
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
 import HarrierSetupAltInfra from "@/assets/3.harrier-setup-alternative-infrastructure.png";
@@ -10,7 +10,6 @@ import HarrierSetupAltInfra from "@/assets/3.harrier-setup-alternative-infrastru
 import TeamMember from "@/components/TeamMember";
 
 export const LandingPage = () => {
-  const navigate = useNavigate();
   const page = useContext(PageNavigationContext);
   const team = useContext(TeamContext);
 
@@ -23,15 +22,6 @@ export const LandingPage = () => {
   const { setActivePage, setActiveSubheader } = page;
   return (
     <>
-      {/*
-        we accelerate GHA CI builds (through cache) 
-
-    panel 1: challenge/solution 
-        panel 2: how to get it (deployment)
-        panel 3: feature 
-        panel 4: team
-        
-    */}
       <div className="flex h-[40rem] flex-col items-center justify-center bg-harrierBLACK text-center">
         {/* <FloatingBirds /> */}
         <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
@@ -63,17 +53,6 @@ export const LandingPage = () => {
               Read the Case Study
             </span>
           </NavLink>
-          {/* <Button
-            onClick={() => {
-              navigate("/case-study/introduction");
-              setActivePage(0);
-              setActiveSubheader(null);
-            }}
-            className="inline-flex items-center p-6 text-white"
-            variant="secondary"
-          >
-            <span className="text-lg">Read the Case Study</span>
-          </Button> */}
         </div>
       </div>
       <div className="flex h-[36rem] flex-row gap-8 bg-harrierWHITE p-8">
