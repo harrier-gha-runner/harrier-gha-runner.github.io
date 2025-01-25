@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
-
+import { NavLink } from "react-router-dom";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
+import Snippet from "@/assets/landingpage_minimal_workflow_modifications_code_snippet.png";
 import HarrierSetupAltInfra from "@/assets/3.harrier-setup-alternative-infrastructure.png";
-// import FloatingBirds from "@/components/FloatingBirds";
 import TeamMember from "@/components/TeamMember";
+import { Code } from "lucide-react";
+// import FloatingBirds from "@/components/FloatingBirds";
 
 export const LandingPage = () => {
   const page = useContext(PageNavigationContext);
@@ -22,9 +23,89 @@ export const LandingPage = () => {
   const { setActivePage, setActiveSubheader } = page;
   return (
     <>
-      <div className="flex h-[40rem] flex-col items-center justify-center bg-harrierBLACK text-center">
-        {/* <FloatingBirds /> */}
-        <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
+      <div
+        id="landing-panel-0"
+        className="flex h-[40rem] flex-col items-center justify-center bg-harrierBLACK text-center text-white"
+      >
+        <h1 className="flex flex-col text-5xl text-white">
+          {/* value prop: OUR CLAIM*/}
+          Accelerate GitHub Actions
+        </h1>
+        <div className="mt-10 flex flex-wrap space-x-2">
+          <p className="">Custom configured self-hosted runners.</p>
+          <p className="">Securely within your own AWS account.</p>
+        </div>
+        <div className="mt-10 flex flex-row space-x-8">
+          <button className="border bg-harrierPINK">Read More</button>
+
+          <button className="border border-harrierPINK">Try Harrier</button>
+        </div>
+      </div>
+      <div
+        id="landing-panel-1"
+        className="m-14 grid grid-cols-1 gap-14 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
+      >
+        <div className="prose flex w-full justify-center bg-harrierBLACK p-4">
+          <div className="">
+            <h3 className="flex flex-wrap justify-start text-2xl font-semibold text-harrierWHITE">
+              Dedicated Persistent Cache for GitHub Actions
+            </h3>
+            <div className="flex flex-wrap justify-center text-xl text-harrierWHITE">
+              <p>
+                Create your own GitHub Actions self-hosted runner infrastructure
+                with a built-in cache to speed up your CI builds and more.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="align-center flex w-full items-center justify-center bg-harrierBLUE/50 p-4">
+          <img
+            src={HarrierColor}
+            alt="Harrier Blue Logo"
+            className="scale-100 transform transition-transform duration-50 hover:scale-105 sm:h-40 md:h-48 lg:h-56 xl:h-64"
+          />
+        </div>
+        <div className="align-center flex w-full items-center justify-center bg-harrierBLUE/50 p-4">
+          <img
+            src={Snippet}
+            alt="Snippet"
+            className="scale-100 transform transition-transform duration-300 hover:scale-110 sm:h-40 md:h-48 lg:h-56 xl:h-64"
+          />
+        </div>
+        <div className="prose flex w-full justify-center bg-harrierBLACK p-4">
+          <div className="">
+            <h3 className="flex flex-wrap justify-start text-2xl font-semibold text-harrierWHITE">
+              Minimal Impact to Existing Workflows
+            </h3>
+            <div className="flex flex-wrap justify-center text-xl text-harrierWHITE">
+              <p>
+                Continue using your proven workflows with minimal modification
+                to take advantage of your new runners.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+{
+  /* 
+      <div
+        id="landing-panel-2"
+        className="flex h-[36rem] flex-row gap-8 bg-harrierOFFWHITE p-8"
+      ></div> */
+}
+{
+  /* <div className="text-black">MINIMAL DISRUPTION/SETUP/LOW FRICTION</div> */
+}
+{
+  /* <div>where does it do it?</div> */
+}
+{
+  /* <h1 className="text-center text-7xl font-semibold text-harrierWHITE">
           Harrier
         </h1>
         <div>
@@ -53,10 +134,10 @@ export const LandingPage = () => {
               Read the Case Study
             </span>
           </NavLink>
-        </div>
-      </div>
-      <div className="flex h-[36rem] flex-row gap-8 bg-harrierWHITE p-8">
-        <div className="flex w-full items-center justify-center md:w-1/2">
+        </div> */
+}
+{
+  /* <div className="flex w-full items-center justify-center md:w-1/2">
           <img
             src={HarrierSetupAltInfra}
             alt="Harrier Setup alternative infrastructure"
@@ -76,11 +157,10 @@ export const LandingPage = () => {
               GitHub’s very own self-hosted runner feature.
             </p>
           </div>
-        </div>
-      </div>
-
-      <div className="flex h-[36rem] flex-row gap-8 bg-harrierOFFWHITE p-8">
-        <div className="flex w-full items-center justify-center md:w-3/5">
+        </div> */
+}
+{
+  /* <div className="flex w-full items-center justify-center md:w-3/5">
           <div className="max-w-full space-y-4 text-left md:max-w-[90%]">
             <h2 className="text-2xl font-bold md:text-3xl">
               Go Faster with Harrier
@@ -112,10 +192,13 @@ export const LandingPage = () => {
             alt="Harrier Blue Logo"
             className="h-40 w-auto"
           />
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16">
+        </div> */
+}
+{
+  /* <div
+        id="landing-panel-3"
+        className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16"
+      >
         <h2 className="mb-8 text-3xl font-semibold text-harrierBLACK">
           Meet the Team
         </h2>
@@ -125,7 +208,5 @@ export const LandingPage = () => {
             <TeamMember member={member} key={member.name} />
           ))}
         </div>
-      </div>
-    </>
-  );
-};
+      </div> */
+}

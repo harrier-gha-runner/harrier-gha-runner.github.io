@@ -20,6 +20,7 @@ import OverallArchitecture from "@/assets/4.overall-architecture.png";
 import ReuseActiverunner from "@/assets/4.4.reuse-runner.png";
 import ApiPlatformIntegration from "@/assets/4.7.api-platform-integration-webhook-json-object.png";
 import FasterWorkflowStart from "@/assets/4.2.faster-workflow-start.png";
+import { Cite } from "@/components/utility/Cite";
 
 // import { AxiosChart } from "@/components/AxiosChart";
 // import { VSCodeChart } from "@/components/VSCodeChart";
@@ -456,7 +457,7 @@ export const Implementation = () => {
               ),
             },
             {
-              question: "Why use SSM",
+              question: "Why use SSM?",
               answer: (
                 <>
                   <p>
@@ -929,18 +930,32 @@ export const Implementation = () => {
           event manager service handles the provisioning of a new replacement
           EC2 instance to maintain the warm pool and runner fleet.
         </p>
-        <Callout title="What is a webhook?">
-          A webhook is a lightweight, event-driven communication that
-          automatically sends data between applications via HTTP21. When a
-          workflow runs on GitHub Actions, a webhook event is triggered to send
-          data to the Harrier app hosted on the user's AWS environment. This
-          webhook transmits information about the workflow run as a JSON object,
-          which includes an "action" property specifying the event type, such as
-          "queued" or "completed."
-        </Callout>
 
         <AccordianFAQ
           faqs={[
+            {
+              question: "What is a webhook?",
+              answer: (
+                <>
+                  <p>
+                    {" "}
+                    A webhook is a lightweight, event-driven communication that
+                    automatically sends data between applications via HTTP.
+                    <Cite
+                      num={9999}
+                      href="https://www.redhat.com/en/topics/automation/what-is-a-webhook"
+                      label="What is a webhook?"
+                    />
+                    When a workflow runs on GitHub Actions, a webhook event is
+                    triggered to send data to the Harrier app hosted on the
+                    user's AWS environment. This webhook transmits information
+                    about the workflow run as a JSON object, which includes an{" "}
+                    <CB>action</CB> property specifying the event type, such as{" "}
+                    <CB>queued</CB> or <CB>completed</CB>.
+                  </p>
+                </>
+              ),
+            },
             {
               question: "Why use API Gateway?",
               answer: (
@@ -971,17 +986,18 @@ export const Implementation = () => {
               ),
             },
             {
-              question: "How does Harrier access the GH PAT?",
+              question:
+                "How does Harrier access the GitHub Personal Access Token?",
               answer: (
                 <>
                   <p>
-                    A GitHub Personal Access Token (PAT) is a secure,
-                    token-based authentication method used to access GitHub's
-                    API or perform Git operations instead of using a password.
-                    The GitHub webhook necessary for integrating Harrier runners
-                    into the user's GHA ecosystem can be created using GitHub's
-                    API, and thus requires a PAT as an Authentication header in
-                    the HTTP request.
+                    A GitHub Personal Access Token is a secure, token-based
+                    authentication method used to access GitHub's API or perform
+                    Git operations instead of using a password. The GitHub
+                    webhook necessary for integrating Harrier runners into the
+                    user's GHA ecosystem can be created using GitHub's API, and
+                    thus requires a PAT as an Authentication header in the HTTP
+                    request.
                   </p>
                   <p>
                     The PAT is an extremely sensitive user data that should only

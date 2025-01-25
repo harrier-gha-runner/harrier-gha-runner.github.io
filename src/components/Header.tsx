@@ -47,7 +47,7 @@ export const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 h-[88px] w-full bg-harrierBLACK text-harrierWHITE drop-shadow-sm`}
+      className={`sticky top-0 z-50 h-[88px] w-full bg-harrierBLACK text-harrierWHITE`} /* border-b border-harrierGRAY */
       id="header-nav"
     >
       <div className="flex items-center justify-between px-7">

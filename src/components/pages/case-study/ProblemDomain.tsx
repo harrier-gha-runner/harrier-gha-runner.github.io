@@ -247,7 +247,7 @@ export const ProblemDomain = () => {
         </p>
         <p>
           To alleviate the efforts required by taking a DIY approach, another
-          approach is to consider 3rd-party managed CI/CD services, such as
+          approach is to consider 3rd-party managed CI/CD services, such as{" "}
           <ExternalLink
             href="https://www.travis-ci.com/"
             children="Travis CI"
@@ -332,23 +332,30 @@ export const ProblemDomain = () => {
             alt={"GitHub Actions components"}
           />
         </p>
-
-        <Callout title="What is Caching?">
-          Caching is a data-management method that reuses previously created
-          information (i.e. cache) rather than creating it again.{" "}
-          <Cite
-            num={9999}
-            label="Why you should care about caching"
-            href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching"
-          />
-          For a highly iterative and repetitive process such as code integration
-          where each integration may represent only a small change in the code
-          base, computations run quicker when the need to create the same thing
-          over and over is eliminated. Caching is made possible by storing the
-          cache data in a temporary storage so that it can be accessed in the
-          future.
-        </Callout>
-
+        <AccordianFAQ
+          faqs={[
+            {
+              question: "What is Caching?",
+              answer: (
+                <>
+                  Caching is a data-management method that reuses previously
+                  created information rather than creating it again.{" "}
+                  <Cite
+                    num={9999}
+                    label="Why you should care about caching"
+                    href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching"
+                  />
+                  For a highly iterative and repetitive process such as code
+                  integration where each integration may represent only a small
+                  change in the code base, computations run quicker when the
+                  need to create the same thing over and over is eliminated.
+                  Caching is made possible by storing the cache data in a
+                  temporary storage so that it can be accessed in the future.
+                </>
+              ),
+            },
+          ]}
+        />
         <p>
           One of the most significant impacts of GitHub's runner infrastructure
           on CI build speed is that it severely limits the use of caching
@@ -485,25 +492,7 @@ export const ProblemDomain = () => {
           </ul>
         </span>
       </Overview>
-      <Callout title="What is a self-hosted runner?">
-        <p>
-          GitHub recognized the demand for exploring higher degrees of runner
-          customization than what could be provided with the out-of-the-box
-          runner configurations and released a Self-Hosted Runner feature soon
-          after launching GitHub Actions. This feature allows users to configure
-          their own infrastructure by downloading and installing GitHub’s runner
-          application, which installs the necessary software to connect and
-          execute GitHub Actions workflows. The self-hosted runner solution
-          provides users with greater control and customizability necessary to
-          meet specific CI build requirements, such as utilizing machines with
-          higher CPU or memory specifications, installing proprietary software,
-          or accessing resources within a private network. For users who really
-          want to remain in the GitHub Actions ecosystem, self-hosted runners
-          can be utilized as a key component to their CI build performance
-          optimization strategies.
-        </p>
-      </Callout>
-      {/* TODO: do we want callouts or just go with the accordian question theme? */}
+      {/* TODO: do we like this here? */}
       <AccordianFAQ
         faqs={[
           {
@@ -533,10 +522,10 @@ export const ProblemDomain = () => {
           },
         ]}
       />
-
       <section id="problem-domain-5">
         <SectionInView sectionId="problem-domain-5" onInView={handleInView} />
         <h2>{subheaderNames[5]}</h2>
+
         <span>
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
