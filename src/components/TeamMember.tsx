@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 
 import { FaLocationDot } from "react-icons/fa6";
-import { Member } from "@/components/pages/LandingPage";
+import { Member } from "@/providers/Team";
 
 const TeamMember = ({ member }: { member: Member }) => {
   return (
@@ -24,7 +24,7 @@ const TeamMember = ({ member }: { member: Member }) => {
             alt={member.name}
             className="h-48 w-48 rounded-full object-cover"
           />
-          <CardTitle className="text-center text-xl font-semibold pt-2">
+          <CardTitle className="pt-2 text-center text-xl font-semibold">
             {member.name}
           </CardTitle>
           <CardDescription className="flex items-center justify-center text-center text-sm text-gray-600">

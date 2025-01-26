@@ -28,7 +28,9 @@ import {
 import { ChevronsUpDown, Check } from "lucide-react";
 
 interface SetupFormProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit: (values: any) => void;
   yamlOutput: string;
 }

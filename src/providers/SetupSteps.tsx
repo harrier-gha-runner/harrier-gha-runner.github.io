@@ -5,7 +5,7 @@ import { ExternalLink } from "@/components/utility/ExternalLink";
 
 type StepType = "form" | "visual" | "other";
 
-type Step = {
+export type Step = {
   type: StepType;
   id: string;
   title: string;

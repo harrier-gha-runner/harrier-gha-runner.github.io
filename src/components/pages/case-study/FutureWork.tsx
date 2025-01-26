@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { Overview } from "@/components/utility/Overview";
-import { BoldText as BT } from "@/components/utility/BoldText";
 import { CodeBlock as CB } from "@/components/utility/CodeBlock";
 import { SectionInView } from "@/components/utility/SectionInView";
 

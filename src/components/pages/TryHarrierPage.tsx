@@ -1,12 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-import { SetupStepsContext } from "@/providers/SetupSteps";
-import {
-  FaChevronRight,
-  FaArrowRight,
-  FaArrowLeft,
-  FaChevronLeft,
-} from "react-icons/fa";
+import { SetupStepsContext, Step } from "@/providers/SetupSteps";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 import { SetupForm } from "@/components/utility/SetupForm";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -111,8 +106,6 @@ type TryHarrierContentProps = {
   activeStep: number;
   form: ReturnType<typeof useForm>;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
-  handleForwardClick: () => void;
-  handleBackwardClick: () => void;
   yamlOutput: string;
 };
 
@@ -122,8 +115,6 @@ const TryHarrierContent = ({
   form,
   onSubmit,
   yamlOutput,
-  handleForwardClick,
-  handleBackwardClick,
 }: TryHarrierContentProps) => {
   return (
     <div id="try-harrier-content-container" className="flex flex-wrap">

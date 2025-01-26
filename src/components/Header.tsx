@@ -1,11 +1,10 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import HisHoliness from "@/assets/harrier-big-blue-shadow.svg";
 // import { useViewportWidth } from "@/hooks/useViewportWidth";
-
 
 const HeaderNav = () => {
   const pageContext = useContext(PageNavigationContext);
@@ -16,7 +15,6 @@ const HeaderNav = () => {
   }
 
   const { setActivePage } = pageContext;
-
 
   return (
     <div className="absolute right-0 top-0 mr-6 mt-6 flex h-12 w-auto items-center justify-center space-x-4 text-lg font-semibold">
@@ -34,9 +32,7 @@ const HeaderNav = () => {
         href="https://github.com/harrier-gha-runner/harrier-self-hosted-runner?tab=readme-ov-file#harrier-deployment-guide"
         target="_blank"
         rel="noopener noreferrer"
-
         className="flex flex-row items-center justify-center"
-
       >
         github <FaExternalLinkAlt className="ml-1" size={10} />
       </a>
@@ -47,7 +43,6 @@ const HeaderNav = () => {
 const HeaderHome = () => {
   const wideEnough = useViewportWidth(600);
   return (
-
     <div className="absolute left-0 top-0 ml-6 mt-6 flex flex-row">
       <NavLink to="/">
         <img
@@ -64,7 +59,6 @@ const HeaderHome = () => {
         </div>
       ) : null}
     </div>
-
   );
 };
 

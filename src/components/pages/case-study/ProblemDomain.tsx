@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { ImageContentModal } from "@/components/ui/dialog";
@@ -7,18 +7,21 @@ import { BoldText as BT } from "@/components/utility/BoldText";
 import { Cite } from "@/components/utility/Cite";
 import { Overview } from "@/components/utility/Overview";
 import { SectionInView } from "@/components/utility/SectionInView";
+import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
-import ComparisonChart from "@/assets/2.3.2.comparison-chart.png";
-import CompareSample from "@/assets/2.3.1.compare-1-user.png";
-import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
+// import ComparisonChart from "@/assets/2.3.2.comparison-chart.png";
+import comparison1 from "@/assets/comparison-1.png";
+import comparison2 from "@/assets/comparison-2.png";
+import comparison3 from "@/assets/comparison-3.png";
+import comparison4 from "@/assets/comparison-4.png";
+import comparisonAll from "@/assets/comparison-all.png";
 
 export const ProblemDomain = () => {
-
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -48,7 +51,6 @@ export const ProblemDomain = () => {
     <>
       <Overview title="GitHub Actions: Cornerstone of modern software development">
         <span>
-
           <ul>
             <li>
               <BT>GHA empowers developers and teams.</BT> With CI/CD workflows
@@ -142,7 +144,6 @@ export const ProblemDomain = () => {
             <li>Reduced risk of failed deployments</li>
             <li>Improved and faster user feedback</li>
           </ul>
-
         </p>
         <ul>
           <li>Early detection of issues</li>
@@ -221,7 +222,6 @@ export const ProblemDomain = () => {
           build, auto deploy, just to name a few.
         </p>
         <p>
-
           However, GHA as a CI/CD tool is not without its limitations
           {/* <Cite num={9999} label="reddit" href="#" />  */}
           Areas where some consider it falling short are:
@@ -246,7 +246,6 @@ export const ProblemDomain = () => {
               />
             </li>
           </ul>
-
         </p>
         <ul>
           <li>
@@ -315,7 +314,6 @@ export const ProblemDomain = () => {
       <br />
       <Overview title="GHA often cited as the cause of slower than desirable CI builds">
         <span>
-
           <ul>
             <li>
               <BT>
@@ -337,7 +335,6 @@ export const ProblemDomain = () => {
               difficult in GHA's ephemeral VM architecture.
             </li>
           </ul>
-
         </span>
       </Overview>
       <section id="problem-domain-3">
@@ -352,7 +349,6 @@ export const ProblemDomain = () => {
         <p>
           Given the need to provide over 100 million GitHub users with a clean
           runtime environment and minimize the risk of data leakage between jobs
-
           or users, GitHub leverages its parent company Microsoft's Azure cloud
           platform. To address isolation and security concerns, GitHub
           provisions brand new virtual machines (VMs) for each job specified in
@@ -498,7 +494,6 @@ export const ProblemDomain = () => {
       <br />
       <Overview title="Self-hosted runners with storage enable caching in GHA">
         <span>
-
           <ul>
             <li>
               <BT>
@@ -574,8 +569,8 @@ export const ProblemDomain = () => {
         </span>
         <div className="sm:clearfix">
           <img
-            src={CompareSample}
-            alt="Comparison sample"
+            src={comparison1}
+            alt="Comparison 1"
             className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
           />
           <p>
@@ -613,7 +608,6 @@ export const ProblemDomain = () => {
           their alternative runner infrastructure's components. Additionally,
           there is the opportunity cost of starting down this road, investing
           significant time, and never actually realizing any benefits.
-
         </p>
         <p>
           For organizations or teams who already have on-premises servers with
@@ -626,8 +620,8 @@ export const ProblemDomain = () => {
         </p>
         <div className="sm:clearfix">
           <img
-            src={CompareSample}
-            alt="Comparison sample"
+            src={comparison2}
+            alt="Comparison 2"
             className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
           />
           <p>
@@ -674,8 +668,8 @@ export const ProblemDomain = () => {
         </p>
         <div className="sm:clearfix">
           <img
-            src={CompareSample}
-            alt="Comparison sample"
+            src={comparison3}
+            alt="Comparison 3"
             className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
           />
           <p>
@@ -714,14 +708,21 @@ export const ProblemDomain = () => {
       </section>
       <section id="problem-domain-6">
         <SectionInView sectionId="problem-domain-6" onInView={handleInView} />
+
         <h2>{subheaderNames[6]}</h2>
-        <p>
-          GitHub Actions users want to experience faster workflow automation
-          through accelerated CI builds. However, they cannot afford to put
-          their code and secrets at risk and are willing to pay a modest amount
-          of money for a solution that meets their needs.
-        </p>
-        <ImageContentModal src={ComparisonChart} alt="Comparison Chart" />
+        <div className="sm:clearfix">
+          <img
+            src={comparison4}
+            alt="Comparison 4"
+            className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
+          />
+          <p>
+            GitHub Actions users want to experience faster workflow automation
+            through accelerated CI builds. However, they cannot afford a
+            security risk and are willing to pay a modest amount of money for a
+            solution that meets their needs.
+          </p>
+        </div>
         <p>
           To meet the need for customizable, secure GHA self-hosted runner
           setups, Harrier offers a 3rd-party supported DIY solution. This
@@ -735,10 +736,7 @@ export const ProblemDomain = () => {
           provisioning process, gaining intimate knowledge of their
           infrastructure.
         </p>
-        <ImageContentModal
-          src={ComparisonChart}
-          alt={"Chart comparing Harrier to other options"}
-        />
+        <ImageContentModal src={comparisonAll} alt="Comparison all" />
       </section>
     </>
   );
