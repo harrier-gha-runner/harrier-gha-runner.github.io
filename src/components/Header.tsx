@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-
+import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import HisHoliness from "@/assets/harrier-big-blue-shadow.svg";
 // import { useViewportWidth } from "@/hooks/useViewportWidth";
@@ -26,21 +26,22 @@ const HeaderNav = () => {
       >
         about
       </NavLink>
-      <NavLink to="/team">team</NavLink>
       <NavLink to="/try-harrier">setup</NavLink>
+      <NavLink to="/team">team</NavLink>
       <a
         href="https://github.com/harrier-gha-runner/harrier-self-hosted-runner?tab=readme-ov-file#harrier-deployment-guide"
         target="_blank"
         rel="noopener noreferrer"
         className="flex flex-row items-center justify-center"
       >
-        github <FaExternalLinkAlt className="ml-2" size="16" />
+        github <FaExternalLinkAlt className="ml-1" size="12" />
       </a>
     </div>
   );
 };
 
 const HeaderHome = () => {
+  const wideEnough = useViewportWidth(600);
   return (
     <div className="absolute left-0 top-0 ml-6 mt-6 flex flex-row">
       <NavLink to="/">
@@ -50,11 +51,13 @@ const HeaderHome = () => {
           className="mr-5 h-14 w-auto"
         />{" "}
       </NavLink>
-      <div className="mb-2 mt-0 flex items-center justify-center">
-        <NavLink to="/">
-          <h1 className="text-2xl font-semibold">Harrier</h1>
-        </NavLink>
-      </div>
+      {wideEnough ? (
+        <div className="mb-2 mt-0 flex items-center justify-center">
+          <NavLink to="/">
+            <h1 className="text-2xl font-semibold">Harrier</h1>
+          </NavLink>
+        </div>
+      ) : null}
     </div>
   );
 };

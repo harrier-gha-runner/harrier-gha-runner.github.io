@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaUsers, FaGithub, FaReadme } from "react-icons/fa";
+import { FaGithub, FaReadme } from "react-icons/fa";
 
 export const Footer = () => {
   return (

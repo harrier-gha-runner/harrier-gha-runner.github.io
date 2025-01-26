@@ -1,5 +1,3 @@
-import { FaQuestion } from "react-icons/fa";
-import { SlBulb } from "react-icons/sl";
 import {
   Accordion,
   AccordionContent,
@@ -20,7 +18,7 @@ export const AccordianFAQ = ({ faqs }: AccordianFAQProps) => {
       {faqs.map((faq, idx) => (
         <AccordionItem key={idx} value={`item-${idx}`}>
           <AccordionTrigger>{faq.question}</AccordionTrigger>
-          <AccordionContent className="">{faq.answer}</AccordionContent>
+          <AccordionContent>{faq.answer}</AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>

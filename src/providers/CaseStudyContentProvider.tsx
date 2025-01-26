@@ -1,4 +1,4 @@
-// delete this file, keeping for reference
+// delete this file, only kept for reference
 
 // import { useEffect, useState, createContext, ReactNode } from "react";
 // import slugify from "slugify";
