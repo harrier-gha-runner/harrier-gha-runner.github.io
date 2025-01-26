@@ -81,7 +81,7 @@ export const ProblemDomain = () => {
           culture that enables agile development while supporting collaboration,
           automation, and continuous improvement.
           <Cite
-            num={0}
+            num={1}
             href="https://survey.stackoverflow.co/2024/technology"
             label="2024 Developer Survey"
           />
@@ -94,7 +94,7 @@ export const ProblemDomain = () => {
           from multiple developers into a shared repository, as frequently as
           possible.
           <Cite
-            num={1}
+            num={2}
             label="What is Continuous Integration?"
             href="https://codefresh.io/learn/continuous-integration/"
           />
@@ -109,7 +109,7 @@ export const ProblemDomain = () => {
           by subjecting the code to rigorous tests and checks in a staging
           environment so that it is production ready.
           <Cite
-            num={2}
+            num={3}
             label="What is Continuous Delivery?"
             href="https://codefresh.io/learn/continuous-delivery/"
           />
@@ -117,7 +117,7 @@ export const ProblemDomain = () => {
           intervention from the deployment process with the addition of
           automated acceptance testing as the final step of the release cycle.{" "}
           <Cite
-            num={3}
+            num={4}
             label="CI/CD: Continuous Integration and Continuous Delivery"
             href="https://www.geeksforgeeks.org/ci-cd-continuous-integration-and-continuous-delivery/"
           />
@@ -127,7 +127,7 @@ export const ProblemDomain = () => {
           enables teams to streamline their workflows and enjoy the following
           benefits:{" "}
           <Cite
-            num={4}
+            num={5}
             label="CI vs. CD: Differences, Similarities, and Best Practices"
             href="https://codefresh.io/learn/ci-cd/ci-vs-cd-differences-similarities-and-best-practices/"
           />
@@ -169,7 +169,7 @@ export const ProblemDomain = () => {
           defined sequence of automated steps and processes that coordinate
           tasks, tools, and resources.
           <Cite
-            num={5}
+            num={6}
             label="What is a workflow?"
             href="https://www.geeksforgeeks.org/what-is-workflow/"
           />
@@ -190,10 +190,11 @@ export const ProblemDomain = () => {
           to manage over 400 million code base repositories and coordinate their
           software development activities. With over 200 million repositories
           with actively deployed workflow automations,
-          <Cite num={9999} label="57% number" href="#" /> GHA has established
-          itself in just over five years since launch as an indispensable tool
-          for software development.
-          <Cite num={9999} label="github pr post" href="#" />
+          {/* jesse can find this source? */}
+          <Cite num={7} label="57% number" href="#" />
+          GHA has established itself in just over five years since launch as an
+          indispensable tool for software development.
+          {/* <Cite num={9999} label="github pr post" href="#" /> */}
         </p>
       </section>
       <section id="problem-domain-2">
@@ -203,15 +204,15 @@ export const ProblemDomain = () => {
           Given that GitHub Actions was designed to provide native CI/CD
           automation support, GitHub workflows are almost entirely related to
           CI/CD processes.
-          <Cite num={9999} label="github launch deck" href="#" /> Through GHA,
-          one can automate tasks such as linting tests before a project build,
-          the actual build process, unit tests performed after a build, auto
-          deploy, just to name a few.
+          {/* <Cite num={9999} label="github launch deck" href="#" /> */}
+          Through GHA, one can automate tasks such as linting tests before a
+          project build, the actual build process, unit tests performed after a
+          build, auto deploy, just to name a few.
         </p>
         <p>
           However, GHA as a CI/CD tool is not without its limitations
-          <Cite num={9999} label="reddit" href="#" /> Areas where some consider
-          it falling short are:
+          {/* <Cite num={9999} label="reddit" href="#" />  */}
+          Areas where some consider it falling short are:
           <ul>
             <li>
               Limited visibility of workflow artifacts & robust artifact
@@ -227,7 +228,7 @@ export const ProblemDomain = () => {
             <li>
               YAML-based workflow configuration
               <Cite
-                num={9999}
+                num={8}
                 label="YAML pitfalls"
                 href="https://kestra.io/blogs/2023-12-01-yaml-pitfalls "
               />
@@ -342,7 +343,7 @@ export const ProblemDomain = () => {
                   Caching is a data-management method that reuses previously
                   created information rather than creating it again.{" "}
                   <Cite
-                    num={9999}
+                    num={9}
                     label="Why you should care about caching"
                     href="https://bitrise.io/blog/post/ci-cd-caching-with-bitrise-what-is-cache-and-why-you-should-care-about-caching"
                   />
@@ -423,7 +424,7 @@ export const ProblemDomain = () => {
           may or may not share dependencies) can quickly encounter significant
           challenges with GitHub Actions' caching limitations.
           <Cite
-            num={9999}
+            num={10}
             label="Monorepos"
             href="https://www.atlassian.com/git/tutorials/monorepos"
           />
@@ -432,7 +433,7 @@ export const ProblemDomain = () => {
           repository cache — coupled with its age-based eviction strategy
           becomes a significant constraint.
           <Cite
-            num={9999}
+            num={11}
             label="GitHub Actions limitations and gotchas"
             href="https://news.ycombinator.com/item?id=28460342"
           />
@@ -446,7 +447,7 @@ export const ProblemDomain = () => {
           branch, with potentially unique dependencies and workflow
           configurations, competes for limited cache space
           <Cite
-            num={9999}
+            num={12}
             label="Usage limits and eviction policy"
             href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows#usage-limits-and-eviction-policy"
           />
@@ -562,10 +563,12 @@ export const ProblemDomain = () => {
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
           the inner workings of GHA runners, as evidenced by the many case
-          studies published online <Cite num={9999} label="sources" href="" />
+          studies published online
+          {/* TODO: wook can you find these sources? */}
+          {/* <Cite num={9999} label="sources" href="" /> */}
           as well as the how-to guides{" "}
-          <Cite num={9999} label="sources" href="" /> that have racked up tens
-          of thousand of views.
+          {/* <Cite num={9999} label="sources" href="" /> */}
+          that have racked up tens of thousand of views.
         </p>
         <p>
           Taking this approach comes with tradeoffs. For one, developers must

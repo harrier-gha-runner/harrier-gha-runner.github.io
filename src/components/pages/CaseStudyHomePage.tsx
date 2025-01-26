@@ -17,6 +17,14 @@ type CaseStudyMainNavProps = {
   activePage: number;
 };
 
+const scrollToElement = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const offset = element.offsetTop - 162;
+    window.scrollTo({ top: offset, behavior: "smooth" });
+  }
+};
+
 const CaseStudyMainNav = ({
   pages,
   setActivePage,
@@ -149,14 +157,6 @@ const CaseStudyOnThisPageNav = ({
   );
 };
 
-const scrollToElement = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    const offset = element.offsetTop - 152;
-    window.scrollTo({ top: offset, behavior: "smooth" });
-  }
-};
-
 export const CaseStudyHomePage = () => {
   const pageContext = useContext(PageNavigationContext);
   const location = useLocation();
@@ -201,7 +201,7 @@ export const CaseStudyHomePage = () => {
       <div id="page-content-container" className="flex flex-wrap">
         <main
           id="case-study-content"
-          className="prose mx-auto w-full max-w-screen-md px-10 pb-40 pt-0"
+          className="prose mx-auto mt-2 w-full max-w-screen-md px-10 pb-40 pt-0"
         >
           <Outlet />
         </main>

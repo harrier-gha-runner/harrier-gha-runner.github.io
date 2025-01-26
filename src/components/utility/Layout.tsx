@@ -5,7 +5,7 @@ import { Header } from "../Header";
 export const Layout = () => {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-grow flex-col">
         <Header />
         <Outlet />
         <Footer />

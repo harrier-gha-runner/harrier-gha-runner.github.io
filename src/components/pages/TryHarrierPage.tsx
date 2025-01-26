@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useViewportWidth } from "@/hooks/useViewportWidth";
-import { FaChevronRight, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import {
+  FaChevronRight,
+  FaArrowRight,
+  FaArrowLeft,
+  FaChevronLeft,
+} from "react-icons/fa";
 
 import { SetupForm } from "@/components/utility/SetupForm";
 import { ExternalLink } from "@/components/utility/ExternalLink";
@@ -14,6 +19,7 @@ import { formSchema } from "@/schemas/formSchema";
 import { Button } from "../ui/button";
 import { Overview } from "../utility/Overview";
 import { Callout } from "../utility/Callout";
+import { NavLink } from "react-router-dom";
 
 // import ip0 from "@/assets/screenshots/identity-provider/0.jpg";
 
@@ -50,31 +56,74 @@ const TryHarrierNav = ({
 }: TryHarrierNavProps) => {
   const wideEnough = useViewportWidth();
 
+  const handleForwardClick = () => {
+    setActiveStep(activeStep + 1);
+    window.scrollTo(0, 0);
+  };
+
+  const handleBackwardClick = () => {
+    setActiveStep(activeStep - 1);
+    window.scrollTo(0, 0);
+  };
   return (
     <div id="try-harrier-nav-container" className="sticky top-[100px] z-10">
       <nav
         id="try-harrier-nav"
-        className={`mx-auto flex w-fit justify-center py-2 ${wideEnough ? "" : "hidden"}`}
+        className={`mx-auto flex w-fit justify-center py-2`}
       >
         <div className="flex flex-row gap-4 rounded-md bg-harrierWHITE p-0.5 drop-shadow-md">
-          {steps?.map((step, stepIdx) => (
-            <div
-              key={step.id}
-              onClick={() => setActiveStep(stepIdx)}
-              className="relative"
-            >
+          {wideEnough ? (
+            <>
+              {steps?.map((step, stepIdx) => (
+                <div
+                  key={step.id}
+                  onClick={() => setActiveStep(stepIdx)}
+                  className="relative"
+                >
+                  <div
+                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
+                      stepIdx === activeStep
+                        ? "bg-harrierBLACK text-harrierWHITE/85"
+                        : "bg-quaternary/85 text-harrierBLACK"
+                    }`}
+                  >
+                    <div>Step {step.numericTitle}</div>
+                    <FaChevronRight className="ml-2" />
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <>
               <div
-                className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium ${
-                  stepIdx === activeStep
-                    ? "bg-harrierBLACK text-harrierWHITE/85"
-                    : "bg-quaternary/85 text-harrierBLACK"
-                }`}
+                onClick={
+                  activeStep === 0
+                    ? (e) => e.preventDefault()
+                    : handleBackwardClick
+                }
+                className={`relative ${activeStep === 0 ? "pointer-events-none opacity-50" : ""}`}
               >
-                <div>Step {step.numericTitle}</div>
-                <FaChevronRight className="ml-2" />
+                <div
+                  className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
+                >
+                  <FaChevronLeft size="16" className="mr-2" />
+                  Back {/*  {pages[activePage - 1]?.name} */}
+                </div>
               </div>
-            </div>
-          ))}
+
+              <div
+                onClick={handleForwardClick}
+                className={`relative ${activeStep === steps.length - 1 ? "pointer-events-none opacity-50" : ""}`}
+              >
+                <div
+                  className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
+                >
+                  Next
+                  <FaChevronRight size="16" className="ml-2" />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </nav>
     </div>
@@ -106,28 +155,6 @@ const TryHarrierContent = ({
         id="try-harrier-content"
         className="prose mx-auto w-full max-w-screen-xl flex-1 flex-row overflow-y-auto p-10 pt-12"
       >
-        <div className="mb-4 flex items-center justify-end">
-          <nav className="flex justify-start space-x-2">
-            <Button
-              variant="ghost"
-              size="lg"
-              className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
-              onClick={handleBackwardClick}
-            >
-              <FaArrowLeft className="mr-2" />
-              Prev
-            </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
-              onClick={handleForwardClick}
-            >
-              Next
-              <FaArrowRight className="ml-2" />
-            </Button>
-          </nav>
-        </div>
         <Overview title={steps[activeStep].title}>
           {steps[activeStep].introduction}
         </Overview>
@@ -179,16 +206,28 @@ const TryHarrierContent = ({
           )}
         </section>
 
-        <nav className="flex justify-end">
-          <Button
-            variant="ghost"
-            size="lg"
-            className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
-            onClick={handleForwardClick}
-          >
-            <FaArrowRight className="ml-2" />
-          </Button>
-        </nav>
+        <div className="mb-4 flex items-center justify-center">
+          <nav className="flex justify-start space-x-2">
+            <Button
+              variant="ghost"
+              size="lg"
+              className={`px-0 text-lg ${activeStep === 0 ? "invisible" : ""}`}
+              onClick={handleBackwardClick}
+            >
+              <FaArrowLeft className="mr-2" />
+              Back
+            </Button>
+            <Button
+              variant="ghost"
+              size="lg"
+              className={`px-0 text-lg ${activeStep === steps.length - 1 ? "invisible" : ""}`}
+              onClick={handleForwardClick}
+            >
+              Next
+              <FaArrowRight className="ml-2" />
+            </Button>
+          </nav>
+        </div>
       </main>
     </div>
   );

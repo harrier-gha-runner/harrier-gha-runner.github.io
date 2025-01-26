@@ -27,7 +27,7 @@ const HeaderNav = () => {
         about
       </NavLink>
       <NavLink to="/team">team</NavLink>
-      <NavLink to="/try-harrier">try</NavLink>
+      <NavLink to="/try-harrier">use</NavLink>
     </div>
   );
 };
