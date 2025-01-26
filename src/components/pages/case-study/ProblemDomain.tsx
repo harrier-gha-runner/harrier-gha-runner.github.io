@@ -202,8 +202,8 @@ export const ProblemDomain = () => {
           to manage over 400 million code base repositories and coordinate their
           software development activities. With over 200 million repositories
           with actively deployed workflow automations,
-          {/* TODO: jesse can find this source? */}
-          <Cite num={7} label="57% number?" href="#" />
+          {/* TODO: jesse can find this source?  I can't seem to find it*/}
+          <Cite num={7} label="57% number/proliferation?" href="#" />
           GHA has established itself in just over five years since launch as an
           indispensable tool for software development.
         </p>
@@ -222,8 +222,8 @@ export const ProblemDomain = () => {
         </p>
         <p>
           However, GHA as a CI/CD tool is not without its limitations
-          {/* TODO: what was this in reference to? */}
-          {/* <Cite num={9} label="reddit" href="#" />  */}
+          {/* TODO: what was this in reference to?  Original source was "reddit"*/}
+          {/* <Cite num={9} label="Reddit" href="#" />  */}
           Areas where some consider it falling short are:
           <ul>
             <li>
