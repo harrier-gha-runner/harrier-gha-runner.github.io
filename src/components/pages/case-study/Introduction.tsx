@@ -1,5 +1,6 @@
 import { ImageContentModal } from "@/components/ui/dialog";
 import { Overview } from "@/components/utility/Overview";
+import HarrierIntro from "@/assets/1.harrier-intro.png";
 export const Introduction = () => {
   return (
     <>
@@ -11,10 +12,7 @@ export const Introduction = () => {
           self-hosted runner feature.
         </p>
       </Overview>
-      <ImageContentModal
-        src={"src/assets/1.harrier-intro.png"}
-        alt="Harrier Intro"
-      />
+      <ImageContentModal src={HarrierIntro} alt="Harrier Intro" />
       <p>
         GHA default runners for workflows are ephemeral virtual machines (VMs)
         by design, ensuring that workflow artifacts are destroyed upon

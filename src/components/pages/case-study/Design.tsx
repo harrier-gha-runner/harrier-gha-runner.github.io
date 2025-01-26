@@ -46,7 +46,6 @@ export const Design = () => {
 
   return (
     <>
-
       <Overview title="Alternative GHA runner infrastructure in user's own cloud">
         <span>
           <ul>
@@ -211,7 +210,6 @@ export const Design = () => {
           help them quickly get started. A typical CI build process requires
           dependency installation, which can take advantage of previously
           created files, presenting itself as an opportunity to cache.
-          {/* <Cite num={9999} label="???" href="" /> */}
           Typically, package managers that handle the dependency installations
           will avoid installing pre-existing packages and only fetch and install
           packages as needed. For example, <CB copy={false}>npm</CB>, a package

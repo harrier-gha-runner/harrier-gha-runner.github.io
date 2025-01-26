@@ -920,7 +920,7 @@ export const Implementation = () => {
                     A webhook is a lightweight, event-driven communication that
                     automatically sends data between applications via HTTP.
                     <Cite
-                      num={13}
+                      num={17}
                       href="https://www.redhat.com/en/topics/automation/what-is-a-webhook"
                       label="What is a webhook?"
                     />
@@ -1009,7 +1009,6 @@ export const Implementation = () => {
 
         </div> */}
         <pre className="w-3/4 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
-
           <code>
             <span className="font-mono text-blue-600">
               jobs:
@@ -1143,7 +1142,6 @@ export const Implementation = () => {
           src={OverallArchitecture}
           alt={"Overall architecture"}
         />
-
       </section>
     </>
   );

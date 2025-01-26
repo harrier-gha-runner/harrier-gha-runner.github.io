@@ -18,7 +18,7 @@ export const LandingPage = () => {
 
   const { setActivePage, setActiveSubheader } = page;
   return (
-    <div className="">
+    <div>
       <section
         id="landing-panel-0"
         className="flex h-[40rem] items-center justify-center bg-harrierBLACK"
@@ -57,8 +57,8 @@ export const LandingPage = () => {
         id="landing-panel-1"
         className="mx-14 my-16 grid grid-cols-1 gap-8 md:grid-cols-2"
       >
-        <div className="prose flex w-full justify-center bg-harrierWHITE p-4">
-          <div className="max-w-lg">
+        <div className="flex w-full justify-center bg-harrierWHITE p-4">
+          <div className="prose max-w-lg">
             <h3 className="flex flex-wrap justify-start gap-x-1 gap-y-2 text-xl font-bold text-harrierBLACK">
               Dedicated
               <div className="text-harrierPINK">Persistent Cache</div>
@@ -100,8 +100,8 @@ export const LandingPage = () => {
             className="w-full max-w-xs md:max-w-md lg:max-w-lg"
           />
         </div>
-        <div className="prose order-1 flex w-full justify-center bg-harrierWHITE p-4 md:order-2">
-          <div className="max-w-lg">
+        <div className="order-1 flex w-full justify-center bg-harrierWHITE p-4 md:order-2">
+          <div className="prose max-w-lg">
             <h3 className="flex flex-wrap justify-start gap-x-1 gap-y-2 text-xl font-bold text-harrierBLACK">
               <div className="flex flex-wrap justify-start gap-x-1 gap-y-2 text-xl font-bold">
                 <div className="text-harrierPINK">Minimal Impact</div>
@@ -126,14 +126,11 @@ export const LandingPage = () => {
           Harrier Team
         </h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
-
           {team.map((member) => (
             <TeamMember member={member} key={member.name} />
           ))}
         </div>
-
       </section>
     </div>
-
   );
 };
