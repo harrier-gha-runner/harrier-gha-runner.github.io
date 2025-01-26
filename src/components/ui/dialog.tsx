@@ -2,13 +2,7 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
-import {
-  FaMagnifyingGlass,
-  FaLink,
-  FaExpand,
-  FaChevronRight,
-} from "react-icons/fa6";
-import { SlBulb } from "react-icons/sl";
+// import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -112,37 +106,37 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-type TextContentModalProps = {
-  title: string;
-  description?: string;
-  children: React.ReactNode;
-};
+// type TextContentModalProps = {
+//   title: string;
+//   description?: string;
+//   children: React.ReactNode;
+// };
 
-const TextContentModal = ({ title, children }: TextContentModalProps) => {
-  return (
-    <Dialog>
-      <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
-        <SlBulb size="22" className="mr-2 text-harrierYELLOW" />
-        <>{title}</>
-      </DialogTrigger>
-      <DialogContent className="bg-harrierBLACK">
-        <DialogHeader>
-          <DialogTitle asChild>
-            <h5 className="mb-5 flex flex-row justify-center text-3xl">
-              <FaMagnifyingGlass size="28" className="mr-4 text-harrierPINK" />
-              {title}
-            </h5>
-          </DialogTitle>
-        </DialogHeader>
-        <DialogDescription asChild>
-          <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
-            <div className="m-2 text-harrierWHITE">{children}</div>
-          </div>
-        </DialogDescription>
-      </DialogContent>
-    </Dialog>
-  );
-};
+// const TextContentModal = ({ title, children }: TextContentModalProps) => {
+//   return (
+//     <Dialog>
+//       <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
+//         <SlBulb size="22" className="mr-2 text-harrierYELLOW" />
+//         <>{title}</>
+//       </DialogTrigger>
+//       <DialogContent className="bg-harrierBLACK">
+//         <DialogHeader>
+//           <DialogTitle asChild>
+//             <h5 className="mb-5 flex flex-row justify-center text-3xl">
+//               <FaMagnifyingGlass size="28" className="mr-4 text-harrierPINK" />
+//               {title}
+//             </h5>
+//           </DialogTitle>
+//         </DialogHeader>
+//         <DialogDescription asChild>
+//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
+//             <div className="m-2 text-harrierWHITE">{children}</div>
+//           </div>
+//         </DialogDescription>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
 
 const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
@@ -218,7 +212,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-  TextContentModal, // we created these 3 components
   ImageContentModal,
-  //   CitationsModal,
 };

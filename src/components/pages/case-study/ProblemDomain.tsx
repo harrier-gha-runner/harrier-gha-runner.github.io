@@ -7,13 +7,14 @@ import { BoldText as BT } from "@/components/utility/BoldText";
 import { Cite } from "@/components/utility/Cite";
 import { Overview } from "@/components/utility/Overview";
 import { SectionInView } from "@/components/utility/SectionInView";
-import { Callout } from "@/components/utility/Callout";
 
 import AutomationSoft from "@/assets/2.1.2.automation-software-dev.png";
 import GitHubComponents from "@/assets/2.1.github-components.png";
 import GHARunnerNoCache from "@/assets/2.2.1.gha-runner-no-cache.png";
 import GHALimitedCache from "@/assets/2.2.2.gha-limited-cache-action.png";
 import AltRunnerInfra from "@/assets/2.3.alternative-runner-infrastructure.png";
+import ComparisonChart from "@/assets/2.3.2.comparison-chart.png";
+import CompareSample from "@/assets/2.3.1.compare-1-user.png";
 import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 
 export const ProblemDomain = () => {
@@ -493,6 +494,7 @@ export const ProblemDomain = () => {
         </span>
       </Overview>
       {/* TODO: do we like this here? */}
+
       <AccordianFAQ
         faqs={[
           {
@@ -525,7 +527,10 @@ export const ProblemDomain = () => {
       <section id="problem-domain-5">
         <SectionInView sectionId="problem-domain-5" onInView={handleInView} />
         <h2>{subheaderNames[5]}</h2>
-
+        <ImageContentModal
+          src={AltRunnerInfra}
+          alt={"Alternative infrastructure for self-hosted runner"}
+        />
         <span>
           There are numerous benefits to provisioning an alternative runner
           infrastructure for GHA workflows on a major cloud platform rather than
@@ -536,18 +541,23 @@ export const ProblemDomain = () => {
             <li>Vendor-supported infrastructure management</li>
           </ul>
         </span>
-        <ImageContentModal
-          src={AltRunnerInfra}
-          alt={"Alternative infrastructure for self-hosted runner"}
-        />
-        <p>
-          As mentioned previously, Github provides a free, DIY solution to
-          create an alternative runner infrastructure in the form of the GH
-          self-hosted runner feature. Users who choose to implement this feature
-          for themselves can access all the benefits provided by the GHA
-          ecosystem while retaining the capability to fully customize the runner
-          infrastructure on their preferred server environment.
-        </p>
+        {/*  TODO: needs to be a "bullet point" for the accompanying section */}
+        <div className="sm:clearfix">
+          <img
+            src={CompareSample}
+            alt="Comparison sample"
+            className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
+          />
+          <p>
+            As mentioned previously, Github provides a free, DIY solution to
+            create an alternative runner infrastructure in the form of the GH
+            self-hosted runner feature. Users who choose to implement this
+            feature for themselves can access all the benefits provided by the
+            GHA ecosystem while retaining the capability to fully customize the
+            runner infrastructure on their preferred server environment.
+          </p>
+        </div>
+
         <p>
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
@@ -657,6 +667,7 @@ export const ProblemDomain = () => {
           their code and secrets at risk and are willing to pay a modest amount
           of money for a solution that meets their needs.
         </p>
+        <ImageContentModal src={ComparisonChart} alt="Comparison Chart" />
         <p>
           To meet the need for customizable, secure GHA self-hosted runner
           setups, Harrier offers a 3rd-party supported DIY solution. This

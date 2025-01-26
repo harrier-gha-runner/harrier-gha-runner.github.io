@@ -23,11 +23,14 @@ const CaseStudyMainNav = ({
   setActiveSubheader,
   activePage,
 }: CaseStudyMainNavProps) => {
-  const wideEnough = useViewportWidth();
+  const wideEnough = useViewportWidth(915);
 
   const handleForwardClick = () => {
     setActivePage(activePage + 1);
+    setActiveSubheader(null);
+    window.scrollTo(0, 0);
   };
+
   const handleBackwardClick = () => {
     setActivePage(activePage - 1);
     setActiveSubheader(null);
@@ -35,7 +38,7 @@ const CaseStudyMainNav = ({
   };
 
   return (
-    <div id="case-study-nav-container" className="sticky top-[88px] z-10">
+    <div id="case-study-nav-container" className="sticky top-[100px] z-10">
       <nav
         id="case-study-nav"
         className={`mx-auto flex w-fit justify-center py-2`}
@@ -65,36 +68,37 @@ const CaseStudyMainNav = ({
             </>
           ) : (
             <>
-              {activePage > 0 ? (
-                <NavLink
-                  to={`${pages[activePage - 1]?.id}`}
-                  key={`${pages[activePage - 1]?.id}`}
-                  onClick={handleBackwardClick}
-                  className={`relative`}
+              <NavLink
+                to={`${pages[activePage - 1]?.id}`}
+                key={`${pages[activePage - 1]?.id}`}
+                onClick={
+                  activePage === 0
+                    ? (e) => e.preventDefault()
+                    : handleBackwardClick
+                }
+                className={`relative ${activePage === 0 ? "pointer-events-none opacity-50" : ""}`}
+              >
+                <div
+                  className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
                 >
-                  <div
-                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
-                  >
-                    <FaChevronLeft size="16" className="mr-2" />
-                    PREV {/*  {pages[activePage - 1]?.name} */}
-                  </div>
-                </NavLink>
-              ) : null}
-              {activePage < pages.length - 1 ? (
-                <NavLink
-                  to={`${pages[activePage + 1]?.id}`}
-                  key={`${pages[activePage + 1]?.id}`}
-                  onClick={handleForwardClick}
-                  className={`relative ${activePage === pages.length - 1 ? "invisible" : ""}`}
+                  <FaChevronLeft size="16" className="mr-2" />
+                  Back {/*  {pages[activePage - 1]?.name} */}
+                </div>
+              </NavLink>
+
+              <NavLink
+                to={`${pages[activePage + 1]?.id}`}
+                key={`${pages[activePage + 1]?.id}`}
+                onClick={handleForwardClick}
+                className={`relative ${activePage === pages.length - 1 ? "pointer-events-none opacity-50" : ""}`}
+              >
+                <div
+                  className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
                 >
-                  <div
-                    className={`flex flex-row items-center overflow-hidden whitespace-nowrap rounded-md p-2 text-xl font-medium`}
-                  >
-                    NEXT {/* pages[activePage + 1]?.name */}
-                    <FaChevronRight size="16" className="ml-2" />
-                  </div>
-                </NavLink>
-              ) : null}
+                  Next
+                  <FaChevronRight size="16" className="ml-2" />
+                </div>
+              </NavLink>
             </>
           )}
         </div>
@@ -118,7 +122,7 @@ const CaseStudyOnThisPageNav = ({
       id="on-this-page-container"
       className={`w-[250px] ${wideEnough ? "" : "hidden"} mr-4`}
     >
-      <nav className="sticky top-[170px]" id="on-this-page">
+      <nav className="sticky top-[200px]" id="on-this-page">
         <h3 className="mb-6 text-xl font-semibold text-harrierBLACK">
           On this page
         </h3>
@@ -197,7 +201,7 @@ export const CaseStudyHomePage = () => {
       <div id="page-content-container" className="flex flex-wrap">
         <main
           id="case-study-content"
-          className="prose mx-auto w-full max-w-screen-md px-10 pb-40 pt-4"
+          className="prose mx-auto w-full max-w-screen-md px-10 pb-40 pt-0"
         >
           <Outlet />
         </main>

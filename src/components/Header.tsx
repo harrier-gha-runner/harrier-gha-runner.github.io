@@ -2,40 +2,11 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { Separator } from "@/components/ui/separator";
-
+import { FaGithub } from "react-icons/fa6";
 import HisHoliness from "@/assets/harrier-big-blue-shadow.svg";
+// import { useViewportWidth } from "@/hooks/useViewportWidth";
 
-interface NavItemProps {
-  to: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-}
-
-const NavItem: React.FC<NavItemProps> = ({ to, onClick, children }) => {
-  const isExternal = typeof to === "string" && to.startsWith("http");
-
-  if (isExternal) {
-    return (
-      <a
-        href={to}
-        target="_blank"
-        rel="noopener noreferrer"
-        className=""
-        onClick={onClick}
-      >
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <NavLink to={to} onClick={onClick}>
-      {children}
-    </NavLink>
-  );
-};
-
-export const Header = () => {
+const HeaderNav = () => {
   const pageContext = useContext(PageNavigationContext);
   if (!pageContext) {
     throw new Error(
@@ -46,42 +17,48 @@ export const Header = () => {
   const { setActivePage } = pageContext;
 
   return (
+    <div className="absolute right-0 top-0 mr-6 mt-6 flex h-12 w-auto items-center justify-center space-x-4 text-lg font-semibold">
+      <NavLink
+        to="/case-study/introduction"
+        onClick={() => {
+          setActivePage(0);
+        }}
+      >
+        about
+      </NavLink>
+      <NavLink to="/team">team</NavLink>
+      <NavLink to="/try-harrier">try</NavLink>
+    </div>
+  );
+};
+
+const HeaderHome = () => {
+  return (
+    <div className="absolute left-0 top-0 ml-6 mt-6 flex flex-row">
+      <NavLink to="/">
+        <img
+          src={HisHoliness}
+          alt="Harrier Logo"
+          className="mr-5 h-14 w-auto"
+        />{" "}
+      </NavLink>
+      <div className="mb-2 mt-0 flex items-center justify-center">
+        <NavLink to="/">
+          <h1 className="text-2xl font-semibold">Harrier</h1>
+        </NavLink>
+      </div>
+    </div>
+  );
+};
+
+export const Header = () => {
+  return (
     <header
-      className={`sticky top-0 z-50 h-[88px] w-full bg-harrierBLACK text-harrierWHITE`} /* border-b border-harrierGRAY */
+      className={`sticky top-0 z-50 h-[100px] w-full bg-harrierBLACK text-harrierWHITE`}
       id="header-nav"
     >
-      <div className="flex items-center justify-between px-7">
-        <NavItem to="/">
-          <img
-            src={HisHoliness}
-            alt="Harrier Runner Logo"
-            className="mb-5 ml-3 mr-6 mt-5 h-12 w-auto"
-          />
-        </NavItem>
-        <NavItem to="/">
-          <h1 className="text-4xl font-semibold">Harrier</h1>
-        </NavItem>
-        <div className="ml-auto mr-4 flex items-center space-x-4 text-lg font-semibold">
-          <NavItem
-            to="/case-study/introduction"
-            onClick={() => {
-              setActivePage(0);
-            }}
-          >
-            Case Study
-          </NavItem>
-          <Separator
-            orientation="vertical"
-            className="mx-2 h-8 border-l border-harrierGRAY"
-          />
-          <NavItem to="/team">Team</NavItem>
-          <Separator
-            orientation="vertical"
-            className="mx-2 h-8 border-l border-harrierGRAY"
-          />
-          <NavItem to="/try-harrier">Try Harrier</NavItem>
-        </div>
-      </div>
+      <HeaderHome />
+      <HeaderNav />
     </header>
   );
 };

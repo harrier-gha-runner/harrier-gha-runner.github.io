@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
-import { NavLink } from "react-router-dom";
-import { ExternalLink } from "@/components/utility/ExternalLink";
-import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
-import Snippet from "@/assets/landingpage_minimal_workflow_modifications_code_snippet.png";
-import HarrierSetupAltInfra from "@/assets/3.harrier-setup-alternative-infrastructure.png";
+import GHAPlusCache from "@/assets/landingpage-GHA-plus-cache.png";
+import { Separator } from "@/components/ui/separator";
+// import HarrierColor from "@/assets/harrier-big-blue-shadow.svg";
+import Snippet from "@/assets/landingpage-minimal-mod.png";
+
 import TeamMember from "@/components/TeamMember";
-import { Code } from "lucide-react";
+
 // import FloatingBirds from "@/components/FloatingBirds";
 
 export const LandingPage = () => {
@@ -28,12 +28,12 @@ export const LandingPage = () => {
         className="flex h-[40rem] flex-col items-center justify-center bg-harrierBLACK text-center text-white"
       >
         <h1 className="flex flex-col text-5xl text-white">
-          {/* value prop: OUR CLAIM*/}
           Accelerate GitHub Actions
         </h1>
         <div className="mt-10 flex flex-wrap space-x-2">
           <p className="">Custom configured self-hosted runners.</p>
-          <p className="">Securely within your own AWS account.</p>
+
+          <p className="">Secure within your own AWS account.</p>
         </div>
         <div className="mt-10 flex flex-row space-x-8">
           <button className="border bg-harrierPINK">Read More</button>
@@ -41,14 +41,22 @@ export const LandingPage = () => {
           <button className="border border-harrierPINK">Try Harrier</button>
         </div>
       </div>
+      
       <div
         id="landing-panel-1"
-        className="m-14 grid grid-cols-1 gap-14 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
+        className="m-14 grid h-[44rem] grid-cols-1 gap-14 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
       >
         <div className="prose flex w-full justify-center bg-harrierBLACK p-4">
           <div className="">
             <h3 className="flex flex-wrap justify-start text-2xl font-semibold text-harrierWHITE">
-              Dedicated Persistent Cache for GitHub Actions
+              <div className="flex">
+                Dedicated&nbsp;
+                <div className="text-harrierPINK">Persistent Cache</div>&nbsp;
+              </div>
+              <div className="flex">
+                for&nbsp;
+                <div className="text-harrierGHABLUE">GitHub Actions</div>
+              </div>
             </h3>
             <div className="flex flex-wrap justify-center text-xl text-harrierWHITE">
               <p>
@@ -58,20 +66,12 @@ export const LandingPage = () => {
             </div>
           </div>
         </div>
-
-        <div className="align-center flex w-full items-center justify-center bg-harrierBLUE/50 p-4">
-          <img
-            src={HarrierColor}
-            alt="Harrier Blue Logo"
-            className="scale-100 transform transition-transform duration-50 hover:scale-105 sm:h-40 md:h-48 lg:h-56 xl:h-64"
-          />
+        <div className="align-center flex w-full items-center justify-center p-4">
+          <img src={GHAPlusCache} alt="GHA Plus Cache" className="" />
         </div>
-        <div className="align-center flex w-full items-center justify-center bg-harrierBLUE/50 p-4">
-          <img
-            src={Snippet}
-            alt="Snippet"
-            className="scale-100 transform transition-transform duration-300 hover:scale-110 sm:h-40 md:h-48 lg:h-56 xl:h-64"
-          />
+
+        <div className="align-center flex w-full items-center justify-center p-4">
+          <img src={Snippet} alt="Snippet" />
         </div>
         <div className="prose flex w-full justify-center bg-harrierBLACK p-4">
           <div className="">

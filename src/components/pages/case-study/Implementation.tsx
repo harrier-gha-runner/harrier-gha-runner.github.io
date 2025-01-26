@@ -918,17 +918,16 @@ export const Implementation = () => {
           webhook on the GitHub organization, specified by the user during the
           initial configuration setup, set to trigger on workflow status
           updates. This is accomplished by making a call to GitHub's REST API
-          for creating webhooks and passing in two arguments:, the newly
+          for creating webhooks and passing in two arguments: the newly
           established AWS HTTP endpoint and the user's GitHub Personal Access
-          Token that is used for authorization purposes (link to “click here for
-          more” to read about how AWS secrets manager is used to protect user's
-          PAT from Harrier). Lastly, Harrier creates an events manager service
-          in the form of an AWS Lambda which processes webhook data. When a
-          workflow starts, a Lambda selects and activates an available EC2 from
-          the warm pool. Upon workflow completion, a different Lambda terminates
-          the used runner. In order to maintain the desired fleet size, the
-          event manager service handles the provisioning of a new replacement
-          EC2 instance to maintain the warm pool and runner fleet.
+          Token that is used for authorization purposes. Lastly, Harrier creates
+          an events manager service in the form of an AWS Lambda which processes
+          webhook data. When a workflow starts, a Lambda selects and activates
+          an available EC2 from the warm pool. Upon workflow completion, a
+          different Lambda terminates the used runner. In order to maintain the
+          desired fleet size, the event manager service handles the provisioning
+          of a new replacement EC2 instance to maintain the warm pool and runner
+          fleet.
         </p>
 
         <AccordianFAQ

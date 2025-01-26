@@ -51,7 +51,7 @@ const TryHarrierNav = ({
   const wideEnough = useViewportWidth();
 
   return (
-    <div id="try-harrier-nav-container" className="sticky top-[88px] z-10">
+    <div id="try-harrier-nav-container" className="sticky top-[100px] z-10">
       <nav
         id="try-harrier-nav"
         className={`mx-auto flex w-fit justify-center py-2 ${wideEnough ? "" : "hidden"}`}

@@ -1,13 +1,16 @@
 import { ImageContentModal } from "@/components/ui/dialog";
+import { Overview } from "@/components/utility/Overview";
 export const Introduction = () => {
   return (
     <>
-      <p>
-        Harrier is an open-source infrastructure deployment agent designed to
-        accelerate automated workflow runtimes in GitHub Actions (GHA) through
-        optimized caching mechanisms made possible by using GitHub’s very own
-        self-hosted runner feature.
-      </p>
+      <Overview title="Harrier: DIY solution for caching within GitHub Actions">
+        <p>
+          Harrier is an open-source infrastructure deployment agent designed to
+          accelerate automated workflow runtimes in GitHub Actions (GHA) through
+          optimized caching mechanisms made possible by using GitHub’s very own
+          self-hosted runner feature.
+        </p>
+      </Overview>
       <ImageContentModal
         src={"src/assets/1.harrier-intro.png"}
         alt="Harrier Intro"
