@@ -46,6 +46,7 @@ export const Design = () => {
 
   return (
     <>
+
       <Overview title="Alternative GHA runner infrastructure in user's own cloud">
         <span>
           <ul>
@@ -73,14 +74,31 @@ export const Design = () => {
           src={HarrierDesignLevelHigh}
           alt={"Harrier Design Level High"}
         />
+        <p>
+          The design of a 3rd-party supported DIY option for leveraging cache in
+          GHA workflows involved two major pieces of work:
+        </p>
+        <ul>
+          <li>
+            Provision and configure an alternative GHA runner infrastructure
+            with a dedicated persistent cache store into the user’s own cloud
+            environment.
+          </li>
+          <li>
+            Facilitate the user’s access to and utilization of the newly
+            provisioned alternative runner infrastructure.
+          </li>
+        </ul>
         <ImageContentModal
           src={AlternateInfrastructure}
           alt={"Alternate Infrastructure"}
+
         /> */}
       </Overview>
       <section id="design-0">
         <SectionInView sectionId="design-0" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
+
         <p>
           Harrier provides an alternative runner infrastructure within a user's
           existing cloud account. It is important to ensure that the
@@ -95,6 +113,7 @@ export const Design = () => {
       <section id="design-1">
         <SectionInView sectionId="design-1" onInView={handleInView} />
         <h2>{subheaderNames[1]}</h2>
+
         <p>
           Provisioning a runner within the user's cloud entails configuring a
           virtual machine with the GHA self-hosted runner application. Given the
@@ -142,6 +161,7 @@ export const Design = () => {
       </section>
       <section id="design-4">
         <SectionInView sectionId="design-4" onInView={handleInView} />
+
         <h2>{subheaderNames[4]}</h2>
         <p>
           Alongside the provisioning of its VMs, Harrier provisions a persistent
@@ -225,6 +245,7 @@ export const Design = () => {
       <section id="design-6">
         <SectionInView sectionId="design-6" onInView={handleInView} />
         <h2>{subheaderNames[6]}</h2>
+
         <p>
           With the alternative runner infrastructure provisioned and configured
           within the user's cloud environment, integration with the GHA
@@ -240,15 +261,43 @@ export const Design = () => {
       </section>
       <section id="design-7">
         <SectionInView sectionId="design-7" onInView={handleInView} />
+
         <h2>{subheaderNames[7]}</h2>
         <p>
           To ease migration from default GHA runners to self-hosted runners and
           minimize workflow disruption, Harrier requires simple one-line
-          modifications to existing workflow YAML files. Similarly, Harrier
-          allows users to take advantage of the built-in cache strategy by
-          simply adding a few lines to existing workflow yaml files.
+          modifications to existing workflow YAML files.
         </p>
+        <p>
+          Similarly, Harrier allows users to take advantage of the built-in
+          cache strategy by simply adding a few lines to existing workflow yaml
+          files.
+        </p>
+        <p>Example:</p>
+        <pre className="w-1/2 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
+          <code>
+            <span className="font-mono text-blue-600">...</span>
+            <br />
+            <br />
+            <span className="font-mono text-blue-600">
+              jobs:
+              <br />
+              &nbsp;&nbsp;build:
+              <br />
+              <span className="block bg-red-200 px-1 font-mono text-red-900">
+                -&nbsp;&nbsp;runs-on: ubuntu-latest
+              </span>
+              <span className="block bg-green-200 px-1 font-mono text-green-900">
+                +&nbsp;&nbsp;runs-on: self-hosted
+              </span>
+              <br />
+              <span className="font-mono text-blue-600">...</span>
+              <br />
+            </span>
+          </code>
+        </pre>
       </section>
+      {/* <img src={HarrierColor} alt="Harrier Blue Logo" className="h-28 w-auto" /> */}
     </>
   );
 };

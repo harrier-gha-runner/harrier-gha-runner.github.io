@@ -111,7 +111,7 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
         { id: "implementation-8", name: "Overall Architecture" },
         // { id: "implementation-10", name: "Deployment" },
         // { id: "implementation-11", name: "Performance benchmarks" },
-        // { id: "implementation-12", name: "Sources" },
+        { id: "implementation-12", name: "Sources" },
       ],
     },
     {

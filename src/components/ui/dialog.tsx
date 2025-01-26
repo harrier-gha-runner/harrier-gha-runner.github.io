@@ -138,13 +138,14 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 //   );
 // };
 
+
 const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex w-full items-center justify-center py-6">
+        <div className="flex w-full justify-center py-6">
           <img
-            className="m-0 h-auto w-full max-w-3xl cursor-pointer"
+            className="h-auto w-full max-w-xl cursor-pointer object-contain"
             src={src}
             alt={alt}
           />
@@ -154,7 +155,7 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
         <DialogDescription asChild>
           <div className="p-8">
             <img
-              className="max-h-full max-w-full object-contain"
+              className="max-h-[80vh] max-w-[90vw] object-contain"
               src={src}
               alt={alt}
             />

@@ -118,7 +118,6 @@ export const LandingPage = () => {
           </div>
         </div>
       </section>
-
       <section
         id="landing-panel-3"
         className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16"
@@ -127,11 +126,14 @@ export const LandingPage = () => {
           Harrier Team
         </h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
+
           {team.map((member) => (
             <TeamMember member={member} key={member.name} />
           ))}
         </div>
+
       </section>
     </div>
+
   );
 };

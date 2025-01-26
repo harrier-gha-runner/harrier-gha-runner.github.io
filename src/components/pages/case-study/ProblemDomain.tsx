@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { ExternalLink } from "@/components/utility/ExternalLink";
 import { ImageContentModal } from "@/components/ui/dialog";
@@ -18,6 +18,7 @@ import CompareSample from "@/assets/2.3.1.compare-1-user.png";
 import { AccordianFAQ } from "@/components/utility/AccordianFAQ";
 
 export const ProblemDomain = () => {
+
   const pageContext = useContext(PageNavigationContext);
 
   if (!pageContext) {
@@ -47,6 +48,7 @@ export const ProblemDomain = () => {
     <>
       <Overview title="GitHub Actions: Cornerstone of modern software development">
         <span>
+
           <ul>
             <li>
               <BT>GHA empowers developers and teams.</BT> With CI/CD workflows
@@ -72,6 +74,7 @@ export const ProblemDomain = () => {
       <section id="problem-domain-0">
         <SectionInView sectionId="problem-domain-0" onInView={handleInView} />
         <h2>{subheaderNames[0]}</h2>
+
         <p>
           Modern software development is a complex endeavor performed by large
           teams of experts, which require a great deal of communication and
@@ -139,7 +142,15 @@ export const ProblemDomain = () => {
             <li>Reduced risk of failed deployments</li>
             <li>Improved and faster user feedback</li>
           </ul>
+
         </p>
+        <ul>
+          <li>Early detection of issues</li>
+          <li>Improved team collaboration</li>
+          <li>Faster release cycles and rapid releases</li>
+          <li>Reduced risk of failed deployments</li>
+          <li>Improved and faster user feedback</li>
+        </ul>
         <p>
           These benefits help establish a more stable and efficient development
           environment. As software development grows increasingly complex, the
@@ -210,6 +221,7 @@ export const ProblemDomain = () => {
           build, auto deploy, just to name a few.
         </p>
         <p>
+
           However, GHA as a CI/CD tool is not without its limitations
           {/* <Cite num={9999} label="reddit" href="#" />  */}
           Areas where some consider it falling short are:
@@ -234,7 +246,22 @@ export const ProblemDomain = () => {
               />
             </li>
           </ul>
+
         </p>
+        <ul>
+          <li>
+            Limited visibility of workflow artifacts & robust artifact
+            management.
+          </li>
+          <li>Limited tooling for debugging workflows.</li>
+          <li>
+            Limited support for event-based workflow triggers originating
+            outside of GitHub itself. (send a “respository_dispatch” event via
+            the GitHub API)
+          </li>
+          <li>Performance ceiling for enterprise-level workflows.</li>
+          <li>YAML-based workflow configuration.30</li>
+        </ul>
         <p>
           The above limitations may lead a developer or organization to consider
           alternative approaches to address their specific CI/CD needs.
@@ -266,19 +293,17 @@ export const ProblemDomain = () => {
           Despite the advantages the above alternative approaches provide, still
           many developers and teams opt to stay within the GHA ecosystem for the
           following reasons:
-          <ul>
-            <li>
-              Native integration between code base and workflow automation tools
-            </li>
-            <li>
-              Zero responsibility for infrastructure management by the user
-            </li>
-            <li>
-              Access to open-sourced marketplace for various automation
-              customization and innovation
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            Native integration between code base and workflow automation tools
+          </li>
+          <li>Zero responsibility for infrastructure management by the user</li>
+          <li>
+            Access to open-sourced marketplace for various automation
+            customization and innovation
+          </li>
+        </ul>
         <p>
           GitHub Actions strikes a balance, offering flexible, GitHub-centric
           workflows with easy setup and scalable performance. In addition, with
@@ -290,6 +315,7 @@ export const ProblemDomain = () => {
       <br />
       <Overview title="GHA often cited as the cause of slower than desirable CI builds">
         <span>
+
           <ul>
             <li>
               <BT>
@@ -311,6 +337,7 @@ export const ProblemDomain = () => {
               difficult in GHA's ephemeral VM architecture.
             </li>
           </ul>
+
         </span>
       </Overview>
       <section id="problem-domain-3">
@@ -325,6 +352,7 @@ export const ProblemDomain = () => {
         <p>
           Given the need to provide over 100 million GitHub users with a clean
           runtime environment and minimize the risk of data leakage between jobs
+
           or users, GitHub leverages its parent company Microsoft's Azure cloud
           platform. To address isolation and security concerns, GitHub
           provisions brand new virtual machines (VMs) for each job specified in
@@ -358,6 +386,7 @@ export const ProblemDomain = () => {
             },
           ]}
         />
+
         <p>
           One of the most significant impacts of GitHub's runner infrastructure
           on CI build speed is that it severely limits the use of caching
@@ -403,15 +432,15 @@ export const ProblemDomain = () => {
           GitHub's cache feature seeks to enhance overall workflow efficiency by
           storing and reusing dependencies and files produced from workflow run
           operations. Key features include:
-          <ul>
-            <li>Seamless integration with existing workflow files.</li>
-            <li>
-              Preset cache eviction strategy with no option for further
-              customization and 7 day automatic deletion.
-            </li>
-            <li>10 GB cache data storage per repository.</li>
-          </ul>
         </p>
+        <ul>
+          <li>Seamless integration with existing workflow files.</li>
+          <li>
+            Preset cache eviction strategy with no option for further
+            customization and 7 day automatic deletion.
+          </li>
+          <li>10 GB cache data storage per repository.</li>
+        </ul>
         <p>
           This native cache solution satisfied some users, but for others, the
           solution proved woefully inadequate. To better understand this second
@@ -469,6 +498,7 @@ export const ProblemDomain = () => {
       <br />
       <Overview title="Self-hosted runners with storage enable caching in GHA">
         <span>
+
           <ul>
             <li>
               <BT>
@@ -527,6 +557,7 @@ export const ProblemDomain = () => {
       <section id="problem-domain-5">
         <SectionInView sectionId="problem-domain-5" onInView={handleInView} />
         <h2>{subheaderNames[5]}</h2>
+
         <ImageContentModal
           src={AltRunnerInfra}
           alt={"Alternative infrastructure for self-hosted runner"}
@@ -556,7 +587,6 @@ export const ProblemDomain = () => {
             runner infrastructure on their preferred server environment.
           </p>
         </div>
-
         <p>
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
@@ -583,6 +613,7 @@ export const ProblemDomain = () => {
           their alternative runner infrastructure's components. Additionally,
           there is the opportunity cost of starting down this road, investing
           significant time, and never actually realizing any benefits.
+
         </p>
         <p>
           For organizations or teams who already have on-premises servers with
@@ -658,7 +689,6 @@ export const ProblemDomain = () => {
             provisioned in the user's own AWS account.
           </p>
         </div>
-
         <p>
           In a solution such as Runs-On, moving the infrastructure hosting task
           back to the user resolves some of the data security risks that arise
@@ -705,6 +735,10 @@ export const ProblemDomain = () => {
           provisioning process, gaining intimate knowledge of their
           infrastructure.
         </p>
+        <ImageContentModal
+          src={ComparisonChart}
+          alt={"Chart comparing Harrier to other options"}
+        />
       </section>
     </>
   );

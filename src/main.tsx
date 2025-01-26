@@ -1,9 +1,11 @@
+/* main.tsx */
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "@/providers/PageNavigation";
 import { SetupStepsProvider } from "@/providers/SetupSteps";
 import { TeamProvider } from "@/providers/Team";
+
 
 import { TryHarrierPage } from "./components/pages/TryHarrierPage";
 import { TeamPage } from "./components/pages/TeamPage";

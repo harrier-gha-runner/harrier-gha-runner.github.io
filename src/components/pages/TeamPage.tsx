@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 export const TeamPage = () => {
   const team = useContext(TeamContext);
-
   return (
     <div className="flex flex-col items-center justify-center bg-harrierWHITE pb-8 pt-16">
       <h3 className="mb-3 text-3xl font-semibold text-harrierBLACK">

@@ -177,25 +177,6 @@ export const Implementation = () => {
           Harrier deploys to Amazon's Elastic Compute Cloud (EC2) service which
           functions as the GHA self-hosted runner, providing the following
           benefits:
-          <ul>
-            <li>
-              Instances are launched on an as-needed basis, making it possible
-              to provision on-demand runners.
-            </li>
-            <li>
-              Instances can be stopped when no longer in use, facilitating
-              resource optimization.
-            </li>
-            <li>
-              Instances can be terminated after each use, making them truly
-              ephemeral.
-            </li>
-            <li>
-              Instances can be customized to run on any operating system using a
-              variety of hardware (i.e., CPU, RAM, storage, networking) and
-              network configurations.
-            </li>
-          </ul>
         </p>
         <ImageContentModal
           src={FleetOfEC2Runners}
@@ -240,7 +221,6 @@ export const Implementation = () => {
           as the runner that will be started up to run a workflow will be
           terminated upon completion of the job.
         </p>
-
         <AccordianFAQ
           faqs={[
             {
@@ -1026,8 +1006,10 @@ export const Implementation = () => {
             src={MinimalWorkflowModification}
             alt={"minimal workflow modification"}
           />
+
         </div> */}
         <pre className="w-3/4 rounded border border-gray-300 bg-white p-4 font-mono text-sm text-gray-900">
+
           <code>
             <span className="font-mono text-blue-600">
               jobs:
@@ -1150,7 +1132,6 @@ export const Implementation = () => {
           ]}
         />
       </section>
-
       <section id="implementation-8">
         <SectionInView sectionId="implementation-8" onInView={handleInView} />
         <h2>{subheaderNames[8]}</h2>
@@ -1162,6 +1143,7 @@ export const Implementation = () => {
           src={OverallArchitecture}
           alt={"Overall architecture"}
         />
+
       </section>
     </>
   );

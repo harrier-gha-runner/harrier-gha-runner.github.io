@@ -6,6 +6,7 @@ import {
   CardContent,
   //   CardFooter,
 } from "@/components/ui/card";
+
 import { FaLocationDot } from "react-icons/fa6";
 import { Member } from "@/components/pages/LandingPage";
 
@@ -49,7 +50,7 @@ const TeamMember = ({ member }: { member: Member }) => {
           >
             <FaGithub size="24px" />
           </a>
-          <a>
+          {/* <a>
             <FaRegFilePdf size="24px" />
           </a>
         </CardFooter> */}
