@@ -33,9 +33,9 @@ export const CodeBlock = ({
         {children}
       </span>
       {showCopiedMessage && (
-        <div className="fixed bottom-4 right-4 z-50 rounded bg-harrierBLACK bg-opacity-75 px-4 py-2 text-white">
+        <span className="fixed bottom-4 right-4 z-50 rounded bg-harrierBLACK bg-opacity-75 px-4 py-2 text-white">
           copied
-        </div>
+        </span>
       )}
     </>
   );

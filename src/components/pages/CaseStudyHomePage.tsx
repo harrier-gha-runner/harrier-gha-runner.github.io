@@ -4,6 +4,14 @@ import { useViewportWidth } from "@/hooks/useViewportWidth";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
+const scrollToElement = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const offset = element.offsetTop - 162;
+    window.scrollTo({ top: offset, behavior: "smooth" });
+  }
+};
+
 type Page = {
   id: string;
   name: string;
@@ -15,14 +23,6 @@ type CaseStudyMainNavProps = {
   setActivePage: (index: number) => void;
   setActiveSubheader: (index: number | null) => void;
   activePage: number;
-};
-
-const scrollToElement = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    const offset = element.offsetTop - 162;
-    window.scrollTo({ top: offset, behavior: "smooth" });
-  }
 };
 
 const CaseStudyMainNav = ({

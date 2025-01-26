@@ -34,6 +34,8 @@ interface SetupFormProps {
 }
 
 const INSTANCE_TYPES = [
+  { label: "m8g.large", value: "m8g.large" },
+  { label: "m8i.large", value: "m8i.large" },
   { label: "m7a.large", value: "m7a.large" },
   { label: "m7i.large", value: "m7i.large" },
   { label: "r7a.medium", value: "r7a.medium" },

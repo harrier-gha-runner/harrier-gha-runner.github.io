@@ -16,7 +16,6 @@ import { z } from "zod";
 import { FieldValues, useForm } from "react-hook-form";
 import yaml from "js-yaml";
 import { formSchema } from "@/schemas/formSchema";
-import { Button } from "../ui/button";
 import { Overview } from "../utility/Overview";
 import { Callout } from "../utility/Callout";
 
@@ -26,7 +25,6 @@ type StepType = "form" | "visual" | "other";
 
 type Step = {
   type: StepType;
-  numericTitle: number;
   id: string;
   title: string;
   introduction: React.ReactElement | string;
@@ -86,7 +84,7 @@ const TryHarrierNav = ({
                         : "bg-quaternary/85 text-harrierBLACK"
                     }`}
                   >
-                    <div>Step {step.numericTitle}</div>
+                    Step {stepIdx}
                     <FaChevronRight className="ml-2" />
                   </div>
                 </div>
@@ -201,10 +199,21 @@ const TryHarrierContent = ({
                   </div>
                 </div>
               ))}
+              {steps[activeStep].conclusion && (
+                <span className="flex w-full flex-row py-0 text-lg">
+                  {steps[activeStep].conclusion}
+                </span>
+              )}
             </>
           )}
         </section>
+      </main>
+    </div>
+  );
+};
 
+{
+  /* // this is the bottom back next buttons navigation 
         <div className="mb-4 flex items-center justify-center">
           <nav className="flex justify-start space-x-2">
             <Button
@@ -226,11 +235,8 @@ const TryHarrierContent = ({
               <FaArrowRight className="ml-2" />
             </Button>
           </nav>
-        </div>
-      </main>
-    </div>
-  );
-};
+        </div> */
+}
 
 export const TryHarrierPage = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -242,7 +248,7 @@ export const TryHarrierPage = () => {
     defaultValues: {
       awsAccountId: "",
       awsRegion: "us-east-1",
-      instanceType: "",
+      instanceType: "m8g.large",
       cacheTtlHours: "72",
       cidrBlockVPC: "10.0.0.0/24",
       cidrBlockSubnet: "10.0.0.0/24",
@@ -253,15 +259,13 @@ export const TryHarrierPage = () => {
     {
       id: "prerequisites",
       type: "other",
-      numericTitle: 0,
       title: "Prerequisites",
       introduction: (
         <span>
           <p>
             Before proceeding, ensure you have a <BT> AWS Account</BT> and an{" "}
             <BT>Github Organization</BT>. If you don't yet have these, you can
-            create them by following the links below. If you already have these,
-            you can skip this step and continue to step 1.
+            create them by following the links below.
           </p>
           <ol className="flex flex-col align-middle">
             <li>
@@ -270,28 +274,22 @@ export const TryHarrierPage = () => {
                 children="Create a paid AWS Account"
               />
             </li>
-            {/* <FaAws size="30" className="mr-2 inline-block" /> */}
             <li>
               <ExternalLink
                 href="https://github.com/organizations/plan"
                 children="Create a GitHub Organization"
               />
             </li>
-
-            {/* <FaGithub size="30" className="mr-2 inline-block" /> */}
           </ol>
+          If you already have these, you can skip this step and continue to{" "}
+          <BT>step 1.</BT>
         </span>
       ),
-      conclusion: "conclusion",
-      //   content: [
-      //     { caption: "Paid AWS account" },
-      //     { caption: "GitHub Organization" },
-      //   ],
     },
     {
       id: "identity-provider",
       type: "visual",
-      numericTitle: 1,
+
       title: "Create an OpenID Connect identity provider in IAM",
       introduction: (
         <span>
@@ -301,8 +299,8 @@ export const TryHarrierPage = () => {
               children="OpenID Connect"
             />{" "}
             (OIDC) is an authentication protocol built on top of OAuth 2.0,
-            allowing applications to verify user identities through an identity
-            provider like GitHub. OIDC issues ID tokens (usually JSON Web
+            allowing applications like GitHub to verify user identities through
+            an identity provider . OIDC issues ID tokens (usually JSON Web
             Tokens) that authenticate users and provide profile information,
             enabling{" "}
             <ExternalLink
@@ -313,12 +311,11 @@ export const TryHarrierPage = () => {
             of GitHub, facilitates connections with external services by
             enabling secure, temporary credentials through OIDC tokens. This
             allows GitHub Actions to authenticate with cloud providers without
-            requiring static credentials, thus offering enhanced security and
+            requiring static credentials, offering enhanced security and
             seamless integration for CI/CD workflows.
           </p>
         </span>
       ),
-      conclusion: "conclusion",
       content: [
         {
           caption: (
@@ -403,30 +400,39 @@ export const TryHarrierPage = () => {
           ),
           aside: {
             title: "Note",
-            message: "Principle of least privilege",
+            message: "hi mom",
           },
         },
         {
           caption: (
             <span>
-              After selecting the above policies, click <BT>Next.</BT>
+              After selecting the above <BT>9 policies</BT>, click{" "}
+              <BT>Next.</BT>
             </span>
           ),
         },
         {
+          caption: <span>Name the role and add a brief description.</span>,
+        },
+        {
           caption: (
             <span>
-              Name the role, review permissions, and click <BT>Create role</BT>.
+              After carefully reviewing the list of permissions, click{" "}
+              <BT>Create role</BT>.
             </span>
           ),
         },
       ],
+      conclusion: (
+        <span>
+          With the identity provider created, we can now move on to step 2:{" "}
+          <BT>creating a personal access token on GitHub</BT>.
+        </span>
+      ),
     },
     {
       id: "personal-access-token",
       type: "visual",
-      numericTitle: 2,
-
       title: "Create a personal access token on GitHub",
       introduction: (
         <span>
@@ -450,7 +456,6 @@ export const TryHarrierPage = () => {
           </p>
         </span>
       ),
-      conclusion: "conclusion",
       content: [
         {
           caption: (
@@ -517,16 +522,23 @@ export const TryHarrierPage = () => {
         {
           caption: (
             <span>
-              In Secret type, select Other type of secret. Choose{" "}
-              <BT>plaintext</BT> in Key/value pairs and paste the GH personal
-              access token from before into the editor. Click <BT>Next</BT>.
+              Select <BT>Other type of secret</BT> for Secret type and{" "}
+              <BT>plaintext</BT> for Key/value pairs.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              Input: <CB>github/pat/harrier</CB> into the Secret name field and
+              Paste you personal access token into the editor. Click{" "}
+              <BT>Next</BT>.
+            </span>
+          ),
+        },
+        {
+          caption: (
+            <span>
+              Input <CB>github/pat/harrier</CB> into the Secret name field and
               optionally provide a description of the secret, any tags, and any
               additional resource permissions. Click <BT>Next</BT>.
             </span>
@@ -535,44 +547,47 @@ export const TryHarrierPage = () => {
         {
           caption: (
             <span>
-              Leave Configure automatic rotation in its default position and
-              click <BT>Next</BT>.
+              Leave <BT>Configure automatic rotation</BT> in its default
+              position and click <BT>Next</BT>.
             </span>
           ),
         },
         {
           caption: (
             <span>
-              After reviewing configuration details, click <BT>Store</BT>.
+              After reviewing all relevant configuration details, click{" "}
+              <BT>Store</BT>.
             </span>
           ),
         },
       ],
+      conclusion: (
+        <span>
+          With the personal access token safely managed by AWS Secrets Manager,
+          we can now move on to step 3: <BT>configuring your runner setup </BT>{" "}
+          and generating a <CB>harrier_setup.yaml</CB>.
+        </span>
+      ),
     },
     {
       id: "create-setup-yaml",
       type: "form",
-      numericTitle: 3,
       title: "Select your runner configuration settings",
       introduction: (
-        <span>
-          <p>
-            {" "}
-            Fill out the form fields below to and click <BT>Generate</BT> to
-            render a your <CB>harrier_setup.yaml</CB>. Executing this workflow
-            will deploy a fleet of self-hosted runners into your AWS account,
-            enabling you to run your GitHub Actions workflows on your own AWS
-            infrastructure. If you would like to learn more about the specific
-            field, simply hover the respective label.
-          </p>
-        </span>
+        <p>
+          Fill out the configuration details below and click <BT>Generate</BT>{" "}
+          to render the <CB>harrier_setup.yaml</CB> file. Executing this
+          workflow will deploy a fleet of self-hosted runners into your AWS
+          account, enabling you to run your GitHub Actions workflows on your own
+          AWS infrastructure and leverage caching. If you have a question about
+          a specific configuration setting, simply hover over the respective
+          label for details.
+        </p>
       ),
-      conclusion: "conclusion",
     },
     {
-      id: "workflow-yaml",
+      id: "execute-workflow",
       type: "visual",
-      numericTitle: 4,
       title: "Auto-deploy self-hosted runner fleet into AWS account",
       introduction: (
         <span>
@@ -582,7 +597,6 @@ export const TryHarrierPage = () => {
           </p>
         </span>
       ),
-      conclusion: "conclusion",
       content: [
         {
           caption: (
