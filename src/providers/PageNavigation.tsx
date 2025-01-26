@@ -26,20 +26,41 @@ const PageNavigationContext = createContext<PageNavigationContextProps | null>(
 const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
   const [pages] = useState([
     {
+      id: "introduction",
+      name: "Introduction",
+      subheaders: [],
+    },
+    {
       id: "problem-domain",
       name: "Problem Domain",
       subheaders: [
         {
+          id: "problem-domain-0",
+          name: "CI/CD and DevOps",
+        },
+        {
           id: "problem-domain-1",
-          name: "GitHub Actions: A Powerful CI/CD Tool",
+          name: "Workflow Automation",
         },
         {
           id: "problem-domain-2",
-          name: "Slower than Desirable GHA Automation",
+          name: "GHA and CI/CD Automation",
         },
         {
           id: "problem-domain-3",
-          name: "Accelerate GHA Workflows with Cache",
+          name: "Unpacking GHA’s Original Design",
+        },
+        {
+          id: "problem-domain-4",
+          name: "Limitations of GHA Cache Action",
+        },
+        {
+          id: "problem-domain-5",
+          name: "Implementation Options for Self-hosted Runners",
+        },
+        {
+          id: "problem-domain-6",
+          name: "Opportunity for 3rd-Party-Supported DIY",
         },
       ],
     },
@@ -48,22 +69,22 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Design",
       subheaders: [
         {
-          id: "design-1",
+          id: "design-0",
           name: "Isolated Runner Environment in User’s Cloud",
         },
-        { id: "design-2", name: "Warm-Pool of Self-Hosted Runners" },
+        { id: "design-1", name: "Warm-Pool of Self-Hosted Runners" },
         {
-          id: "design-3",
+          id: "design-2",
           name: "Connect Runners with Specific Workflow Jobs",
         },
-        { id: "design-4", name: "Termination of Ephemeral Runner" },
-        { id: "design-5", name: "Dedicated Persistent Cache Store" },
+        { id: "design-3", name: "Termination of Ephemeral Runner" },
+        { id: "design-4", name: "Dedicated Persistent Cache Store" },
         {
-          id: "design-6",
+          id: "design-5",
           name: "Out-of-the-Box Cache Management of Dependencies",
         },
-        { id: "design-7", name: "Workflow-Driven Start and Stop of Runners" },
-        { id: "design-8", name: "Minimal Workflow Modification" },
+        { id: "design-6", name: "Workflow-Driven Start and Stop of Runners" },
+        { id: "design-7", name: "Minimal Workflow Modification" },
       ],
     },
     {
@@ -71,24 +92,24 @@ const PageNavigationProvider = ({ children }: { children: ReactNode }) => {
       name: "Implementation",
       subheaders: [
         {
-          id: "implementation-1",
+          id: "implementation-0",
           name: "Isolated VPC in User's AWS Account",
         },
         {
-          id: "implementation-2",
+          id: "implementation-1",
           name: "Fleet of EC2 Runners Placed in Standby",
         },
         {
-          id: "implementation-3",
+          id: "implementation-2",
           name: "Just-In-Time Token Registration of Runner",
         },
-        { id: "implementation-4", name: "Termination of EC2 Runners" },
-        { id: "implementation-5", name: "S3 Bucket Cache Store" },
-        { id: "implementation-6", name: "Node Modules Cache" },
-        { id: "implementation-7", name: "API Platform Integration" },
-        { id: "implementation-8", name: "Minimal Workflow Modification" },
-        { id: "implementation-9", name: "Overall Architecture" },
-        { id: "implementation-10", name: "Deployment" },
+        { id: "implementation-3", name: "Termination of EC2 Runners" },
+        { id: "implementation-4", name: "S3 Bucket Cache Store" },
+        { id: "implementation-5", name: "Node Modules Cache" },
+        { id: "implementation-6", name: "API Platform Integration" },
+        { id: "implementation-7", name: "Minimal Workflow Modification" },
+        { id: "implementation-8", name: "Overall Architecture" },
+        // { id: "implementation-10", name: "Deployment" },
         // { id: "implementation-11", name: "Performance benchmarks" },
         { id: "implementation-12", name: "Sources" },
       ],

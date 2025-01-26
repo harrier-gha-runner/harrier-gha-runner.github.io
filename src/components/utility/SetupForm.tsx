@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Copy, ClipboardCheck } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Copy, ClipboardCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -34,78 +34,22 @@ interface SetupFormProps {
 }
 
 const INSTANCE_TYPES = [
-  { label: "t2.micro", value: "t2.micro" },
-  { label: "t2.small", value: "t2.small" },
-  { label: "t2.medium", value: "t2.medium" },
-  { label: "t2.large", value: "t2.large" },
-  { label: "t3.micro", value: "t3.micro" },
-  { label: "t3.small", value: "t3.small" },
-  { label: "t3.medium", value: "t3.medium" },
-  { label: "t3.large", value: "t3.large" },
-  { label: "t3.xlarge", value: "t3.xlarge" },
-  { label: "t3.2xlarge", value: "t3.2xlarge" },
-  { label: "t3a.micro", value: "t3a.micro" },
-  { label: "t3a.small", value: "t3a.small" },
-  { label: "t3a.medium", value: "t3a.medium" },
-  { label: "t3a.large", value: "t3a.large" },
-  { label: "t3a.xlarge", value: "t3a.xlarge" },
-  { label: "t3a.2xlarge", value: "t3a.2xlarge" },
-  { label: "m3.medium", value: "m3.medium" },
-  { label: "m3.large", value: "m3.large" },
-  { label: "m3.xlarge", value: "m3.xlarge" },
-  { label: "m3.2xlarge", value: "m3.2xlarge" },
-  { label: "m4.large", value: "m4.large" },
-  { label: "m4.xlarge", value: "m4.xlarge" },
-  { label: "m4.2xlarge", value: "m4.2xlarge" },
-  { label: "m4.4xlarge", value: "m4.4xlarge" },
-  { label: "m4.10xlarge", value: "m4.10xlarge" },
-  { label: "m4.16xlarge", value: "m4.16xlarge" },
-  { label: "m5.large", value: "m5.large" },
-  { label: "m5.xlarge", value: "m5.xlarge" },
-  { label: "m5.2xlarge", value: "m5.2xlarge" },
-  { label: "m5.4xlarge", value: "m5.4xlarge" },
-  { label: "m5.12xlarge", value: "m5.12xlarge" },
-  { label: "m5.24xlarge", value: "m5.24xlarge" },
+  { label: "m8g.large", value: "m8g.large" },
+  { label: "m8i.large", value: "m8i.large" },
+  { label: "m7a.large", value: "m7a.large" },
+  { label: "m7i.large", value: "m7i.large" },
+  { label: "r7a.medium", value: "r7a.medium" },
+  { label: "m6a.large", value: "m6a.large" },
+  { label: "m6i.large", value: "m6i.large" },
   { label: "m5a.large", value: "m5a.large" },
-  { label: "m5a.xlarge", value: "m5a.xlarge" },
-  { label: "m5a.2xlarge", value: "m5a.2xlarge" },
-  { label: "m5a.4xlarge", value: "m5a.4xlarge" },
-  { label: "m5a.12xlarge", value: "m5a.12xlarge" },
-  { label: "m5a.24xlarge", value: "m5a.24xlarge" },
-  { label: "m5n.large", value: "m5n.large" },
-  { label: "m5n.xlarge", value: "m5n.xlarge" },
-  { label: "m5n.2xlarge", value: "m5n.2xlarge" },
-  { label: "m5n.4xlarge", value: "m5n.4xlarge" },
-  { label: "m5n.12xlarge", value: "m5n.12xlarge" },
-  { label: "m5n.24xlarge", value: "m5n.24xlarge" },
-  { label: "m5zn.large", value: "m5zn.large" },
-  { label: "m5zn.xlarge", value: "m5zn.xlarge" },
-  { label: "m5zn.2xlarge", value: "m5zn.2xlarge" },
-  { label: "m5zn.3xlarge", value: "m5zn.3xlarge" },
-  { label: "m5zn.6xlarge", value: "m5zn.6xlarge" },
-  { label: "m5zn.12xlarge", value: "m5zn.12xlarge" },
-  { label: "c4.large", value: "c4.large" },
-  { label: "c4.xlarge", value: "c4.xlarge" },
-  { label: "c4.2xlarge", value: "c4.2xlarge" },
-  { label: "c4.4xlarge", value: "c4.4xlarge" },
-  { label: "c4.8xlarge", value: "c4.8xlarge" },
-  { label: "c5.large", value: "c5.large" },
-  { label: "c5.xlarge", value: "c5.xlarge" },
-  { label: "c5.2xlarge", value: "c5.2xlarge" },
-  { label: "c5.4xlarge", value: "c5.4xlarge" },
-  { label: "c5.9xlarge", value: "c5.9xlarge" },
-  { label: "c5.18xlarge", value: "c5.18xlarge" },
-  { label: "c5n.large", value: "c5n.large" },
-  { label: "c5n.xlarge", value: "c5n.xlarge" },
-  { label: "c5n.2xlarge", value: "c5n.2xlarge" },
-  { label: "c5n.4xlarge", value: "c5n.4xlarge" },
+  { label: "r6a.large", value: "r6a.large" },
+  { label: "r5a.large", value: "r5a.large" },
+  { label: "r6i.large", value: "r6i.large" },
+  { label: "m7a.medium", value: "m7a.medium" },
+  { label: "t2.micro", value: "t2.micro" },
 ];
 
-export default function SetupForm({
-  form,
-  onSubmit,
-  yamlOutput,
-}: SetupFormProps) {
+export const SetupForm = ({ form, onSubmit, yamlOutput }: SetupFormProps) => {
   const [copied, setCopied] = useState(false);
 
   async function copyToClipboard() {
@@ -273,14 +217,15 @@ export default function SetupForm({
 
       {yamlOutput && (
         <div className="flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-7xl">
+          <div className="group relative w-full max-w-7xl">
             <Button
               onClick={copyToClipboard}
               variant="outline"
-              className="absolute right-0 top-20 mr-2 text-harrierGRAY"
+              className="absolute right-0 top-20 mr-2 hidden text-harrierGRAY group-hover:block"
             >
               {copied ? <ClipboardCheck /> : <Copy />}
             </Button>
+
             <h3 className="text-xl font-semibold">Copy this workflow YAML:</h3>
             <SyntaxHighlighter
               language="yaml"
@@ -298,4 +243,4 @@ export default function SetupForm({
       )}
     </>
   );
-}
+};

@@ -4,30 +4,36 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter,
+  //   CardFooter,
 } from "@/components/ui/card";
-// import { FaRegFilePdf } from "react-icons/fa";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+
+import { FaLocationDot } from "react-icons/fa6";
 import { Member } from "@/components/pages/LandingPage";
 
 const TeamMember = ({ member }: { member: Member }) => {
   return (
     <Card className="mx-auto my-4 max-w-xl transform rounded-lg border bg-white shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-harrierBLACK/30">
-      <CardHeader className="flex flex-col items-center space-y-2 rounded-t-lg p-6">
-        <img
-          src={member.photoUrl}
-          alt={member.name}
-          className="h-48 w-48 rounded-full object-cover"
-        />
-        <CardTitle className="text-center text-xl font-semibold">
-          {member.name}
-        </CardTitle>
-        <CardDescription className="text-center text-sm text-gray-600">
-          {member.role}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center p-4 pb-6 pt-0">
-        <CardFooter className="flex space-x-4">
+      <a
+        href={member.linkedinProfile}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <CardHeader className="flex flex-col items-center space-y-2 rounded-t-lg p-6">
+          <img
+            src={member.photoUrl}
+            alt={member.name}
+            className="h-48 w-48 rounded-full object-cover"
+          />
+          <CardTitle className="text-center text-xl font-semibold pt-2">
+            {member.name}
+          </CardTitle>
+          <CardDescription className="flex items-center justify-center text-center text-sm text-gray-600">
+            <FaLocationDot className="mr-2" />
+            <span>{member.location}</span>
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center p-4 pb-6 pt-0">
+          {/* <CardFooter className="flex space-x-4">
           <a
             href={member.linkedinProfile}
             target="_blank"
@@ -46,9 +52,10 @@ const TeamMember = ({ member }: { member: Member }) => {
           </a>
           {/* <a>
             <FaRegFilePdf size="24px" />
-          </a> */}
-        </CardFooter>
-      </CardContent>
+          </a>
+        </CardFooter> */}
+        </CardContent>
+      </a>
     </Card>
   );
 };

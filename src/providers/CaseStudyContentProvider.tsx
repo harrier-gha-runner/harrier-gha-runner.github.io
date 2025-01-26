@@ -1,104 +1,106 @@
-import { useEffect, useState, createContext, ReactNode } from "react";
-import slugify from "slugify";
-// import introduction from "../assets/content/introduction.md";
-import problemDomain from "../assets/content/problem-domain.md";
-import design from "../assets/content/design.md";
-import implementation from "../assets/content/implementation.md";
-import futureWork from "../assets/content/future-work.md";
-// import citations from "../assets/content/citations.md";
+// delete this file, only kept for reference
 
-interface Header {
-  level: string;
-  name: string;
-  id: string;
-}
+// import { useEffect, useState, createContext, ReactNode } from "react";
+// import slugify from "slugify";
+// // import introduction from "../assets/content/introduction.md";
+// import problemDomain from "../assets/content/problem-domain.md";
+// import design from "../assets/content/design.md";
+// import implementation from "../assets/content/implementation.md";
+// import futureWork from "../assets/content/future-work.md";
+// // import citations from "../assets/content/citations.md";
 
-interface Chapter {
-  name: string;
-  content: string;
-  //   tags: string[];
-  subheaders: Header[];
-}
+// interface Header {
+//   level: string;
+//   name: string;
+//   id: string;
+// }
 
-interface CaseStudyContentContextProps {
-  chapters: Chapter[] | null;
-}
+// interface Chapter {
+//   name: string;
+//   content: string;
+//   //   tags: string[];
+//   subheaders: Header[];
+// }
 
-const CaseStudyContentContext =
-  createContext<CaseStudyContentContextProps | null>(null);
+// interface CaseStudyContentContextProps {
+//   chapters: Chapter[] | null;
+// }
 
-const CaseStudyContentProvider = ({ children }: { children: ReactNode }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [chapters, setChapters] = useState<Chapter[] | null>(null);
+// const CaseStudyContentContext =
+//   createContext<CaseStudyContentContextProps | null>(null);
 
-  useEffect(() => {
-    const fetchMarkdown = async () => {
-      try {
-        const chapterContent = await Promise.all([
-          (await fetch(problemDomain)).text(),
-          (await fetch(design)).text(),
-          (await fetch(implementation)).text(),
-          (await fetch(futureWork)).text(),
-        ]);
+// const CaseStudyContentProvider = ({ children }: { children: ReactNode }) => {
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [error, setError] = useState<string | null>(null);
+//   const [chapters, setChapters] = useState<Chapter[] | null>(null);
 
-        const allHeaders: Header[] = chapterContent.flatMap((md) => {
-          const headerRegex = /^(#{1,6})\s+(.*)$/gm;
-          const matches = [...md.matchAll(headerRegex)];
-          return matches.map((match) => ({
-            level: match[1].length.toString(),
-            name: match[2]
-              .trim()
-              .replace(/\*\*/g, "")
-              .replace(/\s*\{#.*/, ""),
-            id: slugify(match[2].trim().replace(/\s*\{#.*/, ""), {
-              lower: true,
-              strict: true,
-            }),
-          }));
-        });
+//   useEffect(() => {
+//     const fetchMarkdown = async () => {
+//       try {
+//         const chapterContent = await Promise.all([
+//           (await fetch(problemDomain)).text(),
+//           (await fetch(design)).text(),
+//           (await fetch(implementation)).text(),
+//           (await fetch(futureWork)).text(),
+//         ]);
 
-        let contentIndex = 0;
-        setChapters(
-          allHeaders.reduce((accum: Chapter[], curr: Header) => {
-            if (curr.level === "1") {
-              accum.push({
-                name: curr.name,
-                content: chapterContent[contentIndex], //  removeH1Headers(chapterContent[contentIndex]),
-                // tags: extractTags(chapterContent[contentIndex]),
-                subheaders: [],
-              });
-              contentIndex++;
-            } else if (accum.length > 0) {
-              accum[accum.length - 1].subheaders.push(curr);
-            }
-            return accum;
-          }, [] as Chapter[]),
-        );
-      } catch (err) {
-        setError("Failed to load the case study markdown.");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+//         const allHeaders: Header[] = chapterContent.flatMap((md) => {
+//           const headerRegex = /^(#{1,6})\s+(.*)$/gm;
+//           const matches = [...md.matchAll(headerRegex)];
+//           return matches.map((match) => ({
+//             level: match[1].length.toString(),
+//             name: match[2]
+//               .trim()
+//               .replace(/\*\*/g, "")
+//               .replace(/\s*\{#.*/, ""),
+//             id: slugify(match[2].trim().replace(/\s*\{#.*/, ""), {
+//               lower: true,
+//               strict: true,
+//             }),
+//           }));
+//         });
 
-    fetchMarkdown();
-  }, []);
+//         let contentIndex = 0;
+//         setChapters(
+//           allHeaders.reduce((accum: Chapter[], curr: Header) => {
+//             if (curr.level === "1") {
+//               accum.push({
+//                 name: curr.name,
+//                 content: chapterContent[contentIndex], //  removeH1Headers(chapterContent[contentIndex]),
+//                 // tags: extractTags(chapterContent[contentIndex]),
+//                 subheaders: [],
+//               });
+//               contentIndex++;
+//             } else if (accum.length > 0) {
+//               accum[accum.length - 1].subheaders.push(curr);
+//             }
+//             return accum;
+//           }, [] as Chapter[]),
+//         );
+//       } catch (err) {
+//         setError("Failed to load the case study markdown.");
+//         console.error(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+//     fetchMarkdown();
+//   }, []);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
 
-  return (
-    <CaseStudyContentContext.Provider value={{ chapters }}>
-      {children}
-    </CaseStudyContentContext.Provider>
-  );
-};
+//   if (error) {
+//     return <div>{error}</div>;
+//   }
 
-export { CaseStudyContentProvider, CaseStudyContentContext };
+//   return (
+//     <CaseStudyContentContext.Provider value={{ chapters }}>
+//       {children}
+//     </CaseStudyContentContext.Provider>
+//   );
+// };
+
+// export { CaseStudyContentProvider, CaseStudyContentContext };

@@ -2,6 +2,7 @@ import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
+// import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -35,7 +36,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 w-full max-w-7xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-md border-0 bg-harrierGRAY px-8 py-6 shadow-lg duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "fixed left-[50%] top-[50%] z-50 w-full max-w-3xl translate-x-[-50%] translate-y-[-50%] gap-4 rounded-md border-0 bg-harrierGRAY px-8 py-6 shadow-lg duration-150 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
         className,
       )}
       {...props}
@@ -105,37 +106,38 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-const TextContentModal = ({
-  title,
-  children,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) => {
-  const [trigger, ...content] = React.Children.toArray(children);
+// type TextContentModalProps = {
+//   title: string;
+//   description?: string;
+//   children: React.ReactNode;
+// };
 
-  return (
-    <Dialog>
-      <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
-        {trigger}
-      </DialogTrigger>
-      <DialogContent className="bg-harrierBLACK">
-        <DialogHeader>
-          <DialogTitle asChild>
-            <h2>{title}</h2>
-          </DialogTitle>
-        </DialogHeader>
-        <DialogDescription asChild>
-          <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
-            <div className="m-0 text-gray-200">{content}</div>
-          </div>
-        </DialogDescription>
-        <DialogFooter></DialogFooter>
-      </DialogContent>
-    </Dialog>
-  );
-};
+// const TextContentModal = ({ title, children }: TextContentModalProps) => {
+//   return (
+//     <Dialog>
+//       <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
+//         <SlBulb size="22" className="mr-2 text-harrierYELLOW" />
+//         <>{title}</>
+//       </DialogTrigger>
+//       <DialogContent className="bg-harrierBLACK">
+//         <DialogHeader>
+//           <DialogTitle asChild>
+//             <h5 className="mb-5 flex flex-row justify-center text-3xl">
+//               <FaMagnifyingGlass size="28" className="mr-4 text-harrierPINK" />
+//               {title}
+//             </h5>
+//           </DialogTitle>
+//         </DialogHeader>
+//         <DialogDescription asChild>
+//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
+//             <div className="m-2 text-harrierWHITE">{children}</div>
+//           </div>
+//         </DialogDescription>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
+
 
 const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
@@ -149,14 +151,9 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
           />
         </div>
       </DialogTrigger>
-      <DialogContent className="bg-harrierBLACK">
-        <DialogHeader>
-          <DialogTitle asChild>
-            <h2>{alt}</h2>
-          </DialogTitle>
-        </DialogHeader>
+      <DialogContent className="max-w-7xl bg-harrierWHITE">
         <DialogDescription asChild>
-          <div className="flex w-full justify-center p-4">
+          <div className="p-8">
             <img
               className="max-h-[80vh] max-w-[90vw] object-contain"
               src={src}
@@ -169,6 +166,42 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   );
 };
 
+// type CitationsModalProps = {
+//   triggerText: string;
+//   href: string;
+//   source: string;
+//   //   children: React.ReactNode;
+// };
+
+// const CitationsModal = ({
+//   triggerText,
+//   href,
+//   source,
+//   //   children,
+// }: CitationsModalProps) => {
+//   return (
+//     <Dialog>
+//       <DialogTrigger asChild>
+//         <sup className="cursor-pointer align-super text-xs hover:text-harrierPINK">
+//           {triggerText}
+//         </sup>
+//       </DialogTrigger>
+//       <DialogContent className="bg-harrierBLACK">
+//         <DialogDescription asChild>
+//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4 text-center">
+//             <div className="m-2 flex flex-row text-harrierWHITE">
+//               {triggerText}
+//               <FaLink size="24" className="mr-4 text-harrierPINK" />
+//               <a href={href}>{source}: </a>
+//             </div>
+//           </div>
+//         </DialogDescription>
+//         {/* <DialogFooter></DialogFooter> */}
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
+
 export {
   Dialog,
   DialogPortal,
@@ -180,6 +213,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-  TextContentModal, // we created these 2 components
   ImageContentModal,
 };

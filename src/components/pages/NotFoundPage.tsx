@@ -1,7 +1,6 @@
-
 import { Link } from "react-router-dom";
-
-const NotFoundPage = () => {
+// TODO: restyle this component
+export const NotFoundPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center gap-4 rounded-md bg-harrierWHITE p-6 shadow-md">
@@ -17,5 +16,3 @@ const NotFoundPage = () => {
     </div>
   );
 };
-
-export default NotFoundPage;
