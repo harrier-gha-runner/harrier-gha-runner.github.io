@@ -494,7 +494,6 @@ export const ProblemDomain = () => {
           </ul>
         </span>
       </Overview>
-      {/* TODO: do we like this here? */}
 
       <AccordianFAQ
         faqs={[
@@ -542,7 +541,6 @@ export const ProblemDomain = () => {
             <li>Vendor-supported infrastructure management</li>
           </ul>
         </span>
-        {/*  TODO: needs to be a "bullet point" for the accompanying section */}
         <div className="sm:clearfix">
           <img
             src={CompareSample}
@@ -563,11 +561,18 @@ export const ProblemDomain = () => {
           This can be an attractive option for many teams and solo developers
           who have the time for a side project and the energy to dig deeper into
           the inner workings of GHA runners, as evidenced by the many case
-          studies published online
-          {/* TODO: wook can you find these sources? */}
-          {/* <Cite num={9999} label="sources" href="" /> */}
+          studies and walkthroughs published online
+          <Cite
+            num={9999}
+            label="EC2 self-hosted runners"
+            href="https://getunblocked.com/blog/ec2-self-hosted-runners/"
+          />
           as well as the how-to guides{" "}
-          {/* <Cite num={9999} label="sources" href="" /> */}
+          <Cite
+            num={9999}
+            label="Configuring GitHub Self-hosted runner"
+            href="https://medium.com/@gauravkachariya/configuring-github-self-hosted-runner-on-ec2-a-step-by-step-guide-2449326c0f7b"
+          />
           that have racked up tens of thousand of views.
         </p>
         <p>
@@ -588,16 +593,24 @@ export const ProblemDomain = () => {
           conclusion that on-demand runners on a managed cloud infrastructure
           would best serve the needs of a GHA runner.
         </p>
-        <p>
-          A simple workaround to avoid the tradeoffs of a DIY approach is to
-          subscribe to a 3rd-party solution with expertise in delivering
-          alternative runner solutions to users. Many of these 3rd-party
-          providers take on the full responsibility of provisioning the
-          alternative runner infrastructure on their own server environment,
-          which they manage and maintain on behalf of the user. The user
-          typically pays a subscription fee to conveniently access and
-          experience the benefits of a customized runner infrastructure.
-        </p>
+        <div className="sm:clearfix">
+          <img
+            src={CompareSample}
+            alt="Comparison sample"
+            className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
+          />
+          <p>
+            A simple workaround to avoid the tradeoffs of a DIY approach is to
+            subscribe to a 3rd-party solution with expertise in delivering
+            alternative runner solutions to users. Many of these 3rd-party
+            providers take on the full responsibility of provisioning the
+            alternative runner infrastructure on their own server environment,
+            which they manage and maintain on behalf of the user. The user
+            typically pays a subscription fee to conveniently access and
+            experience the benefits of a customized runner infrastructure.
+          </p>
+        </div>
+
         <p>
           An example of such a 3rd-party provider is{" "}
           <ExternalLink
@@ -628,16 +641,24 @@ export const ProblemDomain = () => {
           and/or costly to switch to new platforms should their needs change in
           the future.
         </p>
-        <p>
-          Given the tradeoffs posed by established 3rd-party solutions, efforts
-          are being made to bring some degree of control back into the users'
-          hands. One such example is{" "}
-          <ExternalLink href="https://runs-on.com/" children="Runs-On" />, a
-          project developed by one individual to specifically address the
-          security risks of exposing code and secrets to a 3rd-party. Runs-On
-          aims to be a drop-in replacement for GHA default runners, which are
-          provisioned in the user's own AWS account.
-        </p>
+        <div className="sm:clearfix">
+          <img
+            src={CompareSample}
+            alt="Comparison sample"
+            className="h-28 w-auto sm:float-left sm:mb-2 sm:mr-5 sm:mt-2"
+          />
+          <p>
+            Given the tradeoffs posed by established 3rd-party solutions,
+            efforts are being made to bring some degree of control back into the
+            users' hands. One such example is{" "}
+            <ExternalLink href="https://runs-on.com/" children="Runs-On" />, a
+            project developed by one individual to specifically address the
+            security risks of exposing code and secrets to a 3rd-party. Runs-On
+            aims to be a drop-in replacement for GHA default runners, which are
+            provisioned in the user's own AWS account.
+          </p>
+        </div>
+
         <p>
           In a solution such as Runs-On, moving the infrastructure hosting task
           back to the user resolves some of the data security risks that arise

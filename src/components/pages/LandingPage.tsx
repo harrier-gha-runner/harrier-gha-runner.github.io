@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Badge } from "@/components/ui/Badge";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
 import { NavLink } from "react-router-dom";
@@ -54,7 +53,6 @@ export const LandingPage = () => {
           </div>
         </div>
       </section>
-
       <section
         id="landing-panel-1"
         className="mx-14 my-16 grid grid-cols-1 gap-8 md:grid-cols-2"
