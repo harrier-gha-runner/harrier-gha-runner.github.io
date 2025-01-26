@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PageNavigationContext } from "@/providers/PageNavigation";
-import { Separator } from "@/components/ui/separator";
-import { FaGithub } from "react-icons/fa6";
+
+import { FaExternalLinkAlt } from "react-icons/fa";
 import HisHoliness from "@/assets/harrier-big-blue-shadow.svg";
 // import { useViewportWidth } from "@/hooks/useViewportWidth";
 
@@ -27,7 +27,15 @@ const HeaderNav = () => {
         about
       </NavLink>
       <NavLink to="/team">team</NavLink>
-      <NavLink to="/try-harrier">use</NavLink>
+      <NavLink to="/try-harrier">setup</NavLink>
+      <a
+        href="https://github.com/harrier-gha-runner/harrier-self-hosted-runner?tab=readme-ov-file#harrier-deployment-guide"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-row items-center justify-center"
+      >
+        github <FaExternalLinkAlt className="ml-2" size="16" />
+      </a>
     </div>
   );
 };
