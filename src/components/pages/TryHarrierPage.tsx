@@ -323,8 +323,8 @@ export const TryHarrierPage = () => {
         form={form}
         onSubmit={handleSubmit}
         yamlOutput={yamlOutput}
-        handleForwardClick={() => setActiveStep(activeStep + 1)}
-        handleBackwardClick={() => setActiveStep(activeStep - 1)}
+
+        // handleBackwardClick={() => setActiveStep(activeStep - 1)}
       />
     </>
   );
