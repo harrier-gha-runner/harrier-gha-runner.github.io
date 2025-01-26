@@ -2,6 +2,7 @@ import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "@/providers/PageNavigation";
+import { SetupStepsProvider } from "@/providers/SetupSteps";
 import { TeamProvider } from "@/providers/Team";
 
 import { TryHarrierPage } from "./components/pages/TryHarrierPage";
@@ -29,7 +30,7 @@ createRoot(document.getElementById("app")!).render(
               {
                 path: "/",
                 element: <Layout />,
-                errorElement: <div>generic error</div>, // TODO: Add improved error page
+                errorElement: <NotFoundPage />, // TODO: Add improved error page
                 children: [
                   {
                     index: true,
@@ -73,9 +74,11 @@ createRoot(document.getElementById("app")!).render(
                   {
                     path: "try-harrier",
                     element: (
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <TryHarrierPage />
-                      </Suspense>
+                      <SetupStepsProvider>
+                        <Suspense fallback={<div>Loading...</div>}>
+                          <TryHarrierPage />
+                        </Suspense>
+                      </SetupStepsProvider>
                     ),
                   },
                   {
