@@ -119,6 +119,73 @@ button {
     transform: translateY(100px);
   }
 }
+
+/* Apply the animation to the avatar container */
+#team-avatars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0; /* Start with invisible */
+  animation: avatarExpandContainer 0.4s ease-out forwards; /* Animate the container's appearance */
+  position: absolute;
+  bottom: 100%; /* Adjust to ensure it appears above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Staggered reveal animation for avatars */
+.avatar-staggered {
+  opacity: 0; /* Start as invisible */
+  transform: translateY(10px); /* Slightly off-position to animate from below */
+  animation: avatarExpand 0.5s ease-out forwards; /* Animation for each avatar */
+}
+
+/* Animation for showing the avatars with staggered delays */
+#team-avatars.animate-avatar-show .avatar-staggered {
+  opacity: 1; /* Make visible */
+  transform: translateY(0); /* Move to final position */
+}
+
+/* Avatar reveal with individual delays */
+#team-avatars .avatar-staggered:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+#team-avatars .avatar-staggered:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+#team-avatars .avatar-staggered:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+#team-avatars .avatar-staggered:nth-child(4) {
+  animation-delay: 450ms;
+}
+
+/* Keyframes for container and avatar animations */
+@keyframes avatarExpandContainer {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes avatarExpand {
+  0% {
+    opacity: 0;
+    transform: translateY(7px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Move to the final position */
+  }
+}
+
 /* 
 @layer base {
   :root {

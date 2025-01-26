@@ -34,7 +34,7 @@ const HeaderNav = () => {
         rel="noopener noreferrer"
         className="flex flex-row items-center justify-center"
       >
-        github <FaExternalLinkAlt className="ml-1" size="12" />
+        github <FaExternalLinkAlt className="ml-1" size={10} />
       </a>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Badge } from "@/components/ui/Badge";
 import { PageNavigationContext } from "@/providers/PageNavigation";
 import { TeamContext } from "@/providers/Team";
 import { NavLink } from "react-router-dom";
@@ -29,8 +30,8 @@ export const LandingPage = () => {
             <div>GitHub Actions</div>
           </h1>
           <div className="flex flex-wrap items-center justify-center gap-1 text-harrierGRAY">
-            <div>Custom configured self-hosted runners.</div>
-            <div>Secure within your own AWS account.</div>
+            <span>Custom configured self-hosted runners.</span>
+            <span>Secure within your own AWS account.</span>
           </div>
           <div className="flex space-x-8">
             <NavLink to="/case-study/introduction">
@@ -61,7 +62,8 @@ export const LandingPage = () => {
         <div className="prose flex w-full justify-center bg-harrierWHITE p-4">
           <div className="max-w-lg">
             <h3 className="flex flex-wrap justify-start gap-x-1 gap-y-2 text-xl font-bold text-harrierBLACK">
-              <div>Dedicated Persistent Cache</div>
+              Dedicated
+              <div className="text-harrierPINK">Persistent Cache</div>
               <div>
                 for&nbsp;
                 <a
