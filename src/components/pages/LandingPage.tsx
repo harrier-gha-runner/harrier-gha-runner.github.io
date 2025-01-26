@@ -42,12 +42,12 @@ export const LandingPage = () => {
                   setActiveSubheader(null);
                 }}
               >
-                Read More
+                Read our Case Study
               </button>
             </NavLink>
             <NavLink to="/try-harrier">
               <button className="border hover:border-harrierPINK">
-                Try Harrier
+                Try out Harrier
               </button>
             </NavLink>
           </div>
