@@ -10,10 +10,10 @@ export type Step = {
   id: string;
   title: string;
   introduction: React.ReactElement | string;
-  conclusion?: React.ReactElement | string;
   content?: {
     alt?: string;
     caption: React.ReactElement | string;
+    conclusion?: React.ReactElement | string;
     aside?: {
       title: "Note" | "Remember" | "Caution";
       message: string;
@@ -176,10 +176,6 @@ const SetupStepsProvider = ({ children }: { children: ReactNode }) => {
               <CB>SecretsManagerReadWrite</CB>.
             </span>
           ),
-          aside: {
-            title: "Note",
-            message: "hi mom",
-          },
         },
         {
           caption: (
@@ -199,14 +195,14 @@ const SetupStepsProvider = ({ children }: { children: ReactNode }) => {
               <BT>Create role</BT>.
             </span>
           ),
+          conclusion: (
+            <span>
+              With the identity provider created, we can now move on to step 2:{" "}
+              <BT>creating a personal access token on GitHub</BT>.
+            </span>
+          ),
         },
       ],
-      conclusion: (
-        <span>
-          With the identity provider created, we can now move on to step 2:{" "}
-          <BT>creating a personal access token on GitHub</BT>.
-        </span>
-      ),
     },
     {
       id: "personal-access-token",
@@ -276,9 +272,7 @@ const SetupStepsProvider = ({ children }: { children: ReactNode }) => {
           caption: (
             <span>
               Take heed of the GitHub notification and{" "}
-              <BT className="text-harrierBLACK">
-                copy the freshly-minted personal access token.
-              </BT>
+              <BT>copy the freshly-minted personal access token.</BT>
             </span>
           ),
         },
@@ -337,15 +331,16 @@ const SetupStepsProvider = ({ children }: { children: ReactNode }) => {
               <BT>Store</BT>.
             </span>
           ),
+          conclusion: (
+            <span>
+              With the personal access token safely managed by AWS Secrets
+              Manager, we can now move on to step 3:{" "}
+              <BT>configuring your runner setup </BT> and generating a{" "}
+              <CB>harrier_setup.yaml</CB>.
+            </span>
+          ),
         },
       ],
-      conclusion: (
-        <span>
-          With the personal access token safely managed by AWS Secrets Manager,
-          we can now move on to step 3: <BT>configuring your runner setup </BT>{" "}
-          and generating a <CB>harrier_setup.yaml</CB>.
-        </span>
-      ),
     },
     {
       id: "create-setup-yaml",

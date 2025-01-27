@@ -10,7 +10,6 @@ import { FieldValues, useForm } from "react-hook-form";
 import yaml from "js-yaml";
 import { formSchema } from "@/schemas/formSchema";
 import { Overview } from "../utility/Overview";
-import { Callout } from "../utility/Callout";
 
 // import ip0 from "@/assets/screenshots/identity-provider/0.jpg";
 
@@ -136,6 +135,7 @@ const TryHarrierContent = ({
               yamlOutput={yamlOutput}
             />
           )}
+
           {steps[activeStep].type === "visual" && (
             <>
               {steps[activeStep].content?.map((item, idx) => (
@@ -148,12 +148,6 @@ const TryHarrierContent = ({
                     className="py-0 text-lg"
                   >
                     <p className="flex flex-row">{item.caption}</p>
-                    {item.aside && item.aside.message && (
-                      <Callout
-                        title={item.aside.title}
-                        message={item.aside.message}
-                      />
-                    )}
                   </figcaption>
                   <div className="relative pl-8">
                     <figure
@@ -166,14 +160,14 @@ const TryHarrierContent = ({
                         className="h-auto rounded-lg object-contain shadow"
                       />
                     </figure>
+                    {item?.conclusion && (
+                      <figcaption className="py-0 text-lg">
+                        <p className="flex flex-row">{item.conclusion}</p>
+                      </figcaption>
+                    )}
                   </div>
                 </div>
               ))}
-              {steps[activeStep].conclusion && (
-                <span className="flex w-full flex-row py-0 text-lg">
-                  {steps[activeStep].conclusion}
-                </span>
-              )}
             </>
           )}
         </section>
