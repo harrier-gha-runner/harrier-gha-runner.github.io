@@ -187,15 +187,16 @@ export const Design = () => {
                   completes successfully. When it comes to caching dependencies,
                   GitHub's cache action defaults to caching the fetched package
                   files that are typically stored in `~/.npm` on Linux/macOS
-                  rather than caching the entire node_modules directory. The
-                  design of Harrier's cache action differs from GitHub in that
-                  the cache is restored even without a cache hit, as long as
-                  there is a cache that matches the project. This will allow
-                  workflows to take advantage of cache more frequently than with
-                  GitHub's cache action. In addition, Harrier's cache stores the
-                  entire node_modules directory in its cache store, leading to a
-                  greater degree of short circuiting of the dependency
-                  installation process and thus saving more time.
+                  rather than caching the entire{" "}
+                  <CB copy={false}>node_modules</CB>directory. The design of
+                  Harrier's cache action differs from GitHub in that the cache
+                  is restored even without a cache hit, as long as there is a
+                  cache that matches the project. This will allow workflows to
+                  take advantage of cache more frequently than with GitHub's
+                  cache action. In addition, Harrier's cache stores the entire{" "}
+                  <CB copy={false}>node_modules</CB>directory in its cache
+                  store, leading to a greater degree of short circuiting of the
+                  dependency installation process and thus saving more time.
                 </>
               ),
             },

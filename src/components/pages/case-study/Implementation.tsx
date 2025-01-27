@@ -726,11 +726,13 @@ export const Implementation = () => {
           <CB copy={false}>node_modules</CB> directory (the directory can be as
           small as 10MB for small projects, but could be 1GB or larger for
           bigger projects) as well as the presence of symlinks (symbolic links),
-          Harrier compresses the entire node modules directory into a TAR
-          archive file and saves it into the S3 bucket. At this time, a
-          timestamped cache key is also created using the checksum hash of the
-          package.json file, with the idea that a modification in the
-          package.json file would invalidate the cache.
+          Harrier compresses the entire <CB copy={false}>node_modules</CB>{" "}
+          directory into a TAR archive file and saves it into the S3 bucket. At
+          this time, a timestamped cache key is also created using the checksum
+          hash of the
+          <CB copy={false}>package.json</CB> file, with the idea that a
+          modification in the
+          <CB copy={false}>package.json</CB> file would invalidate the cache.
         </p>
         <p>
           After this first run, Harrier provides users with the option to load
@@ -766,10 +768,10 @@ export const Implementation = () => {
           dependency installation step for a workflow run pertaining to new
           branches. When a workflow is run on a new branch, even though there
           isn't a cache pertaining to this specific branch, Harrier will load a
-          cached node_modules directory from another branch in order to speed up
-          the dependencies installation step, ensuring that every workflow run
-          of a repository after the first ever workflow can experience faster
-          workflow automation through cache.
+          cached <CB copy={false}>node_modules</CB>directory from another branch
+          in order to speed up the dependencies installation step, ensuring that
+          every workflow run of a repository after the first ever workflow can
+          experience faster workflow automation through cache.
         </p>
         <AccordianFAQ
           faqs={[
@@ -821,45 +823,48 @@ export const Implementation = () => {
               answer: (
                 <>
                   <p>
-                    Caching the node_modules directory is surprisingly
-                    challenging for three primary reasons.
+                    Caching the <CB copy={false}>node_modules</CB>directory is
+                    surprisingly challenging for three primary reasons.
                   </p>
                   <p>
-                    First, the node_modules directory can contain a huge number
-                    of files even for relatively simple projects due not only to
-                    the primary dependencies, but also the sub-dependencies
-                    involved. A typical node_modules directory can contain tens
+                    First, the <CB copy={false}>node_modules</CB>directory can
+                    contain a huge number of files even for relatively simple
+                    projects due not only to the primary dependencies, but also
+                    the sub-dependencies involved. A typical{" "}
+                    <CB copy={false}>node_modules</CB>directory can contain tens
                     of thousands of small files, making it difficult to
                     efficiently cache the directory as is, necessitating some
                     form of compression.
                   </p>
                   <p>
-                    Second, the node_modules directory often has a deeply nested
-                    directory structure due to the way dependencies are
-                    resolved, with each sub-package within node_modules having
-                    its own dependencies. The more deeply nested the structure,
-                    the harder it is to compress, especially if file path
-                    lengths start to exceed operating system limits.
+                    Second, the <CB copy={false}>node_modules</CB>directory
+                    often has a deeply nested directory structure due to the way
+                    dependencies are resolved, with each sub-package within{" "}
+                    <CB copy={false}>node_modules</CB>having its own
+                    dependencies. The more deeply nested the structure, the
+                    harder it is to compress, especially if file path lengths
+                    start to exceed operating system limits.
                   </p>
                   <p>
-                    Lastly, many node_modules directories contain symlinks
-                    (symbolic links), which are special file types that point to
-                    another file or directory in other locations of the file
-                    system. If the symlinks are not handled properly during
-                    compression, the archive may store only the symlink itself
-                    (i.e., the pointer) instead of the actual files that the
-                    symlink refers to.
+                    Lastly, many <CB copy={false}>node_modules</CB>directories
+                    contain symlinks (symbolic links), which are special file
+                    types that point to another file or directory in other
+                    locations of the file system. If the symlinks are not
+                    handled properly during compression, the archive may store
+                    only the symlink itself (i.e., the pointer) instead of the
+                    actual files that the symlink refers to.
                   </p>
                   <p>
                     Initial research suggested using the command-line tool rsync
-                    to synchronize and transfer the node_modules directory
-                    during the caching process. However, testing revealed that
-                    using rsync as the caching tool took too much time, longer
-                    than the entire workflow runtime on a GHA default runner.
-                    After searching for an alternative tool, Harrier settled on
-                    using tar compression, which is capable of handling
-                    symlinks, special files, and directories, to cache the
-                    node_modules folder.
+                    to synchronize and transfer the{" "}
+                    <CB copy={false}>node_modules</CB>directory during the
+                    caching process. However, testing revealed that using rsync
+                    as the caching tool took too much time, longer than the
+                    entire workflow runtime on a GHA default runner. After
+                    searching for an alternative tool, Harrier settled on using
+                    tar compression, which is capable of handling symlinks,
+                    special files, and directories, to cache the
+                    <CB copy={false}>node_modules</CB>folder.
                   </p>
                 </>
               ),

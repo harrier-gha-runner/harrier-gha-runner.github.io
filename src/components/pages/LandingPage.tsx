@@ -112,8 +112,8 @@ export const LandingPage = () => {
               </div>
             </h3>
             <div className="flex flex-wrap justify-center text-xl text-harrierBLACK">
-              Create your own GitHub Actions self-hosted runner infrastructure
-              with a built-in cache to speed up CI builds and more.
+              Continue using your proven workflows with minimal modification to
+              take advantage of your new runners.
             </div>
           </div>
         </div>

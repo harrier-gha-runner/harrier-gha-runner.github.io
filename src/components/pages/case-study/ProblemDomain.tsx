@@ -136,7 +136,6 @@ export const ProblemDomain = () => {
             label="CI vs. CD: Differences, Similarities, and Best Practices"
             href="https://codefresh.io/learn/ci-cd/ci-vs-cd-differences-similarities-and-best-practices/"
           />
-          {"  "}
           <ul>
             <li>Early detection of issues</li>
             <li>Improved team collaboration</li>
@@ -145,13 +144,6 @@ export const ProblemDomain = () => {
             <li>Improved and faster user feedback</li>
           </ul>
         </p>
-        <ul>
-          <li>Early detection of issues</li>
-          <li>Improved team collaboration</li>
-          <li>Faster release cycles and rapid releases</li>
-          <li>Reduced risk of failed deployments</li>
-          <li>Improved and faster user feedback</li>
-        </ul>
         <p>
           These benefits help establish a more stable and efficient development
           environment. As software development grows increasingly complex, the
@@ -215,7 +207,8 @@ export const ProblemDomain = () => {
           Given that GitHub Actions was designed to provide native CI/CD
           automation support, GitHub workflows are almost entirely related to
           CI/CD processes.
-          <Cite num={8} label="github launch deck" href="#" />
+          <Cite num={8} label="github launch deck" href="" />
+          {/* TODO: where was  */}
           Through GHA, one can automate tasks such as linting tests before a
           project build, the actual build process, unit tests performed after a
           build, auto deploy, just to name a few.
@@ -223,7 +216,7 @@ export const ProblemDomain = () => {
         <p>
           However, GHA as a CI/CD tool is not without its limitations
           {/* TODO: what was this in reference to?  Original source was "reddit"*/}
-          {/* <Cite num={9} label="Reddit" href="#" />  */}
+          <Cite num={9} label="Reddit" href="" />
           Areas where some consider it falling short are:
           <ul>
             <li>
@@ -247,20 +240,6 @@ export const ProblemDomain = () => {
             </li>
           </ul>
         </p>
-        <ul>
-          <li>
-            Limited visibility of workflow artifacts & robust artifact
-            management.
-          </li>
-          <li>Limited tooling for debugging workflows.</li>
-          <li>
-            Limited support for event-based workflow triggers originating
-            outside of GitHub itself. (send a “respository_dispatch” event via
-            the GitHub API)
-          </li>
-          <li>Performance ceiling for enterprise-level workflows.</li>
-          <li>YAML-based workflow configuration.30</li>
-        </ul>
         <p>
           The above limitations may lead a developer or organization to consider
           alternative approaches to address their specific CI/CD needs.
