@@ -19,7 +19,7 @@ const HeaderNav = () => {
   return (
     <div className="absolute right-0 top-0 mr-6 mt-6 flex h-12 w-auto items-center justify-center space-x-4 text-lg font-semibold">
       <NavLink
-        to="/case-study/introduction"
+        to="/case-study"
         onClick={() => {
           setActivePage(0);
         }}

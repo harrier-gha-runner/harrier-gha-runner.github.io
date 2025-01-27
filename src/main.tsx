@@ -1,7 +1,7 @@
 /* main.tsx */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, Navigate, RouterProvider } from "react-router-dom";
 import { PageNavigationProvider } from "@/providers/PageNavigation";
 import { SetupStepsProvider } from "@/providers/SetupSteps";
 import { TeamProvider } from "@/providers/Team";
@@ -42,6 +42,10 @@ createRoot(document.getElementById("app")!).render(
                     element: <CaseStudyHomePage />,
                     errorElement: <NotFoundPage />,
                     children: [
+                      {
+                        index: true,
+                        element: <Navigate to="introduction" replace />,
+                      },
                       {
                         path: "problem-domain",
                         element: <ProblemDomain />,

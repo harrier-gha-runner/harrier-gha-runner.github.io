@@ -33,7 +33,7 @@ export const LandingPage = () => {
             <span>Secure within your own AWS account.</span>
           </div>
           <div className="flex space-x-8">
-            <NavLink to="/case-study/introduction">
+            <NavLink to="/case-study">
               <button
                 className="bg-harrierPINK/80 hover:bg-harrierPINK"
                 type="button"
