@@ -23,14 +23,14 @@ export const LandingPage = () => {
         id="landing-panel-0"
         className="flex h-[40rem] items-center justify-center bg-harrierBLACK"
       >
-        <div className="flex flex-col items-center justify-evenly gap-6 px-14 text-center text-harrierWHITE">
+        <div className="flex flex-col items-center justify-evenly gap-6 px-10 text-center text-harrierWHITE">
           <h1 className="flex flex-wrap items-center justify-center gap-x-2 gap-y-4 text-4xl">
-            <div>Accelerate your</div>
+            <div>Accelerate</div>
             <div>GitHub Actions</div>
           </h1>
           <div className="flex flex-wrap items-center justify-center gap-1 text-harrierGRAY">
             <span>Custom configured self-hosted runners.</span>
-            <span>Secure within your own AWS account.</span>
+            <span>Secure within your AWS account.</span>
           </div>
           <div className="flex space-x-8">
             <NavLink to="/case-study">

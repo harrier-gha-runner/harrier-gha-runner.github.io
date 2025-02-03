@@ -106,46 +106,13 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-// type TextContentModalProps = {
-//   title: string;
-//   description?: string;
-//   children: React.ReactNode;
-// };
-
-// const TextContentModal = ({ title, children }: TextContentModalProps) => {
-//   return (
-//     <Dialog>
-//       <DialogTrigger className="m-0 flex flex-row items-center space-x-2 p-4">
-//         <SlBulb size="22" className="mr-2 text-harrierYELLOW" />
-//         <>{title}</>
-//       </DialogTrigger>
-//       <DialogContent className="bg-harrierBLACK">
-//         <DialogHeader>
-//           <DialogTitle asChild>
-//             <h5 className="mb-5 flex flex-row justify-center text-3xl">
-//               <FaMagnifyingGlass size="28" className="mr-4 text-harrierPINK" />
-//               {title}
-//             </h5>
-//           </DialogTitle>
-//         </DialogHeader>
-//         <DialogDescription asChild>
-//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4">
-//             <div className="m-2 text-harrierWHITE">{children}</div>
-//           </div>
-//         </DialogDescription>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-
 const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div className="flex w-full justify-center py-6">
           <img
-            className="h-auto w-full max-w-xl cursor-pointer object-contain"
+            className="h-auto w-full max-w-full cursor-pointer object-contain"
             src={src}
             alt={alt}
           />
@@ -155,7 +122,7 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
         <DialogDescription asChild>
           <div className="p-8">
             <img
-              className="max-h-[80vh] max-w-[90vw] object-contain"
+              className="h-auto w-full max-w-full object-contain"
               src={src}
               alt={alt}
             />
@@ -165,42 +132,6 @@ const ImageContentModal = ({ src, alt }: { src: string; alt: string }) => {
     </Dialog>
   );
 };
-
-// type CitationsModalProps = {
-//   triggerText: string;
-//   href: string;
-//   source: string;
-//   //   children: React.ReactNode;
-// };
-
-// const CitationsModal = ({
-//   triggerText,
-//   href,
-//   source,
-//   //   children,
-// }: CitationsModalProps) => {
-//   return (
-//     <Dialog>
-//       <DialogTrigger asChild>
-//         <sup className="cursor-pointer align-super text-xs hover:text-harrierPINK">
-//           {triggerText}
-//         </sup>
-//       </DialogTrigger>
-//       <DialogContent className="bg-harrierBLACK">
-//         <DialogDescription asChild>
-//           <div className="rounded-md border-gray-400 bg-gray-400/10 p-4 text-center">
-//             <div className="m-2 flex flex-row text-harrierWHITE">
-//               {triggerText}
-//               <FaLink size="24" className="mr-4 text-harrierPINK" />
-//               <a href={href}>{source}: </a>
-//             </div>
-//           </div>
-//         </DialogDescription>
-//         {/* <DialogFooter></DialogFooter> */}
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
 
 export {
   Dialog,

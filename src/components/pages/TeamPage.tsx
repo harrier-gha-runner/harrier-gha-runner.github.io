@@ -14,7 +14,7 @@ export const TeamPage = () => {
         time zones
       </p>
 
-      <div className="mt-2 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-2 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
         {team.map((member) => (
           <TeamMember member={member} key={member.name} />
         ))}
