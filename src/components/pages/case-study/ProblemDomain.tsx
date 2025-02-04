@@ -666,19 +666,25 @@ export const ProblemDomain = () => {
           In a solution such as Runs-On, moving the infrastructure hosting task
           back to the user resolves some of the data security risks that arise
           from checking out code into a 3rd-party environment. However, it is
-          not a complete solution as users have to provide Runs-On with access
-          to their AWS accounts in order for Runs-On to manage, monitor, and
-          maintain the runners, thus creating a new security concern. In
-          addition, a solution like Runs-On creates additional overhead for
-          users in that users now have to manage their subscription to two
-          separate services, Runs-On and AWS.
+          not a completely independent solution as users have to provide Runs-On
+          with access to their AWS accounts in order for the Runs-On service to
+          manage, monitor, and maintain the runners. To be clear, Runs-on is not
+          a centrally managed external orchestrator, but does maintain{" "}
+          <ExternalLink
+            href="https://runs-on.com/security/#runson-agent-ec2-instance"
+            children="an agent"
+          />{" "}
+          on the EC2 instances it provisions which sends telemetry data back to
+          an api endpoint managed by Runs-on. In addition, a solution like
+          Runs-On creates additional overhead for users in that users now have
+          to manage their subscription to two separate services, Runs-On and
+          AWS.
         </p>
         <p>
-          Although these DIY approaches have significant tradeoffs, they meet
-          the needs of many users. However, some users still require a
-          customizable, secure GHA self-hosted runner setup without wanting to
-          invest the time or the money in setting up an alternative solution
-          themselves.
+          Although these DIY approaches have tradeoffs, they meet the needs of
+          many users. However, some users still require a customizable, secure
+          GHA self-hosted runner setup without wanting to invest the time or the
+          money in setting up an alternative solution themselves.
         </p>
         <p>
           It is in this specific use case that Harrier sees an opportunity for
