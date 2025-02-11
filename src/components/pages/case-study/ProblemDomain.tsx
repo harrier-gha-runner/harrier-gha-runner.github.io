@@ -655,30 +655,33 @@ export const ProblemDomain = () => {
             Given the tradeoffs posed by established 3rd-party solutions,
             efforts are being made to bring some degree of control back into the
             users' hands. One such example is{" "}
-            <ExternalLink href="https://runs-on.com/" children="Runs-On" />, a
+            <ExternalLink href="https://runs-on.com/" children="RunsOn" />, a
             project developed by one individual to specifically address the
-            security risks of exposing code and secrets to a 3rd-party. Runs-On
+            security risks of exposing code and secrets to a 3rd-party. RunsOn
             aims to be a drop-in replacement for GHA default runners, which are
             provisioned in the user's own AWS account.
           </p>
         </div>
         <p>
-          In a solution such as Runs-On, moving the infrastructure hosting task
+          In a solution such as RunsOn, moving the infrastructure hosting task
           back to the user resolves some of the data security risks that arise
-          from checking out code into a 3rd-party environment. However, it is
-          not a completely independent solution as users have to provide Runs-On
-          with access to their AWS accounts in order for the Runs-On service to
-          manage, monitor, and maintain the runners. To be clear, Runs-on is not
-          a centrally managed external orchestrator, but does maintain{" "}
+          from checking out code into a 3rd-party environment. However, users
+          still have to trust a partially closed-source component to execute
+          within their AWS account to manage, monitor, and maintain the runners.
+          While RunsOn is not a centrally-managed external orchestrator, it
+          employs an{" "}
           <ExternalLink
             href="https://runs-on.com/security/#runson-agent-ec2-instance"
-            children="an agent"
+            children="agent"
           />{" "}
-          on the EC2 instances it provisions which sends telemetry data back to
-          an api endpoint managed by Runs-on. In addition, a solution like
-          Runs-On creates additional overhead for users in that users now have
-          to manage their subscription to two separate services, Runs-On and
-          AWS.
+          on the EC2 instances it provisions to send telemetry data back to an
+          API endpoint managed by RunsOn. This agent can be disabled with the{" "}
+          <ExternalLink
+            href="https://runs-on.com/pricing/"
+            children="Sponsorship License"
+          />
+          . Finally, this means you now need to manage subscriptions for two
+          vendors instead of one: RunsOn and AWS.
         </p>
         <p>
           Although these DIY approaches have tradeoffs, they meet the needs of
