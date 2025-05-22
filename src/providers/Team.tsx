@@ -43,9 +43,9 @@ const TeamProvider = ({ children }: { children: ReactNode }) => {
       name: "Joel Barton",
       role: "Software Engineer",
       photoUrl: "https://avatars.githubusercontent.com/u/86934356?v=4",
-      location: "Seattle, WA.",
+      location: "San Francisco, CA",
       linkedinProfile: "https://www.linkedin.com/in/joel-barton1/",
-      githubProfile: "https://github.com/joelbarton-io",
+      githubProfile: "https://github.com/joelbarton406",
     },
   ]);
   return <TeamContext.Provider value={team}>{children}</TeamContext.Provider>;
